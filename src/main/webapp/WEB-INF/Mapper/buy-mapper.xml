@@ -6,8 +6,8 @@
 	<insert id="add" >
 	insert into board values(buy_seq.nextval,#{title},#{detail},#{price},#{buy_id},#{end},#{categoly},sysdate)
 	</insert>
-	<select id="list">
-	select * from BUY;
+	<select id="list" resultType="java.util.HashMap">
+	select * from BUY
 	</select>
 	
 </mapper>

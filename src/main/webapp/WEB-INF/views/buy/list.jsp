@@ -13,18 +13,33 @@ th, td {
 }
 </style>
 <div align="center" style="line-height: 35px">
-	<h2>삽니다</h2>
+	<h2>게시판</h2>
+	<p align="right" style="margin-right: 30px;">
+		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
+	</p>
 	<table style="width: 95%; background-color:#EAEAEA;" class="table table-bordered" >
 		<thead>
 			<tr>
 				<th style="width: 10%">글번호</th>
-				<th style="width: 60%">글제목</th>
-				<th style="width: 20%">작성자</th>
-				<th style="width: 10%">조회수</th>
+				<th style="width: 10%">구분</th>
+				<th style="width: 45%">글제목</th>
+				<th style="width: 15%">작성자</th>
+				<th style="width: 15%">작성일자</th>
 			</tr>
 		</thead>
+		<tbody>
+			<c:forEach var="obj" items="${list }">
+				<tr>
+					<td>${obj.NUM }</td>
+					<td>${obj.CATEGOLY }</td>					
+					<td><a href="/buy/view/${obj.NUM}">${fn:substring(obj.TITLE, 0, 12) }
+					<td>${obj.BUY_ID }</td>
+					<td>${obj.ADD_DATE }</td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 	<p align="right" style="margin-right: 30px;">
-		<a href="/board/add"><button type="button" style="padding: 5px;">글작성</button></a>
+		<a href="/buy/add"><button type="button" style="padding: 5px;">글작성</button></a>
 	</p>
 </div>
