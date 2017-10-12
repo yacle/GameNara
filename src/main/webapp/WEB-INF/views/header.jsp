@@ -1,17 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<header>
-<div class="row">
-    <div class="col-sm-3" align="center"><br/>
-    <h1>GAME NARA</h1>
-</div>
-<div class="col-sm-9">
-	<img id="pre" src="/profiles/header.jpg" alt="WELCOM" align="center"
-						 style="width: 100%; height:100%; border-radius: 10%;" />
-</div>
-</div>
-</header>
 
 	<div class="jumbotron" style="background-color:DarkSlateBlue ; color:white">
 		<div class="row">

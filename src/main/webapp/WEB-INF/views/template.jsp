@@ -17,11 +17,9 @@
 	</head>
 <body>
 <div class="container">
-	<div class="jumbotron" style="width:100%; height:300px; background-color:navy; color:white">
-		<header >
-			<tiles:insertAttribute name="header" />
-		</header>
-	</div>
+	<header >
+		<tiles:insertAttribute name="header" />
+	</header>
 	<c:choose>
 		<c:when test="${empty auth_id}">
 			<nav class="navbar navbar-default">
