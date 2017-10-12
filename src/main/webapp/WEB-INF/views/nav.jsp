@@ -2,7 +2,7 @@
 
    <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">GAMENARA</a>
+      <a class="navbar-brand" href="/index">GAMENARA</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">NOTICE</a></li>
@@ -17,7 +17,7 @@
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">BUY<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">TOTAL</a></li>
+          <li><a href="/buy/list">TOTAL</a></li>
           <li><a href="#">CONSOLE</a></li>
           <li><a href="#">GAME TITLE</a></li>
           <li><a href="#">ACCESSORY</a></li>
@@ -38,7 +38,7 @@
         <ul class="dropdown-menu">
           <li><a href="#">가입인사</a></li>
           <li><a href="#">자유게시판</a></li>
-          <li><a href="#">거래후기</a></li>
+          <li><a href="/after/list">거래후기</a></li>
         </ul>
       </li>
     </ul>

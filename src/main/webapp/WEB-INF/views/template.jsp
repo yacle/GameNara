@@ -29,7 +29,7 @@
 		<c:otherwise>
 		
 			<nav class="navbar navbar-default">
-			
+			1234
 				<tiles:insertAttribute name="nav_user" />
 			</nav>
 		</c:otherwise>
