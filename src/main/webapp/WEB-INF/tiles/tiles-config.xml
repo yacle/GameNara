@@ -7,7 +7,6 @@
 		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/views/nav.jsp" />
 		<put-attribute name="nav_user" value="/WEB-INF/views/nav_user.jsp" />
-		<put-attribute name="nav_left" value="/WEB-INF/views/nav_left.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>
 	
