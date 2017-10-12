@@ -17,32 +17,28 @@
 	</head>
 <body>
 <div class="container">
-	<header>
-		<tiles:insertAttribute name="header" />
-	</header>
+	<div class="jumbotron" style="background-color:navy; color:white">
+		<header >
+			<tiles:insertAttribute name="header" />
+		</header>
+	</div>
 	<c:choose>
 		<c:when test="${empty auth_id}">
-			<nav>
+			<nav class="navbar navbar-default">
 				<tiles:insertAttribute name="nav" />
 			</nav>
 		</c:when>
 		<c:otherwise>
-			<nav>
+		
+			<nav class="navbar navbar-default">
+			
 				<tiles:insertAttribute name="nav_user" />
 			</nav>
 		</c:otherwise>
 	</c:choose>
-	<div class="row">
-		<div class="col-md-2">
-			<tiles:insertAttribute name="nav_left" />
-		</div>
-		<div class="col-md-10">
-			<section style="min-height: 70%;">
-				<tiles:insertAttribute name="section" />
-			</section>
-		</div>
-	</div>
-	
+	<section style="min-height: 70%;">
+		<tiles:insertAttribute name="section" />
+	</section>
 	<footer>
 		<tiles:insertAttribute name="footer" />
 	</footer>
