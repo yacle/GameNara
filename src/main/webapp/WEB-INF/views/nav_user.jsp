@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="#">GAMENARA</a>
+		<a class="navbar-brand" href="/index">GAMENARA</a>
 	</div>
 	<ul class="nav navbar-nav">
 		<li class="active"><a href="#">NOTICE</a></li>
@@ -41,13 +41,13 @@
 				<li><a href="#">거래후기</a></li>
 			</ul>
 		</li>
-		    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" style="margin-left:280px; margin-top:9px;">${auth_id }
+		    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" style="margin-left:280px; margin-top:9px;">${auth_id}
 		    <span class="caret"></span></button>
 		    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" style="right:0; left:970px">
 		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">PROFILE</a></li>
 		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">MyWorld</a></li>
 		      <li role="presentation" class="divider"></li>
-		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">LOGOUT</a></li>
+		      <li role="presentation"><a role="menuitem" tabindex="-1" href="/log/logout">LOGOUT</a></li>
 		    </ul>
 	</ul>
 </div>

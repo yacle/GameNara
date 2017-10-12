@@ -43,8 +43,8 @@
       </li>
     </ul>
 	<ul class="nav navbar-nav" style="margin-left:260px">
-	   <li><a href="#"><b>login</b></a></li>
-	   <li><a href="#"><b>join</b></a></li>
+	   <li><a href="/log/login"><b>login</b></a></li>
+	   <li><a href="/member/join"><b>join</b></a></li>
 	</ul>
   </div>
 
