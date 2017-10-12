@@ -13,14 +13,13 @@ import freemarker.template.Template;
 public class buyDao {
 	@Autowired
 	SqlSessionTemplate template;
-
-	public List<Map> readAll() {
-		return template.selectList("board.raeaAll");
+	
+	public int buyadd(Map map) {
+		return template.insert("buy.add", map);
 	}
 
-	public boolean addOne(Map map) {
-		template.insert("board.addOne", map);
-		return true;
+	public List<Map> readAll() {
+	return template.selectList("buy.list");
 	}
 
 	public Map readOne(String num) {

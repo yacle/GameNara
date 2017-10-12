@@ -17,7 +17,7 @@
 	</head>
 <body>
 <div class="container">
-	<div class="jumbotron" style="background-color:navy; color:white">
+	<div class="jumbotron" style="width:100%; height:300px; background-color:navy; color:white">
 		<header >
 			<tiles:insertAttribute name="header" />
 		</header>
