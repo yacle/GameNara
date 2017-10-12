@@ -4,8 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="buy">
 	<insert id="add" >
-	insert into board values(buy_seq.nextval,#{title},#{detail},0,sysdate)
-
+	insert into board values(buy_seq.nextval,#{title},#{detail},#{price},#{buy_id},#{end},#{categoly},sysdate)
 	</insert>
-
+	<select id="list">
+	select * from BUY;
+	</select>
+	
 </mapper>
