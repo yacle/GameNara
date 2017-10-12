@@ -7,23 +7,22 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import freemarker.template.Template;
-
 @Repository
 public class buyDao {
 	@Autowired
 	SqlSessionTemplate template;
-	
-	public int buyadd(Map map) {
-		return template.insert("buy.add", map);
-	}
 
 	public List<Map> readAll() {
-	return template.selectList("buy.list");
+		return template.selectList("buy.list");
+
+	}
+	public boolean addOne(Map map) {
+		template.insert("buy.add", map);
+		return true;
 	}
 
 	public Map readOne(String num) {
-		return template.selectOne("board.readOne", num);
+		return template.selectOne("buy.readOne", num);
 	}
 
 }
