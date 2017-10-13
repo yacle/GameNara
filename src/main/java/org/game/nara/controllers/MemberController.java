@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -36,5 +37,18 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping("/idcheck")
+	@ResponseBody
+	public int idcheckHandle(@RequestParam Map map) {
+		int r = mDao.idcheck((String)map.get("id"));
+		return r;
+	}
+	
+	@RequestMapping("/info")
+	public ModelAndView infoHandle() {
+		ModelAndView mav = new ModelAndView("temp");
+		mav.addObject("section", "member/info");
+		return mav;
+	}
 
 }

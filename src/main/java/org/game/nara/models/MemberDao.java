@@ -20,4 +20,8 @@ SqlSessionTemplate temp;
 		r+= temp.insert("member.add2", map);
 		return r;
 	}
+	
+	public int idcheck(String id) {
+		return temp.selectOne("member.check", id);
+	}
 }
