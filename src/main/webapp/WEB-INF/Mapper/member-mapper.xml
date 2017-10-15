@@ -18,12 +18,16 @@
 		select count(*) as cnt from member where id=#{id}
 	</select>
 	
-	<select id="readProfile" resultType="java.util.HashMap">
-		select * from member_info where id=#{id}
-	</select>
-	
 	<update id="addProfile">
 		update member_info set profile=#{profile} where id=#{id}
+	</update>
+	
+	<select id="readInfo" resultType="java.util.HashMap">
+		select m.* from (select * from member_info left join member on member_info.id = member.id) m where m.id=#{id}
+	</select>
+	
+	<update id="addInfo">
+		update member_info set name=#{name}, phone_num=#{phone}, gender={gender}, address=#{addr}, birth=#{birth} where id=#{id}
 	</update>
 	
 </mapper>

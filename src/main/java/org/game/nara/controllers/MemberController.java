@@ -60,11 +60,22 @@ public class MemberController {
 	public ModelAndView profileGetHandle(HttpSession session) {
 		ModelAndView mav = new ModelAndView("temp");
 		String id = (String)session.getAttribute("auth_id");
-		Map map = mDao.readProfile(id);
+		System.out.println(id);
+		Map map = mDao.readInfo(id);
 		mav.addObject("section", "member/info");
 		mav.addObject("map", map);
 		return mav;
 	}
+	
+	@PostMapping("/info")
+	public ModelAndView infoPostHandle(@RequestParam Map map, HttpSession session) {
+		String id = (String) session.getAttribute("auth_id");
+		ModelAndView mav = new ModelAndView("temp");
+		map.put("id", id);
+		int r = mDao.addInfo(map);
+		return mav;
+	}
+	
 	
 	@PostMapping("/profile")
 	public ModelAndView profilePostHandle(Map map, @RequestParam(name="profile") MultipartFile f, HttpSession session) throws IllegalStateException, IOException {

@@ -7,7 +7,7 @@
 		<p>
 		<c:choose>
 			<c:when test="${empty map.PROFILE}">
-				<img src="/profiles/default.png" id="pf" alt="기본이미지" style="height:301px; width:300px;"/>
+				<img src="/profiles/default.png" id="pf" alt="기본이미지" />
 			</c:when>
 			<c:otherwise>
 				<img id="pf" src="/profiles/${map.PROFILE}" alt="사용자프로필" style="height:301px; width:300px;"/>
@@ -25,7 +25,7 @@
 	</div>
 
   		
-<form class="form-horizontal">
+<form class="form-horizontal" action="/member/info" method="post">
 	<div class="col-md-7">
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="name">Name:</label>
@@ -35,18 +35,19 @@
 		</div>
 		
 		<div class="form-group">
-			<label class="control-label col-sm-3" for="name">Gender:</label>
+			<label class="control-label col-sm-3" for="gender">Gender:</label>
 			<div class="col-sm-9">
-				<select class="form-control" id="sel1">
-					<option>Male</option>
-					<option>Female</option>
+				<select class="form-control" id="gender" name="gender">
+					<option value="m">Male</option>
+					<option value="f">Female</option>
 				</select>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="email">Email:</label>
 			<div class="col-sm-9">
-				<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+				<input type="email" class="form-control" value="${map.EMAIL}"><button type="button" id="emailChange">변경</button>
+				<button type="button" id="emailReg">인증메일보내기</button></span>
 			</div>
 		</div>
 		<div class="form-group">

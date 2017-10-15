@@ -25,6 +25,14 @@ SqlSessionTemplate temp;
 		return temp.selectOne("member.check", id);
 	}
 	
+	public Map readInfo(String id) {
+		return temp.selectOne("member.readInfo", id);
+	}
+	
+	public int addInfo(Map map) {
+		return temp.update("member.addInfo", map);
+	}
+	
 	public Map readProfile(String id) {
 		return temp.selectOne("member.readProfile", id);
 	}
