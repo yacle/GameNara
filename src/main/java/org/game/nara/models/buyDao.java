@@ -16,6 +16,23 @@ public class buyDao {
 		return template.selectList("buy.list");
 
 	}
+	
+	public List<Map> consoleread() {
+		return template.selectList("buy.consoleread");
+
+	}
+	public List<Map> titleread() {
+		return template.selectList("buy.titleread");
+
+	}
+	public List<Map> accessoryread() {
+		return template.selectList("buy.accessoryread");
+
+	}
+	public List<Map> othersread() {
+		return template.selectList("buy.othersread");
+
+	}
 	public boolean addOne(Map map) {
 		template.insert("buy.add", map);
 		return true;

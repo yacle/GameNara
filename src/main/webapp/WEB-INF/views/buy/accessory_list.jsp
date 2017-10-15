@@ -13,7 +13,7 @@ th, td {
 }
 </style>
 <div align="center" style="line-height: 35px">
-	<h2>삽니다 전체 게시판</h2>
+	<h2>주변기기 삽니다</h2>
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
@@ -32,17 +32,8 @@ th, td {
 				<tr>
 					<td>${obj.NO }</td>
 					<c:choose>
-					<c:when test="${obj.CATEGORY == '1' }">
-					<td>콘솔기기</td>
-					</c:when>
-					<c:when test="${obj.CATEGORY == '2' }">
-					<td>게임타이틀</td>
-					</c:when>
 					<c:when test="${obj.CATEGORY == '3' }">
 					<td>주변기기</td>
-					</c:when>
-					<c:when test="${obj.CATEGORY == '0' }">
-					<td>기타</td>
 					</c:when>
 					</c:choose>				
 					<td><a href="/buy/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }

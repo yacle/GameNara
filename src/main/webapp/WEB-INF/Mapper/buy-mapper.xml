@@ -3,11 +3,38 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="buy">
-	<insert id="add" >
-	insert into board values(buy_seq.nextval,#{title},#{detail},#{price},#{buy_id},#{end},#{categoly},sysdate)
+	<insert id="add">
+		insert into buy
+		values(buy_seq.nextval,#{title},#{detail},#{buy_id},#{category},sysdate)
 	</insert>
 	<select id="list" resultType="java.util.HashMap">
-	select * from BUY
+		select * from BUY
 	</select>
-	
+	<select id="readOne" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from buy where no=#{no}
+	</select>
+
+	<select id="consoleread" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from buy where category=1
+	</select>
+
+	<select id="titleread" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from buy where category=2
+	</select>
+
+	<select id="accessoryread" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from buy where category=3
+	</select>
+
+	<select id="othersread" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from buy where category=0
+	</select>
+
+
+
 </mapper>

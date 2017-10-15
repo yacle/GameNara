@@ -17,11 +17,11 @@
 		</li>
 		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">BUY<span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><a href="#">TOTAL</a></li>
-				<li><a href="#">CONSOLE</a></li>
-				<li><a href="#">GAME TITLE</a></li>
-				<li><a href="#">ACCESSORY</a></li>
-				<li><a href="#">ETC</a></li>
+				<li><a href="/buy/list">TOTAL</a></li>
+				<li><a href="/buy/console_list">CONSOLE</a></li>
+				<li><a href="/buy/title_list">GAME TITLE</a></li>
+				<li><a href="/buy/accessory_list">ACCESSORY</a></li>
+				<li><a href="/buy/others_list">ETC</a></li>
 			</ul>
 		</li>
 		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">EXCHANGE<span class="caret"></span></a>
