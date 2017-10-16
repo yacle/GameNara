@@ -26,12 +26,28 @@ input, textarea, button {
 				<input type="hidden" id="num" value="${one.NO }" />
 				<h3>${one.TITLE }</h3>
 				<p style="padding-left: 10px;">
-					<small>작성자 : ${one.WRITER } | 작성일 : <fmt:formatDate
-							pattern="MM.dd.yyyy HH:mm:ss" value="${one.FB_DATE }" /> 
-						
-					</small>
+					<div class="row">
+				    	<div class="col-sm-10">
+				    		<small>작성자 : ${one.WRITER } | 작성일 : <fmt:formatDate
+								pattern="MM.dd.yyyy HH:mm:ss" value="${one.FB_DATE }" /> 
+							</small>
+						</div>
+					    <div class="col-sm-2">
+					    	<small>조회수 : <fmt:formatNumber value="${one.VIEW_CNT}" pattern="#,###" /></small>
+					    </div>
+					</div>							
 				</p>
-				<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${one.COMENT }</pre>
+				<c:choose>
+					<c:when test="${one.ATTACH ne null}">
+						<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">
+							<img id="pf" src="/freeB_File/${one.ATTACH}" style="height:301px; width:300px;" />
+							<br/>${one.COMENT }
+						</pre>
+					</c:when>
+					<c:otherwise>
+						<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${one.COMENT }</pre>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</c:otherwise>
 	</c:choose>

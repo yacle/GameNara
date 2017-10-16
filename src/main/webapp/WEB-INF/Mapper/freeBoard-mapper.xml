@@ -9,7 +9,7 @@
 	
 	<insert id="addOne">
 		insert into freeboard
-		values(freeboard_seq.nextval,#{writer},#{title},#{coment},sysdate,0,0,null,null)
+		values(freeboard_seq.nextval,#{writer},#{title},#{coment},sysdate,0,0,null,#{attach})
 	</insert>
 	
 	<select id="readOne" parameterType="java.lang.String"
@@ -18,6 +18,15 @@
 	</select>
 	
 	<update id="addPoint">
-		UPDATE MEMBER set POINT = 200 
+		UPDATE MEMBER set POINT= point+200 where id=#{id}
 	</update>
+	
+	<update id="upLevel">
+		UPDATE MEMBER set lev= 3 where id=#{id}
+	</update>
+	
+	<update id="countOne"> 
+		update freeboard set view_cnt = view_cnt+1 where no =#{no}
+	 </update>
+	 
 </mapper>

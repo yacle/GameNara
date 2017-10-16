@@ -26,7 +26,15 @@ public class FreeBoardDao {
 		return tmp.selectOne("freeB.readOne", num);
 	}
 	
-	public int addPoint() {
-		return tmp.update("freeB.addPoint");
+	public int addPoint(String id) {
+		return tmp.update("freeB.addPoint",id);
+	}
+	
+	public int upLevel(String id) {
+		return tmp.update("freeB.upLevel",id);
+	}
+	
+	public int countOne(String num) {
+		return tmp.update("freeB.countOne",num);
 	}
 }

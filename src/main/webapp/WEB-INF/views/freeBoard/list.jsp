@@ -32,7 +32,7 @@ th, td {
 					<td>${obj.NO }</td>
 					<c:choose>
 						<c:when test="${auth_id ne null}">
-							<td><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a>
+							<td><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
 						</c:when>
 						<c:otherwise>
 							<td>${fn:substring(obj.TITLE, 0, 12) }</td>
@@ -45,6 +45,13 @@ th, td {
 		</tbody>
 	</table>
 	<p align="right" style="margin-right: 30px;">
-		<a href="/freeBoard/add"><button type="button" style="padding: 5px;">글작성</button></a>
+		<c:choose>
+			<c:when test="${auth_id ne null}">
+				<a href="/freeBoard/add"><button type="button" style="padding: 5px;">글작성</button></a>
+			</c:when>
+			<c:otherwise>
+				<button type="button" style="padding: 5px;">글작성</button></a>
+			</c:otherwise>
+		</c:choose>
 	</p>
 </div>

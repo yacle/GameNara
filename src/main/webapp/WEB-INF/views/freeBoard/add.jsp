@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <body>
-	<form action="/freeBoard/add" method="post" autocomplete="off">
+	<form action="/freeBoard/add" method="post" autocomplete="off" enctype="multipart/form-data">
 		<div class="container">
 			<h1>자유게시판</h1>
 			<h3>게시판 글작성</h3>
@@ -22,7 +22,12 @@
 						style="width: 80%;"></textarea>
 				</div>
 				
+				<div class="form-group">
+					<label for="comment">File:</label>
+					<input type="file" name="attach">
+				</div>
 				
+
 			</form>
 			<button type="submit">글등록</button>
 			<button type="reset">재작성</button>

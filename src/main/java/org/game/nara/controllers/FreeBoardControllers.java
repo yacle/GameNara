@@ -1,8 +1,14 @@
 package org.game.nara.controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.game.nara.models.FreeBoardDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,8 +28,14 @@ public class FreeBoardControllers {
 	@Autowired
 	FreeBoardDao dao;
 	
+	@Autowired
+	ServletContext application;
+	
+	@Autowired
+	SimpleDateFormat sdf;
+	
 	@RequestMapping("/list")
-	public ModelAndView buyListHandle() throws SQLException {
+	public ModelAndView freeBoardListHandle() throws SQLException {
 		List<Map> li = dao.listAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "freeBoard/list");
@@ -32,17 +45,36 @@ public class FreeBoardControllers {
 	}
 	
 	@RequestMapping(path = "/add", method = RequestMethod.GET)
-	public ModelAndView buyAddGetHandle() {
+	public ModelAndView freeBoardAddGetHandle() {
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section","freeBoard/add");
 		return mav;
 	}
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String buyAddPostHandle(@RequestParam Map param, ModelMap map) throws SQLException {
+	public String freeBoardAddPostHandle(@RequestParam Map param, ModelMap map, HttpSession session, 
+		@RequestParam(name = "attach") MultipartFile mpf) throws SQLException, IOException {
+		String id = (String)session.getAttribute("auth_id");
+		String fmt = sdf.format(System.currentTimeMillis());
+		String path = application.getRealPath("/freeB_File");
+		System.out.println("pppppath==>"+path);
+		String name = id+"_"+fmt;
+		try {
+			File dir = new File(path);
+			if (!dir.isDirectory()) {
+				dir.mkdirs();
+			}
+
+			File up = new File(application.getRealPath("/freeB_File"), name);
+			mpf.transferTo(up);
+			param.put("attach", name);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		boolean b = dao.addOne(param);
 		if (b) {
-			dao.addPoint();
+			dao.addPoint(id);
+			dao.upLevel(id);
 			return "redirect:/freeBoard/list";
 		}
 		map.put("result", b);
@@ -51,12 +83,14 @@ public class FreeBoardControllers {
 	}
 	
 	@RequestMapping(path = "/view/{num}")
-	public ModelAndView buyAddPostHandle(@PathVariable String num) throws SQLException {
+	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");	// 바로 뷰이름지정
 		Map one = dao.readOne(num);
+		int b = dao.countOne(num);
+			one.put("view_cnt", b);
 		mav.addObject("one", one);
 		mav.addObject("section", "freeBoard/view");
 		return mav;
 	}
-	
+		
 }
