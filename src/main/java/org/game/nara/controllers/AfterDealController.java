@@ -19,10 +19,11 @@ AfterDealDao adDao;
 
 	@GetMapping("/list")
 	public ModelAndView afterDeal_List_Handle() {
-		List list = adDao.listAfter();
+		List li = adDao.listAfter();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "after/after_list");
-		mav.addObject("list", list );
+		mav.addObject("list", li);
+		mav.addObject("cnt", li.size());
 		return mav;
 	}
 	
