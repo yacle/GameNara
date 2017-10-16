@@ -25,6 +25,10 @@ SqlSessionTemplate temp;
 		return temp.selectOne("member.check", id);
 	}
 	
+	public int nickcheck(String nick) {
+		return temp.selectOne("member.nickcheck", nick);
+	}
+	
 	public Map readInfo(String id) {
 		return temp.selectOne("member.readInfo", id);
 	}
@@ -39,5 +43,11 @@ SqlSessionTemplate temp;
 	
 	public int addProfile(Map map) {
 		return temp.update("member.addProfile", map);
+	}
+	
+	public int emailReg(Map map) {
+		int r =temp.update("member.emailReg1", map);
+		r+= temp.update("member.emailReg2", map);
+		return r;
 	}
 }
