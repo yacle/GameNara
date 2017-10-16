@@ -82,14 +82,16 @@ public class MemberController {
 	}
 	
 	@PostMapping("/info")
-	@ResponseBody
-	public int infoPostHandle(@RequestParam Map map, HttpSession session) {
+	public ModelAndView infoPostHandle(@RequestParam Map map, HttpSession session) {
+		ModelAndView mav = new ModelAndView("temp");
 		String id = (String) session.getAttribute("auth_id");
 		map.put("id", id);
-		System.out.println(map.toString());
 		int r = mDao.addInfo(map);
-		System.out.println(r);
-		return r;
+		Map m = mDao.readInfo(id);
+		mav.addObject("section", "member/info");
+		mav.addObject("data", r);
+		mav.addObject("map", m);
+		return mav;
 	}
 	
 	
@@ -126,7 +128,6 @@ public class MemberController {
 		msg.setText(text, "UTF-8", "html");
 		sender.send(msg);
 		session.setAttribute("uuid", code);
-		System.out.println(email+"로 코드 발송");
 		
 	}
 	
