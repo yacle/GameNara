@@ -5,7 +5,7 @@
 <mapper namespace="buy">
 	<insert id="add">
 		insert into buy
-		values(buy_seq.nextval,#{title},#{detail},#{buy_id},#{category},sysdate)
+		values(buy_seq.nextval,#{title},#{detail},#{buy_id},#{category},sysdate,0)
 	</insert>
 	<select id="list" resultType="java.util.HashMap">
 		select * from BUY

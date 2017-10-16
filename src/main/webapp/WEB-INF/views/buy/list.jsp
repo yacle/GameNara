@@ -45,14 +45,25 @@ th, td {
 					<td>기타</td>
 					</c:when>
 					</c:choose>				
-					<td><a href="/buy/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }
+					<td><a href="/buy/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a></td>
 					<td>${obj.BUY_ID }</td>
-					<td pattern="yyyy.MM.dd">${obj.ADD_DATE }</td>
+					
+					<td><fmt:formatDate
+							pattern="yyyy.MM.dd" value="${obj.ADD_DATE }" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	<c:choose>
+<c:when test="${empty auth_id }">
+	<p align="right" style="margin-right: 30px;">
+		<a href="/log/login"><button type="button" style="padding: 5px;">글작성</button></a>
+	</p>
+	</c:when>
+	<c:otherwise>
 	<p align="right" style="margin-right: 30px;">
 		<a href="/buy/add"><button type="button" style="padding: 5px;">글작성</button></a>
-	</p>
+	</p>	
+	</c:otherwise>
+	</c:choose>
 </div>

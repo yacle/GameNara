@@ -5,7 +5,7 @@
 <mapper namespace="member">
 	<insert id="add" >
 		insert into member values(#{id}, #{pwd}, #{email, jdbcType=VARCHAR}, 0, 0)
-	</insert>
+	</insert> 
 	<insert id="add2" >
 		 insert into member_info(id) values(#{id}) 
 	</insert>
