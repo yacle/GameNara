@@ -23,7 +23,7 @@
 	</update>
 	
 	<select id="readInfo" resultType="java.util.HashMap">
-		select m.* from (select * from member_info left join member on member_info.id = member.id) m where m.id=#{id}
+		select * from (select m1.*,m2.email from member_info m1 left join member m2 on m2.id = m1.id) where id=#{id}
 	</select>
 	
 	<update id="addInfo">
