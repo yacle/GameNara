@@ -31,7 +31,7 @@
 						type="checkbox" name="category" value="0" />기타<br />
 				</div> 
 			</form>
-			<button type="submit">글등록</button>
+			<button type="submit" name="end" value="1">글등록</button>
 			<button type="reset">재작성</button>
 		</div>
 </body>

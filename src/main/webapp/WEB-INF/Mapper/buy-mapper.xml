@@ -5,7 +5,7 @@
 <mapper namespace="buy">
 	<insert id="add">
 		insert into buy
-		values(buy_seq.nextval,#{title},#{detail},#{buy_id},#{category},sysdate,0)
+		values(buy_seq.nextval,#{title},#{detail},#{buy_id},#{category},sysdate,0,#{end})
 	</insert>
 	<select id="list" resultType="java.util.HashMap">
 		select * from BUY
@@ -14,6 +14,10 @@
 		resultType="java.util.HashMap">
 		select * from buy where no=#{no}
 	</select>
+	
+	<update id="endset">
+	update buy set end=#{end} where no=#{no}
+	</update>
 
 	<select id="consoleread" parameterType="java.lang.String"
 		resultType="java.util.HashMap">
@@ -34,7 +38,8 @@
 		resultType="java.util.HashMap">
 		select * from buy where category=0
 	</select>
-
+	
+	
 
 
 </mapper>

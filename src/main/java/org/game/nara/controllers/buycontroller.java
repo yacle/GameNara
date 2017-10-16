@@ -67,6 +67,15 @@ public class buycontroller {
 		return mav;
 	}
 	
+	@RequestMapping("/end")
+	public ModelAndView buyendHandle(@RequestParam Map param) {
+		int li=buy.endset(param);
+		ModelAndView mav = new ModelAndView("temp");
+		mav.addObject("section", "buy/view");
+		mav.addObject("one", li);
+		return mav;
+	}
+	
 	@RequestMapping(path = "/add", method = RequestMethod.GET)
 	public ModelAndView buyAddGetHandle() {
 		ModelAndView mav = new ModelAndView("temp");
@@ -93,4 +102,5 @@ public class buycontroller {
 		mav.addObject("section", "buy/view");
 		return mav;
 	}
+
 }

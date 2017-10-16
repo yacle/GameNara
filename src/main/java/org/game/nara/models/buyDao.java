@@ -29,10 +29,15 @@ public class buyDao {
 		return template.selectList("buy.accessoryread");
 
 	}
+	
 	public List<Map> othersread() {
 		return template.selectList("buy.othersread");
-
 	}
+	public int endset (Map map) {
+		return template.update("buy.endset",map);
+	}
+	
+	
 	public boolean addOne(Map map) {
 		template.insert("buy.add", map);
 		return true;
