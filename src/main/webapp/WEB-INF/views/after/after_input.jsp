@@ -1,29 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<div class="container" style="margin-left:200px">
-	<h2>거래후기</h2>
-	<form action="/log/login" method="post">
+<div align="center">
+	<h1>거래후기게시판</h1>
+	<h3>게시판 글작성</h3>
+</div>
+<div>
+	<form class="form-horizontal" action="/after/add" method="post" autocomplete="off" enctype="multipart/form-data">
 		<div class="form-group">
-			<label for="title">TITLE:</label>
-			<input type="text" class="form-control" name="title" id="title" placeholder="Enter TITLE" style="width:60%">
+			<label class="control-label col-sm-3" for="writer">작성자</label> 
+			<div class="col-sm-9">
+				<input type="text" style="width: 80%;" class="form-control" name="writer" value="${auth_id }" disabled>
+			</div>
 		</div>
 		<div class="form-group">
-			<label for="pwd">Deal No:</label>
-			<input type="text" class="form-control" name="deal" id="deal" placeholder="Enter Deal_No" style="width:60%">
+			<label class="control-label col-sm-3" for="title">글 제목</label> 
+			<div class="col-sm-9">
+				<input type="text"class="form-control" style="width: 80%;" name="title">
+			</div>
 		</div>
 		<div class="form-group">
-			<label for="comment">COMMENT:</label>
-			<textarea class="form-control" rows="5" id="comment" placeholder="Enter Comment" style="width:60%"></textarea>
+			<label class="control-label col-sm-3" for="comment">Comment:</label>
+			<div class="col-sm-9">
+				<textarea class="form-control" rows="5" name="comment" style="width: 80%;"></textarea>
+			</div>
 		</div>
-		<label class="checkbox-inline">
-			<input type="checkbox" value="">콘솔기기
-		</label>
-		<label class="checkbox-inline">
-			<input type="checkbox" value="">게임타이틀
-		</label>
-		<label class="checkbox-inline">
-			<input type="checkbox" value="">주변기기
-		</label><br/><br/>
-		<button type="submit" class="btn btn-default">Submit</button>
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="parent">거래글 번호</label>
+			<div class="col-sm-9">
+				<input type="text"class="form-control" style="width: 80%;" name="parent">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="attach">사진:</label>
+			<div class="col-sm-9">
+				<input type="file" name="pic">
+			</div>
+		</div>
+		<div align="center">
+			<button type="submit">글등록</button>
+			<button type="reset">재작성</button>
+		</div>
 	</form>
 </div>
