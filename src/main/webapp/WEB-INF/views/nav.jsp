@@ -37,7 +37,7 @@
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">COMMUNITY<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">가입인사</a></li>
-          <li><a href="#">자유게시판</a></li>
+          <li><a href="/freeBoard/list">자유게시판</a></li>
           <li><a href="/after/list">거래후기</a></li>
         </ul>
       </li>
