@@ -73,7 +73,11 @@
 	<bean class="java.text.SimpleDateFormat">
 		<constructor-arg name="pattern" value="yyyyMMddHHmmss"/>
 	</bean>
-	
+	<!-- multipartResolver -->
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<property value="/temp" name="uploadTempDir"/>
+		<property value="utf-8" name="defaultEncoding"/>
+	</bean>
 	
 	<context:component-scan base-package="org.game.nara" />
 	
