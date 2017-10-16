@@ -11,9 +11,9 @@
 		<c:otherwise>
 			<h3>실패</h3>
 			<p>
-				일시적인 오류 상태입니다.<br /> <a href="/freeBoard/add">다시 시도</a>해주십시요.
+				일시적인 오류 상태입니다.<br /> <a href="/buy/add">다시 시도</a>해주십시요.
 			</p>
 		</c:otherwise>
 	</c:choose>
-	<a href="/freeBoard/list"><button type="button">게시글로</button></a>
+	<a href="/buy/list"><button type="button">게시글로</button></a>
 </div>
