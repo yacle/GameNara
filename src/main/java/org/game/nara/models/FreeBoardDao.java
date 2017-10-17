@@ -30,6 +30,10 @@ public class FreeBoardDao {
 		return tmp.update("freeB.addPoint",id);
 	}
 	
+	public int subPoint(String id) {
+		return tmp.update("freeB.subPoint",id);
+	}
+	
 	public int upLevel(String id) {
 		return tmp.update("freeB.upLevel",id);
 	}
