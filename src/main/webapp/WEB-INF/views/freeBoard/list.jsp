@@ -24,6 +24,7 @@ th, td {
 				<th style="width: 45%">글제목</th>
 				<th style="width: 15%">작성자</th>
 				<th style="width: 15%">작성일자</th>
+				<th style="width: 15%">조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,7 +40,8 @@ th, td {
 						</c:otherwise>
 					</c:choose>
 					<td>${obj.WRITER }</td>
-					<td pattern="yyyy.MM.dd">${obj.FB_DATE }</td>
+					<td><fmt:formatDate value="${obj.FB_DATE }" pattern="yyyy-MM-dd"/></td>
+					<td>${obj.VIEW_CNT }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

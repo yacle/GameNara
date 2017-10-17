@@ -55,40 +55,36 @@ public class FreeBoardControllers {
 	public String freeBoardAddPostHandle(@RequestParam Map param, ModelMap map, HttpSession session, 
 		@RequestParam(name = "attach") MultipartFile mpf) throws SQLException, IOException {
 		String id = (String)session.getAttribute("auth_id");
-		String fmt = sdf.format(System.currentTimeMillis());
-		String path = application.getRealPath("/freeB_File");
-		System.out.println("pppppath==>"+path);
-		String name = id+"_"+fmt;
-		try {
+		if(mpf.getSize() > 0) {
+			String fmt = sdf.format(System.currentTimeMillis());
+			String path = application.getRealPath("/freeB_File");
+			System.out.println("pppppath==>"+path);
+			String name = id+"_"+fmt;
+			
 			File dir = new File(path);
 			if (!dir.isDirectory()) {
 				dir.mkdirs();
 			}
-
+	
 			File up = new File(application.getRealPath("/freeB_File"), name);
 			mpf.transferTo(up);
 			param.put("attach", name);
-		}catch(Exception e) {
-			e.printStackTrace();
 		}
 		boolean b = dao.addOne(param);
 		if (b) {
 			dao.addPoint(id);
-			dao.upLevel(id);
-			return "redirect:/freeBoard/list";
 		}
-		map.put("result", b);
-		map.put("section", "freeBoard/add_rst");
-		return  "temp";
+		return  "redirect:/freeBoard/list";
 	}
 	
 	@RequestMapping(path = "/view/{num}")
 	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");	// 바로 뷰이름지정
 		Map one = dao.readOne(num);
-		int b = dao.countOne(num);
-			one.put("view_cnt", b);
-		mav.addObject("one", one);
+		List reply = (List) one.get("reply");
+		Map readOne = (Map) one.get("one");
+		
+		mav.addObject("data", one);
 		mav.addObject("section", "freeBoard/view");
 		return mav;
 	}

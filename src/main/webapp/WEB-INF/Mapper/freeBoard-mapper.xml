@@ -10,7 +10,7 @@
 
 	<insert id="addOne">
 		insert into freeboard
-		values(freeboard_seq.nextval,#{writer},#{title},#{coment},sysdate,0,0,null,#{attach})
+		values(freeboard_seq.nextval,#{writer},#{title},#{coment},sysdate,0,0,null,#{attach, jdbcType=VARCHAR})
 	</insert>
 
 	<select id="readOne" parameterType="java.lang.String"
@@ -25,13 +25,17 @@
 	<update id="subPoint">
 		UPDATE MEMBER set POINT= point-100 where id=#{id}
 	</update>
-
-	<update id="upLevel">
+	
+	 <update id="upLevel">
 		UPDATE MEMBER set lev= 3 where id=#{id}
 	</update>
-
-	<update id="countOne">
+		
+	<update id="countOne"> 
 		update freeboard set view_cnt = view_cnt+1 where no =#{no}
 	</update>
-
+	 
+	 <select id="readReply" resultType="java.util.HashMap">
+		select * from freeboard_reply where parent=#{parent} order by no desc
+	</select>
+	 
 </mapper>

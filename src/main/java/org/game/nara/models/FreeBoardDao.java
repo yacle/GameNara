@@ -1,5 +1,6 @@
 package org.game.nara.models;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,22 +24,25 @@ public class FreeBoardDao {
 	}
 
 	public Map readOne(String num) {
-		return tmp.selectOne("freeB.readOne", num);
+		tmp.update("freeB.countOne",num);
+		Map map = new HashMap();
+		List list =tmp.selectList("reply.readReply",num);
+		Map m = tmp.selectOne("freeB.readOne", num);
+		map.put("reply", list);
+		map.put("one", m);
+		return map;
 	}
 	
 	public int addPoint(String id) {
 		return tmp.update("freeB.addPoint",id);
 	}
 	
+
 	public int subPoint(String id) {
 		return tmp.update("freeB.subPoint",id);
 	}
 	
 	public int upLevel(String id) {
 		return tmp.update("freeB.upLevel",id);
-	}
-	
-	public int countOne(String num) {
-		return tmp.update("freeB.countOne",num);
 	}
 }

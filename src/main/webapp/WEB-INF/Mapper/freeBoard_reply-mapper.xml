@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply">
+	<insert id="addReply">
+		insert into freeboard_reply values(freeboardreply_seq.nextval,#{writer},#{content},sysdate,#{parent})
+	</insert>
+	<select id="readReply" resultType="java.util.HashMap">
+		select * from freeboard_reply where parent=#{parent} order by no desc
+	</select>
+</mapper>
