@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <body>
-	<form action="/buy/add" method="post" autocomplete="off">
+	<form action="/exchange/add" method="post" autocomplete="off">
 		<div class="container">
 			<h1>삽니다</h1>
 			<h3>게시판 글작성</h3><small>※글작성시 100point차감</small><br/>

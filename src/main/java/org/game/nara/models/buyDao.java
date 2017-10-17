@@ -14,7 +14,6 @@ public class buyDao {
 
 	public List<Map> readAll() {
 		return template.selectList("buy.list");
-
 	}
 	
 	public List<Map> consoleread() {
