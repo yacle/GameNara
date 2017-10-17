@@ -35,11 +35,11 @@ input, textarea, button {
 				<c:if test="${one.END == 2 }"><del><h2>${one.TITLE }</h2></del><h4>거래완료</h4>
 				</c:if>
 				<p style="padding-left: 10px;">
-					<small>작성자 : ${one.BUY_ID } | 작성일 : <fmt:formatDate
+					<small>작성자 : ${one.EXCHANGE_ID } | 작성일 : <fmt:formatDate
 							pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" /> 
 							조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" />
 							<c:if test="${auth_id eq one.BUY_ID }">
-							<button id="end">계약완료</button>
+							<button id="end">거래완료</button>
 				</c:if>
 					</small>
 				</p>

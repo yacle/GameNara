@@ -53,7 +53,7 @@ th, td {
 							<span class="label label-info">[거래중]</span>
 						</c:if> <c:if test="${obj.END == 2 }">
 							<span class="label label-info">[거래완료]</span></c:if></td>
-					<td>${obj.BUY_ID }</td>
+					<td>${obj.EXCHANGE_ID }</td>
 
 					<td><fmt:formatDate pattern="yyyy.MM.dd"
 							value="${obj.ADD_DATE }" /></td>

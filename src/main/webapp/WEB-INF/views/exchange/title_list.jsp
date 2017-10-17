@@ -14,7 +14,7 @@ th, td {
 }
 </style>
 <div align="center" style="line-height: 35px">
-	<h2>게임타이틀 삽니다</h2>
+	<h2>게임타이틀 교환합니다</h2>
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
@@ -45,7 +45,7 @@ th, td {
 						</c:if> <c:if test="${obj.END == 2 }">
 							<span class="label label-info">[거래완료]</span>
 						</c:if></td>
-					<td>${obj.BUY_ID }</td>
+					<td>${obj.EXCHANGE_ID }</td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd"
 							value="${obj.ADD_DATE }" /></td>
 					<td>${obj.COUNT }</td>
@@ -53,7 +53,16 @@ th, td {
 			</c:forEach>
 		</tbody>
 	</table>
-	<p align="right" style="margin-right: 30px;">
-		<a href="/exchange/add"><button type="button" style="padding: 5px;">글작성</button></a>
-	</p>
+	<c:choose>
+		<c:when test="${empty auth_id }">
+			<p align="right" style="margin-right: 30px;">
+				<a href="/log/login"><button type="button" style="padding: 5px;">글작성</button></a>
+			</p>
+		</c:when>
+		<c:otherwise>
+			<p align="right" style="margin-right: 30px;">
+				<a href="/exchange/add"><button type="button" style="padding: 5px;">글작성</button></a>
+			</p>
+		</c:otherwise>
+	</c:choose>
 </div>

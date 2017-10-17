@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.models.ExchangeDao;
 import org.game.nara.models.FreeBoardDao;
 import org.game.nara.models.buyDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/exchange")
 public class ExchangeController {
 	@Autowired
-	buyDao buyDoa;
+	ExchangeDao exchangeDao;
 	
 	@Autowired
 	FreeBoardDao freeDao;
 
 	@RequestMapping("/list")
 	public ModelAndView buyListHandle() throws SQLException {
-		List<Map> li = buyDoa.readAll();
+		List<Map> li = exchangeDao.readAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "exchange/list");
 		mav.addObject("list", li);
@@ -38,7 +39,7 @@ public class ExchangeController {
 	
 	@RequestMapping("/console_list")
 	public ModelAndView buyconsoleHandle() throws SQLException {
-		List<Map> li = buyDoa.consoleread();
+		List<Map> li = exchangeDao.consoleread();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "exchange/console_list");
 		mav.addObject("list", li);
@@ -47,7 +48,7 @@ public class ExchangeController {
 	}
 	@RequestMapping("/accessory_list")
 	public ModelAndView buyaccessoryHandle() throws SQLException {
-		List<Map> li = buyDoa.accessoryread();
+		List<Map> li = exchangeDao.accessoryread();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "exchange/accessory_list");
 		mav.addObject("list", li);
@@ -56,7 +57,7 @@ public class ExchangeController {
 	}
 	@RequestMapping("/title_list")
 	public ModelAndView buytitleHandle() throws SQLException {
-		List<Map> li = buyDoa.titleread();
+		List<Map> li = exchangeDao.titleread();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "exchange/title_list");
 		mav.addObject("list", li);
@@ -65,7 +66,7 @@ public class ExchangeController {
 	}
 	@RequestMapping("/others_list")
 	public ModelAndView buyothersHandle() throws SQLException {
-		List<Map> li = buyDoa.othersread();
+		List<Map> li = exchangeDao.othersread();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "exchange/others_list");
 		mav.addObject("list", li);
@@ -75,7 +76,7 @@ public class ExchangeController {
 	                  
 	@RequestMapping("/end")
 	public ModelAndView buyendHandle(@RequestParam Map param) {
-		int li=buyDoa.endset(param);
+		int li=exchangeDao.endset(param);
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section","exchange/view");
 		mav.addObject("one", li);
@@ -91,7 +92,7 @@ public class ExchangeController {
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public String buyAddPostHandle(@RequestParam Map param, ModelMap map, HttpSession session) throws SQLException {
-		boolean b = buyDoa.addOne(param);
+		boolean b = exchangeDao.addOne(param);
 		String id = (String)session.getAttribute("auth_id");
 		if (b) {
 			freeDao.subPoint(id);
@@ -105,8 +106,8 @@ public class ExchangeController {
 	@RequestMapping(path = "/view/{num}")
 	public ModelAndView buyviewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");	// 바로 뷰이름지정
-		Map one = buyDoa.readOne(num);
-		int b = buyDoa.countup(num);
+		Map one = exchangeDao.readOne(num);
+		int b = exchangeDao.countup(num);
 		one.put("countup", b);
 		mav.addObject("one", one);
 		mav.addObject("section", "exchange/view");

@@ -4,12 +4,12 @@
 <body>
 	<form action="/exchange/add" method="post" autocomplete="off">
 		<div class="container">
-			<h1>삽니다</h1>
+			<h1>교환합니다</h1>
 			<h3>게시판 글작성</h3><small>※글작성시 100point차감</small><br/>
 			<form>
 				<div class="form-group">
 					<label for="comment">작성자</label> <input type="text"
-						style="width: 80%;" class="form-control" name="buy_id"
+						style="width: 80%;" class="form-control" name="exchange_id"
 						value="${auth_id }">
 				</div>
 				<div class="form-group">
@@ -24,14 +24,28 @@
 				
 				<div>
 					<h4>카테고리 선택 :</h4>
-					<input type="checkbox" name="category" value="1" />콘솔기기 <input
-						type="checkbox" name="category" value="2" />게임 타이틀 <input
-						type="checkbox" name="category" value="3" />콘솔 주변기기<input
-						type="checkbox" name="category" value="0" />기타<br />
-				</div> 
-			</form><br/>
+					<input type="checkbox" name="category" value="1" checked="checked"
+						onclick="doOpenCheck(this);" />콘솔기기 <input type="checkbox"
+						name="category" value="2" onclick="doOpenCheck(this);" />게임 타이틀 <input
+						type="checkbox" name="category" value="3"
+						onclick="doOpenCheck(this);" />콘솔 주변기기<input type="checkbox"
+						name="category" value="0" onclick="doOpenCheck(this);" />기타<br />
+				</div>
+			</form>
+			<br />
 			<button type="submit" name="end" value="1">글등록</button>
 			<button type="reset">재작성</button>
 		</div>
 </body>
+
+<script>
+	function doOpenCheck(asd) {
+		var obj = document.getElementsByName("category");
+		for (var i = 0; i < obj.length; i++) {
+			if (obj[i] != asd) {
+				obj[i].checked = false;
+			}
+		}
+	}
+</script>
 

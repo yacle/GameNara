@@ -5,7 +5,7 @@
 <mapper namespace="exchange">
 	<insert id="add">
 		insert into exchange
-		values(exchange_seq.nextval,#{title},#{detail},#{exchange_id},#{category},sysdate,0,#{end})
+		values(exchange_seq.nextval,#{title},#{detail},#{exchange_id},sysdate,0,#{end},#{category})
 	</insert>
 	<update id="countup"> 
 		update exchange set count = count+1 where no =#{no}
