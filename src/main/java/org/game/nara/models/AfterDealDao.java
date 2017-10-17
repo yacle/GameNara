@@ -15,7 +15,16 @@ SqlSessionTemplate temp;
 		return temp.insert("after.add", map);
 	}
 	
+	public Map readAfter(String no) {
+		int r = temp.update("after.cnt", no);
+		return temp.selectOne("after.detail", no);
+	}
+	
 	public List listAfter() {
 		return temp.selectList("after.list");
+	}
+	
+	public int addPoint(String id) {
+		return temp.insert("after.addPoint", id);
 	}
 }

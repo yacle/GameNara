@@ -48,8 +48,7 @@
 			style="margin-left: 280px; margin-top: 9px;">${auth_id}
 			<span class="caret"></span>
 		</button>
-		<ul class="dropdown-menu" role="menu" aria-labelledby="menu1"
-			style="right: 0; left: 970px">
+		<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
 			<li role="presentation"><a role="menuitem" tabindex="-1"
 				href="/member/info">PROFILE</a></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1"

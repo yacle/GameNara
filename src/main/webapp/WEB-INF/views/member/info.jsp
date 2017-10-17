@@ -92,6 +92,9 @@
 </div>
 </form>
 <script>
+if(${data eq 1}){
+	window.alert("info가 저장되었읍니다.")
+}
 $("#sbt").click(function(){
 	if(window.confirm("프로필 변경을 저장하시겠습니까?")) {
 		$("#form").submit();
@@ -161,5 +164,6 @@ $("#nick").keyup(function(){
 		$("#nickcheck").html("별명은 2자이상 입력하십시오.");
 	}
 })	
+
 </script>
 	
