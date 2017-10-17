@@ -18,11 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/buy")
 public class buycontroller {
 	@Autowired
-	buyDao buy;
+	buyDao buyDoa;
 
 	@RequestMapping("/list")
 	public ModelAndView buyListHandle() throws SQLException {
-		List<Map> li = buy.readAll();
+		List<Map> li = buyDoa.readAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/list");
 		mav.addObject("list", li);
@@ -32,7 +32,7 @@ public class buycontroller {
 	
 	@RequestMapping("/console_list")
 	public ModelAndView buyconsoleHandle() throws SQLException {
-		List<Map> li = buy.consoleread();
+		List<Map> li = buyDoa.consoleread();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/console_list");
 		mav.addObject("list", li);
@@ -41,7 +41,7 @@ public class buycontroller {
 	}
 	@RequestMapping("/accessory_list")
 	public ModelAndView buyaccessoryHandle() throws SQLException {
-		List<Map> li = buy.accessoryread();
+		List<Map> li = buyDoa.accessoryread();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/accessory_list");
 		mav.addObject("list", li);
@@ -50,7 +50,7 @@ public class buycontroller {
 	}
 	@RequestMapping("/title_list")
 	public ModelAndView buytitleHandle() throws SQLException {
-		List<Map> li = buy.titleread();
+		List<Map> li = buyDoa.titleread();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/title_list");
 		mav.addObject("list", li);
@@ -59,19 +59,19 @@ public class buycontroller {
 	}
 	@RequestMapping("/others_list")
 	public ModelAndView buyothersHandle() throws SQLException {
-		List<Map> li = buy.othersread();
+		List<Map> li = buyDoa.othersread();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/others_list");
 		mav.addObject("list", li);
 		mav.addObject("cnt", li.size());
 		return mav;
 	}
-	
+	                  
 	@RequestMapping("/end")
 	public ModelAndView buyendHandle(@RequestParam Map param) {
-		int li=buy.endset(param);
+		int li=buyDoa.endset(param);
 		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/view");
+		mav.addObject("section","buy/view");
 		mav.addObject("one", li);
 		return mav;
 	}
@@ -85,7 +85,7 @@ public class buycontroller {
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public String buyAddPostHandle(@RequestParam Map param, ModelMap map) throws SQLException {
-		boolean b = buy.addOne(param);
+		boolean b = buyDoa.addOne(param);
 		if (b) {
 			return "redirect:/buy/list";
 		}
@@ -95,9 +95,11 @@ public class buycontroller {
 	}
 	
 	@RequestMapping(path = "/view/{num}")
-	public ModelAndView buyAddPostHandle(@PathVariable String num) throws SQLException {
+	public ModelAndView buyviewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");	// 바로 뷰이름지정
-		Map one = buy.readOne(num);
+		Map one = buyDoa.readOne(num);
+		int b = buyDoa.countup(num);
+		one.put("countup", b);
 		mav.addObject("one", one);
 		mav.addObject("section", "buy/view");
 		return mav;

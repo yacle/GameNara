@@ -7,6 +7,9 @@
 		insert into buy
 		values(buy_seq.nextval,#{title},#{detail},#{buy_id},#{category},sysdate,0,#{end})
 	</insert>
+	<update id="countup"> 
+		update buy set count = count+1 where no =#{no}
+	 </update>
 	<select id="list" resultType="java.util.HashMap">
 		select * from BUY
 	</select>
