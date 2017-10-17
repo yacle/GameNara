@@ -18,7 +18,7 @@
 				<li><a href="#">ETC</a></li>
 			</ul></li>
 		<li class="dropdown"><a class="dropdown-toggle"
-			data-toggle="dropdown">BUY<span class="caret"></span></a>
+			data-toggle="dropdown" href="#">BUY<span class="caret"></span></a>
 			<ul class="dropdown-menu">
 				<li><a href="/buy/list">TOTAL</a></li>
 				<li><a href="/buy/console_list">CONSOLE</a></li>

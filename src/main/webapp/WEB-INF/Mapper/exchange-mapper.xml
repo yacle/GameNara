@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="exchange">
+	<insert id="add">
+		insert into exchange
+		values(exchange_seq.nextval,#{title},#{detail},#{exchange_id},#{category},sysdate,0,#{end})
+	</insert>
+	<update id="countup"> 
+		update exchange set count = count+1 where no =#{no}
+	 </update>
+	<select id="list" resultType="java.util.HashMap">
+		select * from exchange
+	</select>
+	<select id="readOne" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from exchange where no=#{no}
+	</select>
+	
+	<update id="endset">
+	update exchange set end=#{end} where no=#{no}
+	</update>
+
+	<select id="consoleread" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from exchange where category=1
+	</select>
+
+	<select id="titleread" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from exchange where category=2
+	</select>
+
+	<select id="accessoryread" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from exchange where category=3
+	</select>
+
+	<select id="othersread" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from exchange where category=0
+	</select>
+	
+	
+
+
+</mapper>

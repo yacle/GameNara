@@ -20,4 +20,11 @@ public class becomeDao {
 		template.insert("become_member.add", map);
 		return true;
 	}
+
+	public Map readOne(String num) {
+		return template.selectOne("become_member.readOne", num);
+	}
+	public int countup(String num) {
+		return template.update("become_member.countup",num);
+	}
 }
