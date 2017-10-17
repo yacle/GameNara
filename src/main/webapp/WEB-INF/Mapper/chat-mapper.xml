@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat">
+	<insert id="add" >
+		insert into note values(note_seq.nextval, #{receiver}, #{sender}, #{content}, #{time}, 'n')
+	</insert>
+	
+	<select id="receiv_read" resultType="java.util.HashMap">
+		select * from note where no=#{no} and receiver=#{id}
+	</select>
+	<select id="send_read" resultType="java.util.HashMap">
+		select * from note where no=#{no} and sender=#{id}
+	</select>	
+	
+	<select id="receiv_list" resultType="java.util.HashMap">
+		select * from note where receiver=#{id}
+	</select>
+	
+	<select id="send_list" resultType="java.util.HashMap">
+		select * from note where sender=#{id}
+	</select>
+
+	<select id="receiv_cnt" resultType="java.lang.Integer">
+		select count(*) as cnt from note where receiver=#{id}
+	</select>
+	
+</mapper>

@@ -47,4 +47,7 @@ public class buyDao {
 		return template.selectOne("buy.readOne", num);
 	}
 
+	public int countup(String num) {
+		return template.update("buy.countup",num);
+	}
 }

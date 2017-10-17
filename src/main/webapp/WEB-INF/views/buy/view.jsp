@@ -30,13 +30,14 @@ input, textarea, button {
 				style="width: 80%; border-radius: 10px; ; padding-left: 20px;"
 				align="left">
 				<input type="hidden" id="num" value="${one.NO }" />
-				<c:if test="${one.END == 1 }"><h2>${one.TITLE }</h2><h5>구하는중입니다</h5>
+				<c:if test="${one.END == 1 }"><h2>${one.TITLE }</h2><h5>거래중</h5>
 				</c:if>
 				<c:if test="${one.END == 2 }"><del><h2>${one.TITLE }</h2></del><h4>거래완료</h4>
 				</c:if>
 				<p style="padding-left: 10px;">
 					<small>작성자 : ${one.BUY_ID } | 작성일 : <fmt:formatDate
 							pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" /> 
+							조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" />
 							<c:if test="${auth_id eq one.BUY_ID }">
 							<button id="end">계약완료</button>
 				</c:if>
@@ -64,5 +65,7 @@ $("#end").click(function(){
 	      "no":'${one.NO}'
 	      }
 	   })
-	})   
+	   location.reload();
+	}); 
+	
 </script>

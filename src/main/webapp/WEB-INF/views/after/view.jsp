@@ -10,9 +10,7 @@ input, textarea, button {
 }
 </style>
 <div align="center" style="line-height: 35px">
-	<h2>
-		<a href="/freeBoard/list">게시판</a>
-	</h2>
+	<h2>거래후기게시판</h2>
 	<hr/>
 	<div style="width: 80%; border-radius: 10px; ; padding-left: 20px;" align="left">
 		<input type="hidden" id="num" value="${one.NO }" />
@@ -31,10 +29,15 @@ input, textarea, button {
 		</p>
 		<c:choose>
 			<c:when test="${one.ATTACH ne null}">
-				<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">
-					<img id="pf" src="/freeB_File/${one.ATTACH}" style="height:301px; width:300px;" />
-					<br/>${one.COMMENTS }
-				</pre>
+			<div class="row">
+				<div class="col-md-4">
+					<img id="pf" src="/afterB_File/${one.ATTACH}" style="height:301px; width:300px;" />
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-7">
+					${one.COMMENTS }
+				</div>
+			</div>	
 			</c:when>
 			<c:otherwise>
 				<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${one.COMMENTS }</pre>
