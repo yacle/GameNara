@@ -40,7 +40,7 @@ input, textarea, button {
 				<c:choose>
 					<c:when test="${one.ATTACH ne null}">
 						<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">
-							<img id="pf" src="/freeB_File/${one.ATTACH}" style="height:301px; width:300px;" />
+							<img id="pf" src="/freeB_File/${one.ATTACH}" style="height:301px; width:300px;float: left;" />
 							<br/>${one.COMENT }
 						</pre>
 					</c:when>

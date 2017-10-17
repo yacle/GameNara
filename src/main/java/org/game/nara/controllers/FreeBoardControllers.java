@@ -55,21 +55,26 @@ public class FreeBoardControllers {
 	public String freeBoardAddPostHandle(@RequestParam Map param, ModelMap map, HttpSession session, 
 		@RequestParam(name = "attach") MultipartFile mpf) throws SQLException, IOException {
 		String id = (String)session.getAttribute("auth_id");
-		String fmt = sdf.format(System.currentTimeMillis());
-		String path = application.getRealPath("/freeB_File");
-		System.out.println("pppppath==>"+path);
-		String name = id+"_"+fmt;
-		try {
-			File dir = new File(path);
-			if (!dir.isDirectory()) {
-				dir.mkdirs();
+		String no = null;
+		if(mpf.getSize() > 0) {
+			String fmt = sdf.format(System.currentTimeMillis());
+			String path = application.getRealPath("/freeB_File");
+			System.out.println("pppppath==>"+path);
+			String name = id+"_"+fmt;
+			try {
+				File dir = new File(path);
+				if (!dir.isDirectory()) {
+					dir.mkdirs();
+				}
+	
+				File up = new File(application.getRealPath("/freeB_File"), name);
+				mpf.transferTo(up);
+				param.put("attach", name);
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
-
-			File up = new File(application.getRealPath("/freeB_File"), name);
-			mpf.transferTo(up);
-			param.put("attach", name);
-		}catch(Exception e) {
-			e.printStackTrace();
+		}else {
+			param.put("attach", no);
 		}
 		boolean b = dao.addOne(param);
 		if (b) {
