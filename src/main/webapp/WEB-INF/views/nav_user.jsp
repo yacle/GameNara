@@ -55,14 +55,27 @@
 				href="#">MyWorld</a></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1"
 				href="#">Message <span class="badge"
-					style="background-color: DodgerBlue">5</span></a></li>
+					style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
 			<li role="presentation" class="divider"></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1"
 				href="/log/logout">LOGOUT</a></li>
 		</ul>
 	</ul>
 </div>
-
+<script>
+	$("#note_cnt").ready(function(){
+		$.ajax({
+			"type":"post",
+			"async":false,
+			"url":"/chat/note_cnt",
+			"data":{
+				"id" : "${auth_id}"
+			}
+		}).done(function(r){
+			$("#note_cnt").html(r);
+		})
+	})
+</script>
 
 
 
