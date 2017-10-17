@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="become_member">
+	<insert id="add">
+		insert into become_member
+		values(become_member_seq.nextval,#{title},#{id},#{detail},sysdate,0)
+	</insert>
+	
+	<select id="list">
+	select *from become_member
+	</select>
+</mapper>
