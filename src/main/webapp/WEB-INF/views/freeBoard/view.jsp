@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+ 
 <div align="center" style="line-height: 35px">
 	<h2>자유게시판</h2>
 	<div align="left">
@@ -45,13 +46,11 @@
 	</c:choose>
 	<hr />
 </div>
-<div style="width: 60%">
-	<div align="left">
-		<input type="text" id="writer" placeholder="작성자" value="${auth_id }"/>
-	</div>
-	<div align="left" >
-		<textarea style="width: 100%" rows="3" id="content"
-			placeholder="남길내용"></textarea>
+<%-- Reply input part --%>
+<div align="center">
+	<div style="width: 80%;" align="left">
+		<p>작성자 : <span id="writer">${auth_id }</span></p>
+		<textarea style="width: 100%" rows="3" id="content" placeholder="남길내용"></textarea>
 		<br />
 		<button type="button" id="send" style="width: 100%;">댓글남기기</button>
 	</div>
@@ -64,7 +63,7 @@
 			"url":"/reply/add",
 			"data":{
 				"parent":$("#num").val(),
-				"writer":$("#writer").val(),
+				"writer":$("#writer").html(),
 				"content":$("#content").val()
 			}
 		}).done(function(obj){
@@ -74,34 +73,31 @@
 	});
 	
 </script>
+<%--Reply List part --%>
 
-<div id="reps" align="left" style="width: 70%; margin-top: 20px">
+<div align="center">
+<div style="width: 80%;">
 	<c:forEach var="i" items="${data.reply }">
-		<table>
-			<tr>
-				<td><b>작성자 : ${i.WRITER }</b> | 작성날짜 : <fmt:formatDate
-					pattern="yyyy-MM-dd" value="${i.RE_DATE }" />
-					<c:if test="${auth_id  == i.WRITER}">
-						<button type="button" id="update" >수정</button>
-						<button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
-	    			</c:if>
-					</td>
-			</tr>
-			<tr>
-				<td style="padding-left: 20px;"><span id="upa">》 ${i.CONTENT }</span></td>
-				<td style="padding-left: 20px;">
-				<c:if test="${i.NO eq no }">
-				》<input type="text" value="${i.CONTENT }" disabled/>
-				</c:if>
-					<c:if test="${auth_id  == i.WRITER}">
-				        <button type="button" id="update" onclick="javascript:upr(${i.NO })">수정</button>
-				        <button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
-    				</c:if>
-				<br/>
-    			</td>
-			</tr>
-		</table>
+		<div class="row" align="left">
+			<div class="col-md-2">작성자 : ${i.WRITER }</div>
+			<div class="col-md-8">작성날짜 : <fmt:formatDate pattern="yyyy-MM-dd" value="${i.RE_DATE }" /></div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-9" align="left">
+				<span id="con01">${i.CONTENT }</span>
+				<span id="con02"><input type="text" value="${i.CONTENT }" ></span>
+				</div>
+			<div class="col-md-3">
+				<c:if test="${auth_id  == i.WRITER}">
+					<button type="button" id="update" value="${i.NO }">수정</button>
+					<button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
+	    		</c:if>
+			</div>
+		</div>
+		<hr/>
 	</c:forEach>
+</div>
 </div>
 	
 <script>
@@ -121,7 +117,8 @@
 </script>
 <script>
 	$("#update").click(function(){
-		
+		$("#con2").show();
+		$("#con1").hide();
 	})
  
 	
