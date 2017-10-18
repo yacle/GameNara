@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- ---------------------------------------------------- --%>
-<style>
-input, textarea, button {
-	padding: 4px;
-	font-family: 맑은고딕;
-	font-size: 9pt;
-}
-</style>
-	
 
 <div align="center" style="line-height: 35px">
 	<h2>자유게시판</h2>
@@ -92,12 +83,16 @@ input, textarea, button {
 					pattern="yyyy-MM-dd" value="${i.RE_DATE }" /> 
 			</tr>
 			<tr>
-				<td style="padding-left: 20px;">》 ${i.CONTENT }
+				<td style="padding-left: 20px;">
+				<c:if test="${i.NO eq no }">
+				》<input type="text" value="${i.CONTENT }" disabled/>
+				</c:if>
 					<c:if test="${auth_id  == i.WRITER}">
-				        <button type="button" id="update" value="">수정</button>
+				        <button type="button" id="update" onclick="javascript:upr(${i.NO })">수정</button>
 				        <button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
-    				</c:if></td>
+    				</c:if>
 				<br/>
+    			</td>
 			</tr>
 		</table>
 	</c:forEach>
@@ -117,18 +112,6 @@ input, textarea, button {
 			window.location.reload();
 		}
 	}
-</script>
-<script>
-	var upr = function(obj){
-		$.ajax({
-			"type":"post",
-			"async": false,
-			"url":"/reply/update",
-			"data":{
-				"num":obj
-				"content":
-			}
-		});	
-		window.location.reload();
-	}
+ 
+	
 </script>

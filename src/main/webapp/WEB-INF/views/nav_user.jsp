@@ -49,7 +49,7 @@
 		</button>
 		<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
 			<li role="presentation"><a role="menuitem" tabindex="-1"
-				href="/member/info">PROFILE</a></li>
+				href="/member/info?id=${auth_id}">PROFILE</a></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1"
 				href="#">MyWorld</a></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1"
