@@ -89,15 +89,18 @@ input, textarea, button {
 		<table>
 			<tr>
 				<td><b>작성자 : ${i.WRITER }</b> | 작성날짜 : <fmt:formatDate
-					pattern="yyyy-MM-dd" value="${i.RE_DATE }" /> 
+					pattern="yyyy-MM-dd" value="${i.RE_DATE }" />
+					<c:if test="${auth_id  == i.WRITER}">
+						<button type="button" id="update" >수정</button>
+						<button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
+	    			</c:if>
+					</td>
 			</tr>
 			<tr>
-				<td style="padding-left: 20px;">》 ${i.CONTENT }
-					<c:if test="${auth_id  == i.WRITER}">
-				        <button type="button" id="update" value="">수정</button>
-				        <button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
-    				</c:if></td>
-				<br/>
+				<span id="upa">
+					<td style="padding-left: 20px;">》 ${i.CONTENT }</td>
+					<br/>
+				</span>
 			</tr>
 		</table>
 	</c:forEach>
@@ -119,16 +122,7 @@ input, textarea, button {
 	}
 </script>
 <script>
-	var upr = function(obj){
-		$.ajax({
-			"type":"post",
-			"async": false,
-			"url":"/reply/update",
-			"data":{
-				"num":obj
-				"content":
-			}
-		});	
-		window.location.reload();
-	}
+	$("#update").click(function(){
+		
+	})
 </script>
