@@ -22,7 +22,7 @@ input, textarea, button {
 	</h2>
 	<hr />
 	<c:choose>
-		<c:when test="${empty data.one }">
+	<c:when test="${empty data.one }">
 			이미 삭제된 글입니다.
 		</c:when>
 		<c:otherwise>
@@ -62,10 +62,58 @@ $("#end").click(function(){
 	      "url":"/buy/end",
 	      "data":{
 	      "end":'2',
-	      "no":'${one.NO}'
+	      "no":'${data.one.NO}'
 	      }
 	   })
 	   location.reload();
 	}); 
 	
 </script>
+
+<div style="width: 60%">
+	<div align="left">
+		<input type="text" id="writer" placeholder="작성자" value="${auth_id }"/>
+	</div>
+	<div align="left" >
+		<textarea style="width: 100%" rows="3" id="content"
+			placeholder="남길내용"></textarea>
+		<br />
+		<button type="button" id="send" style="width: 100%;">댓글남기기</button>
+	</div>
+</div>
+<script>
+	$("#send").click(function() {
+		$.ajax({
+			"type":"post",
+			"async": false,
+			"url":"/reply/add",
+			"data":{
+				"parent":$("#num").val(),
+				"writer":$("#writer").val(),
+				"content":$("#content").val()
+			}
+		}).done(function(obj){
+			document.getElementById("content").value = "";
+		});
+		  location.reload();
+	});
+	
+</script>
+
+<div id="reps" align="left" style="width: 70%; margin-top: 20px">
+	<c:forEach var="i" items="${data.reply }">
+		<table>
+			<tr>
+				<td><b>작성자 : ${i.WRITER }</b> | 작성날짜 : <fmt:formatDate
+					pattern="yyyy-MM-dd" value="${i.RE_DATE }" /> </td>
+			</tr>
+			<tr>
+				<td style="padding-left: 20px;">》 ${i.CONTENT }
+				<button type="button" id="del">삭제</button></td>
+				
+				<br/>
+			</tr>
+		</table>
+	</c:forEach>
+</div>
+	
