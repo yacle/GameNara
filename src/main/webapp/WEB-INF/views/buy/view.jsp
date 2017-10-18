@@ -22,28 +22,28 @@ input, textarea, button {
 	</h2>
 	<hr />
 	<c:choose>
-		<c:when test="${empty one }">
+		<c:when test="${empty data.one }">
 			이미 삭제된 글입니다.
 		</c:when>
 		<c:otherwise>
 			<div
 				style="width: 80%; border-radius: 10px; ; padding-left: 20px;"
 				align="left">
-				<input type="hidden" id="num" value="${one.NO }" />
-				<c:if test="${one.END == 1 }"><h2>${one.TITLE }</h2><h5>거래중</h5>
+				<input type="hidden" id="num" value="${data.one.NO }" />
+				<c:if test="${data.one.END == 1 }"><h2>${data.one.TITLE }</h2><h5>거래중</h5>
 				</c:if>
-				<c:if test="${one.END == 2 }"><del><h2>${one.TITLE }</h2></del><h4>거래완료</h4>
+				<c:if test="${data.one.END == 2 }"><del><h2>${data.one.TITLE }</h2></del><h4>거래완료</h4>
 				</c:if>
 				<p style="padding-left: 10px;">
-					<small>작성자 : ${one.BUY_ID } | 작성일 : <fmt:formatDate
-							pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" /> 
-							조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" />
-							<c:if test="${auth_id eq one.BUY_ID }">
+					<small>작성자 : ${data.one.BUY_ID } | 작성일 : <fmt:formatDate
+							pattern="yyyy.MM.dd HH:mm" value="${data.one.ADD_DATE }" /> 
+							조회수 : <fmt:formatNumber value="${data.one.COUNT}" pattern="#,###" />
+							<c:if test="${auth_id eq data.one.BUY_ID }">
 							<button id="end">계약완료</button>
 				</c:if>
 					</small>
 				</p>
-				<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${one.DETAIL }</pre>
+				<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${data.one.DETAIL }</pre>
 			</div>
 		</c:otherwise>
 		</c:choose>
