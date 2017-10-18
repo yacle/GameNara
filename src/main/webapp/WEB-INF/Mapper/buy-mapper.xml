@@ -11,7 +11,8 @@
 		update buy set count = count+1 where no =#{no}
 	 </update>
 	<select id="list" resultType="java.util.HashMap">
-		select * from BUY
+				select b.*, t.c from buy b left join 
+        	(select parent, count(*) as c from freeboard_reply group by parent ) t on b.no = t.parent
 	</select>
 	<select id="readOne" parameterType="java.lang.String"
 		resultType="java.util.HashMap">

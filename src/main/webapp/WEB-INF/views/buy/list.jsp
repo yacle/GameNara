@@ -49,6 +49,7 @@ th, td {
 						</c:when>
 					</c:choose>
 					<td><a href="/buy/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a>
+					<span class="badge">${obj.C }</span>
 						<c:if test="${obj.END == 1 }">
 							<span class="label label-info">[거래중]</span>
 						</c:if> <c:if test="${obj.END == 2 }">
