@@ -33,7 +33,15 @@ th, td {
 					<td>${obj.NO }</td>
 					<c:choose>
 						<c:when test="${auth_id ne null}">
-							<td><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+							<c:if test="${obj.ATTACH ne null }">
+								<td><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+								<img id="pf" src="/profiles/board_def.JPG" style="height:10px; width:10px;"/>
+								[${obj.RE_CNT }]
+							</c:if>
+							<c:if test="${obj.ATTACH eq null }">
+								<td><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+								[${obj.RE_CNT }]
+							</c:if>
 						</c:when>
 						<c:otherwise>
 							<td>${fn:substring(obj.TITLE, 0, 12) }</td>

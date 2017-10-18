@@ -20,4 +20,9 @@ public class FreeBoard_ReplyDao {
 	public List<Map> readReply(String parent) {
 		return tmp.selectList("reply.readReply",parent);
 	}
+	
+	public int addReplyCnt(String num) {
+		return tmp.update("reply.addReplyCnt",num);
+	}
+	
 }
