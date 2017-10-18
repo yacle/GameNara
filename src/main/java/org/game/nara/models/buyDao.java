@@ -1,5 +1,6 @@
 package org.game.nara.models;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,9 +43,15 @@ public class buyDao {
 		return true;
 	}
 
-	public Map readOne(String num) {
-		return template.selectOne("buy.readOne", num);
-	}
+		public Map readOne(String num) {
+			template.update("buy.countup",num);
+			Map map = new HashMap();
+			List list =template.selectList("reply.readReply",num);
+			Map m = template.selectOne("buy.readOne", num);
+			map.put("reply", list);
+			map.put("one", m);
+			return map;
+		}
 
 	public int countup(String num) {
 		return template.update("buy.countup",num);

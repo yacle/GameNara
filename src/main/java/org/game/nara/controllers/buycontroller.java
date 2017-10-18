@@ -103,12 +103,13 @@ public class buycontroller {
 	}
 	
 	@RequestMapping(path = "/view/{num}")
-	public ModelAndView buyviewHandle(@PathVariable String num) throws SQLException {
+	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");	// 바로 뷰이름지정
 		Map one = buyDoa.readOne(num);
-		int b = buyDoa.countup(num);
-		one.put("countup", b);
-		mav.addObject("one", one);
+		List reply = (List) one.get("reply");
+		Map readOne = (Map) one.get("one");
+		
+		mav.addObject("data", one);
 		mav.addObject("section", "buy/view");
 		return mav;
 	}
