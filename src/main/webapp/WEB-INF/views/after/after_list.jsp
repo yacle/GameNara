@@ -33,7 +33,8 @@
 					
 					<td>
 						<div class="dropdown">
-							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span id="receiver" value="${obj.WRITER }">${obj.WRITER }</span>
+							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+								<span id="receiver" value="${obj.WRITER }">${obj.WRITER }</span>
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
@@ -66,4 +67,9 @@
 		var url="/chat/noteSend?id="+obj;
 		window.open(url, "noteSend", "width=400, height=550");
 	}
+
 </script>
+
+
+
+
