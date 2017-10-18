@@ -36,15 +36,15 @@ th, td {
 							<c:if test="${obj.ATTACH ne null }">
 								<td><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
 								<img id="pf" src="/profiles/board_def.JPG" style="height:10px; width:10px;"/>
-								[${obj.RE_CNT }]
+								<span class="badge">${obj.C }</span>
 							</c:if>
 							<c:if test="${obj.ATTACH eq null }">
 								<td><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
-								[${obj.RE_CNT }]
+								<span class="badge">${obj.C }</span>
 							</c:if>
 						</c:when>
 						<c:otherwise>
-							<td>${fn:substring(obj.TITLE, 0, 12) }</td>
+							<td>${fn:substring(obj.TITLE, 0, 12) }</span></td>
 						</c:otherwise>
 					</c:choose>
 					<td>${obj.WRITER }</td>
