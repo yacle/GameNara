@@ -89,15 +89,46 @@ input, textarea, button {
 		<table>
 			<tr>
 				<td><b>작성자 : ${i.WRITER }</b> | 작성날짜 : <fmt:formatDate
-					pattern="yyyy-MM-dd" value="${i.RE_DATE }" /> </td>
+					pattern="yyyy-MM-dd" value="${i.RE_DATE }" /> 
 			</tr>
 			<tr>
 				<td style="padding-left: 20px;">》 ${i.CONTENT }
-				<button type="button" id="del">삭제</button></td>
-				
+					<c:if test="${auth_id  == i.WRITER}">
+				        <button type="button" id="update" value="">수정</button>
+				        <button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
+    				</c:if></td>
 				<br/>
 			</tr>
 		</table>
 	</c:forEach>
 </div>
 	
+<script>
+	var del = function(obj) {
+		if(window.confirm("삭제하시겠습니까?")){
+			$.ajax({
+				"type":"post",
+				"async": false,
+				"url":"/reply/delete",
+				"data":{
+					"num":obj
+				}
+			});	
+			window.location.reload();
+		}
+	}
+</script>
+<script>
+	var upr = function(obj){
+		$.ajax({
+			"type":"post",
+			"async": false,
+			"url":"/reply/update",
+			"data":{
+				"num":obj
+				"content":
+			}
+		});	
+		window.location.reload();
+	}
+</script>

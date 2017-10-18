@@ -21,8 +21,11 @@ public class FreeBoard_ReplyDao {
 		return tmp.selectList("reply.readReply",parent);
 	}
 	
-	public int addReplyCnt(String num) {
-		return tmp.update("reply.addReplyCnt",num);
+	public int deleteReply(String num) {
+		return tmp.delete("reply.deleteReply",num);
 	}
 	
+	public int updateReply(Map map) {
+		return tmp.update("reply.updateReply",map);
+	}
 }

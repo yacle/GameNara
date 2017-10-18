@@ -57,4 +57,16 @@ public class FreeBoard_ReplyControllers {
 		System.out.println("rrrr"+r);
 		return mav;
 	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public int deleteReplyHandle(@RequestParam String num) {
+		int rst = 0;
+		int ok = replyDao.deleteReply(num);
+		if(ok==1) {
+			rst =1;
+		}
+		System.out.println("ok-?"+ok+" / "+rst);
+		return rst; 
+	}
 }
