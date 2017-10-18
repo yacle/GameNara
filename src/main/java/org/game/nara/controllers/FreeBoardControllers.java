@@ -81,8 +81,6 @@ public class FreeBoardControllers {
 	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");	// 바로 뷰이름지정
 		Map one = dao.readOne(num);
-		List reply = (List) one.get("reply");
-		Map readOne = (Map) one.get("one");
 		
 		mav.addObject("data", one);
 		mav.addObject("section", "freeBoard/view");

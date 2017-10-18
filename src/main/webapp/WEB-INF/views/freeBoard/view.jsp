@@ -29,20 +29,20 @@ input, textarea, button {
 				<p style="padding-left: 10px;">
 					<div class="row">
 				    	<div class="col-sm-10">
-				    		<small>작성자 : ${one.WRITER } | 작성일 : <fmt:formatDate
-								pattern="MM.dd.yyyy" value="${one.FB_DATE }" /> 
+				    		<small>작성자 : ${data.one.WRITER } | 작성일 : <fmt:formatDate
+								pattern="MM.dd.yyyy" value="${data.one.FB_DATE }" /> 
 							</small>
 						</div>
 					    <div class="col-sm-2">
-					    	<small>조회수 : <fmt:formatNumber value="${one.VIEW_CNT}" pattern="#,###" /></small>
+					    	<small>조회수 : <fmt:formatNumber value="${data.one.VIEW_CNT}" pattern="#,###" /></small>
 					    </div>
 					</div>							
 				</p>
 				<c:choose>
-					<c:when test="${one.ATTACH ne null}">
+					<c:when test="${data.one.ATTACH ne null}">
 						<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">
-							<img id="pf" src="/freeB_File/${one.ATTACH}" style="height:301px; width:300px;float: left;" />
-							<br/>${one.COMENT }
+							<img id="pf" src="/freeB_File/${data.one.ATTACH}" style="height:301px; width:300px;float: left;" />
+							<br/>${data.one.COMENT }
 						</pre>
 					</c:when>
 					<c:otherwise>
@@ -77,26 +77,58 @@ input, textarea, button {
 				"content":$("#content").val()
 			}
 		}).done(function(obj){
-			var html="";
-			for(idx in obj) {
-				html += "* " +obj[idx].WRITER+"<br/>"+"   "+obj[idx].CONTENT +"<hr/>";
-			}
-			document.getElementById("reps").innerHTML = html;
+			document.getElementById("content").value = "";
 		});
+		window.location.reload();
 	});
+	
 </script>
 
 <div id="reps" align="left" style="width: 70%; margin-top: 20px">
 	<c:forEach var="i" items="${data.reply }">
-	<table>
-		<tr>
-			<td>${i.WRITER }</td>
-			<td>${i.CONTENT }</td>
-			<td><fmt:formatDate
-				pattern="MM.dd.yyyy" value="${i.RE_DATE }" /> </td>
-		</tr>
-	</table>
-	
+		<table>
+			<tr>
+				<td><b>작성자 : ${i.WRITER }</b> | 작성날짜 : <fmt:formatDate
+					pattern="yyyy-MM-dd" value="${i.RE_DATE }" /> 
+			</tr>
+			<tr>
+				<td style="padding-left: 20px;">》 ${i.CONTENT }
+					<c:if test="${auth_id  == i.WRITER}">
+				        <button type="button" id="update" value="">수정</button>
+				        <button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
+    				</c:if></td>
+				<br/>
+			</tr>
+		</table>
 	</c:forEach>
 </div>
 	
+<script>
+	var del = function(obj) {
+		if(window.confirm("삭제하시겠습니까?")){
+			$.ajax({
+				"type":"post",
+				"async": false,
+				"url":"/reply/delete",
+				"data":{
+					"num":obj
+				}
+			});	
+			window.location.reload();
+		}
+	}
+</script>
+<script>
+	var upr = function(obj){
+		$.ajax({
+			"type":"post",
+			"async": false,
+			"url":"/reply/update",
+			"data":{
+				"num":obj
+				"content":
+			}
+		});	
+		window.location.reload();
+	}
+</script>

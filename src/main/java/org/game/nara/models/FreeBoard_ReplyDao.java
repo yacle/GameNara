@@ -20,4 +20,12 @@ public class FreeBoard_ReplyDao {
 	public List<Map> readReply(String parent) {
 		return tmp.selectList("reply.readReply",parent);
 	}
+	
+	public int deleteReply(String num) {
+		return tmp.delete("reply.deleteReply",num);
+	}
+	
+	public int updateReply(Map map) {
+		return tmp.update("reply.updateReply",map);
+	}
 }

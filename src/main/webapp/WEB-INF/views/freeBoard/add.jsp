@@ -14,12 +14,12 @@
 				</div>
 				<div class="form-group">
 					<label for="comment">글 제목</label> <input type="text"
-						class="form-control" style="width: 80%;" name="title">
+						class="form-control" style="width: 80%;" name="title" required="required">
 				</div>
 				<div class="form-group">
 					<label for="comment">Comment:</label>
 					<textarea class="form-control" rows="5" name="coment"
-						style="width: 80%;"></textarea>
+						style="width: 80%;" required="required"></textarea>
 				</div>
 				
 				<div class="form-group">
