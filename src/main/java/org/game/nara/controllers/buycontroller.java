@@ -1,9 +1,11 @@
 package org.game.nara.controllers;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.game.nara.models.FreeBoardDao;
@@ -25,6 +27,12 @@ public class buycontroller {
 	
 	@Autowired
 	FreeBoardDao freeDao;
+	
+	@Autowired
+	ServletContext application;
+	
+	@Autowired
+	SimpleDateFormat sdf;
 
 	@RequestMapping("/list")
 	public ModelAndView buyListHandle() throws SQLException {
