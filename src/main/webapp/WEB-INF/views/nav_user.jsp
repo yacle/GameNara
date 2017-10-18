@@ -43,7 +43,8 @@
 				<li><a href="/freeBoard/list">자유게시판</a></li>
 				<li><a href="/after/list">거래후기</a></li>
 			</ul></li>
-		<button class="btn btn-default dropdown-toggle-right" type="button" id="menu1" data-toggle="dropdown" style="margin-left: 280px; margin-top: 9px;">${auth_id}
+		<button class="btn btn-default dropdown-toggle-right" type="button" id="menu1" data-toggle="dropdown" style="margin-left: 280px; margin-top: 9px;">
+			<span data-toggle="tooltip" id="tool" onclick="javascript:cnt()">${auth_id}</span>
 			<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
@@ -63,28 +64,25 @@
 <c:if test="${!empty auth_id}">
 	<script>
 		var nws = new WebSocket("ws://192.168.10.74/ws/note");
+		var cnt = function(){
+			$.ajax({
+				"type":"post",
+				"async":false,
+				"url":"/chat/note_cnt",
+				"data":{
+					"id" : "${auth_id}"
+				}
+			}).done(function(r){
+				$("#note_cnt").html(r);
+			})
+		}
 		nws.onmessage =function(e){
-			console.log(e.data);
-			var data = JSON.parse(e.data);
 			window.alert("새로운 쪽지가 도착하였습니다.");
 		}
 		
 	</script>
 </c:if>
-<script>
-	$("#note_cnt").ready(function(){
-		$.ajax({
-			"type":"post",
-			"async":false,
-			"url":"/chat/note_cnt",
-			"data":{
-				"id" : "${auth_id}"
-			}
-		}).done(function(r){
-			$("#note_cnt").html(r);
-		})
-	})
-</script>
+
 
 
 
