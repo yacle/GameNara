@@ -46,7 +46,7 @@ input, textarea, button {
 						</pre>
 					</c:when>
 					<c:otherwise>
-						<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${one.COMENT }</pre>
+						<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${data.one.COMENT }</pre>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -97,10 +97,8 @@ input, textarea, button {
 					</td>
 			</tr>
 			<tr>
-				<span id="upa">
-					<td style="padding-left: 20px;">》 ${i.CONTENT }</td>
-					<br/>
-				</span>
+				<td style="padding-left: 20px;"><span id="upa">》 ${i.CONTENT }</span></td>
+				<br/>
 			</tr>
 		</table>
 	</c:forEach>

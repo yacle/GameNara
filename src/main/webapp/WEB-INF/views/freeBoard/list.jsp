@@ -44,7 +44,7 @@ th, td {
 							</c:if>
 						</c:when>
 						<c:otherwise>
-							<td>${fn:substring(obj.TITLE, 0, 12) }</span></td>
+							<td>${fn:substring(obj.TITLE, 0, 12) }</td>
 						</c:otherwise>
 					</c:choose>
 					<td>${obj.WRITER }</td>
