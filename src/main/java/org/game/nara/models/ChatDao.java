@@ -24,11 +24,11 @@ SqlSessionTemplate temp;
 	}
 // 내가 보낸 메세지 리스트
 	public List sendNoteListHandle(String id) {
-		return temp.selectList("chat.receiv_list", id);
+		return temp.selectList("chat.send_list", id);
 	}
 // 내가 보낸 메세지 보기
 	public Map sendReadNote(String id) {
-		return temp.selectOne("chat.receiv_read", id);
+		return temp.selectOne("chat.send_read", id);
 	}
 	
 	public int receiv_cntHandle(String id) {
