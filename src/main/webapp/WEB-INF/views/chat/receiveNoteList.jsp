@@ -36,23 +36,58 @@ th, td {
 			</tr>
 		</thead>
 		<tbody >
+		<form action="/chat/del" method="post">
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO} </td>
 					<td>${obj.SENDER }</td>
 					<td><span id="noteView" value="${obj}">${fn:substring(obj.CONTENT, 0, 30) }</span></td>
 					<td><small>${obj.SENDTIME }</small></td>
-					<td><input type="checkbox" name="noteDel"></td> 
+					<td><input type="checkbox" id="noteDel" name="noteDel" class="delCheck" value="${obj.NO}"/></td> 
+					<input type="hidden" name="id" value="${auth_id }">
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<span id="re"></span>
-	
+			<button type="button" id="delbtn">삭제</button>
+			<span id="re"></span>
+		</form>	
 <script>
-$("#noteView").click(function(obj){
-	var m = $("#noteView").val();
-	$("#re").html(m);
-	
-})
+var arr=[];
+	document.getElementById("delbtn").onclick=function(){
+		var m = document.getElementsByClassName("delcheck");
+		for(var i=0; i<m.length; i++){
+			if(m[i].checked==true){
+				arr.push(m[i].value);
+			}
+		}
+		$.ajax({
+			"type":"post",
+			"async":false,
+			"url":"/chat/receiveNoteDel",
+			"data":{
+				"arr": JSON.stringify(arr),
+				"id":$("#id").val()
+			}
+		})	
+	}
 </script>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

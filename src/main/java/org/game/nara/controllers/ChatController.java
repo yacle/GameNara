@@ -3,7 +3,6 @@ package org.game.nara.controllers;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.game.nara.models.ChatDao;
 import org.game.nara.wsControllers.NoteWSHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Controller
 @RequestMapping("/chat")
 public class ChatController {
@@ -21,6 +22,8 @@ public class ChatController {
 ChatDao chatDao;
 @Autowired
 NoteWSHandler nws;
+@Autowired
+ObjectMapper mapper;
 
 
 	@RequestMapping("/noteSend")
@@ -66,6 +69,17 @@ NoteWSHandler nws;
 		mav.addObject("section", "chat/sendNoteList");
 		mav.addObject("list", list);
 		return mav;
+	}
+	
+	@PostMapping("/receiveNoteDel")
+	public ModelAndView noteDeleteHandle(@RequestParam Map map) {
+		ModelAndView mav = new ModelAndView("temp");
+	//	int r = chatDao.receiveNoteDelHandle(map);
+		List list = chatDao.receiveNoteListHandle((String)map.get("id"));
+		mav.addObject("section", "chat/receiveNoteList");
+		mav.addObject("list", list);
+		return mav;
+	
 	}
 	
 }

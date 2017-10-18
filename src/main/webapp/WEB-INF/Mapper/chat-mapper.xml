@@ -15,15 +15,20 @@
 	</select>	
 	
 	<select id="receiv_list" resultType="java.util.HashMap">
-		select * from note where receiver=#{id}
+		select * from note where receiver=#{id} and read='n'
 	</select>
 	
 	<select id="send_list" resultType="java.util.HashMap">
-		select * from note where sender=#{id}
+		select * from note where sender=#{id} and del='n'
 	</select>
 
 	<select id="receiv_cnt" resultType="java.lang.Integer">
-		select count(*) as cnt from note where receiver=#{id}
+		select count(*) as cnt from note where receiver=#{id} and read='n'
 	</select>
-	
+	<update id="receive_del">
+		update note set read='y' where id=#{id} and no in 
+  			<foreach item="item" index="index" collection="arr" open="(" separator="," close=")">
+      			#{item}
+ 			</foreach>
+	</update>
 </mapper>

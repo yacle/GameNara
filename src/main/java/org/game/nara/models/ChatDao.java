@@ -34,4 +34,8 @@ SqlSessionTemplate temp;
 	public int receiv_cntHandle(String id) {
 		return temp.selectOne("chat.receiv_cnt", id);
 	}
+	
+	public int receiveNoteDelHandle(Map map) {
+		return temp.update("chat.receive_del", map);
+	}
 }
