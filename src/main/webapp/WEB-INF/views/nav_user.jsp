@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <div class="container-fluid">
@@ -43,9 +43,7 @@
 				<li><a href="/freeBoard/list">자유게시판</a></li>
 				<li><a href="/after/list">거래후기</a></li>
 			</ul></li>
-		<button class="btn btn-default dropdown-toggle" type="button"
-			id="menu1" data-toggle="dropdown"
-			style="margin-left: 280px; margin-top: 9px;">${auth_id}
+		<button class="btn btn-default dropdown-toggle-right" type="button" id="menu1" data-toggle="dropdown" style="margin-left: 280px; margin-top: 9px;">${auth_id}
 			<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
@@ -54,7 +52,7 @@
 			<li role="presentation"><a role="menuitem" tabindex="-1"
 				href="#">MyWorld</a></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1"
-				href="#">Message <span class="badge"
+				href="/chat/note_list?id=${auth_id }">Message <span class="badge"
 					style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
 			<li role="presentation" class="divider"></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1"
@@ -62,6 +60,17 @@
 		</ul>
 	</ul>
 </div>
+<c:if test="${!empty auth_id}">
+	<script>
+		var nws = new WebSocket("ws://192.168.10.74/ws/note");
+		nws.onmessage =function(e){
+			console.log(e.data);
+			var data = JSON.parse(e.data);
+			window.alert("새로운 쪽지가 도착하였습니다.");
+		}
+		
+	</script>
+</c:if>
 <script>
 	$("#note_cnt").ready(function(){
 		$.ajax({

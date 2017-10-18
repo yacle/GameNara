@@ -63,8 +63,7 @@
 </div>
 <script>
 	function openchat(obj){
-		var url="/chat/note?id="+obj;
-		
-		window.open(url, "note", "width=400, height=550");
+		var url="/chat/noteSend?id="+obj;
+		window.open(url, "noteSend", "width=400, height=550");
 	}
 </script>
