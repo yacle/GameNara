@@ -57,26 +57,26 @@
 		</ul>
 	</ul>
 </div>
-	<script>
-		var nws = new WebSocket("ws://192.168.10.74/ws/note");
-		var cnt = function(){
-			$.ajax({
-				"type":"post",
-				"async":false,
-				"url":"/chat/note_cnt",
-				"data":{
-					"id" : "${auth_id}"
-				}
-			}).done(function(r){
-				$("#note_cnt").html(r);
-			})
-		}
-		nws.onmessage =function(e){
-			window.alert("새로운 쪽지가 도착하였습니다.");
-		}
+	
+<script>
+	var nws = new WebSocket("ws://192.168.10.74/ws/note");
+	var cnt = function(){
+		$.ajax({
+			"type":"post",
+			"async":false,
+			"url":"/chat/note_cnt",
+			"data":{
+				"id" : $("#tool").html()
+			}
+		}).done(function(r){
+			$("#note_cnt").html(r);
+		})
+	}
+	nws.onmessage =function(e){
+		window.alert("새로운 쪽지가 도착하였습니다.");
+	}
 		
 	</script>
-
 
 
 

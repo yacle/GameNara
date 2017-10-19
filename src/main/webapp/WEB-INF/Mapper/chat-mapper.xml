@@ -31,4 +31,10 @@
       			#{item}
  			</foreach>
 	</update>
+	<update id="send_del">
+		update note set del='y' where sender=#{id} and no in 
+  			<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+      			#{item}
+ 			</foreach>
+	</update>
 </mapper>

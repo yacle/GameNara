@@ -13,7 +13,9 @@ import org.game.nara.models.buyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,15 +46,7 @@ public class buycontroller {
 		mav.addObject("cnt", li.size());
 		return mav;
 	}
-	
-	@RequestMapping("/adjust")
-	public ModelAndView buyadjustHandle(@RequestParam Map param) {
-		List<Map> li = buyDoa.readAll();
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/add_rst");
-		mav.addObject("list", li);
-		return mav;
-	}
+
 
 	@RequestMapping("/console_list")
 	public ModelAndView buyconsoleHandle() throws SQLException {
@@ -126,40 +120,41 @@ public class buycontroller {
 		map.put("section", "buy/add_rst");
 		return "temp";
 	}
-	
-	@RequestMapping(path = "/add_rst", method = RequestMethod.GET)
-	public ModelAndView buyadjustGetHandle() {
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/add_rst");
+
+	@GetMapping("/add_rst")
+	public ModelAndView buyadjustpostHandle(@RequestParam Map param) {
+		ModelAndView mav= new ModelAndView("temp"); 
+		String no = (String)param.get("no");
+		System.out.println("no"+no);
+		Map map=buyDoa.readOne(no);
+		System.out.println(map.toString());
+		mav.addObject("section","buy/add_rst");
+		mav.addObject("list", map);
 		return mav;
 	}
 
-
-
-	@RequestMapping(path = "/add_rst", method = RequestMethod.POST)
-	public String buyadjustpostHandle(@RequestParam Map param, ModelMap map, HttpSession session) throws SQLException {
+	@PostMapping("/add_rst")
+	public String buyadjustHandle(@RequestParam Map param,ModelMap map) throws SQLException {
 		boolean b = buyDoa.adjust(param);
-		String id = (String) session.getAttribute("auth_id");
 		if (b) {
-			freeDao.subPoint(id);
 			return "redirect:/buy/list";
 		}
 		map.put("result", b);
 		map.put("section", "buy/add_rst");
 		return "temp";
 	}
-
+	
 	@RequestMapping(path = "/view/{num}")
-	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
+	public ModelAndView buyViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
 		Map one = buyDoa.readOne(num);
-		List reply = (List) one.get("reply");
-		Map readOne = (Map) one.get("one");
-		mav.addObject("data", one);
+		buyDoa.countup(num);
+		mav.addObject("one", one);
 		mav.addObject("section", "buy/view");
 		return mav;
 	}
 	
+
 	
 
 }
