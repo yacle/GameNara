@@ -13,7 +13,9 @@ import org.game.nara.models.buyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,15 +46,7 @@ public class buycontroller {
 		mav.addObject("cnt", li.size());
 		return mav;
 	}
-	
-	@RequestMapping("/adjust")
-	public ModelAndView buyadjustHandle(@RequestParam Map param) {
-		List<Map> li = buyDoa.readAll();
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/add_rst");
-		mav.addObject("list", li);
-		return mav;
-	}
+
 
 	@RequestMapping("/console_list")
 	public ModelAndView buyconsoleHandle() throws SQLException {
@@ -127,9 +121,7 @@ public class buycontroller {
 		return "temp";
 	}
 
-
-
-	@RequestMapping("/add_rst")
+	@GetMapping("/add_rst")
 	public ModelAndView buyadjustpostHandle(@RequestParam Map param) {
 		ModelAndView mav= new ModelAndView("temp"); 
 		String no = (String)param.get("no");
@@ -141,16 +133,28 @@ public class buycontroller {
 		return mav;
 	}
 
+	@PostMapping("/add_rst")
+	public String buyadjustHandle(@RequestParam Map param,ModelMap map) throws SQLException {
+		boolean b = buyDoa.adjust(param);
+		if (b) {
+			return "redirect:/buy/list";
+		}
+		map.put("result", b);
+		map.put("section", "buy/add_rst");
+		return "temp";
+	}
+	
 	@RequestMapping(path = "/view/{num}")
-	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
+	public ModelAndView buyViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
 		Map one = buyDoa.readOne(num);
-		
+		buyDoa.countup(num);
 		mav.addObject("one", one);
 		mav.addObject("section", "buy/view");
 		return mav;
 	}
 	
+
 	
 
 }
