@@ -110,32 +110,4 @@
 </div>
 </div>
 	
-<script>
-	var del = function(obj) {
-		if(window.confirm("삭제하시겠습니까?")){
-			$.ajax({
-				"type":"post",
-				"async": false,
-				"url":"/reply/delete",
-				"data":{
-					"num":obj
-				}
-			});	
-			window.location.reload();
-		}
-	}
-	var upr = function(obj){
-		$.ajax({
-			"type":"post",
-			"async": false,
-			"url":"/reply/update",
-			"data":{
-				"parent":$("#num").val(),
-				"no":obj
-			}
-		});
-		console.log($("recon").val());
-			$("#con01").hide();
-			$("#con02").show();
-	}
-</script>
+
