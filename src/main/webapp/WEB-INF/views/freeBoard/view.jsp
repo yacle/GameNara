@@ -9,36 +9,36 @@
 		<a href="/freeBoard/list" ><button>게시판으로</button></a>
 	</div>
 	<c:choose>
-		<c:when test="${empty data.one }">
+		<c:when test="${empty one }">
 			이미 삭제된 글입니다.
 		</c:when>
 		<c:otherwise>
 			<div
 				style="width: 80%; border-radius: 10px; ; padding-left: 20px;"
 				align="left">
-				<input type="hidden" id="num" value="${data.one.NO }" />
+				<input type="hidden" id="num" value="${one.NO }" />
 				<h3>${data.one.TITLE }</h3>
 				<p style="padding-left: 10px;">
 					<div class="row">
 				    	<div class="col-sm-10">
 				    		<small>작성자 : ${data.one.WRITER } | 작성일 : <fmt:formatDate
-								pattern="MM.dd.yyyy" value="${data.one.FB_DATE }" /> 
+								pattern="MM.dd.yyyy" value="${one.FB_DATE }" /> 
 							</small>
 						</div>
 					    <div class="col-sm-2">
-					    	<small>조회수 : <fmt:formatNumber value="${data.one.VIEW_CNT}" pattern="#,###" /></small>
+					    	<small>조회수 : <fmt:formatNumber value="${one.VIEW_CNT}" pattern="#,###" /></small>
 					    </div>
 					</div>							
 				</p>
 				<c:choose>
-					<c:when test="${data.one.ATTACH ne null}">
+					<c:when test="${one.ATTACH ne null}">
 						<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">
-							<img id="pf" src="/freeB_File/${data.one.ATTACH}" style="height:301px; width:300px;float: left;" />
+							<img id="pf" src="/freeB_File/${one.ATTACH}" style="height:301px; width:300px;float: left;" />
 							<br/>${data.one.COMENT }
 						</pre>
 					</c:when>
 					<c:otherwise>
-						<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${data.one.COMENT }</pre>
+						<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${one.COMENT }</pre>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -77,7 +77,7 @@
 
 <div align="center">
 <div style="width: 80%;">
-	<c:forEach var="i" items="${data.reply }">
+	<c:forEach var="i" items="${reply }">
 		<div class="row" align="left">
 			<div class="col-md-2">작성자 : ${i.WRITER }</div>
 			<div class="col-md-8">작성날짜 : <fmt:formatDate pattern="yyyy-MM-dd" value="${i.RE_DATE }" /></div>

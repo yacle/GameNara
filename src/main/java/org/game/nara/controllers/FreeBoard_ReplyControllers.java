@@ -53,8 +53,16 @@ public class FreeBoard_ReplyControllers {
 	public ModelAndView replyListHandle(@PathVariable String parent) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");
 		List<Map> r = replyDao.readReply(parent);
+		for(Map m : r) {
+			if(m.get("no")==no) {
+				m.put("re", "y");
+			}
+			r.add(m);
+		}
+		Map one = dao.readOne(num);
 		mav.addObject("section","reply/list/"+parent);
-		System.out.println("rrrr"+r);
+		mav.addObject("reply", r);
+		mav.addObject("", r);
 		return mav;
 	}
 	

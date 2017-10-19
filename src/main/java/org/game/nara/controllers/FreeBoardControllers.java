@@ -11,6 +11,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.game.nara.models.FreeBoardDao;
+import org.game.nara.models.FreeBoard_ReplyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,7 +28,8 @@ public class FreeBoardControllers {
 
 	@Autowired
 	FreeBoardDao dao;
-	
+	@Autowired
+	FreeBoard_ReplyDao replyDao;	
 	@Autowired
 	ServletContext application;
 	
@@ -81,9 +83,10 @@ public class FreeBoardControllers {
 	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");	// 바로 뷰이름지정
 		Map one = dao.readOne(num);
-				
+		List<Map> r = replyDao.readReply(num);
 		mav.addObject("data", one);
 		mav.addObject("section", "freeBoard/view");
+		mav.addObject("reply", r);
 		return mav;
 	}
 		
