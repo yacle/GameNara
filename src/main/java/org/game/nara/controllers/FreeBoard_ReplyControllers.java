@@ -39,9 +39,6 @@ public class FreeBoard_ReplyControllers {
 	@ResponseBody
 	public int replyAddHandle(@RequestParam Map body, HttpServletResponse resp,
 			@CookieValue(name = "limit", required = false) String val) throws Exception {
-		
-		
-		System.out.println(body.toString());
 		int code = 0;
 		if (val != null) { // 쿠키가 있다는 상황
 			code = -1;
@@ -63,7 +60,6 @@ public class FreeBoard_ReplyControllers {
 		ModelAndView mav = new ModelAndView("temp");
 		List<Map> r = replyDao.readReply(parent);
 		mav.addObject("section","reply/list/"+parent);
-		System.out.println("rrrr"+r);
 		return mav;
 	}
 	
@@ -75,7 +71,6 @@ public class FreeBoard_ReplyControllers {
 		if(ok==1) {
 			rst =1;
 		}
-		System.out.println("ok-?"+ok+" / "+rst);
 		return rst; 
 	}
 	
@@ -89,7 +84,6 @@ public class FreeBoard_ReplyControllers {
 	      for(Map m : r) {
 	    	 int s =((BigDecimal)m.get("NO")).intValue();
 	         if(Integer.parseInt(no)==s) {
-	        	 System.out.println(Integer.parseInt(no)+"//"+s);
 	            m.put("RE", "y");
 	            al.add(m);
 	         }
@@ -97,7 +91,6 @@ public class FreeBoard_ReplyControllers {
 	      Map one = boardDao.readOne(parent);
 	      mav.addObject("section","freeBoard/view");
 	      mav.addObject("reply", al);
-	      System.out.println("alll=>"+al.toString());
 	      mav.addObject("one", one);
 	      return mav;
 	   }

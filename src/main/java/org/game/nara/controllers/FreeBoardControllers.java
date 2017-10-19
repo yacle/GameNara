@@ -63,7 +63,6 @@ public class FreeBoardControllers {
 		if(mpf.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/freeB_File");
-			System.out.println("pppppath==>"+path);
 			String name = id+"_"+fmt;
 			
 			File dir = new File(path);
@@ -86,7 +85,6 @@ public class FreeBoardControllers {
 	   public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
 	      ModelAndView mav = new ModelAndView("temp");   // 바로 뷰이름지정
 	      Map one = boardDao.readOne(num);
-	      System.out.println("one="+one.toString());
 	      List<Map> r = replyDao.readReply(num);
 	      mav.addObject("one", one);
 	      mav.addObject("section", "freeBoard/view");
