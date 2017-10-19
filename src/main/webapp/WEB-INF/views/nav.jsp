@@ -33,7 +33,7 @@
           <li><a href="#">ETC</a></li>
         </ul>
       </li>
-      <li><a href="#">FREE PRESENT</a></li>
+      <li><a href="/FreeDistribute/list">FREE PRESENT</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">COMMUNITY<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">가입인사</a></li>

@@ -32,6 +32,9 @@ public class FreeBoardDao {
 		return tmp.update("freeB.addPoint",id);
 	}
 	
+	public int countOne(String num) {
+		return tmp.update("freeB.countOne",num);
+	}
 
 	public int subPoint(String id) {
 		return tmp.update("freeB.subPoint",id);

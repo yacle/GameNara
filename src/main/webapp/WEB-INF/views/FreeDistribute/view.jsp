@@ -4,9 +4,9 @@
 
  
 <div align="center" style="line-height: 35px">
-	<h2>자유게시판</h2>
+	<h2>무료나눔게시판</h2>
 	<div align="left">
-		<a href="/freeBoard/list" ><button>게시판으로</button></a>
+		<a href="/FreeDistribute/list" ><button>게시판으로</button></a>
 	</div>
 	<c:choose>
 		<c:when test="${empty one }">
@@ -22,7 +22,7 @@
 					<div class="row">
 				    	<div class="col-sm-10">
 				    		<small>작성자 : ${one.WRITER } | 작성일 : <fmt:formatDate
-								pattern="MM.dd.yyyy" value="${one.FB_DATE }" /> 
+								pattern="MM.dd.yyyy" value="${one.FD_DATE }" /> 
 							</small>
 						</div>
 					    <div class="col-sm-2">
@@ -33,7 +33,7 @@
 				<c:choose>
 					<c:when test="${one.ATTACH ne null}">
 						<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">
-							<img id="pf" src="/freeB_File/${one.ATTACH}" style="height:301px; width:300px;float: left;" />
+							<img id="pf" src="/freeD_File/${one.ATTACH}" style="height:301px; width:300px;float: left;" />
 							<br/>${one.COMENT }
 						</pre>
 					</c:when>
@@ -46,7 +46,9 @@
 	</c:choose>
 	<hr />
 </div>
+
 <%-- Reply input part --%>
+<%-- 
 <div align="center">
 	<div style="width: 80%;" align="left">
 		<p>작성자 : <span id="writer">${auth_id }</span></p>
@@ -72,9 +74,10 @@
 		window.location.reload();
 	});
 	
-</script>
+</script> --%>
 <%--Reply List part --%>
 
+<%-- 
 <div align="center">
 <div style="width: 80%;">
 	<c:forEach var="i" items="${reply }">
@@ -88,7 +91,7 @@
 			<div class="col-md-9" align="left">
 				<span id="con01">${i.CONTENT } </span>
 				<span id="con02" hidden="hidden"><input id="up" type="text" value="${i.CONTENT }"></span>
-				<%-- <c:choose>
+				<c:choose>
 					<c:when test="${i.RE ne null}">
 						<input id="up" type="text" value="${i.CONTENT }">
 						<button id="upbtn" type="button">수정하기</button>
@@ -96,7 +99,7 @@
 					<c:otherwise>
 						<span id="con01">${i.CONTENT } </span>
 					</c:otherwise>
-				</c:choose> --%>
+				</c:choose>
 			</div>
 			<div class="col-md-3">
 				<c:if test="${auth_id  == i.WRITER}">
@@ -134,9 +137,7 @@
 				"no":obj
 			}
 		});
-		console.log($("recon").val());
-			$("#con01").hide();
-			$("#con02").show();
 	}
-</script>
+ </script>
+ --%>
 
