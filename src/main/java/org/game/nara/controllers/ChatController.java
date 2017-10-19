@@ -94,7 +94,10 @@ ObjectMapper mapper;
 		List list =  mapper.readValue((String)map.get("arr"), List.class);
 		m.put("id",id);
 		m.put("list", list);
+<<<<<<< HEAD
 		System.out.println(m.toString());
+=======
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		int r = chatDao.sendNoteDelHandle(m);
 		return  r;
 	}
