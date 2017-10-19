@@ -24,13 +24,8 @@ public class FreeBoardDao {
 	}
 
 	public Map readOne(String num) {
-		tmp.update("freeB.countOne",num);
-		Map map = new HashMap();
-		List list =tmp.selectList("reply.readReply",num);
-		Map m = tmp.selectOne("freeB.readOne", num);
-		map.put("reply", list);
-		map.put("one", m);
-		return map;
+	
+		return  tmp.selectOne("freeB.readOne", num);
 	}
 	
 	public int addPoint(String id) {

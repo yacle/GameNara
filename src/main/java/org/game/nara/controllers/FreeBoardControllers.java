@@ -27,18 +27,26 @@ import org.springframework.web.servlet.ModelAndView;
 public class FreeBoardControllers {
 
 	@Autowired
+<<<<<<< HEAD
 	FreeBoardDao dao;
 	@Autowired
 	FreeBoard_ReplyDao replyDao;	
+=======
+	FreeBoardDao boardDao;
+	
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	@Autowired
 	ServletContext application;
 	
 	@Autowired
 	SimpleDateFormat sdf;
 	
+	@Autowired
+	FreeBoard_ReplyDao replyDao;
+	
 	@RequestMapping("/list")
 	public ModelAndView freeBoardListHandle() throws SQLException {
-		List<Map> li = dao.listAll();
+		List<Map> li = boardDao.listAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "freeBoard/list");
 		mav.addObject("list", li);
@@ -72,14 +80,15 @@ public class FreeBoardControllers {
 			mpf.transferTo(up);
 			param.put("attach", name);
 		}
-		boolean b = dao.addOne(param);
+		boolean b = boardDao.addOne(param);
 		if (b) {
-			dao.addPoint(id);
+			boardDao.addPoint(id);
 		}
 		return  "redirect:/freeBoard/list";
 	}
 	
 	@RequestMapping(path = "/view/{num}")
+<<<<<<< HEAD
 	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");	// 바로 뷰이름지정
 		Map one = dao.readOne(num);
@@ -89,5 +98,17 @@ public class FreeBoardControllers {
 		mav.addObject("reply", r);
 		return mav;
 	}
+=======
+	   public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
+	      ModelAndView mav = new ModelAndView("temp");   // 바로 뷰이름지정
+	      Map one = boardDao.readOne(num);
+	      System.out.println("one="+one.toString());
+	      List<Map> r = replyDao.readReply(num);
+	      mav.addObject("one", one);
+	      mav.addObject("section", "freeBoard/view");
+	      mav.addObject("reply", r);
+	      return mav;
+	   }
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		
 }
