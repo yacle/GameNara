@@ -85,9 +85,9 @@
 		</div>
 		<div class="row">
 			<div class="col-md-9" align="left">
-				
+				<input type="hidden" id="recon" value="${i.RE }" />
 				<c:choose>
-					<c:when test="${!empty i.RE}">
+					<c:when test="${i.RE ne null}">
 						<input id="up" type="text" value="${i.CONTENT }">
 						<button id="upbtn" type="button">수정하기</button>
 					</c:when>
