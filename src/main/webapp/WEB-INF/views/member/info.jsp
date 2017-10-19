@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<h2 align="center">${auth_id}Info</h2>
+<h2 align="center"><span id="id">${auth_id}</span>Info</h2>
 <div class="row" style="align: center">
 	<div class="col-md-1"></div>
 	<div class="col-md-3">
@@ -23,15 +23,15 @@
 			enctype="multipart/form-data" align="center">
 			<input id="profile" type="file" name="profile" style="display: none" />
 			<span id="picName"></span><br />
-			<button type="submit" class="btn btn-default" id="sbt">적용</button>
-			<button type="submit" class="btn btn-default"
+			<button type="button" class="btn btn-default" id="sbt">적용</button>
+			<button type="button" class="btn btn-default"
 				onclick="javascript:location.reload()">취소</button>
 		</form>
 		</p>
 	</div>
 
 
-	<form class="form-horizontal" action="/member/info" method="post">
+	<form class="form-horizontal">
 		<div class="col-md-7">
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="name">Name:</label>
@@ -106,15 +106,32 @@
 </div>
 <div class="form-group">
 	<div class="col-sm-offset-0 col-sm-12" align="center">
-		<button type="button" class="btn btn-default"
-			onclick="javascript:submit()">Submit</button>
+		<button type="button" class="btn btn-default" id="submit">Submit</button>
 	</div>
 </div>
 </form>
 <script>
-if(${data eq 1}){
-	window.alert("info가 저장되었읍니다.")
-}
+
+$("#submit").click(function(){
+	$.ajax({
+		"type":"post",
+		"async":false,
+		"url":"/member/emailReg",
+		"data":{
+			"phone":$("#phone").val(),
+			"addr":$("#addr").val(),
+			"gender":$("#gender").val(),
+			"nick":$("#nick").val(),
+			"name":$("#name").val(),
+			"id":$("#id").html(),
+			"email":$("#email").val()
+		}
+	}).done(function(obj){
+		window.alert(obj);
+		window.location.reload();
+	})
+})
+
 $("#sbt").click(function(){
 	if(window.confirm("프로필 변경을 저장하시겠습니까?")) {
 		$("#form").submit();

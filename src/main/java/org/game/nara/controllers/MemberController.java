@@ -82,16 +82,14 @@ public class MemberController {
 	}
 	
 	@PostMapping("/info")
-	public ModelAndView infoPostHandle(@RequestParam Map map, HttpSession session) {
-		ModelAndView mav = new ModelAndView("temp");
-		String id = (String) session.getAttribute("auth_id");
-		map.put("id", id);
+	@ResponseBody
+	public String infoPostHandle(@RequestParam Map map) {
 		int r = mDao.addInfo(map);
-		Map m = mDao.readInfo(id);
-		mav.addObject("section", "member/info");
-		mav.addObject("data", r);
-		mav.addObject("map", m);
-		return mav;
+		if(r!=0) {
+			return "save complate";
+		}else {
+			return "save fail";
+		}
 	}
 	
 	
