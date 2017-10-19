@@ -126,36 +126,27 @@ public class buycontroller {
 		map.put("section", "buy/add_rst");
 		return "temp";
 	}
-	
-	@RequestMapping(path = "/add_rst", method = RequestMethod.GET)
-	public ModelAndView buyadjustGetHandle() {
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/add_rst");
+
+
+
+	@RequestMapping("/add_rst")
+	public ModelAndView buyadjustpostHandle(@RequestParam Map param) {
+		ModelAndView mav= new ModelAndView("temp"); 
+		String no = (String)param.get("no");
+		System.out.println("no"+no);
+		Map map=buyDoa.readOne(no);
+		System.out.println(map.toString());
+		mav.addObject("section","buy/add_rst");
+		mav.addObject("list", map);
 		return mav;
-	}
-
-
-
-	@RequestMapping(path = "/add_rst", method = RequestMethod.POST)
-	public String buyadjustpostHandle(@RequestParam Map param, ModelMap map, HttpSession session) throws SQLException {
-		boolean b = buyDoa.adjust(param);
-		String id = (String) session.getAttribute("auth_id");
-		if (b) {
-			freeDao.subPoint(id);
-			return "redirect:/buy/list";
-		}
-		map.put("result", b);
-		map.put("section", "buy/add_rst");
-		return "temp";
 	}
 
 	@RequestMapping(path = "/view/{num}")
 	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
 		Map one = buyDoa.readOne(num);
-		List reply = (List) one.get("reply");
-		Map readOne = (Map) one.get("one");
-		mav.addObject("data", one);
+		
+		mav.addObject("one", one);
 		mav.addObject("section", "buy/view");
 		return mav;
 	}

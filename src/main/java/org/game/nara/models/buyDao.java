@@ -48,14 +48,8 @@ public class buyDao {
 		return true;
 	}
 
-		public Map readOne(String num) {
-			template.update("buy.countup",num);
-			Map map = new HashMap();
-			List list =template.selectList("reply.readReply",num);
-			Map m = template.selectOne("buy.readOne", num);
-			map.put("reply", list);
-			map.put("one", m);
-			return map;
+	public Map readOne(String num) {
+		return template.selectOne("buy.readOne", num);
 		}
 
 	public int countup(String num) {
