@@ -33,10 +33,6 @@
       			#{item}
  			</foreach>
 	</update>
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	<update id="send_del">
 		update note set del='y' where sender=#{id} and no in 
   			<foreach item="item" index="index" collection="list" open="(" separator="," close=")">

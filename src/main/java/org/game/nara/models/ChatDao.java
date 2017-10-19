@@ -30,11 +30,7 @@ SqlSessionTemplate temp;
 	public int receiveNoteDelHandle(Map map) {
 		return temp.update("chat.receive_del", map);
 	}
-<<<<<<< HEAD
-	
-=======
 // 내가 보낸 메세지 선택 삭제	
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	public int sendNoteDelHandle(Map map) {
 		return temp.update("chat.send_del", map);
 	}
