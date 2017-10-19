@@ -11,6 +11,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.game.nara.models.FreeBoardDao;
+import org.game.nara.models.FreeBoard_ReplyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class FreeBoardControllers {
 
 	@Autowired
-	FreeBoardDao dao;
+	FreeBoardDao boardDao;
 	
 	@Autowired
 	ServletContext application;
@@ -34,9 +35,12 @@ public class FreeBoardControllers {
 	@Autowired
 	SimpleDateFormat sdf;
 	
+	@Autowired
+	FreeBoard_ReplyDao replyDao;
+	
 	@RequestMapping("/list")
 	public ModelAndView freeBoardListHandle() throws SQLException {
-		List<Map> li = dao.listAll();
+		List<Map> li = boardDao.listAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "freeBoard/list");
 		mav.addObject("list", li);
@@ -70,21 +74,23 @@ public class FreeBoardControllers {
 			mpf.transferTo(up);
 			param.put("attach", name);
 		}
-		boolean b = dao.addOne(param);
+		boolean b = boardDao.addOne(param);
 		if (b) {
-			dao.addPoint(id);
+			boardDao.addPoint(id);
 		}
 		return  "redirect:/freeBoard/list";
 	}
 	
 	@RequestMapping(path = "/view/{num}")
-	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
-		ModelAndView mav = new ModelAndView("temp");	// 바로 뷰이름지정
-		Map one = dao.readOne(num);
-				
-		mav.addObject("data", one);
-		mav.addObject("section", "freeBoard/view");
-		return mav;
-	}
+	   public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
+	      ModelAndView mav = new ModelAndView("temp");   // 바로 뷰이름지정
+	      Map one = boardDao.readOne(num);
+	      System.out.println("one="+one.toString());
+	      List<Map> r = replyDao.readReply(num);
+	      mav.addObject("one", one);
+	      mav.addObject("section", "freeBoard/view");
+	      mav.addObject("reply", r);
+	      return mav;
+	   }
 		
 }
