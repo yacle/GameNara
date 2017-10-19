@@ -12,9 +12,10 @@ th, td {
 	padding: 10px;
 }
 </style>
+<c:if test="${!empty new}">
+	window.location.reload();
+</c:if>
 
-
-  
 <div align="center" style="line-height: 35px">
 <ul class="pagination">
 	<li><a href="">받은 쪽지함</a></li>
@@ -44,7 +45,7 @@ th, td {
 					<td><span id="noteView" value="${obj}">${fn:substring(obj.CONTENT, 0, 30) }</span></td>
 					<td><small>${obj.SENDTIME }</small></td>
 					<td><input type="checkbox" id="noteDel" name="noteDel" class="delCheck" value="${obj.NO}"/></td> 
-					<input type="hidden" name="id" value="${auth_id }">
+					<input type="hidden" id="id" name="id" value="${auth_id }">
 				</tr>
 			</c:forEach>
 		</tbody>
