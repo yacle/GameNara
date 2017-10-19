@@ -40,32 +40,15 @@ th, td {
 					<td>${obj.RECEIVER }</td>
 					<td><span id="noteView">${fn:substring(obj.CONTENT, 0, 30) }</span></td>
 					<td><small>${obj.SENDTIME }</small></td>
-<<<<<<< HEAD
-					<td><input type="checkbox" name="noteDel" class="delcheck" value="${obj.NO}"></td> 
-					<input type="hidden" id="id" name="id" value="${auth_id }">
-=======
 					<td><input type="checkbox" name="noteDel" class="delcheck" value="${obj.NO}"></td>
-					<input type="hidden" id="id" name="id" value="${auth_id }"> 
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
+					<input type="hidden" id="id" name="id" value="${auth_id }"/>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-<<<<<<< HEAD
-				<button type="button" id="delbtn">삭제</button>
-=======
 	<button type="button" id="delbtn">삭제</button>
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 <script>
 var arr=[];
-<<<<<<< HEAD
-document.getElementById("delbtn").onclick=function(){
-	var m = document.getElementsByClassName("delcheck");
-	for(var i=0; i<m.length; i++){
-		if(m[i].checked==true){
-			arr.push(m[i].value);
-		}
-=======
 	document.getElementById("delbtn").onclick=function(){
 		var m = document.getElementsByClassName("delcheck");
 		for(var i=0; i<m.length; i++){
@@ -84,21 +67,6 @@ document.getElementById("delbtn").onclick=function(){
 		}).done(function(r){
 			window.location.reload();
 		})	
-		
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	}
-	$.ajax({
-		"type":"post",
-		"async":false,
-		"url":"/chat/sendNoteDel",
-		"data":{
-			"arr": JSON.stringify(arr),
-			"id":$("#id").val()
-		}
-	}).done(function(r){
-		window.location.reload();
-	})	
-	
-}
 </script>
 	
