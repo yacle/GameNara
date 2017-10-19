@@ -86,4 +86,17 @@ ObjectMapper mapper;
 		return  r;
 	}
 	
+	@PostMapping("/sendNoteDel")
+	@ResponseBody
+	public int sendNoteDeleteHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
+		Map m = new HashMap();
+		String id = (String)map.get("id");
+		List list =  mapper.readValue((String)map.get("arr"), List.class);
+		m.put("id",id);
+		m.put("list", list);
+		System.out.println(m.toString());
+		int r = chatDao.sendNoteDelHandle(m);
+		return  r;
+	}
+	
 }

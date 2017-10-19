@@ -10,6 +10,7 @@
 	<select id="receiv_read" resultType="java.util.HashMap">
 		select * from note where no=#{no} and receiver=#{id}
 	</select>
+
 	<select id="send_read" resultType="java.util.HashMap">
 		select * from note where no=#{no} and sender=#{id}
 	</select>	
@@ -25,8 +26,16 @@
 	<select id="receiv_cnt" resultType="java.lang.Integer">
 		select count(*) as cnt from note where receiver=#{id} and read='n'
 	</select>
+
 	<update id="receive_del">
 		update note set read='y' where receiver=#{id} and no in 
+  			<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+      			#{item}
+ 			</foreach>
+	</update>
+	
+	<update id="send_del">
+		update note set del='y' where sender=#{id} and no in 
   			<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
       			#{item}
  			</foreach>

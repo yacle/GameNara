@@ -65,7 +65,7 @@
 				"async":false,
 				"url":"/chat/note_cnt",
 				"data":{
-					"id" : "${auth_id}"
+					"id" : $("#tool").html()
 				}
 			}).done(function(r){
 				$("#note_cnt").html(r);

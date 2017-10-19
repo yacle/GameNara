@@ -116,13 +116,14 @@ $("#submit").click(function(){
 	$.ajax({
 		"type":"post",
 		"async":false,
-		"url":"/member/emailReg",
+		"url":"/member/info",
 		"data":{
 			"phone":$("#phone").val(),
 			"addr":$("#addr").val(),
 			"gender":$("#gender").val(),
 			"nick":$("#nick").val(),
 			"name":$("#name").val(),
+			"birth":$("#birth").val(),
 			"id":$("#id").html(),
 			"email":$("#email").val()
 		}

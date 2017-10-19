@@ -34,7 +34,6 @@ th, td {
 			</tr>
 		</thead>
 		<tbody >
-		<form action="/chat/del" method="post">
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO} </td>
@@ -48,8 +47,6 @@ th, td {
 		</tbody>
 	</table>
 			<button type="button" id="delbtn">삭제</button>
-			<span id="re"></span>
-		</form>	
 <script>
 var arr=[];
 	document.getElementById("delbtn").onclick=function(){

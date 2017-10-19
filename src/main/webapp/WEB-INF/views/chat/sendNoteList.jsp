@@ -13,7 +13,6 @@ th, td {
 }
 </style>
 
-  
 <div align="center" style="line-height: 35px">
 	<ul class="pagination">
 		<li><a href="/chat/note_list?id=${auth_id }">받은 쪽지함</a></li>
@@ -29,8 +28,8 @@ th, td {
 			<tr>
 				<th style="width: 10%">No</th>
 				<th style="width: 15%">받을사람</th>
-				<th style="width: 45%">보낸 메세지</th>
-				<th style="width: 20%">보낸시간</th>
+				<th style="width: 50%">보낸 메세지</th>
+				<th style="width: 15%">보낸시간</th>
 				<th style="width: 10%">삭제</th>
 			</tr>
 		</thead>
@@ -41,15 +40,34 @@ th, td {
 					<td>${obj.RECEIVER }</td>
 					<td><span id="noteView">${fn:substring(obj.CONTENT, 0, 30) }</span></td>
 					<td><small>${obj.SENDTIME }</small></td>
-					<td><input type="checkbox" name="noteDel" class="del"></td> 
+					<td><input type="checkbox" name="noteDel" class="delcheck" value="${obj.NO}"></td> 
+					<input type="hidden" id="id" name="id" value="${auth_id }">
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+				<button type="button" id="delbtn">삭제</button>
 <script>
-	var t = document.getElementsByClassName("del").value;
-	for(var i=0; i<t.length; i++){
-		console.log(t[i]);
+var arr=[];
+document.getElementById("delbtn").onclick=function(){
+	var m = document.getElementsByClassName("delcheck");
+	for(var i=0; i<m.length; i++){
+		if(m[i].checked==true){
+			arr.push(m[i].value);
+		}
 	}
+	$.ajax({
+		"type":"post",
+		"async":false,
+		"url":"/chat/sendNoteDel",
+		"data":{
+			"arr": JSON.stringify(arr),
+			"id":$("#id").val()
+		}
+	}).done(function(r){
+		window.location.reload();
+	})	
+	
+}
 </script>
 	

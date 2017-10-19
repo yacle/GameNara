@@ -38,4 +38,8 @@ SqlSessionTemplate temp;
 	public int receiveNoteDelHandle(Map map) {
 		return temp.update("chat.receive_del", map);
 	}
+	
+	public int sendNoteDelHandle(Map map) {
+		return temp.update("chat.send_del", map);
+	}
 }
