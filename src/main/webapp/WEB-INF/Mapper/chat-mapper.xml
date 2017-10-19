@@ -26,8 +26,8 @@
 		select count(*) as cnt from note where receiver=#{id} and read='n'
 	</select>
 	<update id="receive_del">
-		update note set read='y' where id=#{id} and no in 
-  			<foreach item="item" index="index" collection="arr" open="(" separator="," close=")">
+		update note set read='y' where receiver=#{id} and no in 
+  			<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
       			#{item}
  			</foreach>
 	</update>

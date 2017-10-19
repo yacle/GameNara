@@ -1,3 +1,4 @@
+
 package org.game.nara.controllers;
 
 import java.io.File;
@@ -62,7 +63,6 @@ public class FreeBoardControllers {
 		if(mpf.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/freeB_File");
-			System.out.println("pppppath==>"+path);
 			String name = id+"_"+fmt;
 			
 			File dir = new File(path);
@@ -96,3 +96,4 @@ public class FreeBoardControllers {
 		
 	
 }
+

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 public class buyDao {
 	@Autowired
 	SqlSessionTemplate template;
+
 
 	public List<Map> readAll() {
 		return template.selectList("buy.list");
@@ -36,7 +38,10 @@ public class buyDao {
 	public int endset (Map map) {
 		return template.update("buy.endset",map);
 	}
-	
+	public boolean adjust (Map map) {
+		 template.update("buy.adjust",map);
+		 return true;
+	}
 	
 	public boolean addOne(Map map) {
 		template.insert("buy.add", map);
@@ -56,4 +61,5 @@ public class buyDao {
 	public int countup(String num) {
 		return template.update("buy.countup",num);
 	}
+	
 }

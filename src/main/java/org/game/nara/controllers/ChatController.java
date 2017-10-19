@@ -1,5 +1,6 @@
 package org.game.nara.controllers;
 
+import java.io.IOException;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
@@ -72,14 +75,19 @@ ObjectMapper mapper;
 	}
 	
 	@PostMapping("/receiveNoteDel")
-	public ModelAndView noteDeleteHandle(@RequestParam Map map) {
+	public ModelAndView noteDeleteHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
 		ModelAndView mav = new ModelAndView("temp");
-	//	int r = chatDao.receiveNoteDelHandle(map);
-		List list = chatDao.receiveNoteListHandle((String)map.get("id"));
+		Map m = new HashMap();
+		List list =  mapper.readValue((String)map.get("arr"), List.class);
+		m.put("id", map.get("id"));
+		m.put("list", list);
+		System.out.println(m.toString());
+		int r = chatDao.receiveNoteDelHandle(m);
+		List li = chatDao.receiveNoteListHandle((String)map.get("id"));
 		mav.addObject("section", "chat/receiveNoteList");
-		mav.addObject("list", list);
+		mav.addObject("list", li);
+		mav.addObject("new", "new");
 		return mav;
-	
 	}
 	
 }

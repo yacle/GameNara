@@ -48,20 +48,15 @@
 			<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
-			<li role="presentation"><a role="menuitem" tabindex="-1"
-				href="/member/info?id=${auth_id}">PROFILE</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1"
-				href="#">MyWorld</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1"
-				href="/chat/note_list?id=${auth_id }">Message <span class="badge"
-					style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="/member/info?id=${auth_id}">PROFILE</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">MyWorld</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
+				<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
 			<li role="presentation" class="divider"></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1"
-				href="/log/logout">LOGOUT</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="/log/logout">LOGOUT</a></li>
 		</ul>
 	</ul>
 </div>
-<c:if test="${!empty auth_id}">
 	<script>
 		var nws = new WebSocket("ws://192.168.10.74/ws/note");
 		var cnt = function(){
@@ -81,7 +76,6 @@
 		}
 		
 	</script>
-</c:if>
 
 
 

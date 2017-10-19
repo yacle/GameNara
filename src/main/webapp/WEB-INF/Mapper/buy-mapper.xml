@@ -10,6 +10,9 @@
 	<update id="countup"> 
 		update buy set count = count+1 where no =#{no}
 	 </update>
+	 <update id="adjust"> 
+		update buy set detail=#{detail},title=#{title} where no =#{no}
+	 </update>
 	<select id="list" resultType="java.util.HashMap">
 				select b.*, t.c from buy b left join 
         	(select parent, count(*) as c from freeboard_reply group by parent ) t on b.no = t.parent
@@ -18,6 +21,7 @@
 		resultType="java.util.HashMap">
 		select * from buy where no=#{no}
 	</select>
+	
 	
 	<update id="endset">
 	update buy set end=#{end} where no=#{no}
