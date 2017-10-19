@@ -12,9 +12,6 @@ th, td {
 	padding: 10px;
 }
 </style>
-<c:if test="${!empty new}">
-	window.location.reload();
-</c:if>
 
 <div align="center" style="line-height: 35px">
 <ul class="pagination">
@@ -70,7 +67,10 @@ var arr=[];
 				"arr": JSON.stringify(arr),
 				"id":$("#id").val()
 			}
+		}).done(function(r){
+			window.location.reload();
 		})	
+		
 	}
 </script>
 

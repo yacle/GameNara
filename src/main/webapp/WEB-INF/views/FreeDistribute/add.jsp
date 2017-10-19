@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <body>
-	<form action="/freeBoard/add" method="post" autocomplete="off" enctype="multipart/form-data">
+	<form action="/FreeDistribute/add" method="post" autocomplete="off" enctype="multipart/form-data">
 		<div class="container">
 			<h1>자유게시판</h1>
 			<h3></h3>

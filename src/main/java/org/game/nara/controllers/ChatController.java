@@ -75,19 +75,15 @@ ObjectMapper mapper;
 	}
 	
 	@PostMapping("/receiveNoteDel")
-	public ModelAndView noteDeleteHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
-		ModelAndView mav = new ModelAndView("temp");
+	@ResponseBody
+	public int noteDeleteHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
 		Map m = new HashMap();
+		String id = (String)map.get("id");
 		List list =  mapper.readValue((String)map.get("arr"), List.class);
-		m.put("id", map.get("id"));
+		m.put("id",id);
 		m.put("list", list);
-		System.out.println(m.toString());
 		int r = chatDao.receiveNoteDelHandle(m);
-		List li = chatDao.receiveNoteListHandle((String)map.get("id"));
-		mav.addObject("section", "chat/receiveNoteList");
-		mav.addObject("list", li);
-		mav.addObject("new", "new");
-		return mav;
+		return  r;
 	}
 	
 }
