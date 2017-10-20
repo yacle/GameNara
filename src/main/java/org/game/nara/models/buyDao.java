@@ -56,4 +56,8 @@ public class buyDao {
 		return template.update("buy.countup",num);
 	}
 	
+	public int delete(String num) {
+		return template.delete("buy.delete",num);
+	}
+	
 }
