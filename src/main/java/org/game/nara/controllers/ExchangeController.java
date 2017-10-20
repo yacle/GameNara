@@ -27,52 +27,50 @@ public class ExchangeController {
 	@Autowired
 	FreeBoardDao freeDao;
 
-	@RequestMapping("/list")
-	public ModelAndView buyListHandle() throws SQLException {
+	@RequestMapping(value="/list/{category}")
+	public ModelAndView buyListHandle(@PathVariable(value="category")int category) throws SQLException {
 		List<Map> li = exchangeDao.readAll();
 		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "exchange/list");
-		mav.addObject("list", li);
-		mav.addObject("cnt", li.size());
-		return mav;
-	}
+		System.out.println(category);
+		mav.addObject("section","exchange/list");
+		switch(category) {
+		
+		case 1:
+			mav.addObject("list", li);
+			mav.addObject("title","교환합니다 전체 ");
+			mav.addObject("cnt", li.size());			
+			return mav;
+			
+		case 2:
+			li = exchangeDao.consoleread();
+			mav.addObject("list", li);
+			mav.addObject("title","콘솔교환합니다");
+			mav.addObject("cnt", li.size());			
+			return mav;
+		case 3:
+			li = exchangeDao.titleread();
+			mav.addObject("list", li);
+			mav.addObject("title","게임타이틀 교환합니다");
+			mav.addObject("cnt", li.size());			
+			return mav;
 	
-	@RequestMapping("/console_list")
-	public ModelAndView buyconsoleHandle() throws SQLException {
-		List<Map> li = exchangeDao.consoleread();
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "exchange/console_list");
-		mav.addObject("list", li);
-		mav.addObject("cnt", li.size());
+		case 4:
+			li = exchangeDao.accessoryread();
+			mav.addObject("list", li);
+			mav.addObject("title","주변기기 교환합니다");
+			mav.addObject("cnt", li.size());			
+			return mav;
+		case 0:
+			li = exchangeDao.othersread();
+			mav.addObject("list", li);
+			mav.addObject("title","교환합니다");
+			mav.addObject("cnt", li.size());			
+			return mav;
+		}
+
 		return mav;
-	}
-	@RequestMapping("/accessory_list")
-	public ModelAndView buyaccessoryHandle() throws SQLException {
-		List<Map> li = exchangeDao.accessoryread();
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "exchange/accessory_list");
-		mav.addObject("list", li);
-		mav.addObject("cnt", li.size());
-		return mav;
-	}
-	@RequestMapping("/title_list")
-	public ModelAndView buytitleHandle() throws SQLException {
-		List<Map> li = exchangeDao.titleread();
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "exchange/title_list");
-		mav.addObject("list", li);
-		mav.addObject("cnt", li.size());
-		return mav;
-	}
-	@RequestMapping("/others_list")
-	public ModelAndView buyothersHandle() throws SQLException {
-		List<Map> li = exchangeDao.othersread();
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "exchange/others_list");
-		mav.addObject("list", li);
-		mav.addObject("cnt", li.size());
-		return mav;
-	}
+	}	
+	
 	                  
 	@RequestMapping("/end")
 	public ModelAndView buyendHandle(@RequestParam Map param) {
@@ -96,7 +94,7 @@ public class ExchangeController {
 		String id = (String)session.getAttribute("auth_id");
 		if (b) {
 			freeDao.subPoint(id);
-			return "redirect:/exchange/list";
+			return "redirect:/exchange/list/1";
 		}
 		map.put("result", b);
 		map.put("section", "exchange/add_rst");

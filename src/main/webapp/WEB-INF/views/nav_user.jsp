@@ -29,11 +29,11 @@
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">EXCHANGE<span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><a href="/exchange/list?cagegory=1">TOTAL</a></li>
-				<li><a href="/exchange/list?cagegory=2">CONSOLE</a></li>
-				<li><a href="/exchange/list?cagegory=3">GAME TITLE</a></li>
-				<li><a href="/exchange/list?cagegory=4">ACCESSORY</a></li>
-				<li><a href="/exchange/list?cagegory=0">ETC</a></li>
+				<li><a href="/exchange/list/1">TOTAL</a></li>
+				<li><a href="/exchange/list/2">CONSOLE</a></li>
+				<li><a href="/exchange/list/3">GAME TITLE</a></li>
+				<li><a href="/exchange/list/4">ACCESSORY</a></li>
+				<li><a href="/exchange/list/0">ETC</a></li>
 			</ul></li>
 		<li><a href="/FreeDistribute/list">FREE PRESENT</a></li>
 		<li class="dropdown"><a class="dropdown-toggle"

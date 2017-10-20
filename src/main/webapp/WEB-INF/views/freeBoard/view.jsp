@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -114,9 +111,6 @@
 </div>
 </div>
 	
-<<<<<<< HEAD
-
-=======
 <script>
 	var del = function(obj) {
 		if(window.confirm("삭제하시겠습니까?")){
@@ -131,6 +125,7 @@
 			window.location.reload();
 		}
 	}
+	
 	var upr = function(obj){
 		$.ajax({
 			"type":"post",
@@ -146,4 +141,3 @@
 			$("#con02").show();
 	}
 </script>
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
