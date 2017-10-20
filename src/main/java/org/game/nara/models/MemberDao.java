@@ -34,7 +34,9 @@ SqlSessionTemplate temp;
 	}
 	
 	public int addInfo(Map map) {
-		return temp.update("member.addInfo", map);
+		int r =temp.update("member.emailReg1", map);
+		r+=temp.update("member.addInfo", map);
+		return r;
 	}
 	
 	public Map readProfile(String id) {
@@ -46,8 +48,6 @@ SqlSessionTemplate temp;
 	}
 	
 	public int emailReg(Map map) {
-		int r =temp.update("member.emailReg1", map);
-		r+= temp.update("member.emailReg2", map);
-		return r;
+		return temp.update("member.emailReg2", map);
 	}
 }

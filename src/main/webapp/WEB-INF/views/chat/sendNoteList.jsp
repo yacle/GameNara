@@ -13,7 +13,6 @@ th, td {
 }
 </style>
 
-  
 <div align="center" style="line-height: 35px">
 	<ul class="pagination">
 		<li><a href="/chat/note_list?id=${auth_id }">받은 쪽지함</a></li>
@@ -29,8 +28,8 @@ th, td {
 			<tr>
 				<th style="width: 10%">No</th>
 				<th style="width: 15%">받을사람</th>
-				<th style="width: 45%">보낸 메세지</th>
-				<th style="width: 20%">보낸시간</th>
+				<th style="width: 50%">보낸 메세지</th>
+				<th style="width: 15%">보낸시간</th>
 				<th style="width: 10%">삭제</th>
 			</tr>
 		</thead>
@@ -42,7 +41,7 @@ th, td {
 					<td><span id="noteView">${fn:substring(obj.CONTENT, 0, 30) }</span></td>
 					<td><small>${obj.SENDTIME }</small></td>
 					<td><input type="checkbox" name="noteDel" class="delcheck" value="${obj.NO}"></td>
-					<input type="hidden" id="id" name="id" value="${auth_id }"> 
+					<input type="hidden" id="id" name="id" value="${auth_id }"/>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -68,7 +67,6 @@ var arr=[];
 		}).done(function(r){
 			window.location.reload();
 		})	
-		
 	}
 </script>
 	
