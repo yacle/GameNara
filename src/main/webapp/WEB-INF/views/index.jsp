@@ -78,4 +78,16 @@ X : 권한없음
 		</tr>
 	</tbody>
 </table>
+<h2>prev3</h2>
+<span id="prev1" value="prev2">test</span>
+<button id="button" value="click">Click me</button>
+
+<span id="demo"></span>
+
 </div>
+<script>
+$("#button").click(function(){
+	console.log($(this).html());
+	$(this).prev().css("display", "none");
+})
+</script>

@@ -87,12 +87,15 @@
 		</div>
 		<div class="row">
 			<div class="col-md-9" align="left">
-				<span id="con01">${i.CONTENT } </span>
-				<span id="con02" hidden="hidden"><input id="up" type="text" value="${i.CONTENT }"></span>
+				<span id="con01" class="con01" style="display: inline">${i.CONTENT } </span>
+				<span id="con02" style="display: none">
+					<input id="up" type="text" value="${i.CONTENT }">
+					<button type="button" id="upbtn">댓글수정</button>
+				</span>
 			</div>
 			<div class="col-md-3">
 				<c:if test="${auth_id  == i.WRITER}">
-					<button type="button" id="update" onclick="javascript:upr(${i.NO })">수정</button>
+					<button type="button" id="update" value="${i.CONTENT}">수정</button>
 					<button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
 	    		</c:if>
 			</div>
@@ -101,7 +104,7 @@
 	</c:forEach>
 </div>
 </div>
-
+<span id="re"></span>
 <script>
 	var del = function(obj) {
 		if(window.confirm("삭제하시겠습니까?")){
@@ -116,19 +119,13 @@
 			window.location.reload();
 		}
 	}
-	var upr = function(obj){
-		$.ajax({
-			"type":"post",
-			"async": false,
-			"url":"/reply/update",
-			"data":{
-				"parent":$("#num").val(),
-				"no":obj
-			}
-		});
-		console.log($("recon").val());
-			$("#con01").hide();
-			$("#con02").show();
-	}
+	$("#update").click(function(){
+		this.parentNode.previousSibling.previousSibling.firstChild.nextSibling.style.display="none";
+		this.parentNode.previousSibling.previousSibling.firstChild.nextSibling.nextSibling.nextSibling.style.display="inline";
+		this.parentNode.style.display="none";
+	})
+		
+		
+	
 </script>
 
