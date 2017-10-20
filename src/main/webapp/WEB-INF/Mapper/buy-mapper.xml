@@ -7,16 +7,19 @@
 		insert into buy
 		values(buy_seq.nextval,#{title},#{detail},#{buy_id},#{category},sysdate,0,#{end})
 	</insert>
+	
 	<update id="countup"> 
 		update buy set count = count+1 where no =#{no}
 	 </update>
+	 
 	 <update id="adjust"> 
 		update buy set detail=#{detail},title=#{title} where no =#{no}
 	 </update>
+	 
 	<select id="list" resultType="java.util.HashMap">
-				select b.*, t.c from buy b left join 
-        	(select parent, count(*) as c from freeboard_reply group by parent ) t on b.no = t.parent
+			select * from buy
 	</select>
+	
 	<select id="readOne" parameterType="java.lang.String"
 		resultType="java.util.HashMap">
 		select * from buy where no=#{no}
@@ -47,7 +50,9 @@
 		select * from buy where category=0
 	</select>
 	
-	
+	<delete id="delete">
+		delete from buy where no=#{no}
+	</delete>
 
 
 </mapper>

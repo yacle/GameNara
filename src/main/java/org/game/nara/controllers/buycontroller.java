@@ -26,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/buy")
 public class buycontroller {
 	@Autowired
-	buyDao buyDoa;
+	buyDao buyDao;
 
 	@Autowired
 	FreeBoardDao freeDao;
@@ -37,68 +37,56 @@ public class buycontroller {
 	@Autowired
 	SimpleDateFormat sdf;
 
-	@RequestMapping("/list")
-	public ModelAndView buyListHandle() throws SQLException {
-		List<Map> li = buyDoa.readAll();
+	@RequestMapping(value="/list/{category}")
+	public ModelAndView buyListHandle(@PathVariable(value="category")int category) throws SQLException {
+		List<Map> li = buyDao.readAll();
 		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/list");
-		mav.addObject("list", li);
-		mav.addObject("cnt", li.size());
+		mav.addObject("section","buy/list");
+		switch(category) {
+		
+		case 1:
+			mav.addObject("list", li);
+			mav.addObject("title","삽니다 전체 ");
+			mav.addObject("cnt", li.size());			
+			return mav;
+			
+		case 2:
+			li = buyDao.consoleread();
+			mav.addObject("list", li);
+			mav.addObject("title","콘솔삽니다");
+			mav.addObject("cnt", li.size());			
+			return mav;
+		case 3:
+			li = buyDao.titleread();
+			mav.addObject("list", li);
+			mav.addObject("title","게임타이틀 삽니다");
+			mav.addObject("cnt", li.size());			
+			return mav;
+	
+		case 4:
+			li = buyDao.accessoryread();
+			mav.addObject("list", li);
+			mav.addObject("title","주변기기 삽니다");
+			mav.addObject("cnt", li.size());			
+			return mav;
+		case 0:
+			li = buyDao.othersread();
+			mav.addObject("list", li);
+			mav.addObject("title","기타삽니다");
+			mav.addObject("cnt", li.size());			
+			return mav;
+		}
 		return mav;
-	}
-
-
-	@RequestMapping("/console_list")
-	public ModelAndView buyconsoleHandle() throws SQLException {
-		List<Map> li = buyDoa.consoleread();
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/console_list");
-		mav.addObject("list", li);
-		mav.addObject("cnt", li.size());
-		return mav;
-	}
-
-	@RequestMapping("/accessory_list")
-	public ModelAndView buyaccessoryHandle() throws SQLException {
-		List<Map> li = buyDoa.accessoryread();
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/accessory_list");
-		mav.addObject("list", li);
-		mav.addObject("cnt", li.size());
-		return mav;
-	}
-
-	@RequestMapping("/title_list")
-	public ModelAndView buytitleHandle() throws SQLException {
-		List<Map> li = buyDoa.titleread();
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/title_list");
-		mav.addObject("list", li);
-		mav.addObject("cnt", li.size());
-		return mav;
-	}
-
-	@RequestMapping("/others_list")
-	public ModelAndView buyothersHandle() throws SQLException {
-		List<Map> li = buyDoa.othersread();
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/others_list");
-		mav.addObject("list", li);
-		mav.addObject("cnt", li.size());
-		return mav;
-	}
+	}	
 
 	@RequestMapping("/end")
 	public ModelAndView buyendHandle(@RequestParam Map param) {
-		int li = buyDoa.endset(param);
+		int li = buyDao.endset(param);
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/view");
-		mav.addObject("one", li);
 		return mav;
 	}
 	
-
-
 	@RequestMapping(path = "/add", method = RequestMethod.GET)
 	public ModelAndView buyAddGetHandle() {
 		ModelAndView mav = new ModelAndView("temp");
@@ -110,24 +98,19 @@ public class buycontroller {
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public String buyaddpostHandle(@RequestParam Map param, ModelMap map, HttpSession session) throws SQLException {
-		boolean b = buyDoa.addOne(param);
+		boolean b = buyDao.addOne(param);
 		String id = (String) session.getAttribute("auth_id");
 		if (b) {
 			freeDao.subPoint(id);
-			return "redirect:/buy/list";
 		}
-		map.put("result", b);
-		map.put("section", "buy/add_rst");
-		return "temp";
+			return "redirect:/buy/list/1";
 	}
 
 	@GetMapping("/add_rst")
 	public ModelAndView buyadjustpostHandle(@RequestParam Map param) {
 		ModelAndView mav= new ModelAndView("temp"); 
 		String no = (String)param.get("no");
-		System.out.println("no"+no);
-		Map map=buyDoa.readOne(no);
-		System.out.println(map.toString());
+		Map map=buyDao.readOne(no);
 		mav.addObject("section","buy/add_rst");
 		mav.addObject("list", map);
 		return mav;
@@ -135,26 +118,28 @@ public class buycontroller {
 
 	@PostMapping("/add_rst")
 	public String buyadjustHandle(@RequestParam Map param,ModelMap map) throws SQLException {
-		boolean b = buyDoa.adjust(param);
-		if (b) {
-			return "redirect:/buy/list";
-		}
-		map.put("result", b);
-		map.put("section", "buy/add_rst");
-		return "temp";
+		boolean b = buyDao.adjust(param);
+			return "redirect:/buy/list/1";
 	}
 	
 	@RequestMapping(path = "/view/{num}")
 	public ModelAndView buyViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
-		Map one = buyDoa.readOne(num);
-		buyDoa.countup(num);
+		Map one = buyDao.readOne(num);
+		buyDao.countup(num);
 		mav.addObject("one", one);
 		mav.addObject("section", "buy/view");
 		return mav;
 	}
 	
-
-	
+	@RequestMapping("/delete")
+	public String deleteReplyHandle(@RequestParam String num) {
+		int rst=0;
+		int ok = buyDao.delete(num);
+		if(ok==1) {
+			rst =1;
+		}
+		return "redirect:/buy/list/"+rst; 
+	}
 
 }

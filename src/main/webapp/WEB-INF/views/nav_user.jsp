@@ -20,20 +20,20 @@
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">BUY<span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><a href="/buy/list">TOTAL</a></li>
-				<li><a href="/buy/console_list">CONSOLE</a></li>
-				<li><a href="/buy/title_list">GAME TITLE</a></li>
-				<li><a href="/buy/accessory_list">ACCESSORY</a></li>
-				<li><a href="/buy/others_list">ETC</a></li>
+				<li><a href="/buy/list/1">TOTAL</a></li>
+				<li><a href="/buy/list/2">CONSOLE</a></li>
+				<li><a href="/buy/list/3">GAME TITLE</a></li>
+				<li><a href="/buy/list/4">ACCESSORY</a></li>
+				<li><a href="/buy/list/0">ETC</a></li>
 			</ul></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">EXCHANGE<span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><a href="/exchange/list">TOTAL</a></li>
-				<li><a href="/exchange/console_list">CONSOLE</a></li>
-				<li><a href="/exchange/title_list">GAME TITLE</a></li>
-				<li><a href="/exchange/accessory_list">ACCESSORY</a></li>
-				<li><a href="/exchange/others_list">ETC</a></li>
+				<li><a href="/exchange/list/1">TOTAL</a></li>
+				<li><a href="/exchange/list/2">CONSOLE</a></li>
+				<li><a href="/exchange/list/3">GAME TITLE</a></li>
+				<li><a href="/exchange/list/4">ACCESSORY</a></li>
+				<li><a href="/exchange/list/0">ETC</a></li>
 			</ul></li>
 		<li><a href="/FreeDistribute/list">FREE PRESENT</a></li>
 		<li class="dropdown"><a class="dropdown-toggle"

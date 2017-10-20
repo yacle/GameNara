@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -104,7 +108,11 @@
 	</c:forEach>
 </div>
 </div>
+<<<<<<< HEAD
 <span id="re"></span>
+=======
+	
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 <script>
 	var del = function(obj) {
 		if(window.confirm("삭제하시겠습니까?")){
@@ -119,6 +127,7 @@
 			window.location.reload();
 		}
 	}
+<<<<<<< HEAD
 	$("#update").click(function(){
 		this.parentNode.previousSibling.previousSibling.firstChild.nextSibling.style.display="none";
 		this.parentNode.previousSibling.previousSibling.firstChild.nextSibling.nextSibling.nextSibling.style.display="inline";
@@ -129,3 +138,21 @@
 	
 </script>
 
+=======
+	
+	var upr = function(obj){
+		$.ajax({
+			"type":"post",
+			"async": false,
+			"url":"/reply/update",
+			"data":{
+				"parent":$("#num").val(),
+				"no":obj
+			}
+		});
+		console.log($("recon").val());
+			$("#con01").hide();
+			$("#con02").show();
+	}
+</script>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git

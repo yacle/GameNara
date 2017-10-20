@@ -19,16 +19,17 @@ input, textarea, button {
 		</c:when>
 		<c:otherwise>
 			<h2>
-				<a href="/buy/list">게시판</a>
+				<a href="/buy/list/1">게시판</a>
 			</h2>
 			<hr />
 			<c:choose>
-		<c:when test="${empty one }">
+				<c:when test="${empty one }">
 			이미 삭제된 글입니다.
 		</c:when>
 				<c:otherwise>
-					<div style="width: 80%; border-radius: 10px;; padding-left: 20px;"align="left">
-					<input type="hidden" id="num" value="${one.NO }" />
+					<div style="width: 80%; border-radius: 10px;; padding-left: 20px;"
+						align="left">
+						<input type="hidden" id="num" value="${one.NO }" />
 						<c:if test="${one.END == 1 }">
 							<h2 id="title">${one.TITLE }</h2>
 							<h5>거래중</h5>
@@ -41,66 +42,39 @@ input, textarea, button {
 						</c:if>
 						<p style="padding-left: 10px;">
 							<small id="buyid">작성자 : ${one.BUY_ID } | 작성일 : <fmt:formatDate
-									pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" />
-								조회수 : <fmt:formatNumber value="${one.COUNT}"
-									pattern="#,###" /> <c:if test="${auth_id eq one.BUY_ID }">
+									pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" /> 조회수 : <fmt:formatNumber
+									value="${one.COUNT}" pattern="#,###" /> <c:if
+									test="${auth_id eq one.BUY_ID }">
 									<button id="end">계약완료</button>
 								</c:if>
 							</small>
 						</p>
-						<pre id="con1" style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px;">${one.DETAIL }</pre>
-						
+						<pre id="con1"
+							style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px;">${one.DETAIL }</pre>
+					</div>
+					<div align="center">
+						<div style="width: 80%;" align="left">
+							<p>
+								작성자 : <span id="writer">${auth_id }</span>
+							</p>
+							<textarea style="width: 100%" rows="3" id="content"
+								placeholder="남길내용"></textarea>
+							<br />
+							<button type="button" id="send" style="width: 100%;">댓글남기기</button>
+						</div>
+					</div>
+					<hr />
+					<div align="left">
+						<a href="/buy/add_rst?no=${one.NO }"><button>수정</button></a>
+						<button type="button" id="delete"
+							onclick="javascript:del(${one.NO })">삭제</button>
+						<a href="/buy/list/1"><button>게시판으로</button></a>
 					</div>
 				</c:otherwise>
 			</c:choose>
 		</c:otherwise>
 	</c:choose>
-<div style="width: 60%">
-	<div align="left">
-		<input type="text" id="writer" placeholder="작성자" value="${auth_id }" />
-	</div>
-	<div align="left">
-		<textarea style="width: 100%" rows="3" id="content" placeholder="남길내용"></textarea>
-		<br />
-		<button type="button" id="send" style="width: 100%;">댓글남기기</button>
-	</div>
-</div>
-<div id="reps" align="left" style="width: 70%; margin-top: 20px">
-	<c:forEach var="i" items="${data.reply }">
-		<table class="reply">
-			<tr>
-				<td><b>작성자 : ${i.WRITER }</b> | 작성날짜 : <fmt:formatDate
-						pattern="yyyy-MM-dd" value="${i.RE_DATE }" />
-			</tr>
-			<tr>
-				<td style="padding-left: 20px;">》 ${i.CONTENT } <c:if
-						test="${auth_id  == i.WRITER}">
-						<button type="button" id="update" value="">수정</button>
-						<button type="button" id="delete"
-							onclick="javascript:del(${i.NO })">삭제</button>
-					</c:if></td>
-				<br />
-			</tr>
-		</table>
-	</c:forEach>
-</div>
-<script>
-$("#end").click(function(){
-	   $.ajax({
-	      "type":"post",
-	      "async":false,
-	      "url":"/buy/end",
-	      "data":{
-	      "end":'2',
-	      "no":'${data.one.NO}'
-	      }
-	   })
-	   location.reload();
-	}); 
-	
-</script>
-
-<script>
+	<script>	
 	$("#send").click(function() {
 		$.ajax({
 			"type":"post",
@@ -108,19 +82,30 @@ $("#end").click(function(){
 			"url":"/reply/add",
 			"data":{
 				"parent":$("#num").val(),
-				"writer":$("#writer").val(),
+				"writer":$("#writer").html(),
 				"content":$("#content").val()
 			}
 		}).done(function(obj){
 			document.getElementById("content").value = "";
 		});
-		  location.reload();
+		window.location.reload();
 	});
 	
 </script>
+	<script>
+$("#end").click(function(){
+	   $.ajax({
+	      "type":"post",
+	      "async":false,
+	      "url":"/buy/end",
+	      "data":{
+	      "end":'2',
+	      "no":'${one.NO}'
+	      }
+	   })
+	   location.reload();
+	}); 
 
-
-<script>
 	var del = function(obj) {
 		if(window.confirm("삭제하시겠습니까?")){
 			$.ajax({
@@ -135,13 +120,21 @@ $("#end").click(function(){
 		}
 	}
 </script>
-	<hr />
-<div align="left">
-	<button>
-		<a href="/buy/list">게시판으로 </a>
-	</button>
-	<button id="adjust">
-		<a href="/buy/add_rst?no=${one.NO }">수정</a>
-		</button>
-</div>
+	<script>
+var del = function(obj) {
+	if(window.confirm("삭제하시겠습니까?")){
+		$.ajax({
+			"type":"post",
+			"async": false,
+			"url":"/buy/delete",
+			"data":{
+				"num":obj
+			}
+		});
+		location.href="/buy/list/1";
+
+	
+	}
+}
+</script>
 </div>
