@@ -89,15 +89,6 @@
 			<div class="col-md-9" align="left">
 				<span id="con01">${i.CONTENT } </span>
 				<span id="con02" hidden="hidden"><input id="up" type="text" value="${i.CONTENT }"></span>
-				<%-- <c:choose>
-					<c:when test="${i.RE ne null}">
-						<input id="up" type="text" value="${i.CONTENT }">
-						<button id="upbtn" type="button">수정하기</button>
-					</c:when>
-					<c:otherwise>
-						<span id="con01">${i.CONTENT } </span>
-					</c:otherwise>
-				</c:choose> --%>
 			</div>
 			<div class="col-md-3">
 				<c:if test="${auth_id  == i.WRITER}">
@@ -111,32 +102,4 @@
 </div>
 </div>
 	
-<script>
-	var del = function(obj) {
-		if(window.confirm("삭제하시겠습니까?")){
-			$.ajax({
-				"type":"post",
-				"async": false,
-				"url":"/reply/delete",
-				"data":{
-					"num":obj
-				}
-			});	
-			window.location.reload();
-		}
-	}
-	var upr = function(obj){
-		$.ajax({
-			"type":"post",
-			"async": false,
-			"url":"/reply/update",
-			"data":{
-				"parent":$("#num").val(),
-				"no":obj
-			}
-		});
-		console.log($("recon").val());
-			$("#con01").hide();
-			$("#con02").show();
-	}
-</script>
+
