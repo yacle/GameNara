@@ -44,4 +44,11 @@ public class HomeController {
 		return mav;
 	}
 	
+	@RequestMapping("/notice")
+	public ModelAndView noticeHandle() {
+		ModelAndView mav = new ModelAndView("temp");
+		mav.addObject("section", "notice");
+		return mav;
+	}
+	
 }
