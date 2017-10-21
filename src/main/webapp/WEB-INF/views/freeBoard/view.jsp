@@ -85,18 +85,20 @@
 			<div class="col-md-2"></div>
 		</div>
 		<div class="row">
-			<div class="col-md-9" align="left">
-				<p id="${i.CONTENT}" style="display: inline">${i.CONTENT } </p>
+			<div class="col-md-10" align="left">
+				<p id="${i.CONTENT}" style="display: block">${i.CONTENT } 
+					<button type="button" onclick="javascript:update(${i.NO},${i.CONTENT})">수정</button>
+					<button type="button" onclick="javascript:del(${i.NO})">삭제</button>
+				</p>
 				<p id="${i.NO}" style="display: none">
-					<input type="text" id="modify" value="${i.CONTENT}" >
+					<input type="text"  width="900px" id="modify" value="${i.CONTENT}" >
 					<button type="button" id="mobtn">댓글수정</button>
 				</p>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<c:if test="${auth_id  == i.WRITER}">
-					<button type="button" onclick="javascript:update(${i.NO}, ${i.CONTENT})">수정</button>
-					<button type="button" onclick="javascript:del(${i.NO })">삭제</button>
-	    		</c:if>
+					
+				</c:if>
 			</div>
 		</div>
 		<hr/>
@@ -123,16 +125,9 @@
 		}
 	}
 	var update = function(a, b){
-		console.log("this:"+this.innerHTML);
-		console.log("a:"+a+"/b:"+b);
-		var m = document.getElementById(b);	//글번호
-		var cc = m.value;
-		console.log(cc);
-		a.display="none";
-		m.style.display="inline";	// input 보이기
-		
-		
-		
+		var m = document.getElementById(a);
+		m.style.display="inline";
+		b.style.display="none";
 	}
 		
 		

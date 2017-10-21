@@ -8,7 +8,8 @@
 	</insert>
 	
 	<select id="list" resultType="java.util.HashMap">
-		select * from after
+		select b.*, t.c from after b left join 
+       	(select parent, count(*) as c from freeboard_reply group by parent ) t on b.no = t.parent order by no desc
 	</select>
 	
 	<select id="detail" resultType="java.util.HashMap">
@@ -17,5 +18,21 @@
 	
 	<update id="cnt">
 		update after set count=count+1 where no=#{no}
+	</update>
+	
+	<insert id="addReply" >
+		insert into freeboard_reply values(freeboardreply_seq.nextval, #{id}, #{content}, sysdate, #{parent}, null)
+	</insert>
+	
+	<select id="readReply" resultType="java.util.HashMap">
+		select * from freeboard_reply where parent=#{parent} order by no desc
+	</select>
+	
+	<delete id="deleteReply">
+		delete from freeboard_reply where no=#{no}
+	</delete>
+	
+	<update id="modifyAfter">
+		update after set comments=#{comment} where no=#{no}
 	</update>
 </mapper>

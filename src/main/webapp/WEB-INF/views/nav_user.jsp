@@ -7,7 +7,7 @@
 		<a class="navbar-brand" href="/index">GAMENARA</a>
 	</div>
 	<ul class="nav navbar-nav">
-		<li class="active"><a href="#">NOTICE</a></li>
+		<li class="active"><a href="/notice">NOTICE</a></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">SELL<span class="caret"></span></a>
 			<ul class="dropdown-menu">
@@ -58,7 +58,7 @@
 	</ul>
 </div>
 <script>
-	var nws = new WebSocket("ws://192.168.10.74/ws/note");
+/*	var nws = new WebSocket("ws://192.168.10.74/ws/note");
 	var cnt = function(){
 		$.ajax({
 			"type":"post",
@@ -73,7 +73,7 @@
 	}
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
-	}
+	} */
 	</script>
 
 
