@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-=======
-
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -91,16 +86,16 @@
 		</div>
 		<div class="row">
 			<div class="col-md-9" align="left">
-				<span id="con01" class="con01" style="display: inline">${i.CONTENT } </span>
-				<span id="con02" style="display: none">
-					<input id="up" type="text" value="${i.CONTENT }">
-					<button type="button" id="upbtn">댓글수정</button>
-				</span>
+				<p id="${i.CONTENT}" style="display: inline">${i.CONTENT } </p>
+				<p id="${i.NO}" style="display: none">
+					<input type="text" id="modify" value="${i.CONTENT}" >
+					<button type="button" id="mobtn">댓글수정</button>
+				</p>
 			</div>
 			<div class="col-md-3">
 				<c:if test="${auth_id  == i.WRITER}">
-					<button type="button" id="update" value="${i.CONTENT}">수정</button>
-					<button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
+					<button type="button" onclick="javascript:update(${i.NO}, ${i.CONTENT})">수정</button>
+					<button type="button" onclick="javascript:del(${i.NO })">삭제</button>
 	    		</c:if>
 			</div>
 		</div>
@@ -108,11 +103,11 @@
 	</c:forEach>
 </div>
 </div>
-<<<<<<< HEAD
-<span id="re"></span>
-=======
-	
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
+<style>
+.display{
+	display: inline;
+}
+</style>
 <script>
 	var del = function(obj) {
 		if(window.confirm("삭제하시겠습니까?")){
@@ -127,32 +122,25 @@
 			window.location.reload();
 		}
 	}
-<<<<<<< HEAD
-	$("#update").click(function(){
+	var update = function(a, b){
+		console.log("this:"+this.innerHTML);
+		console.log("a:"+a+"/b:"+b);
+		var m = document.getElementById(b);	//글번호
+		var cc = m.value;
+		console.log(cc);
+		a.display="none";
+		m.style.display="inline";	// input 보이기
+		
+		
+		
+	}
+		
+		
+	<%--	
+		$("#update").val(obj)
 		this.parentNode.previousSibling.previousSibling.firstChild.nextSibling.style.display="none";
 		this.parentNode.previousSibling.previousSibling.firstChild.nextSibling.nextSibling.nextSibling.style.display="inline";
-		this.parentNode.style.display="none";
-	})
-		
-		
+		this.parentNode.style.display="none";		--%>
+	
 	
 </script>
-
-=======
-	
-	var upr = function(obj){
-		$.ajax({
-			"type":"post",
-			"async": false,
-			"url":"/reply/update",
-			"data":{
-				"parent":$("#num").val(),
-				"no":obj
-			}
-		});
-		console.log($("recon").val());
-			$("#con01").hide();
-			$("#con02").show();
-	}
-</script>
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
