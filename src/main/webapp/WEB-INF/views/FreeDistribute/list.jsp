@@ -31,22 +31,28 @@ th, td {
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO }</td>
-					<c:choose>
+					<c:choose>	
 						<c:when test="${auth_id ne null}">
 							<c:if test="${obj.ATTACH ne null }">
 								<td><a href="/FreeDistribute/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
 								<img id="pf" src="/profiles/board_def.JPG" style="height:10px; width:10px;"/>
 								<span class="badge">${obj.C }</span>
+								<c:if test="${obj.END == 1 }">
+									<span class="label label-info">[나눔완료]</span>
+								</c:if>
 							</c:if>
 							<c:if test="${obj.ATTACH eq null }">
 								<td><a href="/FreeDistribute/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
 								<span class="badge">${obj.C }</span>
+								<c:if test="${obj.END == 1 }">
+									<span class="label label-info">[나눔완료]</span>
+								</c:if>
 							</c:if>
 						</c:when>
 						<c:otherwise>
 							<td>${fn:substring(obj.TITLE, 0, 12) }</td>
-						</c:otherwise>
-					</c:choose>
+						</c:otherwise>	
+					</c:choose>	
 					<td>${obj.WRITER }</td>
 					<td><fmt:formatDate value="${obj.FD_DATE }" pattern="yyyy-MM-dd"/></td>
 					<td>${obj.VIEW_CNT }</td>

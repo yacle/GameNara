@@ -29,4 +29,8 @@ public class FreeDistributeDao {
 	public int countOne(String num) {
 		return tmp.update("freeD.countOne",num);
 	}
+	
+	public int endSet (Map map) {
+		return tmp.update("freeD.endSet",map);
+	}
 }

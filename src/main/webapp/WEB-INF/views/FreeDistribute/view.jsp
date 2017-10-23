@@ -17,17 +17,29 @@
 				style="width: 80%; border-radius: 10px; ; padding-left: 20px;"
 				align="left">
 				<input type="hidden" id="num" value="${one.NO }" />
-				<h3>${one.TITLE }</h3>
+				<c:if test="${one.END eq null }">
+					<h3 id="title">${one.TITLE }</h3>
+				</c:if>
+				<c:if test="${one.END == 1 }">
+				<del>
+					<h3>${one.TITLE }</h3>
+				</del>
+				</c:if>
 				<p style="padding-left: 10px;">
 					<div class="row">
 				    	<div class="col-sm-10">
 				    		<small>작성자 : ${one.WRITER } | 작성일 : <fmt:formatDate
 								pattern="MM.dd.yyyy" value="${one.FD_DATE }" /> 
 							</small>
+						<c:if test="${auth_id eq one.WRITER }">
+							<button id="end">나눔완료</button>
+						</c:if>
 						</div>
 					    <div class="col-sm-2">
 					    	<small>조회수 : <fmt:formatNumber value="${one.VIEW_CNT}" pattern="#,###" /></small>
 					    </div>
+					    
+					   
 					</div>							
 				</p>
 				<c:choose>
@@ -46,7 +58,20 @@
 	</c:choose>
 	<hr />
 </div>
-
+<script>
+$("#end").click(function(){
+	   $.ajax({
+	      "type":"post",
+	      "async":false,
+	      "url":"/FreeDistribute/end",
+	      "data":{
+		      "end": '1',
+		      "no":'${one.NO}'
+	      }
+	   })
+	   location.reload();
+	}); 
+</script>
 <%-- Reply input part --%>
 <%-- 
 <div align="center">

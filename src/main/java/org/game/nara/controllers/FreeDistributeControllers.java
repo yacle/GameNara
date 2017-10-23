@@ -90,7 +90,13 @@ public class FreeDistributeControllers {
 	      return mav;
 	   }
 	
-	
+	@RequestMapping("/end")
+	public ModelAndView buyendHandle(@RequestParam Map param) {
+		int li = FD_Dao.endSet(param);
+		ModelAndView mav = new ModelAndView("temp");
+		mav.addObject("section", "FreeDistribute/view");
+		return mav;
+	}
 	
 	
 	
