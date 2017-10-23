@@ -29,6 +29,7 @@ SqlSessionTemplate temp;
 		map.put("buy", r03);
 		int r04 = temp.selectOne("master.report04", id);
 		map.put("freeboard", r04);
+		System.out.println(map.toString());
 		return map;
 	}
 }
