@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <style>
 td{
+<<<<<<< HEAD
 	font-size: 16px;
+=======
+	font-size: 16px;
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	align-items: center;
 }
 </style>
@@ -12,6 +16,7 @@ td{
 ☐: 읽기&emsp; /&emsp;
 △ : 게시판 리스트만 볼 수 있읍니다.&emsp;/&emsp;    
 X : 권한없음
+<<<<<<< HEAD
 <table class="table table-bordered" align="center">
 	<thead>
 		<tr>
@@ -98,6 +103,8 @@ X : 권한없음
 ☐: 읽기&emsp; /&emsp;
 △ : 게시판 리스트만 볼 수 있읍니다.&emsp;/&emsp;    
 X : 권한없음
+=======
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 <table border="1" align="center">
 	<thead>
 		<tr>
@@ -168,6 +175,10 @@ X : 권한없음
 			포인트 차감 : SELL, BUY, EXCHANGE 게시판 글쓰기시 500포인트 차감</td>
 		</tr>
 	</tbody>
+<<<<<<< HEAD
 </table>
 
 
+=======
+</table>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
