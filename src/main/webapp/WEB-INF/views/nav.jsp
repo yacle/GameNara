@@ -5,7 +5,7 @@
       <a class="navbar-brand" href="/index">GAMENARA</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">NOTICE</a></li>
+      <li class="active"><a href="/notice">NOTICE</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SELL<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">TOTAL</a></li>

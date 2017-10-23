@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
  
 <div align="center" style="line-height: 35px">
 	<h2>자유게시판</h2>
@@ -105,11 +104,18 @@
 	</c:forEach>
 </div>
 </div>
+<<<<<<< HEAD
 <style>
 .display{
 	display: inline;
 }
 </style>
+=======
+
+
+<span id="re"></span>
+
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 <script>
 	var del = function(obj) {
 		if(window.confirm("삭제하시겠습니까?")){
@@ -124,6 +130,7 @@
 			window.location.reload();
 		}
 	}
+<<<<<<< HEAD
 	var update = function(a, b){
 		var m = document.getElementById(a);
 		m.style.display="inline";
@@ -133,9 +140,20 @@
 		
 	<%--	
 		$("#update").val(obj)
+=======
+	
+	
+	
+	$("#update").click(function(){
+		$("#con01").load("view#con01").fadeIn("slow");
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		this.parentNode.previousSibling.previousSibling.firstChild.nextSibling.style.display="none";
 		this.parentNode.previousSibling.previousSibling.firstChild.nextSibling.nextSibling.nextSibling.style.display="inline";
 		this.parentNode.style.display="none";		--%>
 	
 	
 </script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git

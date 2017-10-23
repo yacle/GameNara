@@ -42,8 +42,15 @@
 				<li><a href="/become_member/list">가입인사</a></li>
 				<li><a href="/freeBoard/list">자유게시판</a></li>
 				<li><a href="/after/list">거래후기</a></li>
-			</ul></li>
-		<button class="btn btn-default dropdown-toggle-right" type="button" id="menu1" data-toggle="dropdown" style="margin-left: 280px; margin-top: 9px;">
+			</ul>
+		</li>
+		<form class="navbar-form navbar-left">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+		<button class="btn btn-default dropdown-toggle-right" type="button" id="menu1" data-toggle="dropdown" style="margin-top: 9px;">
 			<span data-toggle="tooltip" id="tool" onclick="javascript:cnt()">${auth_id}</span>
 			<span class="caret"></span>
 		</button>
