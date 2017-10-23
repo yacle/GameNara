@@ -10,7 +10,7 @@
 
 	<insert id="addOne">
 		insert into free_distribute
-		values(free_distribute_seq.nextval,#{writer},#{title},#{coment},0,#{attach, jdbcType=VARCHAR},sysdate)
+		values(free_distribute_seq.nextval,#{writer},#{title},#{coment},0,#{attach, jdbcType=VARCHAR},sysdate,#{end, jdbcType=NUMERIC})
 	</insert>
 
 	<select id="readOne" parameterType="java.lang.String"
@@ -20,6 +20,10 @@
 
 	<update id="countOne"> 
 		update free_distribute set view_cnt = view_cnt+1 where no =#{no}
+	</update>
+	
+	<update id="endSet">
+		update free_distribute set end=#{end} where no=#{no}
 	</update>
 	<!--  
 	 <select id="readReply" resultType="java.util.HashMap">

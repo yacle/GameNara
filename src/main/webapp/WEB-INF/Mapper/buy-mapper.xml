@@ -13,7 +13,7 @@
 	 </update>
 	 
 	 <update id="adjust"> 
-		update buy set detail=#{detail},title=#{title} where no =#{no}
+		update buy set detail=#{detail} where no =#{no}
 	 </update>
 	 
 	<select id="list" resultType="java.util.HashMap">
