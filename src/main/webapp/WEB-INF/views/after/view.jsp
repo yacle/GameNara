@@ -95,49 +95,30 @@ textarea {
 </div>
 <hr/>
 <!-- Reply List View -->
-<c:forEach var="i" items="${list}">
-<div align="center">
-<table width="90%">
-	<tbody>
-		<tr>
-			<td col-span="2"><b>${i.WRITER}</b><small style="color: gray;">  [${i.RE_DATE}]</small></td>
-		</tr>
-		<tr>
-			<td width="90%"><span id="${i.CONTENT}" style="display: inline; font-size:16px;">${i.CONTENT}</span>
-				<form id="${i.NO}" style="display: none;">
-					<input class="form-control" type="text" id="txt" value="${i.CONTENT }">
-					<button type="button" id="mod">수정</button>
-					<button type="button" id="cc">취소</button>
-				</form>
-			</td>
-			<td width="10%" align="center">
-				<button type="button" class="${i.CONTENT}" onclick="javascript:modify(${i.NO})">수정</button>
-				<button type="button" class="${i.CONTENT}" onclick="javascript:del(${i.NO})">삭제</button>
-			</td>
-		</tr>
-	</tbody>
-</table><hr/>
-</div>
-</c:forEach>	
+
 <script>
 $("#mod").click(function(){
 	
 })
 $("#replysendbtn").click(function(){
+	var bno = $("#num").val();
+	var replyer = $("#auth_id").html();
+	var replytext = $("#content").val();
 	$.ajax({
-		"type":"post",
-		"async":false,
-		"url":"/after/reply_save",
-		"data":{
-			"id" : $("#auth_id").html(),
-			"content" : $("#content").val(),
-			"parent" : $("#num").val()
+		type: 'post',
+		url: '/reply',
+		headers: {
+			"Content-Type": "application/json",
+			"X-HTTP-Method-Override": "POST"
+		},
+		dataType:'text',
+		data: JSON.stringiFy({bno:bno, replyer:replyer, replytext:replytext}),
+		success:function(result){
+			alert(result);
 		}
-	}).done(function(r){
-		window.location.reload();
 	})
 })
-
+<%--
 	var modify = function(no){
 		var n = document.getElementById(no);
 		var c = n.firstChild.nextSibling.value;
@@ -160,6 +141,7 @@ $("#replysendbtn").click(function(){
 			});	
 		}
 	}
+	--%>
 </script>
 	
 

@@ -44,12 +44,13 @@
 				<li><a href="/after/list">거래후기</a></li>
 			</ul>
 		</li>
-		<form class="navbar-form navbar-left">
+		<li style="margin-left: 150px"><a>[${auth_id} Level] : ${auth_level}</a></li>
+<%-- 	<form class="navbar-form navbar-left">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
 			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
+		</form>	--%>
 		<button class="btn btn-default dropdown-toggle-right" type="button" id="menu1" data-toggle="dropdown" style="margin-top: 9px;">
 			<span data-toggle="tooltip" id="tool" onclick="javascript:cnt()">${auth_id}</span>
 			<span class="caret"></span>
