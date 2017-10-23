@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -76,8 +77,31 @@ ServletContext application;
 	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");
 		Map map = adDao.readAfter(num);
-		mav.addObject("one", map);
+		List list = adDao.readReply(num);
 		mav.addObject("section", "after/view");
+		mav.addObject("one", map);
+		mav.addObject("list", list);
 		return mav;
+	}
+	
+	@RequestMapping("/reply_save")
+	@ResponseBody
+	public String replySaveHandle(@RequestParam Map map) {
+		int r = adDao.addReply(map);
+		return "r";
+	}
+	
+	@RequestMapping("/reply_delete")
+	@ResponseBody
+	public String replyDeleteHandle(@RequestParam Map map) {
+		int r = adDao.deleteReply((String)map.get("num"));
+		return "r";
+	}
+	
+	@RequestMapping("/modify")
+	@ResponseBody
+	public int modifyHandle(@RequestParam Map map) {
+		int r = adDao.modifyAfter(map);
+		return r;
 	}
 }

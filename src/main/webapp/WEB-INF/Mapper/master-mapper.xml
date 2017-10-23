@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="master">
+	<select id="memberList" resultType="java.util.HashMap">
+		select * from member a join member_info b on a.id=b.id
+	</select>
+	
+	<select id="memberOne" resultType="java.util.HashMap">
+		select * from (select m1.email, m2.* from member m1 join member_info m2 on m1.id=m2.id) where id=#{id}
+	</select>
+	
+	<select id="report01" resultType="int">
+		select count(*) from after where writer=#{id}
+	</select>
+	<select id="report02" resultType="int">
+		select count(*) from free_distribute where writer=#{id}
+	</select>
+	<select id="report03" resultType="int">
+		select count(*) from buy where buy_id=#{id}
+	</select>
+	<select id="report04" resultType="int">
+		select count(*) from freeboard where writer=#{id}
+	</select>
+	<select id="report05" resultType="int">
+		select count(*) from sell where writer=#{id}
+	</select>
+	
+</mapper>

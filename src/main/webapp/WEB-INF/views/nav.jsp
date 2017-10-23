@@ -17,7 +17,7 @@
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">BUY<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="/buy/list/1">TOTAL</a></li>
+          <li><a href="">TOTAL</a></li>
           <li><a href="#">CONSOLE</a></li>
           <li><a href="#">GAME TITLE</a></li>
           <li><a href="#">ACCESSORY</a></li>
@@ -33,7 +33,7 @@
           <li><a href="#">ETC</a></li>
         </ul>
       </li>
-      <li><a href="/FreeDistribute/list">FREE PRESENT</a></li>
+      <li><a href="#">FREE PRESENT</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">COMMUNITY<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">가입인사</a></li>
