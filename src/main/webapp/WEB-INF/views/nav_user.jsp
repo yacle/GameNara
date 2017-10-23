@@ -44,12 +44,13 @@
 				<li><a href="/after/list">거래후기</a></li>
 			</ul>
 		</li>
-		<form class="navbar-form navbar-left">
+		<li style="margin-left: 150px"><a>[${auth_id} Level] : ${auth_level}</a></li>
+<%-- 	<form class="navbar-form navbar-left">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
 			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
+		</form>	--%>
 		<button class="btn btn-default dropdown-toggle-right" type="button" id="menu1" data-toggle="dropdown" style="margin-top: 9px;">
 			<span data-toggle="tooltip" id="tool" onclick="javascript:cnt()">${auth_id}</span>
 			<span class="caret"></span>
@@ -60,6 +61,9 @@
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
 				<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
 			<li role="presentation" class="divider"></li>
+			<c:if test="${auth_level eq 9 }">
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="/master/manage_member">ManagePage</a></li>
+			</c:if>
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/log/logout">LOGOUT</a></li>
 		</ul>
 	</ul>
@@ -80,7 +84,7 @@
 	}
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
-	}
+	} 
 	</script>
 
 

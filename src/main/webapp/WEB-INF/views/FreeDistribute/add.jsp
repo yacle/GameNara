@@ -4,7 +4,7 @@
 <body>
 	<form action="/FreeDistribute/add" method="post" autocomplete="off" enctype="multipart/form-data">
 		<div class="container">
-			<h1>자유게시판</h1>
+			<h1>무료나눔게시판</h1>
 			<h3></h3>
 			<form>
 				<div class="form-group">
