@@ -67,17 +67,18 @@ textarea {
 		$("#d").css("display","none");
 		$("#c").css("display","inline");
 		$("#s").css("display","inline");
+		var comment = $("#comment").val();
 		$("#s").click(function(){
 			$.ajax({
 				"type":"post",
 				"async":false,
 				"url":"/after/modify",
 				"data":{
-					"comment" : $("#comment").val(),
+					"comment" : comment,
 					"no" : $("#num").val()
 				}
 			}).done(function(r){
-				window.location.reload();
+				$("#comment").html(comment);
 			})
 		})
 		$("#c").click(function(){
