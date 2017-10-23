@@ -48,33 +48,33 @@ public class buycontroller {
 			mav.addObject("list", li);
 			mav.addObject("title","삽니다 전체 ");
 			mav.addObject("cnt", li.size());			
-			return mav;
+			break;
 			
 		case 2:
 			li = buyDao.consoleread();
 			mav.addObject("list", li);
 			mav.addObject("title","콘솔삽니다");
 			mav.addObject("cnt", li.size());			
-			return mav;
+			break;
 		case 3:
 			li = buyDao.titleread();
 			mav.addObject("list", li);
 			mav.addObject("title","게임타이틀 삽니다");
 			mav.addObject("cnt", li.size());			
-			return mav;
+			break;
 	
 		case 4:
 			li = buyDao.accessoryread();
 			mav.addObject("list", li);
 			mav.addObject("title","주변기기 삽니다");
 			mav.addObject("cnt", li.size());			
-			return mav;
+			break;
 		case 0:
 			li = buyDao.othersread();
 			mav.addObject("list", li);
 			mav.addObject("title","기타삽니다");
 			mav.addObject("cnt", li.size());			
-			return mav;
+			break;
 		}
 		return mav;
 	}	

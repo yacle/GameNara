@@ -4,7 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sell">
 	<insert id="add">
-	
+		insert into sell values(
+		sell_seq.nextval, #{writer},#{title},#{price},#{detail},#{contact},#{deal_method, jdbcType=VARCHAR},#{pic, jdbcType=VARCHAR},sysdate,ready,#{category})
 	</insert>
+	<update id="subtractPoint">
+		update member set point = point-500 where id =#{id}
+	</update>
+	
+	
+	<select id="sellList">
+		select * from sell
+	</select>
+	<select id="console" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from sell where category=1
+	</select>
+	<select id="title" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from sell where category=2
+	</select>
+	<select id="acce" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from sell where category=3
+	</select>
+	<select id="other" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select * from sell where category=0
+	</select>
 	
 </mapper>
