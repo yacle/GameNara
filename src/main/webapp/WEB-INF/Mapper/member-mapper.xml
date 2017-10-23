@@ -10,8 +10,8 @@
 		 insert into member_info(id) values(#{id}) 
 	</insert>
 	
-	<select id="check" resultType="int">
-		select count(*) as cnt from member where id=#{id} and password=#{pwd}
+	<select id="check" resultType="java.util.HashMap">
+		select * from member where id=#{id} and password=#{pwd}
 	</select>
 	
 	<select id="idcheck" resultType="int">

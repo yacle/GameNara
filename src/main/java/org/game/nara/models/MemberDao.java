@@ -11,7 +11,7 @@ public class MemberDao {
 @Autowired
 SqlSessionTemplate temp;
 
-	public int check(Map map) {
+	public Map check(Map map) {
 		return temp.selectOne("member.check", map);
 	}
 	

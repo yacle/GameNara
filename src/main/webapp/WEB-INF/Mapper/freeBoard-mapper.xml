@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="freeB">
 	<select id="listAll" resultType="java.util.HashMap">
-			select b.*, t.c from freeboard b left join 
-        	(select parent, count(*) as c from freeboard_reply group by parent ) t on b.no = t.parent order by no desc
+		select b.*, t.c from freeboard b left join 
+       	(select parent, count(*) as c from freeboard_reply group by parent ) t on b.no = t.parent order by no desc
 	</select>
 
 	<insert id="addOne">

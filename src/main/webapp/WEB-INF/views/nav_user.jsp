@@ -60,6 +60,9 @@
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
 				<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
 			<li role="presentation" class="divider"></li>
+			<c:if test="${auth_level eq 9 }">
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="/master/manage_member">ManagePage</a></li>
+			</c:if>
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/log/logout">LOGOUT</a></li>
 		</ul>
 	</ul>
@@ -80,7 +83,7 @@
 	}
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
-	}
+	} 
 	</script>
 
 

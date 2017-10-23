@@ -25,9 +25,11 @@
 					<c:choose>
 						<c:when test="${auth_id ne null}">
 							<td><a href="/after/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+							<span class="badge">${obj.C }</span>
 						</c:when>
 						<c:otherwise>
 							<td>${fn:substring(obj.TITLE, 0, 12) }</td>
+							<span class="badge">${obj.C }</span>
 						</c:otherwise>
 					</c:choose>
 					

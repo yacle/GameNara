@@ -27,10 +27,12 @@ MemberDao mDao;
 	
 	@PostMapping("/login")
 	public ModelAndView loginPostHandle(@RequestParam Map map, HttpSession session) {
-		int r = mDao.check(map);
+		Map m = mDao.check(map);
+		int r = m.size();
 		ModelAndView mav = new ModelAndView("temp");
 		if(r!=0) {
 			session.setAttribute("auth_id", map.get("id"));
+			session.setAttribute("auth_level", m.get("LEV"));
 			mav.addObject("section", "index");
 		}else {
 			mav.addObject("section", "log/login");

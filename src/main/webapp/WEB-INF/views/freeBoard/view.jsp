@@ -84,28 +84,38 @@
 			<div class="col-md-2"></div>
 		</div>
 		<div class="row">
-			<div class="col-md-9" align="left">
-				<span id="con01" class="con01" style="display: inline">${i.CONTENT } </span>
-				<span id="con02" style="display: none">
-					<input id="up" type="text" value="${i.CONTENT }">
-					<button type="button" id="upbtn">댓글수정</button>
-				</span>
+			<div class="col-md-10" align="left">
+				<p id="${i.CONTENT}" style="display: block">${i.CONTENT } 
+					<button type="button" onclick="javascript:update(${i.NO},${i.CONTENT})">수정</button>
+					<button type="button" onclick="javascript:del(${i.NO})">삭제</button>
+				</p>
+				<p id="${i.NO}" style="display: none">
+					<input type="text"  width="900px" id="modify" value="${i.CONTENT}" >
+					<button type="button" id="mobtn">댓글수정</button>
+				</p>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<c:if test="${auth_id  == i.WRITER}">
-					<button type="button" id="update" value="${i.CONTENT}">수정</button>
-					<button type="button" id="delete" onclick="javascript:del(${i.NO })">삭제</button>
-	    		</c:if>
+					
+				</c:if>
 			</div>
 		</div>
 		<hr/>
 	</c:forEach>
 </div>
 </div>
+<<<<<<< HEAD
+<style>
+.display{
+	display: inline;
+}
+</style>
+=======
 
 
 <span id="re"></span>
 
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 <script>
 	var del = function(obj) {
 		if(window.confirm("삭제하시겠습니까?")){
@@ -120,17 +130,30 @@
 			window.location.reload();
 		}
 	}
+<<<<<<< HEAD
+	var update = function(a, b){
+		var m = document.getElementById(a);
+		m.style.display="inline";
+		b.style.display="none";
+	}
+		
+		
+	<%--	
+		$("#update").val(obj)
+=======
 	
 	
 	
 	$("#update").click(function(){
 		$("#con01").load("view#con01").fadeIn("slow");
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		this.parentNode.previousSibling.previousSibling.firstChild.nextSibling.style.display="none";
 		this.parentNode.previousSibling.previousSibling.firstChild.nextSibling.nextSibling.nextSibling.style.display="inline";
-		this.parentNode.style.display="none";
-	})
-		
-		
+		this.parentNode.style.display="none";		--%>
+	
 	
 </script>
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git

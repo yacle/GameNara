@@ -17,13 +17,13 @@
     <tbody>
     <c:forEach var="i" items="${list }">
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>${i.ID }(${i.NAME })</td>
+        <td>${i.GENDER }</td>
+        <td>${i.PHONE_NUM }</td>
+        <td>${i.EMAIL }</td>
+        <td>${i.LEV }</td>
+        <td>${i.ADDRESS }</td>
+        <td>${i.BIRTH }</td>
       </tr>
      </c:forEach>
     </tbody>
