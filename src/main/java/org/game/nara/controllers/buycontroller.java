@@ -106,20 +106,12 @@ public class buycontroller {
 			return "redirect:/buy/list/1";
 	}
 
-	@GetMapping("/add_rst")
-	public ModelAndView buyadjustpostHandle(@RequestParam Map param) {
-		ModelAndView mav= new ModelAndView("temp"); 
-		String no = (String)param.get("no");
-		Map map=buyDao.readOne(no);
-		mav.addObject("section","buy/add_rst");
-		mav.addObject("list", map);
-		return mav;
-	}
 
-	@PostMapping("/add_rst")
-	public String buyadjustHandle(@RequestParam Map param,ModelMap map) throws SQLException {
-		boolean b = buyDao.adjust(param);
-			return "redirect:/buy/list/1";
+	@RequestMapping("/add_rst")
+	@ResponseBody
+	public int buyadjustHandle(@RequestParam Map param,ModelMap map) throws SQLException {
+		int b = buyDao.adjust(param);
+			return b;
 	}
 	
 	@RequestMapping(path = "/view/{num}")

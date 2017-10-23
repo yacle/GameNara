@@ -35,12 +35,13 @@ public class buyDao {
 	public List<Map> othersread() {
 		return template.selectList("buy.othersread");
 	}
+	
 	public int endset (Map map) {
 		return template.update("buy.endset",map);
 	}
-	public boolean adjust (Map map) {
-		 template.update("buy.adjust",map);
-		 return true;
+	
+	public int adjust (Map map) {
+		return template.update("buy.adjust",map);
 	}
 	
 	public boolean addOne(Map map) {

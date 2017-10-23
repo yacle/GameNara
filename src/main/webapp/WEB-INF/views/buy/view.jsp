@@ -4,10 +4,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%-- ---------------------------------------------------- --%>
 <style>
-input, textarea, button {
+input, button {
 	padding: 4px;
 	font-family: 맑은고딕;
 	font-size: 9pt;
+}
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
 }
 </style>
 <div align="center" style="line-height: 35px">
@@ -49,8 +57,7 @@ input, textarea, button {
 								</c:if>
 							</small>
 						</p>
-						<pre id="con1"
-							style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px;">${one.DETAIL }</pre>
+						<textarea row="5" id="comment" disabled>${one.DETAIL }</textarea>
 					</div>
 					<div align="center">
 						<div style="width: 80%;" align="left">
@@ -65,76 +72,107 @@ input, textarea, button {
 					</div>
 					<hr />
 					<div align="left">
-						<a href="/buy/add_rst?no=${one.NO }"><button>수정</button></a>
-						<button type="button" id="delete"
-							onclick="javascript:del(${one.NO })">삭제</button>
+						<c:if test="${auth_id eq one.BUY_ID }">
+							<div style="margin-right: 100px" align="right">				
+									<button type="button" id="m">수정</button>
+									<button type="button" id="s" style="display: none;">저장</button>
+									<button type="button" id="c" style="display: none;">취소</button>
+									<button type="button" id="d">삭제</button>
+								<a href="/buy/list/1"><button>BACK</button></a>
+							</div>
+						</c:if>
 						<a href="/buy/list/1"><button>게시판으로</button></a>
 					</div>
 				</c:otherwise>
 			</c:choose>
 		</c:otherwise>
 	</c:choose>
-	<script>	
-	$("#send").click(function() {
-		$.ajax({
-			"type":"post",
-			"async": false,
-			"url":"/reply/add",
-			"data":{
-				"parent":$("#num").val(),
-				"writer":$("#writer").html(),
-				"content":$("#content").val()
-			}
-		}).done(function(obj){
-			document.getElementById("content").value = "";
-		});
-		window.location.reload();
-	});
-	
-</script>
 	<script>
-$("#end").click(function(){
-	   $.ajax({
-	      "type":"post",
-	      "async":false,
-	      "url":"/buy/end",
-	      "data":{
-	      "end":'2',
-	      "no":'${one.NO}'
-	      }
-	   })
-	   location.reload();
-	}); 
-
-	var del = function(obj) {
-		if(window.confirm("삭제하시겠습니까?")){
+		$("#m").click(function() {
+			document.getElementById("comment").disabled = false;
+			$("#comment").css("background-color", "#f8f8f8");
+			$("#m").css("display", "none");
+			$("#d").css("display", "none");
+			$("#c").css("display", "inline");
+			$("#s").css("display", "inline");
+			$("#s").click(function() {
+				$.ajax({
+					"type" : "post",
+					"async" : false,
+					"url" : "/buy/add_rst",
+					"data" : {
+						"detail" : $("#comment").val(),
+						"no" : $("#num").val()
+					}
+				}).done(function(b) {
+					document.getElementById("comment").disabled = true;
+					$("#m").css("display", "inline");
+					$("#s").css("display", "none");
+				})
+			})
+			$("#c").click(function() {
+				window.location.reload();
+			})
+		})
+	</script>
+	<script>
+		$("#send").click(function() {
 			$.ajax({
-				"type":"post",
-				"async": false,
-				"url":"/reply/delete",
-				"data":{
-					"num":obj
+				"type" : "post",
+				"async" : false,
+				"url" : "/reply/add",
+				"data" : {
+					"parent" : $("#num").val(),
+					"writer" : $("#writer").html(),
+					"content" : $("#content").val()
 				}
-			});	
+			}).done(function(obj) {
+				document.getElementById("content").value = "";
+			});
 			window.location.reload();
-		}
-	}
-</script>
-	<script>
-var del = function(obj) {
-	if(window.confirm("삭제하시겠습니까?")){
-		$.ajax({
-			"type":"post",
-			"async": false,
-			"url":"/buy/delete",
-			"data":{
-				"num":obj
-			}
 		});
-		location.href="/buy/list/1";
+	</script>
+	<script>
+		$("#end").click(function() {
+			$.ajax({
+				"type" : "post",
+				"async" : false,
+				"url" : "/buy/end",
+				"data" : {
+					"end" : '2',
+					"no" : '${one.NO}'
+				}
+			})
+			location.reload();
+		});
 
-	
-	}
-}
-</script>
+		var del = function(obj) {
+			if (window.confirm("삭제하시겠습니까?")) {
+				$.ajax({
+					"type" : "post",
+					"async" : false,
+					"url" : "/reply/delete",
+					"data" : {
+						"num" : obj
+					}
+				});
+				window.location.reload();
+			}
+		}
+	</script>
+	<script>
+		var del = function(obj) {
+			if (window.confirm("삭제하시겠습니까?")) {
+				$.ajax({
+					"type" : "post",
+					"async" : false,
+					"url" : "/buy/delete",
+					"data" : {
+						"num" : obj
+					}
+				});
+				location.href = "/buy/list/1";
+			}
+		}
+	</script>
 </div>

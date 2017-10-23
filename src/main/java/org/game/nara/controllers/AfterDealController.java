@@ -100,8 +100,8 @@ ServletContext application;
 	
 	@RequestMapping("/modify")
 	@ResponseBody
-	public String modifyHandle(@RequestParam Map map) {
+	public int modifyHandle(@RequestParam Map map) {
 		int r = adDao.modifyAfter(map);
-		return "r";
+		return r;
 	}
 }
