@@ -32,7 +32,7 @@
 								pattern="MM.dd.yyyy" value="${one.FD_DATE }" /> 
 							</small>
 						<c:if test="${auth_id eq one.WRITER }">
-							<button id="end">나눔완료</button>
+							<button id="end" >나눔완료</button>
 						</c:if>
 						</div>
 					    <div class="col-sm-2">

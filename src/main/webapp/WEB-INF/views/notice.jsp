@@ -2,7 +2,6 @@
 <style>
 td{
 	font-size: 16px;
-<<<<<<< HEAD
 	align-items: center;
 }
 </style>
@@ -86,7 +85,7 @@ X : 권한없음
 		</tr>
 	</tbody>
 </table>
-=======
+<style>
 	text-align: center;
 	padding: 2px;
 	height: 40px;
@@ -172,4 +171,3 @@ X : 권한없음
 </table>
 
 
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git

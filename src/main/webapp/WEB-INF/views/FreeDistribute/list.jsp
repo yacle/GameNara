@@ -17,7 +17,7 @@ th, td {
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
-	<table style="width: 95%; background-color:#EAEAEA;" class="table table-bordered" >
+	<table class="table table-striped" >
 		<thead>
 			<tr>
 				<th style="width: 10%">글번호</th>
@@ -32,7 +32,7 @@ th, td {
 				<tr>
 					<td>${obj.NO }</td>
 					<c:choose>	
-						<c:when test="${auth_id ne null}">
+						<c:when test="${auth_level gt 1}">
 							<c:if test="${obj.ATTACH ne null }">
 								<td><a href="/FreeDistribute/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
 								<img id="pf" src="/profiles/board_def.JPG" style="height:10px; width:10px;"/>
@@ -50,10 +50,23 @@ th, td {
 							</c:if>
 						</c:when>
 						<c:otherwise>
-							<td>${fn:substring(obj.TITLE, 0, 12) }</td>
+							<td><a href="/notice">${fn:substring(obj.TITLE, 0, 12) }</a></td>
 						</c:otherwise>	
-					</c:choose>	
-					<td>${obj.WRITER }</td>
+					</c:choose>
+					<td>	
+					<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+								<span id="receiver" value="${obj.WRITER }">${obj.WRITER }</span>
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">1:1채팅초대</a></li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+							</ul>
+						</div>
+					</td>
 					<td><fmt:formatDate value="${obj.FD_DATE }" pattern="yyyy-MM-dd"/></td>
 					<td>${obj.VIEW_CNT }</td>
 				</tr>
@@ -61,13 +74,14 @@ th, td {
 		</tbody>
 	</table>
 	<p align="right" style="margin-right: 30px;">
-		<c:choose>
-			<c:when test="${auth_id ne null}">
-				<a href="/FreeDistribute/add"><button type="button" style="padding: 5px;">글작성</button></a>
-			</c:when>
-			<c:otherwise>
-				<button type="button" style="padding: 5px;">글작성</button></a>
-			</c:otherwise>
-		</c:choose>
+		<a href="/FreeDistribute/add"><button type="button" style="padding: 5px;">글작성</button></a>
 	</p>
 </div>
+
+<script>
+	function openchat(obj){
+		var url="/chat/noteSend?id="+obj;
+		window.open(url, "noteSend", "width=400, height=550");
+	}
+
+</script>

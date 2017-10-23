@@ -5,7 +5,6 @@
 	<form action="/freeBoard/add" method="post" autocomplete="off" enctype="multipart/form-data">
 		<div class="container">
 			<h1>자유게시판</h1>
-			<h3></h3>
 			<form>
 				<div class="form-group">
 					<label for="comment">작성자 : ${auth_id }</label> <input type="hidden"
@@ -25,7 +24,7 @@
 				<div class="form-group">
 					<label for="comment">File:</label>
 					<input type="file" name="attach">
-				</div>
+				</div>	
 				
 
 			</form>
