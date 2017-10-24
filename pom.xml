@@ -121,7 +121,7 @@
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
+			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 	
