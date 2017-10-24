@@ -61,7 +61,7 @@ th, td {
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">1:1채팅초대</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>
 								<li role="presentation" class="divider"></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 							</ul>
@@ -84,4 +84,17 @@ th, td {
 		window.open(url, "noteSend", "width=400, height=550");
 	}
 
+	function chatting(obj){
+		$.ajax({
+			"type":"post",
+			"async":true,
+			"url":"/chatting/confirm",
+			"data":{
+				"chat":"chatting",
+				"id":obj
+			}
+		})
+		var url="/chatting/chatPage?id="+obj;
+		window.open(url, "chatPage", "width=400, height=550");
+	}
 </script>

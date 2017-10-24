@@ -85,7 +85,22 @@
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	} 
-	</script>
-
-
-
+	
+</script>
+<script>
+	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
+	
+	cws.onmessage =function(e){
+		console.log("EeeeeeeeE?"+e.data)
+		var obj =JSON.parse(e.data);
+		console.log("EeeeeeeeE?"+obj.id)
+		if(obj.chat =="chatting"){
+			if(window.confirm("1대1 채팅 신청이 왔습니다.")){
+				var url="/chatting/chatPage?id="+obj.id;
+				window.open(url, "", "width=400, height=550");
+			}
+			
+		}
+		
+	} 
+</script>
