@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -115,11 +116,21 @@ SimpleDateFormat sdf;
 	}
 	
 	@RequestMapping("/update")
-	public ModelAndView sellupdateHandle(@RequestParam Map map) throws SQLException {
-		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
-		int r = sellDao.sellUpdate(map);
-		mav.addObject("section", "sell/sellView");
-		mav.addObject("map", map);
-		return mav;
+	@ResponseBody
+	public int sellupdateHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IllegalStateException, IOException {
+		System.out.println(map.toString());
+		if(pic.getSize() > 0) {
+			String id = (String)map.get("id");
+			String fmt = sdf.format(System.currentTimeMillis());
+			String path = application.getRealPath("/sellB_File");
+			String name = id+"_"+fmt;
+			File dir = new File(path);
+			if (!dir.isDirectory())
+				dir.mkdirs();
+			File up = new File(application.getRealPath("/sellB_File"), name);
+			pic.transferTo(up);
+			map.put("pic", name);
+		}
+		return  sellDao.sellUpdate(map);
 	}
 }

@@ -5,7 +5,7 @@
 <mapper namespace="sell">
 	<insert id="add">
 		insert into sell values(
-		sell_seq.nextval, #{writer}, #{title}, #{price}, #{detail}, #{contact}, #{deal_method, jdbcType=VARCHAR}, #{pic, jdbcType=VARCHAR}, sysdate, 'ready', #{category}, 0)
+		sell_seq.nextval, #{writer}, #{title}, #{price}, #{detail}, #{contact, jdbcType=VARCHAR}, #{deal_method, jdbcType=VARCHAR}, #{pic, jdbcType=VARCHAR}, sysdate, 'ready', #{category}, 0)
 	</insert>
 	<update id="countup"> 
 		update sell set count = count+1 where no =#{no}
@@ -17,7 +17,7 @@
 		select * from sell where no=#{no}
 	</select>
 	<update id="sellUpdate">
-		update sell set title=#{title}, price=#{price}, contact=#{contact), deal_method=#{deal_method}, category=#{category} where no =#{no}
+		update sell set title=#{title}, price=#{price}, contact=#{contact, jdbcType=VARCHAR}, deal_method=#{deal_method, jdbcType=VARCHAR}, category=#{category}, pic=#{pic, jdbcType=VARCHAR} where no =#{no}
 	</update>
 	
 	<select id="sellList" resultType="java.util.HashMap">
