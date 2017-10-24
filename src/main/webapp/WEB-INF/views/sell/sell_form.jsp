@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<form action="/sell/add" method="post" id="form" enctype="multipart/form-data">
+<form action="/sell/add" method="post" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-md-4">
 		<img src="/profiles/default02.jpg" id="pf" alt="기본이미지" style="height: 300px; width: 300px;" />

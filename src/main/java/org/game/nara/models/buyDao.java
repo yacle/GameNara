@@ -50,13 +50,10 @@ public class buyDao {
 	}
 
 	public Map readOne(String num) {
+		template.update("buy.countup",num);
 		return template.selectOne("buy.readOne", num);
 		}
 
-	public int countup(String num) {
-		return template.update("buy.countup",num);
-	}
-	
 	public int delete(String num) {
 		return template.delete("buy.delete",num);
 	}

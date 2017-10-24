@@ -118,7 +118,6 @@ public class buycontroller {
 	public ModelAndView buyViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
 		Map one = buyDao.readOne(num);
-		buyDao.countup(num);
 		mav.addObject("one", one);
 		mav.addObject("section", "buy/view");
 		return mav;

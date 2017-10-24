@@ -39,9 +39,8 @@ SimpleDateFormat sdf;
 		return mav;
 	}
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String freeBoardAddPostHandle(@RequestParam Map map,HttpSession session, 
-		@RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
-		String id = (String)map.get("id");
+	public String freeBoardAddPostHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
+		String id = (String)map.get("writer");
 		if(pic.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
@@ -61,7 +60,7 @@ SimpleDateFormat sdf;
 		if (r!=0) {
 			sellDao.subtractPoint(id);
 		}
-		return  "redirect:/sell/list";
+		return  "redirect:/sell/list/1";
 	}
 	
 	@RequestMapping(value="/list/{category}")
@@ -73,7 +72,7 @@ SimpleDateFormat sdf;
 		
 		case 1:
 			mav.addObject("list", li);
-			mav.addObject("title","팝 전체 ");
+			mav.addObject("title","팝니다 전체 ");
 			mav.addObject("cnt", li.size());			
 			break;
 			
@@ -105,4 +104,22 @@ SimpleDateFormat sdf;
 		}
 		return mav;
 	}	
+	
+	@RequestMapping("/view/{num}")
+	public ModelAndView buyViewHandle(@PathVariable String num) throws SQLException {
+		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
+		Map map = sellDao.sellOne(num);
+		mav.addObject("section", "sell/sellView");
+		mav.addObject("map", map);
+		return mav;
+	}
+	
+	@RequestMapping("/update")
+	public ModelAndView sellupdateHandle(@RequestParam Map map) throws SQLException {
+		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
+		int r = sellDao.sellUpdate(map);
+		mav.addObject("section", "sell/sellView");
+		mav.addObject("map", map);
+		return mav;
+	}
 }

@@ -22,17 +22,14 @@
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO }</td>
-					<c:choose>
-						<c:when test="${auth_id ne null}">
-							<td><a href="/after/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
-							<span class="badge">${obj.C }</span>
-						</c:when>
-						<c:otherwise>
-							<td>${fn:substring(obj.TITLE, 0, 12) }</td>
-							<span class="badge">${obj.C }</span>
-						</c:otherwise>
-					</c:choose>
-					
+					<td>
+						<c:if test="${auth_id ne null}">
+							<a href="/after/view/${obj.NO}">
+						</c:if>
+						${fn:substring(obj.TITLE, 0, 12)}
+						<c:if test="${auth_id ne null}"></a></c:if>
+						<span class="badge">${obj.C }</span>
+					</td>
 					<td>
 						<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
