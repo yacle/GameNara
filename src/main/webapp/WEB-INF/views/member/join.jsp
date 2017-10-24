@@ -42,8 +42,8 @@ $("#id").keyup(function(){
 			"data":{
 				"id":$("#id").val()
 			}
-		}).done(function(obj){
-			if(obj!=0){
+		}).done(function(r){
+			if(r!=0){
 				$("#idcheck").html("사용중인 아이디입니다. 다른 아이디를 입력하십시오");
 			}else{
 				$("#idcheck").html("사용가능한 아이디입니다.");

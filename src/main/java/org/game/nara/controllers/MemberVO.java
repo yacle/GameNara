@@ -1,5 +1,10 @@
 package org.game.nara.controllers;
 
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class MemberVO {
 
 	private String id;
@@ -42,4 +47,5 @@ public class MemberVO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+
 }

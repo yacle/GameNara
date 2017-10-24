@@ -36,6 +36,8 @@ public class MemberController {
 	SimpleDateFormat sdf;
 	@Autowired
 	JavaMailSender sender;
+	@Autowired
+	MemberVO vo;
 	
 	@RequestMapping("/join")
 	public ModelAndView joinHandle() {
@@ -48,6 +50,10 @@ public class MemberController {
 	public ModelAndView joinPostHandle(@RequestParam Map map) {
 		ModelAndView mav = new ModelAndView("temp");
 		int r = mDao.addMember(map);
+		vo.setId((String)map.get("id"));
+		vo.setPassword((String)map.get("pwd"));
+		vo.setEmail((String)map.get("email"));
+		System.out.println(vo.toString());
 		if(r!=0) {
 			mav.addObject("section", "log/login");
 		}else {
@@ -75,7 +81,8 @@ public class MemberController {
 	public ModelAndView profileGetHandle(HttpSession session) {
 		ModelAndView mav = new ModelAndView("temp");
 		String id = (String)session.getAttribute("auth_id");
-		Map map = mDao.readInfo(id);
+		MemberVO map = mDao.readInfo(id);
+		System.out.println(map.toString());
 		mav.addObject("section", "member/info");
 		mav.addObject("map", map);
 		return mav;

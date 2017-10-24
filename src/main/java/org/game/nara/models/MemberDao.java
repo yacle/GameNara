@@ -2,6 +2,7 @@ package org.game.nara.models;
 
 import java.util.*;
 
+import org.game.nara.controllers.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 public class MemberDao {
 @Autowired
 SqlSessionTemplate temp;
+
 
 	public Map check(Map map) {
 		return temp.selectOne("member.check", map);
@@ -22,14 +24,14 @@ SqlSessionTemplate temp;
 	}
 	
 	public int idcheck(String id) {
-		return temp.selectOne("member.check", id);
+		return temp.selectOne("member.idcheck", id);
 	}
 	
 	public int nickcheck(String nick) {
 		return temp.selectOne("member.nickcheck", nick);
 	}
 	
-	public Map readInfo(String id) {
+	public MemberVO readInfo(String id) {
 		return temp.selectOne("member.readInfo", id);
 	}
 	
