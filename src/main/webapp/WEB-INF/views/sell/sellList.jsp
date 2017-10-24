@@ -49,41 +49,45 @@ th, td {
 					</c:choose>
 					<c:choose>
 						<c:when test="${auth_level >= 2 }">
-							<td><a href="/buy/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a>
-								<span class="badge">${obj.C }</span> <c:if
-									test="${obj.END == 1 }">
+							<td><a href="/sell/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a>
+								<span class="badge">${obj.C }</span> 
+								<c:if test="${obj.STATEe eq 'ongoing' }">
 									<span class="label label-info">[거래중]</span>
-								</c:if> <c:if test="${obj.END == 2 }">
+								</c:if> 
+								<c:if test="${obj.STATE eq 'end' }">
 									<span class="label label-info">[거래완료]</span>
-								</c:if></td>
+								</c:if>
+							</td>
 							<td>
 						<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-								<span id="receiver" value="${obj.BUY_ID }">${obj.BUY_ID }</span>
+								<span id="receiver" value="${obj.WRITER }">${obj.WRITER }</span>
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.BUY_ID }')">쪽지보내기</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">1:1채팅초대</a></li>
 								<li role="presentation" class="divider"></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 							</ul>
 						</div>
 					</td>
-							<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.ADD_DATE }" /></td>
-									<td>${obj.COUNT }</td>
+							<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.REGDATE }" /></td>
+									<td>${obj.COUNT}</td>
 						</c:when>
 						<c:otherwise>
-							<td><a href="/notice">${obj.TITLE }<c:if test="${obj.END == 1 }">
+							<td><a href="/notice">${obj.TITLE }
+								<c:if test="${obj.STATEe eq 'ongoing' }">
 									<span class="label label-info">[거래중]</span>
-								</c:if> <c:if test="${obj.END == 2 }">
+								</c:if> 
+								<c:if test="${obj.STATE eq 'end' }">
 									<span class="label label-info">[거래완료]</span>
-								</c:if></td>
+								</c:if>
 							</td>
 							<td>${obj.BUY_ID }</td>
 
 							<td><fmt:formatDate pattern="yyyy.MM.dd"
-									value="${obj.ADD_DATE }" /></td>
+									value="${obj.REGDATE }" /></td>
 							<td>${obj.COUNT }</td>
 									
 						</c:otherwise>
@@ -92,26 +96,24 @@ th, td {
 			</c:forEach>
 		</tbody>
 	</table>
+	<p align="right" style="margin-right: 30px;">
 	<c:choose>
 		<c:when test="${empty auth_id }">
-			<p align="right" style="margin-right: 30px;">
-				<a href="/log/login"><button type="button" style="padding: 5px;">글작성</button></a>
-			</p>
+			<a href="/log/login">
 		</c:when>
 		<c:when test="${auth_level >= 3 }">
-			<p align="right" style="margin-right: 30px;">
-				<a href="/buy/add"><button type="button" style="padding: 5px;">글작성</button></a>
-			</p>
+			<a href="/sell/sellForm">
 		</c:when>
 		<c:otherwise>
-			<p align="right" style="margin-right: 30px;">
-				<a href="/notice"><button type="button" style="padding: 5px;">글작성</button></a>
-			</p>
+			<a href="/notice">
 		</c:otherwise>
 	</c:choose>
+		<button type="button" style="padding: 5px;">글작성</button></a>
+	</p>
 </div>
 
 <script>
+
 	function openchat(obj){
 		var url="/chat/noteSend?id="+obj;
 		window.open(url, "noteSend", "width=400, height=550");

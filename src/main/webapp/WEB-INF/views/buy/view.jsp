@@ -114,8 +114,7 @@ textarea {
 				window.location.reload();
 			})
 		})
-	</script>
-	<script>
+
 		$("#send").click(function() {
 			$.ajax({
 				"type" : "post",
@@ -131,8 +130,7 @@ textarea {
 			});
 			window.location.reload();
 		});
-	</script>
-	<script>
+
 		$("#end").click(function() {
 			$.ajax({
 				"type" : "post",
@@ -146,21 +144,6 @@ textarea {
 			location.reload();
 		});
 
-		var del = function(obj) {
-			if (window.confirm("삭제하시겠습니까?")) {
-				$.ajax({
-					"type" : "post",
-					"async" : false,
-					"url" : "/reply/delete",
-					"data" : {
-						"num" : obj
-					}
-				});
-				window.location.reload();
-			}
-		}
-	</script>
-	<script>
 		var del = function(obj) {
 			if (window.confirm("삭제하시겠습니까?")) {
 				$.ajax({
