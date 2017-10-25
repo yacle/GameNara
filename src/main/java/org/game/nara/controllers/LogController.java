@@ -29,7 +29,9 @@ MemberDao mDao;
 	public ModelAndView loginPostHandle(MemberVO vo, HttpSession session) {
 		vo = mDao.check(vo);
 		System.out.println(vo.toString());
+
 		ModelAndView mav = new ModelAndView("temp");
+
 		if(vo.getId()!=null) {
 			session.setAttribute("auth_id", vo.getId());
 			session.setAttribute("auth_level", vo.getLev());

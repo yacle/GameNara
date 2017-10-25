@@ -8,6 +8,7 @@
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
+	<input type="hidden" id="my" value="${auth_id }"/>
 	<table class="table table-striped" >
 		<thead>
 			<tr>
@@ -22,17 +23,14 @@
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO }</td>
-					<c:choose>
-						<c:when test="${auth_id ne null}">
-							<td><a href="/after/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
-							<span class="badge">${obj.C }</span>
-						</c:when>
-						<c:otherwise>
-							<td>${fn:substring(obj.TITLE, 0, 12) }</td>
-							<span class="badge">${obj.C }</span>
-						</c:otherwise>
-					</c:choose>
-					
+					<td>
+						<c:if test="${auth_id ne null}">
+							<a href="/after/view/${obj.NO}">
+						</c:if>
+						${fn:substring(obj.TITLE, 0, 12)}
+						<c:if test="${auth_id ne null}"></a></c:if>
+						<span class="badge">${obj.C }</span>
+					</td>
 					<td>
 						<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
@@ -41,7 +39,7 @@
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">1:1채팅초대</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>
 								<li role="presentation" class="divider"></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 							</ul>
@@ -70,6 +68,20 @@
 		window.open(url, "noteSend", "width=400, height=550");
 	}
 
+	function chatting(obj){
+		$.ajax({
+			"type":"post",
+			"async":true,
+			"url":"/chatting/confirm",
+			"data":{
+				"chat":"chatting",
+				"receiver":obj,
+				"sender" : $("#my").val()
+			}
+		})
+		var url="/chatting/chatPage?id="+obj;
+		window.open(url, "", "width=400, height=550");
+	}
 </script>
 
 

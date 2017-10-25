@@ -95,13 +95,15 @@
 	
 	<!-- Web-Socket Handler -->
 	<bean class="org.game.nara.wsControllers.NoteWSHandler" id="nws"/>
+	<bean class="org.game.nara.wsControllers.ChattingWSHandler" id="cws"/>
 	<websocket:handlers>
 		<websocket:mapping handler="nws" path="/ws/note"/>
+		<websocket:mapping handler="cws" path="/ws/chat"/>
 		<websocket:handshake-interceptors>
 			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
-	
+
 	<context:component-scan base-package="org.game.nara" />
 	
 

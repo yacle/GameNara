@@ -5,9 +5,11 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import org.game.nara.models.ChatDao;
+import org.game.nara.models.SellDao;
 import org.game.nara.wsControllers.NoteWSHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +29,8 @@ ChatDao chatDao;
 NoteWSHandler nws;
 @Autowired
 ObjectMapper mapper;
+@Autowired
+SellDao sellDao;
 
 
 	@RequestMapping("/noteSend")
@@ -42,6 +46,19 @@ ObjectMapper mapper;
 	public String noteSendHandle(@RequestParam Map map) {
 		int r = chatDao.noteAddHandle(map);
 		nws.sendMessageToUser((String)map.get("receiver"), (String)map.get("content"));
+		if(r!=0) {
+			return "send complate";
+		}else {
+			return "send fail";
+		}
+	}
+	
+	@PostMapping("/deal/{no}")
+	@ResponseBody
+	public String dealSendHandle(@RequestParam Map map, @PathVariable String no) {
+		int r = chatDao.noteAddHandle(map);
+		nws.sendMessageToUser((String)map.get("receiver"), (String)map.get("content"));
+		sellDao.stateUpdate(no);
 		if(r!=0) {
 			return "send complate";
 		}else {

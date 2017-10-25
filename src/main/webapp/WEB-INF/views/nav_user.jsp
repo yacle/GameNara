@@ -44,7 +44,7 @@
 				<li><a href="/after/list">거래후기</a></li>
 			</ul>
 		</li>
-		<li style="margin-left: 150px"><a>[${auth_id} Level] : ${auth_level}</a></li>
+		<li style="margin-left: 100px"><a>[${auth_id} Level] : ${auth_level}</a></li>
 <%-- 	<form class="navbar-form navbar-left">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search">
@@ -69,7 +69,7 @@
 	</ul>
 </div>
 <script>
-	var nws = new WebSocket("ws://192.168.10.74/ws/note");
+	var nws = new WebSocket("ws://192.168.10.73/ws/note");
 	var cnt = function(){
 		$.ajax({
 			"type":"post",
@@ -85,7 +85,20 @@
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	} 
-	</script>
-
-
-
+	
+</script>
+<script>
+	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
+	
+	cws.onmessage =function(e){
+		var obj =JSON.parse(e.data);
+		if(obj.chat =="chatting"){
+			if(window.confirm(obj.sender+"님으로 부터 1대1 채팅 신청이 왔습니다.")){
+				var url="/chatting/chatPage?id="+obj.sender;
+				window.open(url, "", "width=400, height=550");
+			}
+			
+		}
+		
+	} 
+</script>

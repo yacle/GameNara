@@ -38,15 +38,15 @@ th, td {
 				<tr>
 					<td>${obj.NO} </td>
 					<td>${obj.SENDER }</td>
-					<td><span id="noteView" value="${obj}">${fn:substring(obj.CONTENT, 0, 30) }</span></td>
+					<td><span id="noteView" value="${obj}">${obj.CONTENT }</span></td>
 					<td><small>${obj.SENDTIME }</small></td>
 					<td><input type="checkbox" id="noteDel" name="noteDel" class="delCheck" value="${obj.NO}"/></td> 
-					<input type="hidden" id="id" name="id" value="${auth_id }">
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 			<button type="button" id="delbtn">삭제</button>
+		<input type="hidden" id="id" name="id" value="${auth_id }">
 <script>
 var arr=[];
 	document.getElementById("delbtn").onclick=function(){

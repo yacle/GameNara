@@ -5,30 +5,36 @@
 <mapper namespace="sell">
 	<insert id="add">
 		insert into sell values(
-		sell_seq.nextval, #{writer},#{title},#{price},#{detail},#{contact},#{deal_method, jdbcType=VARCHAR},#{pic, jdbcType=VARCHAR},sysdate,ready,#{category})
+		sell_seq.nextval, #{writer}, #{title}, #{price}, #{detail}, #{contact, jdbcType=VARCHAR}, #{deal_method, jdbcType=VARCHAR}, #{pic, jdbcType=VARCHAR}, sysdate, 'ready', #{category}, 0)
 	</insert>
+	<update id="countup"> 
+		update sell set count = count+1 where no =#{no}
+	 </update>
 	<update id="subtractPoint">
 		update member set point = point-500 where id =#{id}
 	</update>
-	
-	
-	<select id="sellList">
+	<select id="sellOne" resultType="java.util.HashMap">
+		select * from sell where no=#{no}
+	</select>
+	<update id="sellUpdate">
+		update sell set title=#{title}, price=#{price}, contact=#{contact, jdbcType=VARCHAR}, deal_method=#{deal_method, jdbcType=VARCHAR}, detail=#{detail}, category=#{category}, pic=#{pic, jdbcType=VARCHAR} where no =#{no}
+	</update>
+	<update id="state">
+		update sell set state='ongoing' where no =#{no}
+	</update>
+	<select id="sellList" resultType="java.util.HashMap">
 		select * from sell
 	</select>
-	<select id="console" parameterType="java.lang.String"
-		resultType="java.util.HashMap">
+	<select id="console" resultType="java.util.HashMap">
 		select * from sell where category=1
 	</select>
-	<select id="title" parameterType="java.lang.String"
-		resultType="java.util.HashMap">
+	<select id="title" resultType="java.util.HashMap">
 		select * from sell where category=2
 	</select>
-	<select id="acce" parameterType="java.lang.String"
-		resultType="java.util.HashMap">
+	<select id="acce" resultType="java.util.HashMap">
 		select * from sell where category=3
 	</select>
-	<select id="other" parameterType="java.lang.String"
-		resultType="java.util.HashMap">
+	<select id="other" resultType="java.util.HashMap">
 		select * from sell where category=0
 	</select>
 	

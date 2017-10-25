@@ -17,6 +17,18 @@ SqlSessionTemplate temp;
 	public int subtractPoint(String id) {
 		return temp.update("sell.subtractPoint", id);
 	}
+	public Map sellOne(String no) {
+		temp.update("sell.countup", no);
+		return temp.selectOne("sell.sellOne", no);
+	}
+	
+	public int sellUpdate(Map map) {
+		return temp.update("sell.sellUpdate", map);
+	}
+	
+	public int stateUpdate(String no) {
+		return temp.update("sell.state", no);
+	}
 	
 	public List sellList() {
 		return temp.selectList("sell.sellList");
