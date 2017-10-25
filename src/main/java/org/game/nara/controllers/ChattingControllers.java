@@ -46,15 +46,16 @@ public class ChattingControllers {
 	@PostMapping("/confirm")
 	@ResponseBody
 	public String chatConfirmHandle(@RequestParam Map map) {
+		String rst="";
 		String chat = (String) map.get("chat");
 		String receiver = (String) map.get("receiver");
 		String sender = (String) map.get("sender");
 		try {
-			cws.confirmToUser(chat,receiver,sender);
+			rst = cws.confirmToUser(chat,receiver,sender);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "ok";
+		return rst;
 		
 	}
 }

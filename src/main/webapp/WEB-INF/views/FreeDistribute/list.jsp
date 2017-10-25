@@ -95,8 +95,14 @@ th, td {
 				"receiver":obj,
 				"sender" : $("#my").val()
 			}
+		}).done(function(e){
+			console.log(e);
+			if(e=="no"){
+				window.alert("상대방이 접속중이 아닙니다.");
+			}else{
+				var url="/chatting/chatPage?id="+obj;
+				window.open(url, "", "width=400, height=550");
+			}
 		})
-		var url="/chatting/chatPage?id="+obj;
-		window.open(url, "", "width=400, height=550");
 	}
 </script>

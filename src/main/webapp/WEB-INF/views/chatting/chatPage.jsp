@@ -10,8 +10,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <div align="center">
-<h2>1 : 1 Chat</h2>
-<h3>TO : [${id}]</h3>
+<h3>[${id}]님 과의 채팅방</h3>
 	<input type="hidden" id="receiver" name="receiver" value="${id}"/>
 	<input type="hidden" id="sender" name="sender" value="${auth_id}"/>
 	<small><span id="time" name="time"></span></small><br/>
@@ -34,8 +33,6 @@
 			}
 		})
 		 this.value = "";
-		var content = $("#content").html()+"<p><b>"+("#sender").val()+"</b> : " + $("#msg").val()+"</p>";
-		 $("#content").html(content);
 	}
 
 	
