@@ -50,13 +50,14 @@ th, td {
 					</c:choose>
 					<c:choose>
 						<c:when test="${auth_level >= 2 }">
-							<td><a href="/buy/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a>
-								<span class="badge">${obj.C }</span> <c:if
-									test="${obj.END == 1 }">
+							<td>
+								<a href="/buy/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a><span class="badge">${obj.C }</span> 
+								<c:if test="${obj.END == 1 }">
 									<span class="label label-info">[거래중]</span>
 								</c:if> <c:if test="${obj.END == 2 }">
 									<span class="label label-info">[거래완료]</span>
-								</c:if></td>
+								</c:if>
+							</td>
 															<td>
 						<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">

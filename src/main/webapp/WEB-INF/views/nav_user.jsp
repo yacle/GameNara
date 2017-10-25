@@ -44,7 +44,7 @@
 				<li><a href="/after/list">거래후기</a></li>
 			</ul>
 		</li>
-		<li style="margin-left: 150px"><a>[${auth_id} Level] : ${auth_level}</a></li>
+		<li style="margin-left: 100px"><a>[${auth_id} Level] : ${auth_level}</a></li>
 <%-- 	<form class="navbar-form navbar-left">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search">

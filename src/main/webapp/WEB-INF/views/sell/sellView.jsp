@@ -88,31 +88,23 @@ td{
 									<li role="presentation" class="divider"></li>
 									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 								</ul>
-							<c:choose>
-								<c:when test="${map.STATE eq 'ready' }">	
-									<button class="btn dropdown-toggle" type="button" id="deal">구매신청</button>
-									<select class="btn dropdown-toggle" id="state" name="state" style="padding: 5px; display: none">
-										<option value="1">거래중</option>
+								<c:choose>
+									<c:when test="${map.STATE==0 }">
+										<button class="btn dropdown-toggle" type="button" id="deal">구매신청</button>
+									</c:when>
+									<c:when test="${map.STATE==2 }">
+										<button class="btn" type="button" id="dealComplate">거래완료</button>	
+									</c:when>
+									<c:otherwise>
+										<select class="btn" id="state" name="state" >
+											<option value="1">거래중</option>
 										<c:if test="${auth_id eq map.WRITER }">
 											<option value="2">거래취소</option>
 											<option value="3">거래완료</option>
 										</c:if>
-									</select>
-								</c:when>
-								<c:when test="${map.STATE eq 'ongoing' }">
-									<select class="btn dropdown-toggle" id="state" name="state" style="padding: 5px; display: none">
-										<option value="1">거래중</option>
-										<c:if test="${auth_id eq map.WRITER }">
-											<option value="2">거래취소</option>
-											<option value="3">거래완료</option>
-										</c:if>
-									</select>
-								</c:when>
-								<c:otherwise>
-									<button class="btn dropdown-toggle" type="button" id="dealComplate">거래완료</button>
-								</c:otherwise>
-							</c:choose>
-							<span id="time"></span>
+									</c:otherwise>
+								</c:choose>
+								<span id="time"></span>
 							</div>
 						</td>
 					</tr>

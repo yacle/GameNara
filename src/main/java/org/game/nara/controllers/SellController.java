@@ -74,7 +74,7 @@ SimpleDateFormat sdf;
 		case 1:
 			mav.addObject("list", li);
 			mav.addObject("title","팝니다 전체 ");
-			mav.addObject("cnt", li.size());			
+			mav.addObject("cnt", li.size());	
 			break;
 			
 		case 2:
