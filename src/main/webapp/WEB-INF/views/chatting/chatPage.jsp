@@ -33,12 +33,14 @@
 				"msg" : $("#msg").val()
 			}
 		})
+		var content = $("#content").html()+"<br/>"+ $("#msg").val();
+		 $("#content").html(content);
 		this.value = "";
 		
 	}
 
 	
-	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
+	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	cws.onmessage = function(e) {
 		console.log("eeeeee=?"+e);
 		console.log("edataaa=?"+e.data);	// e.data    (WebSocketHandler 에서 전송하는 JSON형태의 string)
@@ -54,7 +56,7 @@
 	}
 	cws.onerror = function(e) {
 		if (window.confirm("채팅서버 접속 실패\n다시 접속하시겠습니까?")) {
-			cws = new WebSocket("ws://192.168.10.73/ws/chat");
+			cws = new WebSocket("ws://192.168.10.74/ws/chat");
 		}
 	}
 </script>

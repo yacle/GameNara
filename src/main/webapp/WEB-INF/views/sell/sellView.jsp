@@ -79,7 +79,7 @@ td{
 						<td>
 							<div class="dropdown">
 								<button class="btn dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-									<span id="receiver" value="${map.WRITER }">${map.WRITER }</span>
+									<span id="receiver">${map.WRITER }</span>
 								<span class="caret"></span></button>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
@@ -88,14 +88,39 @@ td{
 									<li role="presentation" class="divider"></li>
 									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 								</ul>
-							&ensp;<button class="btn dropdown-toggle" type="button" id="deal">구매신청</button>&ensp;&ensp;&ensp;<span id="time"></span></div>
+							<c:choose>
+								<c:when test="${map.STATE eq 'ready' }">	
+									<button class="btn dropdown-toggle" type="button" id="deal">구매신청</button>
+									<select class="btn dropdown-toggle" id="state" name="state" style="padding: 5px; display: none">
+										<option value="1">거래중</option>
+										<c:if test="${auth_id eq map.WRITER }">
+											<option value="2">거래취소</option>
+											<option value="3">거래완료</option>
+										</c:if>
+									</select>
+								</c:when>
+								<c:when test="${map.STATE eq 'ongoing' }">
+									<select class="btn dropdown-toggle" id="state" name="state" style="padding: 5px; display: none">
+										<option value="1">거래중</option>
+										<c:if test="${auth_id eq map.WRITER }">
+											<option value="2">거래취소</option>
+											<option value="3">거래완료</option>
+										</c:if>
+									</select>
+								</c:when>
+								<c:otherwise>
+									<button class="btn dropdown-toggle" type="button" id="dealComplate">거래완료</button>
+								</c:otherwise>
+							</c:choose>
+							<span id="time"></span>
+							</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	<div class="row" align="center">
-		<input type="hidden" name="id" value="${auth_id}">
+		<input type="hidden" id="id" value="${auth_id}">
 		<p><textarea class="update-group" rows="10" width="1000px" placeholder="상세내용" name="detail"  disabled>${map.DETAIL }</textarea></p>
 		<c:if test="${auth_id eq map.WRITER }">
 			<button type="button" class="btn btn-default" id="modify">수정</button>
@@ -165,20 +190,23 @@ function openchat(obj){
 	window.open(url, "noteSend", "width=400, height=550");
 }
 $("#deal").click(function(){
-	$("#deal").html("거래중");
-	document.getElementById("deal").disabled=true;
+	$("#deal").hide();
+	$("#state").show();
+	var location = document.location.href;
 	$.ajax({
 		"type":"post",
 		"async":true,
-		"url":"/chat/note_send",
+		"url":"/chat/deal/"+$("#no").html(),
 		"data":{
-			"receiver":$("#receiver").val(),
+			"receiver":$("#receiver").html(),
 			"sender":$("#id").val(),
-			"content":"거래신청이 들어왔습니다."+$("#id").val()+"/"+$("#no").html,
+			"content": "<a href="+location+">"+$("#id").val()+"님으로부터 거래의뢰가 들어왔읍니다.</a>",
 			"time":$("#time").html()
 		}
+	
 	}).done(function(obj){
 		window.alert("[거래신청 쪽지를 보냈읍니다.]");
+		
 	})
 })
 function num(a){

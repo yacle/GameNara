@@ -26,6 +26,10 @@ SqlSessionTemplate temp;
 		return temp.update("sell.sellUpdate", map);
 	}
 	
+	public int stateUpdate(String no) {
+		return temp.update("sell.state", no);
+	}
+	
 	public List sellList() {
 		return temp.selectList("sell.sellList");
 	}

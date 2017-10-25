@@ -27,7 +27,6 @@ public class ChattingWSHandler extends TextWebSocketHandler {
 		String json = String.format("{\"receiver\":\"%s\", \"msg\":\"%s\" ,\"sender\":\"%s\"}", id,msg,au);
 		if(users.containsKey(id)) {
 			users.get(id).sendMessage(new TextMessage(json));
-			users.get(au).sendMessage(new TextMessage(json));
 		}
 		
 	}
