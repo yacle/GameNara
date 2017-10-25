@@ -17,6 +17,7 @@ th, td {
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
+	<input type="hidden" id="my" value="${auth_id }"/>
 	<table style="width: 95%; background-color: #EAEAEA;"
 		class="table table-bordered">
 		<thead>
@@ -66,7 +67,7 @@ th, td {
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">1:1채팅초대</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>
 								<li role="presentation" class="divider"></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 							</ul>
@@ -118,5 +119,19 @@ th, td {
 		var url="/chat/noteSend?id="+obj;
 		window.open(url, "noteSend", "width=400, height=550");
 	}
-
+	
+	function chatting(obj){
+		$.ajax({
+			"type":"post",
+			"async":true,
+			"url":"/chatting/confirm",
+			"data":{
+				"chat":"chatting",
+				"receiver":obj,
+				"sender" : $("#my").val()
+			}
+		})
+		var url="/chatting/chatPage?id="+obj;
+		window.open(url, "", "width=400, height=550");
+	}
 </script>

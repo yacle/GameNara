@@ -35,12 +35,12 @@ public class ChattingControllers {
 	@PostMapping("/chatPage")
 	public ModelAndView chatPageHandle(@RequestParam Map map) throws IOException {
 		ModelAndView mav = new ModelAndView();
-		String recev = (String) map.get("receiver");
-		String send = (String) map.get("sender");
+		String receiver = (String) map.get("receiver");
+		String sender = (String) map.get("sender");
 		String msg = (String) map.get("msg");
-		System.out.println("받는인간="+recev+"/ 보낸인간="+send+"/내용="+msg);
+		System.out.println("받는인간="+receiver+"/ 보낸인간="+sender+"/내용="+msg);
 		mav.addObject("section", "chatting/chatPage");
-		cws.sendMessageToUser(recev, msg, send);
+		cws.sendMessageToUser(receiver, msg, sender);
 		return mav;
 	}
 	
@@ -48,10 +48,11 @@ public class ChattingControllers {
 	@ResponseBody
 	public String chatConfirmHandle(@RequestParam Map map) {
 		String chat = (String) map.get("chat");
-		String id = (String) map.get("id");
-		System.out.println(chat+" /=/"+id);
+		String receiver = (String) map.get("receiver");
+		String sender = (String) map.get("sender");
+		System.out.println(chat+" /=/"+receiver+"/=/"+sender);
 		try {
-			cws.confirmToUser(chat,id);
+			cws.confirmToUser(chat,receiver,sender);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

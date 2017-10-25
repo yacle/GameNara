@@ -23,18 +23,18 @@ public class ChattingWSHandler extends TextWebSocketHandler {
 		
 	}
 	
-	public void sendMessageToUser(String id, String msg, String au) throws IOException {
-		String json = String.format("{\"receiver\":\"%s\", \"msg\":\"%s\" ,\"sender\":\"%s\"}", id,msg,au);
-		if(users.containsKey(id)) {
-			users.get(id).sendMessage(new TextMessage(json));
-			users.get(au).sendMessage(new TextMessage(json));
+	public void sendMessageToUser(String receiver, String msg, String sender) throws IOException {
+		String json = String.format("{\"receiver\":\"%s\", \"msg\":\"%s\" ,\"sender\":\"%s\"}", receiver,msg,sender);
+		if(users.containsKey(receiver)) {
+			users.get(receiver).sendMessage(new TextMessage(json));
+			users.get(sender).sendMessage(new TextMessage(json));
 		}
 		
 	}
 	
-	public void confirmToUser(String chat, String id) throws IOException {
-		String json = String.format("{\"id\":\"%s\", \"chat\":\"%s\"}", id,chat);
-		users.get(id).sendMessage(new TextMessage(json));
+	public void confirmToUser(String chat, String receiver, String sender) throws IOException {
+		String json = String.format("{\"receiver\":\"%s\", \"chat\":\"%s\" ,\"sender\":\"%s\"}", receiver,chat,sender);
+		users.get(receiver).sendMessage(new TextMessage(json));
 	}
 	
 }

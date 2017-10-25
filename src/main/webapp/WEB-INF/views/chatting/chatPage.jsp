@@ -33,15 +33,14 @@
 				"msg" : $("#msg").val()
 			}
 		})
-		this.value = "";
-		
+		 this.value = "";
+		var content = $("#content").html()+"<p><b>"+("#sender").val()+"</b> : " + $("#msg").val()+"</p>";
+		 $("#content").html(content);
 	}
 
 	
 	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
 	cws.onmessage = function(e) {
-		console.log("eeeeee=?"+e);
-		console.log("edataaa=?"+e.data);	// e.data    (WebSocketHandler 에서 전송하는 JSON형태의 string)
 		var obj =JSON.parse(e.data);
 		var m = "<p><b>"+ obj.sender+"</b> : " +obj.msg +"</p>";
 		document.getElementById("content").innerHTML += m;
