@@ -81,6 +81,7 @@ public class buycontroller {
 
 	@RequestMapping("/end")
 	public ModelAndView buyendHandle(@RequestParam Map param) {
+		System.out.println(param.toString());
 		int li = buyDao.endset(param);
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/view");
@@ -90,13 +91,12 @@ public class buycontroller {
 	@RequestMapping(path = "/add", method = RequestMethod.GET)
 	public ModelAndView buyAddGetHandle() {
 		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/add");
+		mav.addObject("section","buy/add");
 		return mav;
 	}
 
 
-
-	@RequestMapping(path = "/add", method = RequestMethod.POST)
+	@PostMapping(path = "/add")
 	public String buyaddpostHandle(@RequestParam Map param, ModelMap map, HttpSession session) throws SQLException {
 		boolean b = buyDao.addOne(param);
 		String id = (String) session.getAttribute("auth_id");
@@ -112,6 +112,16 @@ public class buycontroller {
 	public int buyadjustHandle(@RequestParam Map param,ModelMap map) throws SQLException {
 		int b = buyDao.adjust(param);
 			return b;
+	}
+	
+	@RequestMapping("/checkpoint")
+	public ModelAndView buycheckpoint(@RequestParam String param) {
+		ModelAndView mav= new ModelAndView("temp");
+		System.out.println(param.toString());
+		Map point=buyDao.checkpoint(param);
+		System.out.println(point.toString());
+		mav.addObject("section", "buy/add");
+		return mav;
 	}
 	
 	@RequestMapping(path = "/view/{num}")
@@ -133,5 +143,6 @@ public class buycontroller {
 		}
 		return "redirect:/buy/list/"+rst; 
 	}
+	
 
 }

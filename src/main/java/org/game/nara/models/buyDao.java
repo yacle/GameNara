@@ -61,4 +61,8 @@ public class buyDao {
 		return template.delete("buy.delete",num);
 	}
 	
+	public Map checkpoint(String num) {
+		return template.selectOne("buy.checkpoint",num);
+	}
+	
 }

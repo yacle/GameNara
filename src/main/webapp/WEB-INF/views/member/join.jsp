@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Enter password (8자 이상 영문 대소문자, 숫자가 포함되어야 합니다)" style="width:50%">
+      <input type="password" class="form-control" name="ppassword" id="password" placeholder="Enter password (8자 이상 영문 대소문자, 숫자가 포함되어야 합니다)" style="width:50%">
       <span id="pwdcheck"></span>
     </div>
 

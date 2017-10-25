@@ -1,10 +1,11 @@
 package org.game.nara.controllers;
 
+import java.util.Date;
 import java.util.Map;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.stereotype.Repository;
 
-@Repository
 public class MemberVO {
 
 	private String id;
@@ -12,17 +13,69 @@ public class MemberVO {
 	private String email;
 	private int lev;
 	private int point;
+	private String phone_num;
+	private String address;
+	private String gender;
+	private String profile;
+	private String nickname;
+	private Date birth;
+	private String name;
+	private String email_reg;
+	public String getPhone_num() {
+		return phone_num;
+	}
+	public void setPhone_num(String phone_num) {
+		this.phone_num = phone_num;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public Date getBirth() {
+		return birth;
+	}
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail_reg() {
+		return email_reg;
+	}
+	public void setEmail_reg(String email_reg) {
+		this.email_reg = email_reg;
+	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	@Override
-	public String toString() {
-		return "MemberVO [id=" + id + ", password=" + password + ", email=" + email + ", lev=" + lev + ", point="
-				+ point + "]";
-	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -46,6 +99,10 @@ public class MemberVO {
 	}
 	public void setPoint(int point) {
 		this.point = point;
+	}
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 
 }

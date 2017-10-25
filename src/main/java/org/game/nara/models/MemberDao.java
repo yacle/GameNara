@@ -8,18 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MemberDao {
+public class MemberDao extends MemberVO{
 @Autowired
 SqlSessionTemplate temp;
 
 
-	public Map check(Map map) {
-		return temp.selectOne("member.check", map);
+	public MemberVO check(MemberVO vo) {
+		return temp.selectOne("member.check", vo);
 	}
 	
-	public int addMember(Map map) {
-		int r = temp.insert("member.add", map);
-		r+= temp.insert("member.add2", map);
+	public int addMember(MemberVO vo) {
+		int r = temp.insert("member.add", vo);
+		r+= temp.insert("member.add2", vo);
 		return r;
 	}
 	
@@ -31,8 +31,8 @@ SqlSessionTemplate temp;
 		return temp.selectOne("member.nickcheck", nick);
 	}
 	
-	public MemberVO readInfo(String id) {
-		return temp.selectOne("member.readInfo", id);
+	public MemberVO readInfo(MemberVO vo) {
+		return temp.selectOne("member.readInfo", vo);
 	}
 	
 	public int addInfo(Map map) {

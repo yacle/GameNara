@@ -8,12 +8,12 @@
 	<div class="col-md-3">
 		<p>
 			<c:choose>
-				<c:when test="${empty map.PROFILE}">
+				<c:when test="${empty map.profile}">
 					<img src="/profiles/default.png" id="pf" alt="기본이미지"
 						style="height: 301px; width: 300px;" />
 				</c:when>
 				<c:otherwise>
-					<img id="pf" src="/profiles/${map.PROFILE}" alt="사용자프로필"
+					<img id="pf" src="/profiles/${map.profile}" alt="사용자프로필"
 						style="height: 301px; width: 300px;" />
 				</c:otherwise>
 			</c:choose>
@@ -37,14 +37,14 @@
 				<label class="control-label col-sm-3" for="name">Name:</label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" id="name"
-						value="${map.NAME }" placeholder="Enter Name" name="name">
+						value="${map.name }" placeholder="Enter Name" name="name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="nick">NickName:</label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" id="nick"
-						value="${map.NICKNAME }" placeholder="Enter NickName" name="nick"><span
+						value="${map.nickname }" placeholder="Enter NickName" name="nick"><span
 						id="nickcheck"></span>
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 				<label class="control-label col-sm-3" for="gender">Gender:</label>
 				<div class="col-sm-9">
 					<select class="form-control" id="gender" name="gender"
-						value="${map.GENDER eq m ? Male:Female }">
+						value="${map.gender eq m ? Male:Female }">
 						<option value="m">Male</option>
 						<option value="f">Female</option>
 					</select>
@@ -62,9 +62,9 @@
 				<label class="control-label col-sm-3" for="email">Email:</label>
 				<div class="col-sm-9">
 					<input type="email" class="form-control" id="email"
-						value="${map.EMAIL}">
+						value="${map.email}">
 					<c:choose>
-						<c:when test="${empty map.EMAIL_REG }">
+						<c:when test="${empty map.email_reg }">
 							<button type="button" id="emailReg">
 								<small>인증메일보내기</small>
 							</button>
@@ -81,7 +81,7 @@
 				<label class="control-label col-sm-3" for="phone">Phone-Number:</label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" id="phone"
-						value="${map.PHONE_NUM }" placeholder="Enter Phone Number"
+						value="${map.phone_num }" placeholder="Enter Phone Number"
 						name="phone">
 				</div>
 			</div>
@@ -89,13 +89,13 @@
 				<label class="control-label col-sm-3" for="addr">ADDRESS:</label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" id="addr"
-						value="${map.ADDRESS }" placeholder="Enter Address" name="addr">
+						value="${map.address }" placeholder="Enter Address" name="addr">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="birth">BIRTH:</label>
 				<div class="col-sm-9">
-					<fmt:formatDate var="date" value="${map.BIRTH }"
+					<fmt:formatDate var="date" value="${map.birth }"
 						pattern="yyyy-MM-dd" />
 					<input type="date" class="form-control" id="birth" value="${date }"
 						placeholder="Enter Birth" name="birth">
