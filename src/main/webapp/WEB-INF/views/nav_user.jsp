@@ -91,7 +91,6 @@
 	} 
 	cnt();
 	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
-	
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
 		if(obj.chat =="chatting"){

@@ -32,18 +32,11 @@
 				"msg" : $("#msg").val()
 			}
 		})
-<<<<<<< HEAD
-		var content = $("#content").html()+"<br/>"+ $("#msg").val();
-		 $("#content").html(content);
 		this.value = "";
 		
-=======
-		 this.value = "";
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	}
-
 	
-	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
+	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
 	cws.onmessage = function(e) {
 		var obj =JSON.parse(e.data);
 		var m = "<p><b>"+ obj.sender+"</b> : " +obj.msg +"</p>";
@@ -57,7 +50,7 @@
 	}
 	cws.onerror = function(e) {
 		if (window.confirm("채팅서버 접속 실패\n다시 접속하시겠습니까?")) {
-			cws = new WebSocket("ws://192.168.10.74/ws/chat");
+			cws = new WebSocket("ws://192.168.10.73/ws/chat");
 		}
 	}
 </script>

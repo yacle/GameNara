@@ -25,7 +25,10 @@ public class ChattingWSHandler extends TextWebSocketHandler {
 		users.put(id, session);
 	}
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	public void sendMessageToUser(String receiver, String msg, String sender) throws IOException {
 		String json = String.format("{\"receiver\":\"%s\", \"msg\":\"%s\" ,\"sender\":\"%s\"}", receiver,msg,sender);
 		if(users.containsKey(receiver)) {
