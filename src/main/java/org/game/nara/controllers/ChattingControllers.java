@@ -38,7 +38,6 @@ public class ChattingControllers {
 		String receiver = (String) map.get("receiver");
 		String sender = (String) map.get("sender");
 		String msg = (String) map.get("msg");
-		System.out.println("받는인간="+receiver+"/ 보낸인간="+sender+"/내용="+msg);
 		mav.addObject("section", "chatting/chatPage");
 		cws.sendMessageToUser(receiver, msg, sender);
 		return mav;
@@ -50,7 +49,6 @@ public class ChattingControllers {
 		String chat = (String) map.get("chat");
 		String receiver = (String) map.get("receiver");
 		String sender = (String) map.get("sender");
-		System.out.println(chat+" /=/"+receiver+"/=/"+sender);
 		try {
 			cws.confirmToUser(chat,receiver,sender);
 		} catch (IOException e) {
