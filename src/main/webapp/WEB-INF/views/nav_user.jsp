@@ -69,7 +69,7 @@
 	</ul>
 </div>
 <script>
-	var nws = new WebSocket("ws://192.168.10.74/ws/note");
+	var nws = new WebSocket("ws://192.168.10.73/ws/note");
 	var cnt = function(){
 		$.ajax({
 			"type":"post",
@@ -93,8 +93,8 @@
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
 		if(obj.chat =="chatting"){
-			if(window.confirm("1대1 채팅 신청이 왔습니다.")){
-				var url="/chatting/chatPage?id="+obj.id;
+			if(window.confirm(obj.sender+"님으로 부터 1대1 채팅 신청이 왔습니다.")){
+				var url="/chatting/chatPage?id="+obj.sender;
 				window.open(url, "", "width=400, height=550");
 			}
 			

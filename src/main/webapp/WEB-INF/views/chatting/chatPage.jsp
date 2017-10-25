@@ -10,8 +10,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <div align="center">
-<h2>1 : 1 Chat</h2>
-<h3>TO : [${id}]</h3>
+<h3>[${id}]님 과의 채팅방</h3>
 	<input type="hidden" id="receiver" name="receiver" value="${id}"/>
 	<input type="hidden" id="sender" name="sender" value="${auth_id}"/>
 	<small><span id="time" name="time"></span></small><br/>
@@ -33,17 +32,19 @@
 				"msg" : $("#msg").val()
 			}
 		})
+<<<<<<< HEAD
 		var content = $("#content").html()+"<br/>"+ $("#msg").val();
 		 $("#content").html(content);
 		this.value = "";
 		
+=======
+		 this.value = "";
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	}
 
 	
 	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	cws.onmessage = function(e) {
-		console.log("eeeeee=?"+e);
-		console.log("edataaa=?"+e.data);	// e.data    (WebSocketHandler 에서 전송하는 JSON형태의 string)
 		var obj =JSON.parse(e.data);
 		var m = "<p><b>"+ obj.sender+"</b> : " +obj.msg +"</p>";
 		document.getElementById("content").innerHTML += m;

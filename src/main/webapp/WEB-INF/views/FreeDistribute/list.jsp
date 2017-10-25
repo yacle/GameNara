@@ -17,6 +17,7 @@ th, td {
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
+	<input type="hidden" id="my" value="${auth_id }"/>
 	<table class="table table-striped" >
 		<thead>
 			<tr>
@@ -91,10 +92,17 @@ th, td {
 			"url":"/chatting/confirm",
 			"data":{
 				"chat":"chatting",
-				"id":obj
+				"receiver":obj,
+				"sender" : $("#my").val()
+			}
+		}).done(function(e){
+			console.log(e);
+			if(e=="no"){
+				window.alert("상대방이 접속중이 아닙니다.");
+			}else{
+				var url="/chatting/chatPage?id="+obj;
+				window.open(url, "", "width=400, height=550");
 			}
 		})
-		var url="/chatting/chatPage?id="+obj;
-		window.open(url, "chatPage", "width=400, height=550");
 	}
 </script>
