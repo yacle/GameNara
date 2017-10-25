@@ -96,7 +96,7 @@ td{
 										<button class="btn" type="button" id="dealComplate">거래완료</button>	
 									</c:when>
 									<c:otherwise>
-										<select class="btn" id="state" name="state" >
+										<select class="btn" id="state" name="state" />
 											<option value="1">거래중</option>
 										<c:if test="${auth_id eq map.WRITER }">
 											<option value="2">거래취소</option>

@@ -22,7 +22,7 @@ SqlSessionTemplate temp;
 	}
 	
 	public int idcheck(String id) {
-		return temp.selectOne("member.check", id);
+		return temp.selectOne("member.idcheck", id);
 	}
 	
 	public int nickcheck(String nick) {

@@ -68,9 +68,11 @@ SellDao sellDao;
 	
 	@PostMapping("/note_cnt")
 	@ResponseBody
-	public int note_cntHandle(@RequestParam Map map) {
+	public String note_cntHandle(@RequestParam Map map) {
 		int r = chatDao.receiv_cntHandle((String)map.get("id"));
-		return r;
+		String p = chatDao.readPoint((String)map.get("id"));
+		String json = String.format("{\"point\":%s,\"cnt\":%d}", p, r);
+		return json;
 	}
 	
 	@RequestMapping("/note_list")

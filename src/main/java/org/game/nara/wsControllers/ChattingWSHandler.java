@@ -23,23 +23,15 @@ public class ChattingWSHandler extends TextWebSocketHandler {
 		Map<String, Object> hs = session.getAttributes();
 		String id = (String)hs.get("auth_id");
 		users.put(id, session);
-		
 	}
 	
-<<<<<<< HEAD
-	public void sendMessageToUser(String id, String msg, String au) throws IOException {
-		String json = String.format("{\"receiver\":\"%s\", \"msg\":\"%s\" ,\"sender\":\"%s\"}", id,msg,au);
-		if(users.containsKey(id)) {
-			users.get(id).sendMessage(new TextMessage(json));
-=======
+
 	public void sendMessageToUser(String receiver, String msg, String sender) throws IOException {
 		String json = String.format("{\"receiver\":\"%s\", \"msg\":\"%s\" ,\"sender\":\"%s\"}", receiver,msg,sender);
 		if(users.containsKey(receiver)) {
 			users.get(receiver).sendMessage(new TextMessage(json));
 			users.get(sender).sendMessage(new TextMessage(json));
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		}
-		
 	}
 	
 	public String confirmToUser(String chat, String receiver, String sender) throws IOException {
