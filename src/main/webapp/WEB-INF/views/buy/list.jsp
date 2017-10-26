@@ -105,21 +105,26 @@ th, td {
 		var url="/chat/noteSend?id="+obj;
 		window.open(url, "noteSend", "width=400, height=550");
 	}
-<<<<<<< HEAD
+
 </script>
 <script>
 $("#check").click(function() {
 	$.ajax({
-		"type" : "post",
+		"type" : "POST",
 		"async" : false,
 		"url" : "/buy/checkpoint",
 		"data" : {
-			"id" : $("#receiver").val()
+			"id" : '${auth_id}'
+		}
+	}).done(function(obj){
+		if(obj=="ok"){
+			window.alert("포인트가 부족합니다!");
+			location.href="/notice"
+		}else{
+			location.href = "/buy/add";
 		}
 	})
-	location.reload();
 });
-=======
 
 	function chatting(obj){
 		$.ajax({
@@ -135,5 +140,5 @@ $("#check").click(function() {
 		var url="/chatting/chatPage?id="+obj;
 		window.open(url, "", "width=400, height=550");
 	}
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
+
 </script>

@@ -115,13 +115,15 @@ public class buycontroller {
 	}
 	
 	@RequestMapping("/checkpoint")
-	public ModelAndView buycheckpoint(@RequestParam String param) {
-		ModelAndView mav= new ModelAndView("temp");
-		System.out.println(param.toString());
-		Map point=buyDao.checkpoint(param);
+	@ResponseBody
+	public String buycheckpoint(MemberVO vo) {
+		MemberVO point=buyDao.checkpoint(vo);
 		System.out.println(point.toString());
-		mav.addObject("section", "buy/add");
-		return mav;
+		if(point.getPoint()<500) {
+			return "ok";
+		}else {
+			return "no";
+		}
 	}
 	
 	@RequestMapping(path = "/view/{num}")

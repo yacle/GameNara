@@ -4,10 +4,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%-- ---------------------------------------------------- --%>
 <style>
-input, textarea, button {
+input, button {
 	padding: 4px;
 	font-family: 맑은고딕;
 	font-size: 9pt;
+}
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
 }
 </style>
 <div align="center" style="line-height: 35px">
@@ -36,15 +44,21 @@ input, textarea, button {
 							pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" /> 
 							조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" />
 					</small>
-				</p>
 				<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${one.DETAIL }</pre>
 			</div>
 		</c:otherwise>
 		</c:choose>
 		</c:otherwise>
 	</c:choose>
-	<hr />
+	<hr/>
+	<%-- Reply input form --%>
+<div class="row" >
+	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
+	<div class="col-md-9"><textarea rows="1" id="content"></textarea></div>
+	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
+</div>
+<hr/>
 </div>
 <div align="left">
-	<button><a href="/become_member/list">게시판으로</button></a>
+	<a href="/become_member/list"><button>게시판으로</button></a>
 </div>

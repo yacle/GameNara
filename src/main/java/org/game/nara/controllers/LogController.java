@@ -35,6 +35,7 @@ MemberDao mDao;
 		if(vo.getId()!=null) {
 			session.setAttribute("auth_id", vo.getId());
 			session.setAttribute("auth_level", vo.getLev());
+			session.setAttribute("auth_point",vo.getPoint());
 			mav.addObject("section", "index");
 		}else {
 			mav.addObject("section", "log/login");
