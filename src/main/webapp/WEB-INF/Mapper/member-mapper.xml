@@ -4,11 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	<insert id="add" >
-<<<<<<< HEAD
-		insert into member values(#{id}, #{pwd}, #{email, jdbcType=VARCHAR}, 0, 0, 0)
-=======
 		insert into member values(#{id}, #{password}, #{email, jdbcType=VARCHAR}, 0, 0)
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	</insert> 
 	<insert id="add2" >
 		 insert into member_info(id, email_reg) values(#{id}, 'unauthorized') 

@@ -33,10 +33,10 @@
         </ul>
       </li>
     </ul>
-	<ul class="nav navbar-nav" style="margin-left:380px">
-	   <li><a href="/log/login"><b>login</b></a></li>
-	   <li><a href="/member/join"><b>join</b></a></li>
-	</ul>
+	 <ul class="nav navbar-nav navbar-right">
+      <li><a href="/member/join"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/log/login/success"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
   </div>
 
 

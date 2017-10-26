@@ -17,19 +17,9 @@ SqlSessionTemplate temp;
 		return temp.selectOne("member.check", vo);
 	}
 	
-<<<<<<< HEAD
-	public void logcnt(String id) {
-		temp.update("member.logcnt", id);
-	}
-	
-	public int addMember(Map map) {
-		int r = temp.insert("member.add", map);
-		r+= temp.insert("member.add2", map);
-=======
 	public int addMember(MemberVO vo) {
 		int r = temp.insert("member.add", vo);
 		r+= temp.insert("member.add2", vo);
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		return r;
 	}
 	

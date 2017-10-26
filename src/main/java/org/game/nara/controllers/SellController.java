@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,41 +66,46 @@ SimpleDateFormat sdf;
 	
 	@RequestMapping(value="/list/{category}")
 	public ModelAndView buyListHandle(@PathVariable(value="category")int category) throws SQLException {
-		List<Map> li = sellDao.sellList();
 		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section","sell/sellList");
+		mav.addObject("section","sell/listMap");
 		switch(category) {
 		
 		case 1:
-			mav.addObject("list", li);
-			mav.addObject("title","팝니다 전체 ");
-			mav.addObject("cnt", li.size());	
+			List ttl = sellDao.sellList();
+			int total = ttl.size();
+			mav.addObject("list", ttl);
+			mav.addObject("title","팝니다");
+			mav.addObject("cnt", total);	
 			break;
 			
 		case 2:
-			li = sellDao.sellConsole();
-			mav.addObject("list", li);
+			List cons = sellDao.sellConsole();
+			int con = cons.size();
+			mav.addObject("list", cons);
 			mav.addObject("title","콘솔팝니다");
-			mav.addObject("cnt", li.size());			
+			mav.addObject("cnt", con);	
 			break;
 		case 3:
-			li = sellDao.sellTitle();
-			mav.addObject("list", li);
+			List titl = sellDao.sellTitle();
+			int tit = titl.size();
+			mav.addObject("list", titl);
 			mav.addObject("title","게임타이틀 팝니다");
-			mav.addObject("cnt", li.size());			
+			mav.addObject("cnt", tit);		
 			break;
 	
 		case 4:
-			li = sellDao.sellAcce();
-			mav.addObject("list", li);
+			List acce = sellDao.sellAcce();
+			int acc = acce.size();
+			mav.addObject("list", acce);
 			mav.addObject("title","주변기기 팝니다");
-			mav.addObject("cnt", li.size());			
+			mav.addObject("cnt", acc);	
 			break;
-		case 0:
-			li = sellDao.sellOther();
-			mav.addObject("list", li);
+		case 5:
+			List othe = sellDao.sellOther();
+			int oth = othe.size();
+			mav.addObject("list", othe);
 			mav.addObject("title","기타팝니다");
-			mav.addObject("cnt", li.size());			
+			mav.addObject("cnt", oth);			
 			break;
 		}
 		return mav;
@@ -133,15 +139,14 @@ SimpleDateFormat sdf;
 		return  sellDao.sellUpdate(map);
 	}
 	
-	@RequestMapping("/state/{state}")
+	@RequestMapping("/state")
 	@ResponseBody
-	public String stateUpdate(@RequestParam Map map, @PathVariable String state) {
-		if(state.equals("state0")) {
-			sellDao.stateUpdate(map);
+	public String stateUpdate(@RequestParam Map map) {
+		int r = sellDao.stateUpdate(map);
+		if(r==1) {
+			return "success";
 		}else {
-			
+			return "fail";
 		}
-		
-		return "success";
 	}
 }

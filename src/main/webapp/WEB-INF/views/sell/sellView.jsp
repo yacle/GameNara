@@ -42,7 +42,9 @@ td{
 			<img src="/sellB_File/${map.PIC}" id="pf" alt="기본이미지" style="height: 300px; width: 300px;" />
 			</c:otherwise>	
 		</c:choose>
-			<input id="pic" class="update-group" type="file" name="pic" style="display: none" disabled/>
+			<form action="/sell/pic" method="post" id="form" enctype="multipart/form-data">
+				<input id="pic" class="update-group" type="file" name="pic" style="display: none" disabled/>
+			</form>
 		</div>
 		<div class="col-md-8">
 			<table>
@@ -131,11 +133,13 @@ $("#deal_cancle").click(function(){
 	$.ajax({
 		"type" : "post",
 		"async" : false,
-		"url" : "/sell/state0",
+		"url" : "/sell/state",
 		"data" : {
 			"no" : $("#no").html(),
 			"state" : 0
 		}
+	}).done(function(obj){
+		window.alert(obj);
 	})
 })
 // 거래완료
@@ -145,11 +149,13 @@ $("#deal_end").click(function(){
 	$.ajax({
 		"type" : "post",
 		"async" : false,
-		"url" : "/sell/state0",
+		"url" : "/sell/state",
 		"data" : {
 			"no" : $("#no").html(),
 			"state" : 2
 		}
+	}).done(function(obj){
+		window.alert(obj);
 	})
 })
 // 내용 수정버튼
