@@ -24,15 +24,6 @@
           <li><a href="#">ETC</a></li>
         </ul>
       </li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">EXCHANGE<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">TOTAL</a></li>
-          <li><a href="#">CONSOLE</a></li>
-          <li><a href="#">GAME TITLE</a></li>
-          <li><a href="#">ACCESSORY</a></li>
-          <li><a href="#">ETC</a></li>
-        </ul>
-      </li>
       <li><a href="#">FREE PRESENT</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">COMMUNITY<span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -42,7 +33,7 @@
         </ul>
       </li>
     </ul>
-	<ul class="nav navbar-nav" style="margin-left:260px">
+	<ul class="nav navbar-nav" style="margin-left:380px">
 	   <li><a href="/log/login"><b>login</b></a></li>
 	   <li><a href="/member/join"><b>join</b></a></li>
 	</ul>

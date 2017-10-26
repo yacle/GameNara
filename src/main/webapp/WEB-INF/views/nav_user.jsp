@@ -26,15 +26,6 @@
 				<li><a href="/buy/list/4">ACCESSORY</a></li>
 				<li><a href="/buy/list/0">ETC</a></li>
 			</ul></li>
-		<li class="dropdown"><a class="dropdown-toggle"
-			data-toggle="dropdown" href="#">EXCHANGE<span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<li><a href="/exchange/list/1">TOTAL</a></li>
-				<li><a href="/exchange/list/2">CONSOLE</a></li>
-				<li><a href="/exchange/list/3">GAME TITLE</a></li>
-				<li><a href="/exchange/list/4">ACCESSORY</a></li>
-				<li><a href="/exchange/list/0">ETC</a></li>
-			</ul></li>
 		<li><a href="/FreeDistribute/list">FREE PRESENT</a></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">COMMUNITY<span class="caret"></span></a>
@@ -44,7 +35,7 @@
 				<li><a href="/after/list">거래후기</a></li>
 			</ul>
 		</li>
-		<li style="margin-left: 100px"><a>[${auth_id} Level] : ${auth_level}</a></li>
+		<li style="margin-left: 250px"><a>[${auth_id} Level] : ${auth_level}</a></li>
 <%-- 	<form class="navbar-form navbar-left">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search">
@@ -60,7 +51,7 @@
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">MyWorld</a></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
 				<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">현재포인트 : </a><span id="point"></span></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">POINT : <span id="point"></span></a></li>
 			<li role="presentation" class="divider"></li>
 			<c:if test="${auth_level eq 9 }">
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/master/manage_member">ManagePage</a></li>
@@ -81,9 +72,8 @@
 			}
 		}).done(function(r){
 			var d = JSON.parse(r);
-			console.log(r+"/"+d.CNT+"/"+d.POINT)
-			$("#note_cnt").html(d.CNT);
-			$("#point").html(d.POINT);
+			$("#note_cnt").html(d.cnt);
+			$("#point").html(d.point);
 		})
 	}
 	nws.onmessage =function(e){

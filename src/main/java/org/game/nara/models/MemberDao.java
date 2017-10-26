@@ -15,6 +15,10 @@ SqlSessionTemplate temp;
 		return temp.selectOne("member.check", map);
 	}
 	
+	public void logcnt(String id) {
+		temp.update("member.logcnt", id);
+	}
+	
 	public int addMember(Map map) {
 		int r = temp.insert("member.add", map);
 		r+= temp.insert("member.add2", map);

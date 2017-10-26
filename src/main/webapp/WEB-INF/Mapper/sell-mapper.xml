@@ -20,7 +20,7 @@
 		update sell set title=#{title}, price=#{price}, contact=#{contact, jdbcType=VARCHAR}, deal_method=#{deal_method, jdbcType=VARCHAR}, detail=#{detail}, category=#{category}, pic=#{pic, jdbcType=VARCHAR} where no =#{no}
 	</update>
 	<update id="state">
-		update sell set state='ongoing' where no =#{no}
+		update sell set state=#{state} where no =#{no}
 	</update>
 	<select id="sellList" resultType="java.util.HashMap">
 		select * from sell

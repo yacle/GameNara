@@ -30,8 +30,8 @@ textarea {
 		<h3>${one.TITLE }</h3>
 		<div class="row">
 	    	<div class="col-sm-10">
-	    		<small>작성자 : ${one.WRITER } | 작성일 : <fmt:formatDate
-					pattern="MM.dd.yyyy HH:mm:ss" value="${one.ADD_DATE }" /> 
+	    		<small>작성자 : ${one.WRITER } | 작성일 : 
+	    			<fmt:formatDate pattern="MM.dd.yyyy HH:mm:ss" value="${one.ADD_DATE }" /> 
 				</small>
 			</div>
 		    <div class="col-sm-2">

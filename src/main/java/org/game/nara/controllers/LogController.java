@@ -30,6 +30,7 @@ MemberDao mDao;
 		ModelAndView mav = new ModelAndView("temp");
 		if(mDao.check(map)!=null) {
 			Map m = mDao.check(map);
+			mDao.logcnt((String)map.get("id"));
 			int r = m.size();
 			session.setAttribute("auth_id", map.get("id"));
 			session.setAttribute("auth_level", m.get("LEV"));

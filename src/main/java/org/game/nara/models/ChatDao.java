@@ -35,7 +35,7 @@ SqlSessionTemplate temp;
 		return temp.update("chat.send_del", map);
 	}
 	
-	public String readPoint(String id) {
+	public int readPoint(String id) {
 		return temp.selectOne("chat.receiv_pnt", id);
 	}
 }

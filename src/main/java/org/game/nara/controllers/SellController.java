@@ -56,7 +56,6 @@ SimpleDateFormat sdf;
 			pic.transferTo(up);
 			map.put("pic", name);
 		}
-		System.out.println(map.toString());
 		int r = sellDao.sellAdd(map);
 		if (r!=0) {
 			sellDao.subtractPoint(id);
@@ -132,5 +131,17 @@ SimpleDateFormat sdf;
 			map.put("pic", name);
 		}
 		return  sellDao.sellUpdate(map);
+	}
+	
+	@RequestMapping("/state/{state}")
+	@ResponseBody
+	public String stateUpdate(@RequestParam Map map, @PathVariable String state) {
+		if(state.equals("state0")) {
+			sellDao.stateUpdate(map);
+		}else {
+			
+		}
+		
+		return "success";
 	}
 }

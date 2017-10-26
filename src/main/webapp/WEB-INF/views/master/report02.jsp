@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <ul class="nav nav-tabs">
-    <li><a href="/master/report?id=${auth_id }">Menu 1</a></li>
+	<li><a href="/master/manage_member">Total</a></li>
+    <li><a href="/master/report?id=${map.ID}">Menu 1</a></li>
     <li><a id="m3">Menu 2</a></li>
+    <li><a style="color: black;">[회원ID : ${map.ID}]</a></li>
   </ul>
 
 
@@ -15,12 +16,11 @@ table {
 th, td { 
 	border:1px solid black; 
 	text-align: center;
-	font-size: 20px;
+	font-size: 18px;
 	padding: 5px;
 }
 </style>
 <div align="center">
-	<h2>로그인 횟수, 게시글 작성수, 댓글 작성수</h2>
 <table width="100%">
 	<thead>
 		<tr>
@@ -38,12 +38,12 @@ th, td {
 	</thead>
 	<tbody>
 		<tr>
-			<td></td>
+			<td>${map.sell}</td>
 			<td>${map.buy}</td>
 			<td>${map.free_distribute}</td>
 			<td>${map.freeboard}</td>
 			<td>${map.after}</td>
-			<td></td>
+			<td>${map.logcnt}</td>
 			<td></td>
 		</tr>
 	</tbody>

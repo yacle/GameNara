@@ -37,6 +37,7 @@ MasterDao masterDao;
 	public ModelAndView report02Handel(@RequestParam String id) {
 		ModelAndView mav = new ModelAndView("temp");
 		Map map = masterDao.report(id);
+		map.put("ID", id);
 		mav.addObject("section", "master/report02");
 		mav.addObject("map", map);
 		return mav;
