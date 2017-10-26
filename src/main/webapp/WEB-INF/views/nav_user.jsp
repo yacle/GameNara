@@ -60,6 +60,7 @@
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">MyWorld</a></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
 				<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">현재포인트 : </a><span id="point"></span></li>
 			<li role="presentation" class="divider"></li>
 			<c:if test="${auth_level eq 9 }">
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/master/manage_member">ManagePage</a></li>
@@ -69,7 +70,7 @@
 	</ul>
 </div>
 <script>
-	var nws = new WebSocket("ws://192.168.10.73/ws/note");
+	var nws = new WebSocket("ws://192.168.10.74/ws/note");
 	var cnt = function(){
 		$.ajax({
 			"type":"post",
@@ -79,18 +80,24 @@
 				"id" : $("#tool").html()
 			}
 		}).done(function(r){
-			$("#note_cnt").html(r);
+			var d = JSON.parse(r);
+			console.log(r+"/"+d.CNT+"/"+d.POINT)
+			$("#note_cnt").html(d.CNT);
+			$("#point").html(d.POINT);
 		})
 	}
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	} 
+<<<<<<< HEAD
 	
 </script>
 
 <script>
+=======
+	cnt();
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
-	
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
 		if(obj.chat =="chatting"){

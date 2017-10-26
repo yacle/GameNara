@@ -26,6 +26,9 @@
 	<select id="receiv_cnt" resultType="java.lang.Integer">
 		select count(*) as cnt from note where receiver=#{id} and read='n'
 	</select>
+	<select id="receiv_pnt" resultType="java.lang.String">
+		select point from member where id=#{id}
+	</select>
 
 	<update id="receive_del">
 		update note set read='y' where receiver=#{id} and no in 
