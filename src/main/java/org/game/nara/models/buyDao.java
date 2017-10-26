@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import org.game.nara.controllers.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -56,6 +56,10 @@ public class buyDao {
 
 	public int delete(String num) {
 		return template.delete("buy.delete",num);
+	}
+	
+	public MemberVO checkpoint(MemberVO vo) {
+		return template.selectOne("buy.checkpoint",vo);
 	}
 	
 }

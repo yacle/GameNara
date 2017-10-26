@@ -16,7 +16,7 @@
 		</div>
 		<div class="form-group">
 			<label for="pwd">Password:</label>
-			<input type="password" class="form-control" name="pwd" id="pwd" placeholder="Enter password" style="width:50%">
+			<input type="password" class="form-control" name="password" id="password" placeholder="Enter password" style="width:50%">
 		</div>
 		<div class="checkbox">
 			<label><input type="checkbox"> Remember me</label>

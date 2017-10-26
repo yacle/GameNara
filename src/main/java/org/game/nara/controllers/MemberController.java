@@ -36,6 +36,7 @@ public class MemberController {
 	SimpleDateFormat sdf;
 	@Autowired
 	JavaMailSender sender;
+
 	
 	@RequestMapping("/join")
 	public ModelAndView joinHandle() {
@@ -47,7 +48,12 @@ public class MemberController {
 	@PostMapping("/join")
 	public ModelAndView joinPostHandle(@RequestParam Map map) {
 		ModelAndView mav = new ModelAndView("temp");
-		int r = mDao.addMember(map);
+		MemberVO vo=new MemberVO();
+		vo.setId((String)map.get("id"));
+		vo.setPassword((String)map.get("password"));
+		vo.setEmail((String)map.get("email"));
+		int r = mDao.addMember(vo);
+		System.out.println(vo.toString());
 		if(r!=0) {
 			mav.addObject("section", "log/login");
 		}else {
@@ -72,18 +78,20 @@ public class MemberController {
 	}
 	
 	@GetMapping("/info")
-	public ModelAndView profileGetHandle(HttpSession session) {
+	public ModelAndView profileGetHandle(HttpSession session, MemberVO vo) {
 		ModelAndView mav = new ModelAndView("temp");
 		String id = (String)session.getAttribute("auth_id");
-		Map map = mDao.readInfo(id);
+		vo = mDao.readInfo(vo);
+		System.out.println(vo.toString());
 		mav.addObject("section", "member/info");
-		mav.addObject("map", map);
+		mav.addObject("map",vo);
 		return mav;
 	}
-	
+
+
 	@PostMapping("/info")
 	@ResponseBody
-	public String infoPostHandle(@RequestParam Map map) {
+	public String infoPostHandle(@RequestParam Map map, HttpSession session) {
 		int r = mDao.addInfo(map);
 		if(r!=0) {
 			return "save complate";

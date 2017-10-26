@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- ---------------------------------------------------- --%>
 <style>
 input, button {
 	padding: 4px;
@@ -59,18 +58,16 @@ textarea {
 						</p>
 						<textarea row="5" id="comment" disabled>${one.DETAIL }</textarea>
 					</div>
-					<div align="center">
-						<div style="width: 80%;" align="left">
-							<p>
-								작성자 : <span id="writer">${auth_id }</span>
-							</p>
-							<textarea style="width: 100%" rows="3" id="content"
-								placeholder="남길내용"></textarea>
-							<br />
-							<button type="button" id="send" style="width: 100%;">댓글남기기</button>
-						</div>
-					</div>
-					<hr />
+					<hr/>
+<%-- Reply input form --%>
+<div class="row" >
+	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
+	<div class="col-md-9"><textarea rows="1" id="content"></textarea></div>
+	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
+</div>
+<hr/>
+<!-- Reply List View -->
+			
 					<div align="left">
 						<c:if test="${auth_id eq one.BUY_ID }">
 							<div style="margin-right: 100px" align="right">				

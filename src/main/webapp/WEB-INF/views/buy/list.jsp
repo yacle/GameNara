@@ -95,23 +95,9 @@ th, td {
 			</c:forEach>
 		</tbody>
 	</table>
-	<c:choose>
-		<c:when test="${empty auth_id }">
 			<p align="right" style="margin-right: 30px;">
-				<a href="/log/login"><button type="button" style="padding: 5px;">글작성</button></a>
+			<button type="button" style="padding: 5px;" id="check">글작성</button></a>
 			</p>
-		</c:when>
-		<c:when test="${auth_level >= 3 }">
-			<p align="right" style="margin-right: 30px;">
-				<a href="/buy/add"><button type="button" style="padding: 5px;">글작성</button></a>
-			</p>
-		</c:when>
-		<c:otherwise>
-			<p align="right" style="margin-right: 30px;">
-				<a href="/notice"><button type="button" style="padding: 5px;">글작성</button></a>
-			</p>
-		</c:otherwise>
-	</c:choose>
 </div>
 
 <script>
@@ -119,6 +105,26 @@ th, td {
 		var url="/chat/noteSend?id="+obj;
 		window.open(url, "noteSend", "width=400, height=550");
 	}
+
+</script>
+<script>
+$("#check").click(function() {
+	$.ajax({
+		"type" : "POST",
+		"async" : false,
+		"url" : "/buy/checkpoint",
+		"data" : {
+			"id" : '${auth_id}'
+		}
+	}).done(function(obj){
+		if(obj=="ok"){
+			window.alert("포인트가 부족합니다!");
+			location.href="/notice"
+		}else{
+			location.href = "/buy/add";
+		}
+	})
+});
 
 	function chatting(obj){
 		$.ajax({
@@ -134,4 +140,5 @@ th, td {
 		var url="/chatting/chatPage?id="+obj;
 		window.open(url, "", "width=400, height=550");
 	}
+
 </script>

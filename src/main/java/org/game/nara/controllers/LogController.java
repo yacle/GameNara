@@ -26,14 +26,25 @@ MemberDao mDao;
 	}
 	
 	@PostMapping("/login")
-	public ModelAndView loginPostHandle(@RequestParam Map map, HttpSession session) {
+	public ModelAndView loginPostHandle(MemberVO vo, HttpSession session) {
+		vo = mDao.check(vo);
+		System.out.println(vo.toString());
+
 		ModelAndView mav = new ModelAndView("temp");
+<<<<<<< HEAD
 		if(mDao.check(map)!=null) {
 			Map m = mDao.check(map);
 			mDao.logcnt((String)map.get("id"));
 			int r = m.size();
 			session.setAttribute("auth_id", map.get("id"));
 			session.setAttribute("auth_level", m.get("LEV"));
+=======
+
+		if(vo.getId()!=null) {
+			session.setAttribute("auth_id", vo.getId());
+			session.setAttribute("auth_level", vo.getLev());
+			session.setAttribute("auth_point",vo.getPoint());
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 			mav.addObject("section", "index");
 		}else {
 			mav.addObject("section", "log/login");

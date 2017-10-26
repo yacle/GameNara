@@ -2,7 +2,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
- 
+ <style>
+input, button {
+	padding: 4px;
+	font-family: 맑은고딕;
+	font-size: 9pt;
+}
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+</style>
 <div align="center" style="line-height: 35px">
 	<h2>무료나눔게시판</h2>
 	<div align="left">
@@ -57,6 +71,14 @@
 		</c:otherwise>
 	</c:choose>
 	<hr />
+	<%-- Reply input form --%>
+<div class="row" >
+	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
+	<div class="col-md-9"><textarea rows="1" id="content"></textarea></div>
+	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
+</div>
+<hr/>
+<!-- Reply List View -->
 </div>
 <script>
 $("#end").click(function(){

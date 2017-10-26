@@ -1,7 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
- 
+ <style>
+input, button {
+	padding: 4px;
+	font-family: 맑은고딕;
+	font-size: 9pt;
+}
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+</style>
 <div align="center" style="line-height: 35px">
 	<h2>자유게시판</h2>
 	<div align="left">
@@ -54,6 +68,7 @@
 		<button type="button" id="send" style="width: 100%;">댓글남기기</button>
 	</div>
 </div>
+
 <script>	
 	$("#send").click(function() {
 		$.ajax({
@@ -83,6 +98,7 @@
 			<div class="col-md-8">작성날짜 : <fmt:formatDate pattern="yyyy-MM-dd" value="${i.RE_DATE }" /></div>
 			<div class="col-md-2"></div>
 		</div>
+		
 		<div class="row">
 			<div class="col-md-10" align="left">
 				<p id="${i.CONTENT}" style="display: block">${i.CONTENT } 
@@ -114,8 +130,6 @@
 
 
 <span id="re"></span>
-
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 <script>
 	var del = function(obj) {
 		if(window.confirm("삭제하시겠습니까?")){
@@ -130,7 +144,6 @@
 			window.location.reload();
 		}
 	}
-<<<<<<< HEAD
 	var update = function(a, b){
 		var m = document.getElementById(a);
 		m.style.display="inline";
@@ -153,7 +166,3 @@
 	
 	
 </script>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git

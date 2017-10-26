@@ -2,19 +2,22 @@ package org.game.nara.models;
 
 import java.util.*;
 
+import org.game.nara.controllers.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MemberDao {
+public class MemberDao extends MemberVO{
 @Autowired
 SqlSessionTemplate temp;
 
-	public Map check(Map map) {
-		return temp.selectOne("member.check", map);
+
+	public MemberVO check(MemberVO vo) {
+		return temp.selectOne("member.check", vo);
 	}
 	
+<<<<<<< HEAD
 	public void logcnt(String id) {
 		temp.update("member.logcnt", id);
 	}
@@ -22,6 +25,11 @@ SqlSessionTemplate temp;
 	public int addMember(Map map) {
 		int r = temp.insert("member.add", map);
 		r+= temp.insert("member.add2", map);
+=======
+	public int addMember(MemberVO vo) {
+		int r = temp.insert("member.add", vo);
+		r+= temp.insert("member.add2", vo);
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		return r;
 	}
 	
@@ -33,8 +41,8 @@ SqlSessionTemplate temp;
 		return temp.selectOne("member.nickcheck", nick);
 	}
 	
-	public Map readInfo(String id) {
-		return temp.selectOne("member.readInfo", id);
+	public MemberVO readInfo(MemberVO vo) {
+		return temp.selectOne("member.readInfo", vo);
 	}
 	
 	public int addInfo(Map map) {

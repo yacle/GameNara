@@ -35,13 +35,18 @@
 				<li><a href="/after/list">거래후기</a></li>
 			</ul>
 		</li>
+<<<<<<< HEAD
 		<li style="margin-left: 250px"><a>[${auth_id} Level] : ${auth_level}</a></li>
 <%-- 	<form class="navbar-form navbar-left">
+=======
+		<li style="margin-left: 100px"><a>[${auth_id} Level] : ${auth_level}</a></li>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
+ 		<form class="navbar-form navbar-left" action="/search" method="post">
+				<input type="text" name="search" class="form-control" placeholder="Search" >
+			<button type="submit" class="btn btn-default" id="submit">Submit</button>
+		</form>	
 			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
-		</form>	--%>
 		<button class="btn btn-default dropdown-toggle-right" type="button" id="menu1" data-toggle="dropdown" style="margin-top: 9px;">
 			<span data-toggle="tooltip" id="tool" onclick="javascript:cnt()">${auth_id}</span>
 			<span class="caret"></span>
@@ -79,7 +84,14 @@
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	} 
+<<<<<<< HEAD
+	
+</script>
+
+<script>
+=======
 	cnt();
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
@@ -90,6 +102,16 @@
 			}
 			
 		}
-		
 	} 
+</script>
+<script>
+$("#submit").click(function() {
+	$.ajax({
+		"type" : "post",
+		"async" : false,
+		"url" : "/search",
+		"data" : {
+			"search" : $("#search").val()
+		}
+	})
 </script>
