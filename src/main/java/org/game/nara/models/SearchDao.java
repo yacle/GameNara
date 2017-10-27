@@ -20,6 +20,7 @@ public Map buysearch(String search) {
 	System.out.println(s.toString());
 	List<Map> f=template.selectList("search.freeboardsearch", search);
 	List<Map> b=template.selectList("search.buysearch",search);
+	System.out.println(b.toString());
 	List<Map> a=template.selectList("search.aftersearch", search);
 	map.put("sell", s);
 	map.put("free", f);
