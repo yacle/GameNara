@@ -29,7 +29,7 @@ th, td {
 <div>
 <h3>자유게시판 게시판</h3>
 <c:forEach var="obj" items="${total.free }">
-		<a href="/freeboard/view/${obj.NO}">${obj.TITLE }</a><br/>
+		<a href="/freeBoard/view/${obj.NO}">${obj.TITLE }</a><br/>
 </c:forEach>
 </div>
 <div>
