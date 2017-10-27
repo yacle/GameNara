@@ -8,23 +8,26 @@
 	</select>
 	
 	<select id="memberOne" resultType="java.util.HashMap">
-		select * from (select m1.email, m2.* from member m1 join member_info m2 on m1.id=m2.id) where id=#{id}
+		select * from (select m1.email, m1.lev, m2.* from member m1 join member_info m2 on m1.id=m2.id) where id=#{id}
 	</select>
 	
-	<select id="report01" resultType="int">
+	<select id="aftercnt" resultType="int">
 		select count(*) from after where writer=#{id}
 	</select>
-	<select id="report02" resultType="int">
+	<select id="freediscnt" resultType="int">
 		select count(*) from free_distribute where writer=#{id}
 	</select>
-	<select id="report03" resultType="int">
+	<select id="buycnt" resultType="int">
 		select count(*) from buy where buy_id=#{id}
 	</select>
-	<select id="report04" resultType="int">
+	<select id="freecnt" resultType="int">
 		select count(*) from freeboard where writer=#{id}
 	</select>
-	<select id="report05" resultType="int">
+	<select id="sellcnt" resultType="int">
 		select count(*) from sell where writer=#{id}
+	</select>
+	<select id="logcnt" resultType="int">
+		select log_cnt from member where id=#{id}
 	</select>
 	
 </mapper>

@@ -7,7 +7,6 @@
 		<a class="navbar-brand" href="/index">GAMENARA</a>
 	</div>
 	<ul class="nav navbar-nav">
-		<li class="active"><a href="/notice">NOTICE</a></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">SELL<span class="caret"></span></a>
 			<ul class="dropdown-menu">
@@ -15,7 +14,7 @@
 				<li><a href="/sell/list/2">CONSOLE</a></li>
 				<li><a href="/sell/list/3">GAME TITLE</a></li>
 				<li><a href="/sell/list/4">ACCESSORY</a></li>
-				<li><a href="/sell/list/0">ETC</a></li>
+				<li><a href="/sell/list/5">ETC</a></li>
 			</ul></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">BUY<span class="caret"></span></a>
@@ -26,15 +25,6 @@
 				<li><a href="/buy/list/4">ACCESSORY</a></li>
 				<li><a href="/buy/list/0">ETC</a></li>
 			</ul></li>
-		<li class="dropdown"><a class="dropdown-toggle"
-			data-toggle="dropdown" href="#">EXCHANGE<span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<li><a href="/exchange/list/1">TOTAL</a></li>
-				<li><a href="/exchange/list/2">CONSOLE</a></li>
-				<li><a href="/exchange/list/3">GAME TITLE</a></li>
-				<li><a href="/exchange/list/4">ACCESSORY</a></li>
-				<li><a href="/exchange/list/0">ETC</a></li>
-			</ul></li>
 		<li><a href="/FreeDistribute/list">FREE PRESENT</a></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">COMMUNITY<span class="caret"></span></a>
@@ -44,23 +34,25 @@
 				<li><a href="/after/list">거래후기</a></li>
 			</ul>
 		</li>
-		<li style="margin-left: 100px"><a>[${auth_id} Level] : ${auth_level}</a></li>
-			<div class="form-group">
- 		<form class="navbar-form navbar-left" action="/search" method="post">
+		<li><a>[${auth_id} Level] : ${auth_level}</a></li>
+		<li><div class="form-group">
+	 		<form class="navbar-form navbar-left" action="/search" method="post">
 				<input type="text" name="search" class="form-control" placeholder="Search" >
-			<button type="submit" class="btn btn-default" id="submit">Submit</button>
-		</form>	
-			</div>
-		<button class="btn btn-default dropdown-toggle-right" type="button" id="menu1" data-toggle="dropdown" style="margin-top: 9px;">
-			<span data-toggle="tooltip" id="tool" onclick="javascript:cnt()">${auth_id}</span>
-			<span class="caret"></span>
-		</button>
+				<button type="submit" class="btn btn-default btn-sm" id="submit">Submit</button>
+			</form>	
+		</div></li>
+		<ul class="nav navbar-nav navbar-right">
+			<button class="btn btn-default dropdown-toggle-right btn-sm" type="button" id="menu1" data-toggle="dropdown" style="margin-top: 10px" >
+				<span data-toggle="tooltip" id="tool" onclick="javascript:cnt()">${auth_id}</span>
+				<span class="caret"></span>
+			</button>
+		</ul>
 		<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/member/info?id=${auth_id}">PROFILE</a></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">MyWorld</a></li>
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
 				<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">현재포인트 : </a><span id="point"></span></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">POINT : <span id="point"></span></a></li>
 			<li role="presentation" class="divider"></li>
 			<c:if test="${auth_level eq 9 }">
 			<li role="presentation"><a role="menuitem" tabindex="-1" href="/master/manage_member">ManagePage</a></li>
@@ -81,21 +73,27 @@
 			}
 		}).done(function(r){
 			var d = JSON.parse(r);
-			console.log(r+"/"+d.CNT+"/"+d.POINT)
-			$("#note_cnt").html(d.CNT);
-			$("#point").html(d.POINT);
+			$("#note_cnt").html(d.cnt);
+			$("#point").html(d.point);
 		})
 	}
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
+<<<<<<< HEAD
 	} 
 	
 </script>
 
 <script>
 
+=======
+	} 
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	cnt();
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
@@ -104,7 +102,19 @@
 				var url="/chatting/chatPage?id="+obj.sender;
 				window.open(url, "", "width=400, height=550");
 			}
-			
 		}
 	} 
+<<<<<<< HEAD
+=======
+$("#submit").click(function() {
+	$.ajax({
+		"type" : "post",
+		"async" : false,
+		"url" : "/search",
+		"data" : {
+			"search" : $("#search").val()
+		}
+	})
+})
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 </script>

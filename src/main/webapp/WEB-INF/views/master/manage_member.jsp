@@ -19,13 +19,8 @@
         <td><a href="/master/report?id=${i.ID}">${i.ID }(${i.NAME })</a></td>
         <td>${i.GENDER }</td>
         <td>${i.PHONE_NUM }</td>
-        <td>${i.EMAIL }(
-        <c:choose>
-        	<c:when test="${i.EMAIL_REG ne null }">OK</c:when>
-	        <c:otherwise>NO</c:otherwise>
-	    </c:choose>
-        )</td>
-        <td><input type="text" id="level" size="1" value="${i.LEV }"></td>
+        <td>${i.EMAIL }(${i.EMAIL_REG})</td>
+        <td>${i.LEV }</td>
         <td>${i.ADDRESS }</td>
       </tr>
      </c:forEach>

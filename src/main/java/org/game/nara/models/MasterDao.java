@@ -21,15 +21,19 @@ SqlSessionTemplate temp;
 	
 	public Map report(String id) {
 		Map map = new HashMap();
-		int r01 = temp.selectOne("master.report01", id);
+		
+		int r01 = temp.selectOne("master.aftercnt", id);
+		int r02 = temp.selectOne("master.freediscnt", id);
+		int r03 = temp.selectOne("master.buycnt", id);
+		int r04 = temp.selectOne("master.freecnt", id);
+		int r05 = temp.selectOne("master.sellcnt", id);
+		int r06 = temp.selectOne("master.logcnt", id);
 		map.put("after", r01);
-		int r02 = temp.selectOne("master.report02", id);
 		map.put("free_distribute", r02);
-		int r03 = temp.selectOne("master.report03", id);
 		map.put("buy", r03);
-		int r04 = temp.selectOne("master.report04", id);
 		map.put("freeboard", r04);
-		System.out.println(map.toString());
+		map.put("sell", r05);
+		map.put("logcnt", r06);
 		return map;
 	}
 }

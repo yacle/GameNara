@@ -42,7 +42,9 @@ td{
 			<img src="/sellB_File/${map.PIC}" id="pf" alt="기본이미지" style="height: 300px; width: 300px;" />
 			</c:otherwise>	
 		</c:choose>
-			<input id="pic" class="update-group" type="file" name="pic" style="display: none" disabled/>
+			<form action="/sell/pic" method="post" id="form" enctype="multipart/form-data">
+				<input id="pic" class="update-group" type="file" name="pic" style="display: none" disabled/>
+			</form>
 		</div>
 		<div class="col-md-8">
 			<table>
@@ -66,7 +68,7 @@ td{
 					<tr>
 						<td>카테고리</td>
 						<td>
-							<select class="update-group" name="category" value="${map.CATEGORY}" style="padding: 5px;" disabled>
+							<select class="update-group" name="category" value="${map.CATEGORY}" style="padding: 5px; border:none" disabled>
 								<option value="1">콘솔기기</option>
 								<option value="2">게임타이틀</option>
 								<option value="3">주변기기</option>
@@ -92,19 +94,18 @@ td{
 									<c:when test="${map.STATE==0 }">
 										<button class="btn dropdown-toggle" type="button" id="deal">구매신청</button>
 									</c:when>
-									<c:when test="${map.STATE==2 }">
-										<button class="btn" type="button" id="dealComplate">거래완료</button>	
+									<c:when test="${map.STATE==1 }">
+										<b id="state_02">거래중</b>
+										<c:if test="${auth_id eq map.WRITER }">
+											<button type="button" class="btn btn-primary" id="deal_cancle"><small>거래취소</small></button>
+											<button type="button" class="btn btn-primary" id="deal_end"><small>거래완료</small></button>
+										</c:if>
 									</c:when>
 									<c:otherwise>
-										<select class="btn" id="state" name="state" />
-											<option value="1">거래중</option>
-										<c:if test="${auth_id eq map.WRITER }">
-											<option value="2">거래취소</option>
-											<option value="3">거래완료</option>
-										</c:if>
+										<b>거래완료</b>	
 									</c:otherwise>
 								</c:choose>
-								<span id="time"></span>
+							<small><span id="time"></span></small>
 							</div>
 						</td>
 					</tr>
@@ -125,6 +126,39 @@ td{
 </form>
 <hr/>
 <script>
+// 거래취소
+$("#deal_cancle").click(function(){
+	$("#deal_cancle, #deal_end").hide();
+	$("#state_02").html("취소신청중");
+	$.ajax({
+		"type" : "post",
+		"async" : false,
+		"url" : "/sell/state",
+		"data" : {
+			"no" : $("#no").html(),
+			"state" : 0
+		}
+	}).done(function(obj){
+		window.alert(obj);
+	})
+})
+// 거래완료
+$("#deal_end").click(function(){
+	$("#deal_cancle, #deal_end").hide();
+	$("#state_02").html("거래완료");
+	$.ajax({
+		"type" : "post",
+		"async" : false,
+		"url" : "/sell/state",
+		"data" : {
+			"no" : $("#no").html(),
+			"state" : 2
+		}
+	}).done(function(obj){
+		window.alert(obj);
+	})
+})
+// 내용 수정버튼
 $("#modify").click(function(){
 	var a = document.getElementsByClassName("update-group");
 	for(var i=0; i<a.length; i++){
@@ -133,6 +167,7 @@ $("#modify").click(function(){
 	$("#modify, #delete").hide();
 	$("#update, #cancle").show();
 })
+// 수정한 내용 저장하기
 $("#update").click(function(){
 	$.ajax({
 		"type" : "post",
@@ -158,6 +193,7 @@ $("#update").click(function(){
 		$("#update, #cancle").hide();
 	});
 })
+// 수정 취소하기
 $("#cancle").click(function(){
 	var a = document.getElementsByClassName("update-group");
 	for(var i=0; i<a.length; i++){
@@ -166,7 +202,7 @@ $("#cancle").click(function(){
 	$("#modify, #delete").show();
 	$("#update, #cancle").hide();
 })
-
+// 사진 선택
 $("#pf").click(function(){
 	$("#pic").click();
 })
@@ -177,25 +213,27 @@ $("#pic").change(function(){
 	}
 	reader.readAsDataURL(this.files[0]);
 })
+// 쪽지보내기
 function openchat(obj){
 	var url="/chat/noteSend?id="+obj;
 	window.open(url, "noteSend", "width=400, height=550");
 }
+// 구매신청
 $("#deal").click(function(){
-	$("#deal").hide();
-	$("#state").show();
+	$("#deal").html("거래신청중");
 	var location = document.location.href;
 	$.ajax({
 		"type":"post",
 		"async":true,
-		"url":"/chat/deal/"+$("#no").html(),
+		"url":"/chat/deal/",
 		"data":{
 			"receiver":$("#receiver").html(),
 			"sender":$("#id").val(),
 			"content": "<a href="+location+">"+$("#id").val()+"님으로부터 거래의뢰가 들어왔읍니다.</a>",
-			"time":$("#time").html()
+			"time":$("#time").html(),
+			"no": $("#no").html(),
+			"state": 1
 		}
-	
 	}).done(function(obj){
 		window.alert("[거래신청 쪽지를 보냈읍니다.]");
 		
@@ -226,7 +264,7 @@ function num(a){
 		case 6: day="토"; break;	
 		}
 		var t = y+"년 "+(mon+1)+"월 "+date+"일 "+day+"요일 "+h+":"+m+":"+s;
-		document.getElementById("time").innerHTML =t;
+		document.getElementById("time").innerHTML=t;
 	}
 	setInterval(printTime, 1000);
 </script>

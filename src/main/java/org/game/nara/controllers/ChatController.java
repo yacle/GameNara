@@ -53,12 +53,12 @@ SellDao sellDao;
 		}
 	}
 	
-	@PostMapping("/deal/{no}")
+	@PostMapping("/deal")
 	@ResponseBody
-	public String dealSendHandle(@RequestParam Map map, @PathVariable String no) {
+	public String dealSendHandle(@RequestParam Map map) {
 		int r = chatDao.noteAddHandle(map);
 		nws.sendMessageToUser((String)map.get("receiver"), (String)map.get("content"));
-		sellDao.stateUpdate(no);
+		sellDao.stateUpdate(map);
 		if(r!=0) {
 			return "send complate";
 		}else {
@@ -70,8 +70,8 @@ SellDao sellDao;
 	@ResponseBody
 	public String note_cntHandle(@RequestParam Map map) {
 		int r = chatDao.receiv_cntHandle((String)map.get("id"));
-		String p = chatDao.readPoint((String)map.get("id"));
-		String json = String.format("{\"point\":%s,\"cnt\":%d}", p, r);
+		int p = chatDao.readPoint((String)map.get("id"));
+		String json = String.format("{\"point\":%d,\"cnt\":%d}", p, r);
 		return json;
 	}
 	
