@@ -42,6 +42,7 @@ textarea {
 			<c:when test="${one.ATTACH ne null}">
 				<textarea rows="5" id="comment" disabled>${one.COMMENTS }</textarea>
 				<img id="pf" class="img-responsive" src="/afterB_File/${one.ATTACH}" />
+				
 			</c:when>
 			<c:otherwise>
 				<textarea rows="5" id="comment" disabled>${one.COMMENTS }</textarea>

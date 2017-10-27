@@ -41,24 +41,26 @@
 				<button type="submit" class="btn btn-default btn-sm" id="submit">Submit</button>
 			</form>	
 		</div></li>
-		<ul class="nav navbar-nav navbar-right">
-			<button class="btn btn-default dropdown-toggle-right btn-sm" type="button" id="menu1" data-toggle="dropdown" style="margin-top: 10px" >
-				<span data-toggle="tooltip" id="tool" onclick="javascript:cnt()">${auth_id}</span>
-				<span class="caret"></span>
-			</button>
-		</ul>
-		<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="/member/info?id=${auth_id}">PROFILE</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">MyWorld</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
-				<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="#">POINT : <span id="point"></span></a></li>
-			<li role="presentation" class="divider"></li>
-			<c:if test="${auth_level eq 9 }">
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="/master/manage_member">ManagePage</a></li>
-			</c:if>
-			<li role="presentation"><a role="menuitem" tabindex="-1" href="/log/logout">LOGOUT</a></li>
-		</ul>
+		<li class="dropdown">
+			<ul class="nav navbar-nav navbar-right">
+				<button class="btn btn-default dropdown-toggle-right btn-sm" type="button" id="menu1" data-toggle="dropdown" style="margin-top: 10px" >
+					<span data-toggle="tooltip" id="tool" onclick="javascript:cnt()">${auth_id}</span>
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/member/info?id=${auth_id}">PROFILE</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">MyWorld</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
+						<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">POINT : <span id="point"></span></a></li>
+					<li role="presentation" class="divider"></li>
+					<c:if test="${auth_level eq 9 }">
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/master/manage_member">ManagePage</a></li>
+					</c:if>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/log/logout">LOGOUT</a></li>
+				</ul>
+			</ul>
+		</li>
 	</ul>
 </div>
 <script>
@@ -79,8 +81,20 @@
 	}
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
+
+	} 
+	
+</script>
+
+<script>
+
+
 	} 
 	cnt();
+
+
+
+	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
@@ -101,4 +115,5 @@ $("#submit").click(function() {
 		}
 	})
 })
+
 </script>

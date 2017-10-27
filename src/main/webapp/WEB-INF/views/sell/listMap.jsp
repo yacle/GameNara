@@ -11,14 +11,14 @@
 			</c:when>
 			<c:otherwise>
 				<a href="/sell/view/${list[i].NO}">
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<div class="thumbnail">
 						<c:choose>
 							<c:when test="${empty list[i].PIC }">
-								<img src="/profiles/default.png" alt="Article Photo" width="300" height="300">
+								<img src="/profiles/default.png" alt="Article Photo" width="220" height="220">
 							</c:when>
 							<c:otherwise>
-								<img src="/sellB_File/${list[i].PIC}" alt="Article Photo" width="300" height="300">
+								<img src="/sellB_File/${list[i].PIC}" alt="Article Photo" width="220" height="220">
 							</c:otherwise>
 						</c:choose>
 						<c:choose>
