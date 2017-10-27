@@ -44,7 +44,21 @@ textarea {
 							pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" /> 
 							조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" />
 					</small>
-				<pre style="font-family: 맑은 고딕; font-size: 12pt; min-height: 250px; ">${one.DETAIL }</pre>
+								<div class="row" align="center">
+						<input type="hidden" id="id" value="${auth_id}">
+						<p>
+							<textarea class="update-group" rows="10" width="1000px"
+								placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
+						</p>
+						<div align="right">
+						<c:if test="${auth_id eq one.ID }">
+							<button type="button" class="btn btn-default" id="modify">수정</button>
+							<button type="button" class="btn btn-default" id="delete">삭제</button>
+							<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
+							<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
+						</c:if>
+						</div>
+					</div>
 			</div>
 		</c:otherwise>
 		</c:choose>
@@ -59,6 +73,35 @@ textarea {
 </div>
 <hr/>
 </div>
-<div align="left">
+<div align="right">
 	<a href="/become_member/list"><button>게시판으로</button></a>
 </div>
+<script>
+$("#modify").click(function() {
+	document.getElementById("comment").disabled = false;
+	$("#comment").css("background-color", "#f8f8f8");
+	$("#modify").css("display", "none");
+	$("#delete").css("display", "none");
+	$("#cancle").css("display", "inline");
+	$("#update").css("display", "inline");
+	$("#update").click(function() {
+		$.ajax({
+			"type" : "post",
+			"async" : false,
+			"url" : "/buy/add_rst",
+			"data" : {
+				"detail" : $("#comment").val(),
+				"no" : $("#num").val()
+			}
+		}).done(function(b) {
+			window.alert("수정되었습니다");
+			document.getElementById("comment").disabled = true;
+			$("#modify").css("display", "inline");
+			$("#update").css("display", "none");
+		})
+	})
+	$("#cancle").click(function() {
+		window.location.reload();
+	})
+})
+</script>

@@ -23,7 +23,7 @@
 	</update>
 
 	<update id="subPoint">
-		UPDATE MEMBER set POINT= point-100 where id=#{id}
+		UPDATE MEMBER set POINT= point-500 where id=#{id}
 	</update>
 	
 	 <update id="upLevel">

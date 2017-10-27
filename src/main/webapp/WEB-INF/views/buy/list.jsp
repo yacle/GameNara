@@ -59,7 +59,7 @@ th, td {
 									<span class="label label-info">[거래완료]</span>
 								</c:if>
 							</td>
-															<td>
+					<td>
 						<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
 								<span id="receiver" value="${obj.BUY_ID }">${obj.BUY_ID }</span>

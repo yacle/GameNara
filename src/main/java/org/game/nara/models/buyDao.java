@@ -54,7 +54,7 @@ public class buyDao {
 		return template.selectOne("buy.readOne", num);
 		}
 
-	public int delete(String num) {
+	public int delete(Map num) {
 		return template.delete("buy.delete",num);
 	}
 	

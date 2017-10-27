@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myworld">
+	<select id="after" resultType="java.util.HashMap">
+	select * from buy where buy_id=#{id}
+	</select>
+	<select id="freedis" resultType="java.util.HashMap">
+		select * from free_distribute where writer=#{id}
+	</select>
+	<select id="buy" resultType="java.util.HashMap">
+		select * from buy where buy_id=#{id}
+	</select>
+	<select id="free" resultType="java.util.HashMap">
+		select * from freeboard where writer=#{id}
+	</select>
+	<select id="sell" resultType="java.util.HashMap">
+		select * from sell where writer=#{id}
+	</select>
+</mapper>

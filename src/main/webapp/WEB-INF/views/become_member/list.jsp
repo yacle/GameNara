@@ -34,11 +34,25 @@ th, td {
 				<tr>
 					<td>${obj.NO }</td>
 					<td><a href="/become_member/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a>
-					<td>${obj.ID }</td>
+					<td>
+						<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+								<span id="receiver" value="${obj.ID }">${obj.ID }</span>
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.ID }')">쪽지보내기</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.ID }')">1:1채팅초대</a></li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+							</ul>
+						</div>
+					</td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd"
 							value="${obj.ADD_DATE }" /></td>
 					<td>${obj.COUNT }</td>
 				</tr>
+				
 			</c:forEach>
 		</tbody>
 	</table>
@@ -55,3 +69,26 @@ th, td {
 		</c:otherwise>
 	</c:choose>
 </div>
+<script>
+//쪽지보내기
+	function openchat(obj){
+		var url="/chat/noteSend?id="+obj;
+		window.open(url, "noteSend", "width=400, height=550");
+	}
+
+	function chatting(obj){
+		$.ajax({
+			"type":"post",
+			"async":true,
+			"url":"/chatting/confirm",
+			"data":{
+				"chat":"chatting",
+				"receiver":obj,
+				"sender" : $("#my").val()
+			}
+		})
+		var url="/chatting/chatPage?id="+obj;
+		window.open(url, "", "width=400, height=550");
+	}
+
+</script>

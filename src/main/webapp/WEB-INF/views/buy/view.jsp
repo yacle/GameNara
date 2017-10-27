@@ -54,13 +54,13 @@ td {
 						<input type="hidden" id="num" value="${one.NO }" />
 						<c:if test="${one.END == 1 }">
 							<h2 id="title">${one.TITLE }</h2>
-							<h3>거래중</h3>>
+							<h3>거래중</h3>
 						</c:if>
 						<c:if test="${one.END == 2 }">
 							<del>
 								<h2>${one.TITLE }</h2>
 							</del>
-							<h3>거래완료</h3>>
+							<h3>거래완료</h3>
 						</c:if>
 						<p style="padding-left: 10px;">
 							<small id="buyid">작성자 : ${one.BUY_ID } | 작성일 : <fmt:formatDate
@@ -79,19 +79,17 @@ td {
 							<textarea class="update-group" rows="10" width="1000px"
 								placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
 						</p>
+						<div align="right"> 
 						<c:if test="${auth_id eq one.BUY_ID }">
 							<button type="button" class="btn btn-default" id="modify">수정</button>
 							<button type="button" class="btn btn-default" id="delete">삭제</button>
-							<button type="button" class="btn btn-default" id="update"
-								style="display: none">저장</button>
-							<button type="reset" class="btn btn-default" id="cancle"
-								style="display: none">취소</button>
+							<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
+							<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
 						</c:if>
-						<a href="/sell/list/1"><button type="button"
-								class="btn btn-default">목록</button></a>
+						</div>
 					</div>
-
 					<hr />
+					
 					<%-- Reply input form --%>
 					<div class="row">
 						<div class="col-md-2" style="padding: 10px;" align="center">
@@ -106,6 +104,7 @@ td {
 					</div>
 					<hr />
 					<!-- Reply List View -->
+					
 					<a href="/buy/list/1"><button>게시판으로</button></a>
 				</c:otherwise>
 			</c:choose>
@@ -130,6 +129,7 @@ td {
 						"no" : $("#num").val()
 					}
 				}).done(function(b) {
+					window.alert("수정되었습니다");
 					document.getElementById("comment").disabled = true;
 					$("#modify").css("display", "inline");
 					$("#update").css("display", "none");
@@ -155,18 +155,18 @@ td {
 		});
 	
 //게시글 삭제
-		var del = function(obj) {
+		$("#delete").click(function(){
 			if (window.confirm("삭제하시겠습니까?")) {
 				$.ajax({
 					"type" : "post",
 					"async" : false,
 					"url" : "/buy/delete",
 					"data" : {
-						"num" : obj
-					}
+						"no" : $("#num").val()
+						}
 				});
 				location.href = "/buy/list/1";
 			}
-		}
+		})
 	</script>
 </div>
