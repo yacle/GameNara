@@ -58,7 +58,7 @@ th, td {
 									<span class="label label-info">[거래완료]</span>
 								</c:if>
 							</td>
-															<td>
+					<td>
 						<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
 								<span id="receiver" value="${obj.BUY_ID }">${obj.BUY_ID }</span>
@@ -100,6 +100,7 @@ th, td {
 </div>
 
 <script>
+//쪽지보내기
 	function openchat(obj){
 		var url="/chat/noteSend?id="+obj;
 		window.open(url, "noteSend", "width=400, height=550");
@@ -107,6 +108,8 @@ th, td {
 
 </script>
 <script>
+
+//포인트체크
 $("#check").click(function() {
 	$.ajax({
 		"type" : "POST",
@@ -124,7 +127,7 @@ $("#check").click(function() {
 		}
 	})
 });
-
+//1:1채팅
 	function chatting(obj){
 		$.ajax({
 			"type":"post",

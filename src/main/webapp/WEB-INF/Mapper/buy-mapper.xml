@@ -17,7 +17,7 @@
 	 </update>
 	 
 	<select id="list" resultType="java.util.HashMap">
-			select * from buy
+			select * from buy order by no desc
 	</select>
 	
 	<select id="readOne" parameterType="java.lang.String"

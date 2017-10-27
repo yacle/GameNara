@@ -136,9 +136,11 @@ public class buycontroller {
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteReplyHandle(@RequestParam String num) {
+	public String deleteReplyHandle(@RequestParam Map num) {
+		System.out.println(num.toString());
 		int rst=0;
 		int ok = buyDao.delete(num);
+		System.out.println(ok);
 		if(ok==1) {
 			rst =1;
 		}

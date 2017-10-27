@@ -49,7 +49,7 @@
 				</button>
 				<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="/member/info?id=${auth_id}">PROFILE</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">MyWorld</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/MyWorld/myworld">MyWorld</a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
 						<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">POINT : <span id="point"></span></a></li>
@@ -80,10 +80,17 @@
 		})
 	}
 	nws.onmessage =function(e){
+<<<<<<< HEAD
 		window.alert("새로운 쪽지가 도착하였습니다.");
 
 	}  
 	cnt();
+=======
+		window.alert("새로운 쪽지가 도착하였습니다.");
+	} 
+	cnt();
+
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
