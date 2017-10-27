@@ -13,22 +13,17 @@ public class SearchDao {
 @Autowired
 SqlSessionTemplate template;
 
-public Map buysearch(String search) {
-	Map map= new HashMap();
-	System.out.println("search :"+search.toString());
-	List<Map> s=template.selectList("search.sellsearch", search);
-	System.out.println(s.toString());
-	List<Map> f=template.selectList("search.freeboardsearch", search);
-	List<Map> b=template.selectList("search.buysearch",search);
-	System.out.println(b.toString());
-	List<Map> a=template.selectList("search.aftersearch", search);
-
-	map.put("sell", s);
-	map.put("free", f);
-	map.put("buy", b);
-	map.put("after", a);
-	return map;
-	
-}
+	public Map buysearch(String sear) throws Exception{
+		Map map= new HashMap();
+		List<Map> s=template.selectList("search.sellsearch", sear);
+		List<Map> f=template.selectList("search.freeboardsearch", sear);
+		List<Map> b=template.selectList("search.buysearch",sear);
+		List<Map> a=template.selectList("search.aftersearch", sear);
+		map.put("sell", s);
+		map.put("free", f);
+		map.put("buy", b);
+		map.put("after", a);
+		return map;
+	}
 
 }

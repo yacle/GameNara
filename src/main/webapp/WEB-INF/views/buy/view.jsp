@@ -3,18 +3,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
-input, button {
-	padding: 4px;
-	font-family: 맑은고딕;
-	font-size: 9pt;
+button {
+	font-size: 12px;
+	border-radius: 6px;
 }
+
 textarea {
-    width: 100%;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    resize: none;
+	width: 100%;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+}
+
+input[type=text]:disabled {
+	background: #F8F8FF;
+	padding: 7px;
+	border-style: none;
+}
+
+input {
+	padding: 7px;
+}
+
+td {
+	font-size: 16px;
+	height: 55px;
+	align: center;
 }
 </style>
 <div align="center" style="line-height: 35px">
@@ -39,13 +54,13 @@ textarea {
 						<input type="hidden" id="num" value="${one.NO }" />
 						<c:if test="${one.END == 1 }">
 							<h2 id="title">${one.TITLE }</h2>
-							<h5>거래중</h5>
+							<h3>거래중</h3>>
 						</c:if>
 						<c:if test="${one.END == 2 }">
 							<del>
 								<h2>${one.TITLE }</h2>
 							</del>
-							<h4>거래완료</h4>
+							<h3>거래완료</h3>>
 						</c:if>
 						<p style="padding-left: 10px;">
 							<small id="buyid">작성자 : ${one.BUY_ID } | 작성일 : <fmt:formatDate
@@ -56,45 +71,56 @@ textarea {
 								</c:if>
 							</small>
 						</p>
-						<textarea row="5" id="comment" disabled>${one.DETAIL }</textarea>
 					</div>
-					<br/>
-					<div align="left">
+					<br />
+					<div class="row" align="center">
+						<input type="hidden" id="id" value="${auth_id}">
+						<p>
+							<textarea class="update-group" rows="10" width="1000px"
+								placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
+						</p>
 						<c:if test="${auth_id eq one.BUY_ID }">
-							<div style="margin-right: 100px" align="right">				
-									<button type="button" id="m">수정</button>
-									<button type="button" id="s" style="display: none;">저장</button>
-									<button type="button" id="c" style="display: none;">취소</button>
-									<button type="button" id="d">삭제</button>
-								<a href="/buy/list/1"><button>BACK</button></a>
-							</div>
+							<button type="button" class="btn btn-default" id="modify">수정</button>
+							<button type="button" class="btn btn-default" id="delete">삭제</button>
+							<button type="button" class="btn btn-default" id="update"
+								style="display: none">저장</button>
+							<button type="reset" class="btn btn-default" id="cancle"
+								style="display: none">취소</button>
 						</c:if>
-						
+						<a href="/sell/list/1"><button type="button"
+								class="btn btn-default">목록</button></a>
 					</div>
-					
-					<hr/>
-<%-- Reply input form --%>
-<div class="row" >
-	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
-	<div class="col-md-9"><textarea rows="1" id="content"></textarea></div>
-	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
-</div>
-<hr/>
-<!-- Reply List View -->
-<a href="/buy/list/1"><button>게시판으로</button></a>
+
+					<hr />
+					<%-- Reply input form --%>
+					<div class="row">
+						<div class="col-md-2" style="padding: 10px;" align="center">
+							<span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span>
+						</div>
+						<div class="col-md-9">
+							<textarea rows="1" id="content"></textarea>
+						</div>
+						<div class="col-md-1" style="padding: 10px;">
+							<button type="button" id="replysendbtn">등록</button>
+						</div>
+					</div>
+					<hr />
+					<!-- Reply List View -->
+					<a href="/buy/list/1"><button>게시판으로</button></a>
 				</c:otherwise>
 			</c:choose>
 		</c:otherwise>
 	</c:choose>
 	<script>
-		$("#m").click(function() {
+	//게시글 수정
+		$("#modify").click(function() {
 			document.getElementById("comment").disabled = false;
 			$("#comment").css("background-color", "#f8f8f8");
-			$("#m").css("display", "none");
-			$("#d").css("display", "none");
-			$("#c").css("display", "inline");
-			$("#s").css("display", "inline");
-			$("#s").click(function() {
+			$("#modify").css("display", "none");
+			$("#delete").css("display", "none");
+			$("#cancle").css("display", "inline");
+			$("#update").css("display", "inline");
+			$("#update").click(function() {
 				$.ajax({
 					"type" : "post",
 					"async" : false,
@@ -105,31 +131,16 @@ textarea {
 					}
 				}).done(function(b) {
 					document.getElementById("comment").disabled = true;
-					$("#m").css("display", "inline");
-					$("#s").css("display", "none");
+					$("#modify").css("display", "inline");
+					$("#update").css("display", "none");
 				})
 			})
-			$("#c").click(function() {
+			$("#cancle").click(function() {
 				window.location.reload();
 			})
 		})
 
-		$("#send").click(function() {
-			$.ajax({
-				"type" : "post",
-				"async" : false,
-				"url" : "/reply/add",
-				"data" : {
-					"parent" : $("#num").val(),
-					"writer" : $("#writer").html(),
-					"content" : $("#content").val()
-				}
-			}).done(function(obj) {
-				document.getElementById("content").value = "";
-			});
-			window.location.reload();
-		});
-
+	//거래완료 버튼
 		$("#end").click(function() {
 			$.ajax({
 				"type" : "post",
@@ -142,7 +153,8 @@ textarea {
 			})
 			location.reload();
 		});
-
+	
+//게시글 삭제
 		var del = function(obj) {
 			if (window.confirm("삭제하시겠습니까?")) {
 				$.ajax({

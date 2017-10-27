@@ -40,6 +40,7 @@
 </body>
 
 <script>
+//카테고리 1개만 선택
 	function doOpenCheck(asd) {
 		var obj = document.getElementsByName("category");
 		for (var i = 0; i < obj.length; i++) {

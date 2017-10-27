@@ -101,6 +101,7 @@ th, td {
 </div>
 
 <script>
+//쪽지보내기
 	function openchat(obj){
 		var url="/chat/noteSend?id="+obj;
 		window.open(url, "noteSend", "width=400, height=550");
@@ -108,6 +109,8 @@ th, td {
 
 </script>
 <script>
+
+//포인트체크
 $("#check").click(function() {
 	$.ajax({
 		"type" : "POST",
@@ -125,7 +128,7 @@ $("#check").click(function() {
 		}
 	})
 });
-
+//1:1채팅
 	function chatting(obj){
 		$.ajax({
 			"type":"post",
