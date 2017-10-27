@@ -15,7 +15,7 @@
 		SELECT * FROM freeboard WHERE REGEXP_LIKE(title || coment, #{search},'i')
 	</select>
 	
-	<select id="aftersearch" parameterType="java.lang.String" resultType="java.util.HashMap">
+	<select id="aftersearch" resultType="java.util.HashMap">
 		SELECT * FROM after WHERE REGEXP_LIKE(title || comments, #{search}, 'i')
 	</select>
 </mapper>

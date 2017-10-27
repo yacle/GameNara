@@ -18,13 +18,13 @@ h2{
 	<div class="col-md-4">
 		<h2>삽니다</h2>
 		<c:forEach var="j" items="${data.buy }">
-			<a href="/buy/view/${i.NO }">${fn:substring(j.TITLE, 0, 12)}</a><br/>
+			<a href="/buy/view/${j.NO }">${fn:substring(j.TITLE, 0, 12)}</a><br/>
 		</c:forEach>
 	</div>
 	<div class="col-md-4">
 		<h2>무료나눔</h2>
 		<c:forEach var="k" items="${data.free }">
-			<a href="/FreeDistribute/view/${i.NO }">${fn:substring(k.TITLE, 0, 12)}</a><br/>
+			<a href="/FreeDistribute/view/${k.NO }">${fn:substring(k.TITLE, 0, 12)}</a><br/>
 		</c:forEach>
 	</div>
 </div>
