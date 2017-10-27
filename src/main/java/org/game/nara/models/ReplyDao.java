@@ -17,7 +17,7 @@ SqlSessionTemplate temp;
 	}
 	
 	public int create(ReplyVO vo){
-		return temp.insert("reply.creat", vo);
+		return temp.insert("reply.create", vo);
 	}
 	
 	public int update(ReplyVO vo){

@@ -92,59 +92,107 @@ textarea {
 <%-- Reply input form --%>
 <div class="row" >
 	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
-	<div class="col-md-9"><textarea rows="1" id="content"></textarea></div>
+	<div class="col-md-8"><textarea rows="1" id="content"></textarea></div>
+	<div class="col-md-1">비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자"></div>
 	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
 </div>
 <hr/>
 <!-- Reply List View -->
+<span id="replies"></span>
 
 <script>
-$("#mod").click(function(){
-	
-})
+var bno = $("#num").val();
+// 댓글 목록 불러오기
+var list = function(){
+	$.getJSON("/replies/list/"+bno, function(data){
+		var str="";
+		$(data).each(
+			function(){
+				str += "<div class='row'>"
+					+"<div class='col-md-2' align='center'>"+this.replyer+"</div>"
+					+"<div class='col-md-9'>"
+						+"<div class='row'>"+this.regdate+"</div>"
+						+"<div class='row'>"+this.replytext+"</div>"
+					+"</div>"
+					+"<div class='col-md-1' id='m'>"
+						+"<button type='button' class='replyLi' date-rno='"+this.rno+"' data-pw='"+this.pwd+"'value='"+this.replytext+"'>수정</button>"
+					+"</div>"
+				+"</div><hr/>"
+			})
+		$("#replies").html(str);
+	})
+}
+list();
+// 댓글 등록
 $("#replysendbtn").click(function(){
-	var bno = $("#num").val();
 	var replyer = $("#auth_id").html();
 	var replytext = $("#content").val();
+	var pwd = $("#pwd").val();
 	$.ajax({
-		type: 'post',
-		url: '/reply',
-		headers: {
+		"type": "post",
+		"async":false,
+		"url":"/replies/add",
+		"headers": {
 			"Content-Type": "application/json",
 			"X-HTTP-Method-Override": "POST"
 		},
-		dataType:'text',
-		data: JSON.stringiFy({bno:bno, replyer:replyer, replytext:replytext}),
-		success:function(result){
-			alert(result);
-		}
+		"dataType":"text",
+		"data":JSON.stringify({
+			"bno":bno,
+			"replyer":replyer,
+			"replytext":replytext,
+			"pwd":pwd
+		})
+	}).done(function(){
+		list();
 	})
 })
-<%--
-	var modify = function(no){
-		var n = document.getElementById(no);
-		var c = n.firstChild.nextSibling.value;
-		var com = document.getElementById(c);
-		n.style.display="inline";
-		com.style.display="none";
-	}
-
-	var del = function(obj) {
-		if(window.confirm("삭제하시겠습니까?")){
-			$.ajax({
-				"type":"post",
-				"async": false,
-				"url":"/after/reply_delete",
-				"data":{
-					"num":obj
-				}
-			}).done(function(o){
-				window.location.reload();
-			});	
-		}
-	}
-	--%>
+// 댓글 수정
+$("#replies").on("click", "#m button", function(){
+	var reply = $(this);
+	var rno = reply.attr("date-rno");
+	var rno = reply.attr("date-pw");
+	var replytext = reply.val();
+	$("#replytext").html(replytext);
+	$("#replyhead").html(rno+"번 댓글 수정");
+	$("#myModal").show();
+});
 </script>
+	
+<div class="modal fade" id="myModal" role="dialog" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="replyhead"></h4>
+			</div>
+			<div class="modal-body">
+				<p><input text="text" id="replytext"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default">Save</button>
+				<button type="button" class="btn btn-default">Cancle</button>
+				<button type="button" class="btn btn-default">Close</button>
+			</div>
+		</div>
+
+	</div>
+</div>	
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 

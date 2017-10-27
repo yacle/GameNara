@@ -3,16 +3,23 @@ package org.game.nara;
 import java.util.Date;
 
 public class ReplyVO {
+	@Override
+	public String toString() {
+		return "ReplyVO [rno=" + rno + ", bno=" + bno + ", replytext=" + replytext + ", replyer=" + replyer
+				+ ", regdate=" + regdate + ", pwd=" + pwd + "]";
+	}
 	private Integer rno;
 	private Integer bno;
 	private String replytext;
 	private String replyer;
-	private Date regdate;
+	private String regdate;
+	private String pwd;
 	
-	@Override
-	public String toString() {
-		return "ReplyVO [rno=" + rno + ", bno=" + bno + ", replytext=" + replytext + ", replyer=" + replyer
-				+ ", regdate=" + regdate + "]";
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	public Integer getRno() {
 		return rno;
@@ -38,10 +45,10 @@ public class ReplyVO {
 	public void setReplyer(String replyer) {
 		this.replyer = replyer;
 	}
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 	
