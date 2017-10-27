@@ -3,16 +3,36 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="search">
+<<<<<<< HEAD
  <select id="sellsearch" parameterType="java.lang.String" resultType="java.util.HashMap">
 SELECT * FROM sell WHERE REGEXP_LIKE(title || detail, #{search},'i')
+=======
+ <select id="sellsearch" resultType="java.util.HashMap">
+ select * from sell where title like concat(#{search}, '%')
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
  </select>
+<<<<<<< HEAD
  <select id="buysearch" parameterType="java.lang.String" resultType="java.util.HashMap">
 SELECT * FROM buy WHERE REGEXP_LIKE(title || detail, #{search},'i')
+=======
+ <select id="buysearch" resultType="java.util.HashMap">
+ select * from buy where title like concat(#{search}, '%')
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
  </select>
+<<<<<<< HEAD
  <select id="freeboardsearch" parameterType="java.lang.String" resultType="java.util.HashMap">
 SELECT * FROM freeboard WHERE REGEXP_LIKE(title || coment, #{search},'i')
+=======
+ <select id="freeboardsearch" resultType="java.util.HashMap">
+ select * from freeboard where title like concat(#{search}, '%')
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
  </select>
+<<<<<<< HEAD
    <select id="aftersearch" parameterType="java.lang.String" resultType="java.util.HashMap">
 SELECT * FROM after WHERE REGEXP_LIKE(title || comments, #{search}, 'i')
+=======
+   <select id="aftersearch" resultType="java.util.HashMap">
+ select * from after where title like concat(#{search}, '%')
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
  </select>
  </mapper>

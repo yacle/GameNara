@@ -35,7 +35,7 @@
 	<section style="min-height: 70%;">
 		<tiles:insertAttribute name="section" />
 	</section>
-	<footer>
+	<footer class="container-fluid text-center">
 		<tiles:insertAttribute name="footer" />
 	</footer>
 	</div>
