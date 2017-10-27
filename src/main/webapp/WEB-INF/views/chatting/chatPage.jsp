@@ -21,6 +21,7 @@
 </div>
 
 <script>
+	//메시지 전송
 	document.getElementById("msg").onchange = function() {
 		$.ajax({
 			"type":"post",
@@ -35,7 +36,7 @@
 		this.value = "";
 		
 	}
-	
+	//메시지 내용 확인
 	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
 	cws.onmessage = function(e) {
 		var obj =JSON.parse(e.data);
@@ -43,11 +44,12 @@
 		document.getElementById("content").innerHTML += m;
 		
 	}
-	
+	//채팅 접속
 	cws.onopen = function(e) {
 		document.getElementById("content").innerHTML += "<p><b>[서버 접속 성공]</b></p>";
 		document.getElementById("content").innerHTML += "<p>즐거운채팅되십시요.</p>";
 	}
+	//채팅 접속 오류
 	cws.onerror = function(e) {
 		if (window.confirm("채팅서버 접속 실패\n다시 접속하시겠습니까?")) {
 			cws = new WebSocket("ws://192.168.10.73/ws/chat");

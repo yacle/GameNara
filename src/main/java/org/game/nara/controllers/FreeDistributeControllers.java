@@ -82,7 +82,6 @@ public class FreeDistributeControllers {
 	      ModelAndView mav = new ModelAndView("temp");   // 바로 뷰이름지정
 	      Map one = FD_Dao.readOne(num);
 	      FD_Dao.countOne(num);
-	      System.out.println("one="+one.toString());
 	      //List<Map> r = FD_Dao.readReply(num);
 	      mav.addObject("one", one);
 	      mav.addObject("section", "FreeDistribute/view");
