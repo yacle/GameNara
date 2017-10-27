@@ -18,7 +18,7 @@ public class SearchController {
 SearchDao search;
 
 @RequestMapping("/search")
-public ModelAndView freeBoardViewHandle(@RequestParam Map map) throws SQLException {
+public ModelAndView freeBoardViewHandle(@RequestParam Map map) throws Exception {
 	ModelAndView mav = new ModelAndView("temp");
 	System.out.println(map.toString());
 	Map total = search.buysearch((String)map.get("search"));
