@@ -38,4 +38,8 @@ SqlSessionTemplate temp;
 	public int readPoint(String id) {
 		return temp.selectOne("chat.receiv_pnt", id);
 	}
+	
+	public List memberAll(){
+		return temp.selectList("chat.memberAll");
+	}
 }

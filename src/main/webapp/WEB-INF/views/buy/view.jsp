@@ -33,6 +33,7 @@ td {
 }
 </style>
 <div align="center" style="line-height: 35px">
+<<<<<<< HEAD
 	<c:choose>
 		<c:when test="${empty auth_id }">
 			<h2>로그인 필요</h2>
@@ -89,7 +90,49 @@ td {
 						</div>
 					</div>
 					<hr />
+=======
+	<h2>가입인사 게시판</h2>
+		<hr/>
+	<div style="width: 80%; border-radius: 10px;; padding-left: 20px;"
+		align="left">
+		<input type="hidden" id="num" value="${one.NO }" />
+		<c:if test="${one.END == 1 }">
+			<h2 id="title">${one.TITLE }</h2>
+			<h5>거래중</h5>
+		</c:if>
+		<c:if test="${one.END == 2 }">
+			<del>
+				<h2>${one.TITLE }</h2>
+			</del>
+			<h4>거래완료</h4>
+		</c:if>
+		<p style="padding-left: 10px;">
+			<small id="buyid">작성자 : ${one.BUY_ID } | 작성일 : <fmt:formatDate
+					pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" /> 조회수 : <fmt:formatNumber
+					value="${one.COUNT}" pattern="#,###" /> <c:if
+					test="${auth_id eq one.BUY_ID }">
+					<button id="end">계약완료</button>
+				</c:if>
+			</small>
+		</p>
+		<textarea row="5" id="comment" disabled>${one.DETAIL }</textarea>
+	</div>
+	<br/>
+	<div align="left">
+		<c:if test="${auth_id eq one.BUY_ID }">
+			<div style="margin-right: 100px" align="right">				
+					<button type="button" id="m">수정</button>
+					<button type="button" id="s" style="display: none;">저장</button>
+					<button type="button" id="c" style="display: none;">취소</button>
+					<button type="button" id="d">삭제</button>
+				<a href="/buy/list/1"><button>BACK</button></a>
+			</div>
+		</c:if>
+		
+	</div>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 					
+<<<<<<< HEAD
 					<%-- Reply input form --%>
 					<div class="row">
 						<div class="col-md-2" style="padding: 10px;" align="center">
@@ -110,6 +153,18 @@ td {
 			</c:choose>
 		</c:otherwise>
 	</c:choose>
+=======
+					<hr/>
+<%-- Reply input form --%>
+<div class="row" >
+	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
+	<div class="col-md-9"><textarea rows="1" id="content"></textarea></div>
+	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
+</div>
+<hr/>
+<!-- Reply List View -->
+<a href="/buy/list/1"><button>게시판으로</button></a>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	<script>
 	//게시글 수정
 		$("#modify").click(function() {

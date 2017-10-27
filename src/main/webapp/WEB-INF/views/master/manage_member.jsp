@@ -26,5 +26,17 @@
      </c:forEach>
     </tbody>
   </table>
-
 </div>
+<div align="right">
+	<a href="/chat/noteAllSend" ><button type="button" 
+		class="btn btn-default dropdown-toggle-right btn-sm" id="allSend" name="allSend">전체쪽지전송</button></a>
+</div>
+
+
+
+
+
+
+
+
+
