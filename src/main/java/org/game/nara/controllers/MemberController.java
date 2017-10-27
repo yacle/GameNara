@@ -53,7 +53,6 @@ public class MemberController {
 		vo.setPassword((String)map.get("password"));
 		vo.setEmail((String)map.get("email"));
 		int r = mDao.addMember(vo);
-		System.out.println(vo.toString());
 		if(r!=0) {
 			mav.addObject("section", "log/login");
 		}else {
@@ -82,7 +81,6 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("temp");
 		String id = (String)session.getAttribute("auth_id");
 		vo = mDao.readInfo(vo);
-		System.out.println(vo.toString());
 		mav.addObject("section", "member/info");
 		mav.addObject("map",vo);
 		return mav;
@@ -106,7 +104,6 @@ public class MemberController {
 		if(f.getSize()>0) {
 		String fmt = sdf.format(System.currentTimeMillis());
 		String id = (String)session.getAttribute("auth_id");
-		System.out.println("id="+id);
 		String type = f.getContentType();
 		String[] fileType = type.split("/");
 		String name = id+"_"+fmt+"."+fileType[1];

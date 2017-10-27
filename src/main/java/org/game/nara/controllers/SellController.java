@@ -64,13 +64,18 @@ SimpleDateFormat sdf;
 		return  "redirect:/sell/list/1";
 	}
 	
-	@RequestMapping(value="/list/{category}")
-	public ModelAndView buyListHandle(@PathVariable(value="category")int category) throws SQLException {
+	@RequestMapping(value="/list")
+	public ModelAndView buyListHandle(@RequestParam Map map) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section","sell/listMap");
+		String type=(String)map.get("type");
+		String category = (String)map.get("category");
+		if(type.equals("map")) {
+			mav.addObject("section","sell/listMap");
+		}else {
+			mav.addObject("section","sell/sellList");
+		}
 		switch(category) {
-		
-		case 1:
+		case "1":
 			List ttl = sellDao.sellList();
 			int total = ttl.size();
 			mav.addObject("list", ttl);
@@ -78,14 +83,14 @@ SimpleDateFormat sdf;
 			mav.addObject("cnt", total);	
 			break;
 			
-		case 2:
+		case "2":
 			List cons = sellDao.sellConsole();
 			int con = cons.size();
 			mav.addObject("list", cons);
 			mav.addObject("title","콘솔팝니다");
 			mav.addObject("cnt", con);	
 			break;
-		case 3:
+		case "3":
 			List titl = sellDao.sellTitle();
 			int tit = titl.size();
 			mav.addObject("list", titl);
@@ -93,14 +98,14 @@ SimpleDateFormat sdf;
 			mav.addObject("cnt", tit);		
 			break;
 	
-		case 4:
+		case "4":
 			List acce = sellDao.sellAcce();
 			int acc = acce.size();
 			mav.addObject("list", acce);
 			mav.addObject("title","주변기기 팝니다");
 			mav.addObject("cnt", acc);	
 			break;
-		case 5:
+		case "5":
 			List othe = sellDao.sellOther();
 			int oth = othe.size();
 			mav.addObject("list", othe);
