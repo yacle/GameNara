@@ -17,23 +17,24 @@ th, td {
 <div>
 <h3>팝니다 게시판</h3>
 		<c:forEach var="obj" items="${total.sell }">
-		<a href="/sell/view/${obj.NO}">${obj.TITLE }</a>
+		<a href="/sell/view/${obj.NO}">${obj.TITLE }</a><br/>
 		</c:forEach>
 </div>
 <div>
 <h3>삽니다 게시판</h3>
-<<c:forEach var="obj" items="${total.buy }">
-		<a href="/sell/view/${obj.NO}">${obj.TITLE }</a>
+<c:forEach var="obj" items="${total.buy }">
+		<a href="/sell/view/${obj.NO}">${obj.TITLE }</a><br/>
 </c:forEach>
 </div>
 <div>
 <h3>자유게시판 게시판</h3>
-<<c:forEach var="obj" items="${total.free }">
-		<a href="/freeboard/view/${obj.NO}">${obj.TITLE }</a>
+<c:forEach var="obj" items="${total.free }">
+		<a href="/freeboard/view/${obj.NO}">${obj.TITLE }</a><br/>
 </c:forEach>
 </div>
+<div>
 <h3>거래후기 게시판</h3>
-<<c:forEach var="obj" items="${total.after }">
-		<a href="/freeboard/view/${obj.NO}">${obj.TITLE }</a>
+<c:forEach var="obj" items="${total.after }">
+		<a href="/freeboard/view/${obj.NO}">${obj.TITLE }</a><br/>
 </c:forEach>
 </div>
