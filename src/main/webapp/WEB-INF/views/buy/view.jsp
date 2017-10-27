@@ -58,16 +58,7 @@ textarea {
 						</p>
 						<textarea row="5" id="comment" disabled>${one.DETAIL }</textarea>
 					</div>
-					<hr/>
-<%-- Reply input form --%>
-<div class="row" >
-	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
-	<div class="col-md-9"><textarea rows="1" id="content"></textarea></div>
-	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
-</div>
-<hr/>
-<!-- Reply List View -->
-			
+					<br/>
 					<div align="left">
 						<c:if test="${auth_id eq one.BUY_ID }">
 							<div style="margin-right: 100px" align="right">				
@@ -78,8 +69,19 @@ textarea {
 								<a href="/buy/list/1"><button>BACK</button></a>
 							</div>
 						</c:if>
-						<a href="/buy/list/1"><button>게시판으로</button></a>
+						
 					</div>
+					
+					<hr/>
+<%-- Reply input form --%>
+<div class="row" >
+	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
+	<div class="col-md-9"><textarea rows="1" id="content"></textarea></div>
+	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
+</div>
+<hr/>
+<!-- Reply List View -->
+<a href="/buy/list/1"><button>게시판으로</button></a>
 				</c:otherwise>
 			</c:choose>
 		</c:otherwise>

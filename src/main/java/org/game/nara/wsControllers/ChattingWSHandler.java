@@ -24,6 +24,7 @@ public class ChattingWSHandler extends TextWebSocketHandler {
 		String id = (String)hs.get("auth_id");
 		users.put(id, session);
 	}
+
 	public void sendMessageToUser(String receiver, String msg, String sender) throws IOException {
 		String json = String.format("{\"receiver\":\"%s\", \"msg\":\"%s\" ,\"sender\":\"%s\"}", receiver,msg,sender);
 		if(users.containsKey(receiver)) {

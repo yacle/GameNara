@@ -79,8 +79,20 @@
 	}
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
+
+	} 
+	
+</script>
+
+<script>
+
+
 	} 
 	cnt();
+
+
+
+	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
@@ -101,4 +113,5 @@ $("#submit").click(function() {
 		}
 	})
 })
+
 </script>
