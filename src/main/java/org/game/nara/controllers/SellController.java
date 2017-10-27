@@ -121,11 +121,10 @@ SimpleDateFormat sdf;
 	}
 	
 	@RequestMapping("/update")
-	@ResponseBody
-	public int sellupdateHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IllegalStateException, IOException {
+	public String picupdateHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IllegalStateException, IOException {
 		System.out.println(map.toString());
 		if(pic.getSize() > 0) {
-			String id = (String)map.get("id");
+			String id = (String)map.get("writer");
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
 			String name = id+"_"+fmt;
@@ -135,8 +134,13 @@ SimpleDateFormat sdf;
 			File up = new File(application.getRealPath("/sellB_File"), name);
 			pic.transferTo(up);
 			map.put("pic", name);
+			sellDao.sellUpdate(map);
+			System.out.println(map.toString());
+		}else {
+			sellDao.sellUpdate2(map);
 		}
-		return  sellDao.sellUpdate(map);
+		String url="redirect:/sell/view/"+(String)map.get("no");
+		return url;
 	}
 	
 	@RequestMapping("/state")

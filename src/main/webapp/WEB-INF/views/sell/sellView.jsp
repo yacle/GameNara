@@ -29,22 +29,22 @@ td{
 	align: center;
 }
 </style>
-<form action="/sell/add" method="post" enctype="multipart/form-data">
 <h2>NO.<span id="no">${map.NO }</span></h2>
 	<div class="row">
 		<div class="col-md-4"  align="center">
 		
 		<c:choose>
 			<c:when test="${empty map.PIC }">
-			<img src="/profiles/default02.jpg" id="pf" alt="기본이미지" style="height: 300px; width: 300px;" />
+			<img src="/profiles/default02.jpg" id="pf" alt="기본이미지" style="height: 300px; width: 300px;"/>
 			</c:when>
 			<c:otherwise>
-			<img src="/sellB_File/${map.PIC}" id="pf" alt="기본이미지" style="height: 300px; width: 300px;" />
+			<img src="/sellB_File/${map.PIC}" id="pf" alt="기본이미지" style="height: 300px; width: 300px;"/>
 			</c:otherwise>	
 		</c:choose>
-			<form action="/sell/pic" method="post" id="form" enctype="multipart/form-data">
+			<form action="/sell/update" method="post" id="form" enctype="multipart/form-data">
 				<input id="pic" class="update-group" type="file" name="pic" style="display: none" disabled/>
-			</form>
+				<input type="hidden" name="no" value="${map.NO }"/>
+				<input type="hidden" name="writer" value="${map.WRITER }"/>			
 		</div>
 		<div class="col-md-8">
 			<table>
@@ -112,9 +112,11 @@ td{
 				</tbody>
 			</table>
 		</div>
+		
 	<div class="row" align="center">
 		<input type="hidden" id="id" value="${auth_id}">
 		<p><textarea class="update-group" rows="10" width="1000px" placeholder="상세내용" name="detail"  disabled>${map.DETAIL }</textarea></p>
+		</form>
 		<c:if test="${auth_id eq map.WRITER }">
 			<button type="button" class="btn btn-default" id="modify">수정</button>
 			<button type="button" class="btn btn-default" id="delete">삭제</button>
@@ -123,7 +125,6 @@ td{
 		</c:if>
 		<a href="/sell/list/1"><button type="button" class="btn btn-default">목록</button></a>
 	</div>
-</form>
 <hr/>
 <script>
 // 거래취소
@@ -169,30 +170,15 @@ $("#modify").click(function(){
 })
 // 수정한 내용 저장하기
 $("#update").click(function(){
-	$.ajax({
-		"type" : "post",
-		"async" : false,
-		"url" : "/sell/update",
-		"data" : {
-			"id" : $("#id").val(),
-			"no" : $("#no").html(),
-			"title" : $("#title").val(),
-			"price" : $("#price").val(),
-			"contact" : $("#contact").val(),
-			"deal_method" : $("#deal_method").val(),
-			"detail" : $("#detail").val(),
-			"category" : $("#category").val(),
-			"pic" : $("#pic").val()
-		}
-	}).done(function(obj) {
-		var a = document.getElementsByClassName("update-group");
-		for(var i=0; i<a.length; i++){
-			a[i].disabled=true;
-		}
-		$("#modify, #delete").show();
-		$("#update, #cancle").hide();
-	});
+	$("#form").submit();
+	var a = document.getElementsByClassName("update-group");
+	for(var i=0; i<a.length; i++){
+		a[i].disabled=true;
+	}
+	$("#modify, #delete").show();
+	$("#update, #cancle").hide();
 })
+
 // 수정 취소하기
 $("#cancle").click(function(){
 	var a = document.getElementsByClassName("update-group");
@@ -239,6 +225,7 @@ $("#deal").click(function(){
 		
 	})
 })
+// time view
 function num(a){
 		if(a<10){
 			a = "0"+a;

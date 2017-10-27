@@ -15,10 +15,10 @@
 						<div class="thumbnail">
 						<c:choose>
 							<c:when test="${empty list[i].PIC }">
-								<img src="/profiles/default.png" alt="Article Photo" width="220" height="220">
+								<img src="/profiles/default02.jpg" class="img-thumbnail" alt="Article Photo" width="200px" height="200px">
 							</c:when>
 							<c:otherwise>
-								<img src="/sellB_File/${list[i].PIC}" alt="Article Photo" width="220" height="220">
+								<img src="/sellB_File/${list[i].PIC}" class="img-thumbnail" alt="Article Photo" width="200px" height="200px">
 							</c:otherwise>
 						</c:choose>
 						<c:choose>
@@ -41,6 +41,9 @@
 			</a>
 			</c:otherwise>
 		</c:choose>
+		<c:if test="${i%4 eq 3}">
+			<div class="row"></div>
+		</c:if>
 	</c:forEach>   
 </div> 
 <script>

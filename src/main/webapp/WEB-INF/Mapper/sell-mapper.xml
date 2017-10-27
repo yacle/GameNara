@@ -17,7 +17,24 @@
 		select * from sell where no=#{no}
 	</select>
 	<update id="sellUpdate">
-		update sell set title=#{title}, price=#{price}, contact=#{contact, jdbcType=VARCHAR}, deal_method=#{deal_method, jdbcType=VARCHAR}, detail=#{detail}, category=#{category}, pic=#{pic, jdbcType=VARCHAR} where no =#{no}
+		update sell set 
+			title=#{title}, price=#{price}, 
+			contact=#{contact, jdbcType=VARCHAR}, 
+			deal_method=#{deal_method, jdbcType=VARCHAR}, 
+			detail=#{detail}, pic=#{pic}, category=#{category}
+		where no =#{no}
+	</update>
+	<update id="sellUpdate2">
+		update sell set 
+			title=#{title}, price=#{price}, 
+			contact=#{contact, jdbcType=VARCHAR}, 
+			deal_method=#{deal_method, jdbcType=VARCHAR}, 
+			detail=#{detail}, category=#{category}
+		where no =#{no}
+	</update>
+	
+	<update id="picupdate">
+		update sell set pic=#{pic} where no =#{no}
 	</update>
 	<update id="state">
 		update sell set state=#{state} where no =#{no}

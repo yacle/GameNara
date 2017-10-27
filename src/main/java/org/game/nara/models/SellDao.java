@@ -25,6 +25,9 @@ SqlSessionTemplate temp;
 	public int sellUpdate(Map map) {
 		return temp.update("sell.sellUpdate", map);
 	}
+	public int sellUpdate2(Map map) {
+		return temp.update("sell.sellUpdate2", map);
+	}
 	
 	public int stateUpdate(Map map) {
 		return temp.update("sell.state", map);
