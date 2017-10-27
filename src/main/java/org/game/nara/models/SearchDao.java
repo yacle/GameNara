@@ -16,7 +16,7 @@ SqlSessionTemplate template;
 public Map buysearch(String sear) {
 	Map map= new HashMap();
 	List<Map> s=template.selectList("search.sellsearch", sear);
-	List<Map> f=template.selectList("search.freeboard", sear);
+	List<Map> f=template.selectList("search.freeboardsearch", sear);
 	List<Map> b=template.selectList("search.buysearch",sear);
 	List<Map> a=template.selectList("search.aftersearch", sear);
 	map.put("sell", s);
