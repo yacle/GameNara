@@ -66,6 +66,7 @@ textarea {
 	<hr/>
 </div>
 <script>
+//글 수정 버튼	
 	$("#m").click(function(){
 		document.getElementById("comment").disabled=false;
 		$("#comment").css("background-color","#f8f8f8");
@@ -88,6 +89,7 @@ textarea {
 				$("#s").css("display", "none");
 			})
 		})
+		//글 수정 취소 버튼
 		$("#c").click(function(){
 			window.location.reload();
 		})
@@ -107,6 +109,7 @@ textarea {
 $("#mod").click(function(){
 	
 })
+//댓글 등록 버튼
 $("#replysendbtn").click(function(){
 	var bno = $("#num").val();
 	var replyer = $("#auth_id").html();
