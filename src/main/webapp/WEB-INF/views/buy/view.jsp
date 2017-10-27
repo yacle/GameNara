@@ -18,59 +18,45 @@ textarea {
 }
 </style>
 <div align="center" style="line-height: 35px">
-	<c:choose>
-		<c:when test="${empty auth_id }">
-			<h2>로그인 필요</h2>
-			<br />
-			<a href="/log/login"><button>로그인</button></a>
-		</c:when>
-		<c:otherwise>
-			<h2>
-				<a href="/buy/list/1">게시판</a>
-			</h2>
-			<hr />
-			<c:choose>
-				<c:when test="${empty one }">
-			이미 삭제된 글입니다.
-		</c:when>
-				<c:otherwise>
-					<div style="width: 80%; border-radius: 10px;; padding-left: 20px;"
-						align="left">
-						<input type="hidden" id="num" value="${one.NO }" />
-						<c:if test="${one.END == 1 }">
-							<h2 id="title">${one.TITLE }</h2>
-							<h5>거래중</h5>
-						</c:if>
-						<c:if test="${one.END == 2 }">
-							<del>
-								<h2>${one.TITLE }</h2>
-							</del>
-							<h4>거래완료</h4>
-						</c:if>
-						<p style="padding-left: 10px;">
-							<small id="buyid">작성자 : ${one.BUY_ID } | 작성일 : <fmt:formatDate
-									pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" /> 조회수 : <fmt:formatNumber
-									value="${one.COUNT}" pattern="#,###" /> <c:if
-									test="${auth_id eq one.BUY_ID }">
-									<button id="end">계약완료</button>
-								</c:if>
-							</small>
-						</p>
-						<textarea row="5" id="comment" disabled>${one.DETAIL }</textarea>
-					</div>
-					<br/>
-					<div align="left">
-						<c:if test="${auth_id eq one.BUY_ID }">
-							<div style="margin-right: 100px" align="right">				
-									<button type="button" id="m">수정</button>
-									<button type="button" id="s" style="display: none;">저장</button>
-									<button type="button" id="c" style="display: none;">취소</button>
-									<button type="button" id="d">삭제</button>
-								<a href="/buy/list/1"><button>BACK</button></a>
-							</div>
-						</c:if>
-						
-					</div>
+	<h2>가입인사 게시판</h2>
+		<hr/>
+	<div style="width: 80%; border-radius: 10px;; padding-left: 20px;"
+		align="left">
+		<input type="hidden" id="num" value="${one.NO }" />
+		<c:if test="${one.END == 1 }">
+			<h2 id="title">${one.TITLE }</h2>
+			<h5>거래중</h5>
+		</c:if>
+		<c:if test="${one.END == 2 }">
+			<del>
+				<h2>${one.TITLE }</h2>
+			</del>
+			<h4>거래완료</h4>
+		</c:if>
+		<p style="padding-left: 10px;">
+			<small id="buyid">작성자 : ${one.BUY_ID } | 작성일 : <fmt:formatDate
+					pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" /> 조회수 : <fmt:formatNumber
+					value="${one.COUNT}" pattern="#,###" /> <c:if
+					test="${auth_id eq one.BUY_ID }">
+					<button id="end">계약완료</button>
+				</c:if>
+			</small>
+		</p>
+		<textarea row="5" id="comment" disabled>${one.DETAIL }</textarea>
+	</div>
+	<br/>
+	<div align="left">
+		<c:if test="${auth_id eq one.BUY_ID }">
+			<div style="margin-right: 100px" align="right">				
+					<button type="button" id="m">수정</button>
+					<button type="button" id="s" style="display: none;">저장</button>
+					<button type="button" id="c" style="display: none;">취소</button>
+					<button type="button" id="d">삭제</button>
+				<a href="/buy/list/1"><button>BACK</button></a>
+			</div>
+		</c:if>
+		
+	</div>
 					
 					<hr/>
 <%-- Reply input form --%>
@@ -82,10 +68,6 @@ textarea {
 <hr/>
 <!-- Reply List View -->
 <a href="/buy/list/1"><button>게시판으로</button></a>
-				</c:otherwise>
-			</c:choose>
-		</c:otherwise>
-	</c:choose>
 	<script>
 		$("#m").click(function() {
 			document.getElementById("comment").disabled = false;

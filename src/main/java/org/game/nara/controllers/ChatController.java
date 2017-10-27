@@ -116,5 +116,18 @@ SellDao sellDao;
 		int r = chatDao.sendNoteDelHandle(m);
 		return  r;
 	}
+
+	@RequestMapping("/noteAllSend")
+	public ModelAndView noteAllSendHandle() {
+		ModelAndView mav = new ModelAndView();
+		List memAll = chatDao.memberAll();
+		System.out.println("ListAllID"+memAll);
+		mav.addObject("section", "chat/noteSend");
+		mav.addObject("id",memAll);
+		return mav;
+	}
+	
+	
+	
 	
 }
