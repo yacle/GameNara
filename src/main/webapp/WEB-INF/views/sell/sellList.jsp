@@ -15,7 +15,8 @@ th, td {
 <div align="right" style="margin-bottom: 10px;">
 	<a href="/sell/list?category=1&&type=map"><span class="glyphicon glyphicon-th"></span>앨범형</button></a> | 
 	<a><span class="glyphicon glyphicon-list-alt"></span>게시판형</a>
-	<a href="/sell/sellForm"><button type="button" class="btn btn-primary btn-sm">글작성</button></a><br/>
+	<a href="/sell/sellForm"><button type="button" id="write" class="btn btn-primary btn-sm">글작성</button></a><br/>
+	<input type="hidden" id="id" value="${auth_id }">
 </div>
 <div align="center" style="line-height: 35px">
 	<h2>${title}게시판</h2>
@@ -104,24 +105,39 @@ th, td {
 </div>
 
 <script>
-
-	function openchat(obj){
-		var url="/chat/noteSend?id="+obj;
-		window.open(url, "noteSend", "width=400, height=550");
-	}
+$("#write").click(function(){
+	$.ajax({
+		"type":"post",
+		"async":false,
+		"url":"/member/pointcheck",
+		"data":{
+			"id":$("#id").val(),
+		}
+	}).done(function(obj){
+		if(obj=='ok'){
+			location.href="/sell/sellForm";
+		}else{
+			window.alert("포인트가 부족합니다.")
+		}
+	})
+})
+function openchat(obj){
+	var url="/chat/noteSend?id="+obj;
+	window.open(url, "noteSend", "width=400, height=550");
+}
 	
-	function chatting(obj){
-		$.ajax({
-			"type":"post",
-			"async":true,
-			"url":"/chatting/confirm",
-			"data":{
-				"chat":"chatting",
-				"receiver":obj,
-				"sender" : $("#my").val()
-			}
-		})
-		var url="/chatting/chatPage?id="+obj;
-		window.open(url, "", "width=400, height=550");
-	}
+function chatting(obj){
+	$.ajax({
+		"type":"post",
+		"async":true,
+		"url":"/chatting/confirm",
+		"data":{
+			"chat":"chatting",
+			"receiver":obj,
+			"sender" : $("#my").val()
+		}
+	})
+	var url="/chatting/chatPage?id="+obj;
+	window.open(url, "", "width=400, height=550");
+}	
 </script>

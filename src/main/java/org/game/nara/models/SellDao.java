@@ -48,4 +48,8 @@ SqlSessionTemplate temp;
 	public List sellOther() {
 		return temp.selectList("sell.other");
 	}
+	
+	public int deleteOne(String no) {
+		return temp.delete("sell.delete", no);
+	}
 }

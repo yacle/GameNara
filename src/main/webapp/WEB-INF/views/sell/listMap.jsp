@@ -4,7 +4,8 @@
 <div align="right" style="margin-bottom: 10px;">
 	<a><span class="glyphicon glyphicon-th"></span>앨범형</button></a> | 
 	<a href="/sell/list?category=1&&type=list"><span class="glyphicon glyphicon-list-alt"></span>게시판형</a>
-	<a href="/sell/sellForm"><button type="button" class="btn btn-primary btn-sm">글작성</button></a><br/>
+	<a><button type="button" id="write" class="btn btn-primary btn-sm">글작성</button></a><br/>
+	<input type="hidden" id="id" value="${auth_id }">
 </div>
 <div class="row text-center">
 	<c:forEach var="i" begin="0" end="${cnt}" step="1">
@@ -49,9 +50,20 @@
 	</c:forEach>   
 </div> 
 <script>
-$("#view").click(function(){
-	var no = $("#view").val();
-	var str="/sell/view/no"+no;
-	location.href=str;
+$("#write").click(function(){
+	$.ajax({
+		"type":"post",
+		"async":false,
+		"url":"/member/pointcheck",
+		"data":{
+			"id":$("#id").val(),
+		}
+	}).done(function(obj){
+		if(obj=="ok"){
+			location.href="/sell/sellForm";
+		}else{
+			window.alert("포인트가 부족합니다.")
+		}
+	})
 })
 </script>  

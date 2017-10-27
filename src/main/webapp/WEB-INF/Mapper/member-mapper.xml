@@ -25,6 +25,10 @@
 		select count(*) as cnt from member_info where nickname=#{nick}
 	</select>
 	
+	<select id="pointcheck" resultType="int">
+		select point from member where id=#{id}
+	</select>
+	
 	<update id="addProfile">
 		update member_info set profile=#{profile} where id=#{id}
 	</update>

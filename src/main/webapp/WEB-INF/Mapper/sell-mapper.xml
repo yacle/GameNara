@@ -32,7 +32,6 @@
 			detail=#{detail}, category=#{category}
 		where no =#{no}
 	</update>
-	
 	<update id="picupdate">
 		update sell set pic=#{pic} where no =#{no}
 	</update>
@@ -40,19 +39,21 @@
 		update sell set state=#{state} where no =#{no}
 	</update>
 	<select id="sellList" resultType="java.util.HashMap">
-		select * from sell
+		select * from sell order by no desc
 	</select>
 	<select id="console" resultType="java.util.HashMap">
-		select * from sell where category=1
+		select * from sell where category=1 order by no desc
 	</select>
 	<select id="title" resultType="java.util.HashMap">
-		select * from sell where category=2
+		select * from sell where category=2 order by no desc
 	</select>
 	<select id="acce" resultType="java.util.HashMap">
-		select * from sell where category=3
+		select * from sell where category=3 order by no desc
 	</select>
 	<select id="other" resultType="java.util.HashMap">
-		select * from sell where category=0
+		select * from sell where category=0 order by no desc
 	</select>
-	
+	<delete id="delete">
+		delete from sell where no=#{no}
+	</delete>
 </mapper>

@@ -31,6 +31,10 @@ SqlSessionTemplate temp;
 		return temp.selectOne("member.nickcheck", nick);
 	}
 	
+	public int pointcheck(String id) {
+		return temp.selectOne("member.pointcheck", id);
+	}
+	
 	public MemberVO readInfo(MemberVO vo) {
 		return temp.selectOne("member.readInfo", vo);
 	}

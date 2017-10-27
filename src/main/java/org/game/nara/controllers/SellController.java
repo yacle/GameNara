@@ -61,7 +61,7 @@ SimpleDateFormat sdf;
 		if (r!=0) {
 			sellDao.subtractPoint(id);
 		}
-		return  "redirect:/sell/list/1";
+		return  "redirect:/sell/list?category=1&&type=map";
 	}
 	
 	@RequestMapping(value="/list")
@@ -157,5 +157,11 @@ SimpleDateFormat sdf;
 		}else {
 			return "fail";
 		}
+	}
+	
+	@RequestMapping("/delete/{no}")
+	public String deleteHandle(@PathVariable String no) throws SQLException {
+		int r = sellDao.deleteOne(no);
+		return "redirect:/sell/list?category=1&&type=map";
 	}
 }

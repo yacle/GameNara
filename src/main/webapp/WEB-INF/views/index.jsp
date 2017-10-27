@@ -4,9 +4,11 @@
 <style>
 h2{
 	text-align: center;
+	padding: 20px;
 }
+
 </style>
-<h2><strong>콘솔게임관련 중고물품 거래게시판</strong></h2>
+<h2 class="bg-primary"><strong>중고 게임의 모든것</strong></h2>
 <hr/>
 <div class="row" align="center" style="font-size: 18px">
 	<div class="col-md-4">

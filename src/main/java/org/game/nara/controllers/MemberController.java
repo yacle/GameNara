@@ -76,6 +76,17 @@ public class MemberController {
 		return r;
 	}
 	
+	@RequestMapping("/pointcheck")
+	@ResponseBody
+	public String pointcheckHandle(@RequestParam Map map) {
+		int r = mDao.pointcheck((String)map.get("id"));
+		if(r>=500) {
+			return "ok";
+		}else {
+			return "no";
+		}
+	}
+	
 	@GetMapping("/info")
 	public ModelAndView profileGetHandle(HttpSession session, MemberVO vo) {
 		ModelAndView mav = new ModelAndView("temp");
@@ -100,10 +111,10 @@ public class MemberController {
 	
 	
 	@PostMapping("/profile")
-	public ModelAndView profilePostHandle(Map map, @RequestParam(name="profile") MultipartFile f, HttpSession session) throws IllegalStateException, IOException {
+	public String profilePostHandle(Map map, @RequestParam(name="profile") MultipartFile f, HttpSession session) throws IllegalStateException, IOException {
+		String id = (String)session.getAttribute("auth_id");
 		if(f.getSize()>0) {
 		String fmt = sdf.format(System.currentTimeMillis());
-		String id = (String)session.getAttribute("auth_id");
 		String type = f.getContentType();
 		String[] fileType = type.split("/");
 		String name = id+"_"+fmt+"."+fileType[1];
@@ -113,9 +124,8 @@ public class MemberController {
 		map.put("profile",name);
 		int r = mDao.addProfile(map);
 		}
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "member/info");
-		return mav;
+		String uri = "/member/info?id="+id;
+		return uri;
 	}
 	
 	@RequestMapping("/emailReg")

@@ -68,11 +68,11 @@ td{
 					<tr>
 						<td>카테고리</td>
 						<td>
-							<select class="update-group" name="category" value="${map.CATEGORY}" style="padding: 5px; border:none" disabled>
-								<option value="1">콘솔기기</option>
-								<option value="2">게임타이틀</option>
-								<option value="3">주변기기</option>
-								<option value="0">기타</option>
+							<select class="update-group" name="category" style="padding: 5px; border:none" disabled>
+								<option value="1" <c:if test="${map.CATEGORY eq 1 }">selected</c:if> >콘솔기기</option>
+								<option value="2" <c:if test="${map.CATEGORY eq 2 }">selected</c:if> >게임타이틀</option>
+								<option value="3" <c:if test="${map.CATEGORY eq 3 }">selected</c:if> >주변기기</option>
+								<option value="0" <c:if test="${map.CATEGORY eq 0 }">selected</c:if> >기타</option>
 							</select>
 						</td>
 					</tr>
@@ -123,10 +123,18 @@ td{
 			<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
 			<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
 		</c:if>
-		<a href="/sell/list/1"><button type="button" class="btn btn-default">목록</button></a>
+		<a href="/sell/list?category=1&&type=list"><button type="button" class="btn btn-default">목록</button></a>
 	</div>
 <hr/>
 <script>
+// 게시글 삭제
+$("#delete").click(function(){
+	if(window.confirm("게시글을 삭제하시겠읍니까?")){
+		var no = $("#no").html();
+		var uri = "/sell/delete/"+no;
+		location.href = uri;
+	}
+})
 // 거래취소
 $("#deal_cancle").click(function(){
 	$("#deal_cancle, #deal_end").hide();
@@ -171,12 +179,6 @@ $("#modify").click(function(){
 // 수정한 내용 저장하기
 $("#update").click(function(){
 	$("#form").submit();
-	var a = document.getElementsByClassName("update-group");
-	for(var i=0; i<a.length; i++){
-		a[i].disabled=true;
-	}
-	$("#modify, #delete").show();
-	$("#update, #cancle").hide();
 })
 
 // 수정 취소하기
