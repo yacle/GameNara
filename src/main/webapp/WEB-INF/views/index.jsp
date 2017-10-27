@@ -11,21 +11,129 @@ h2{
 <div class="row" align="center" style="font-size: 18px">
 	<div class="col-md-4">
 		<h2>팝니다</h2>
-		<c:forEach var="i" items="${data.sell }">
-			<a href="/sell/view/${i.NO }">${fn:substring(i.TITLE, 0, 12)}</a><br/>
-		</c:forEach>
+		<br/>
+		<c:choose>
+			<c:when test="${auth_id eq null }">
+				<div class="row">
+					<div class="col-sm-1">
+						<c:forEach var="i"  begin="1" end="${data.sellCnt }" >
+							<div align="left" style="padding-left: 100px;">
+								${i } <br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="col-sm-11">
+						<c:forEach var="i"  items="${data.sell }" >
+							<div align="left" style="padding-left: 100px;">
+								${fn:substring(i.TITLE, 0, 12)} <br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="row">
+					<div class="col-sm-1">
+						<c:forEach var="i"  begin="1" end="${data.sellCnt }" >
+							<div align="left" style="padding-left: 100px;">
+								${i } <br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="col-sm-11">
+						<c:forEach var="i"  items="${data.sell }" >
+							<div align="left" style="padding-left: 100px;">
+								<a href="/sell/view/${i.NO }">${fn:substring(i.TITLE, 0, 12)}</a><br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<div class="col-md-4">
 		<h2>삽니다</h2>
-		<c:forEach var="j" items="${data.buy }">
-			<a href="/buy/view/${j.NO }">${fn:substring(j.TITLE, 0, 12)}</a><br/>
-		</c:forEach>
+		<br/>
+		<c:choose>
+			<c:when test="${auth_id eq null }">
+				<div class="row">
+					<div class="col-sm-1">
+						<c:forEach var="i"  begin="1" end="${data.buyCnt }" >
+							<div align="left" style="padding-left: 100px;">
+								${i } <br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="col-sm-11">
+						<c:forEach var="i"  items="${data.buy }" >
+							<div align="left" style="padding-left: 100px;">
+								${fn:substring(i.TITLE, 0, 12)} <br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="row">
+					<div class="col-sm-1">
+						<c:forEach var="i"  begin="1" end="${data.buyCnt }" >
+							<div align="left" style="padding-left: 100px;">
+								${i } <br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="col-sm-11">
+						<c:forEach var="i"  items="${data.buy }" >
+							<div align="left" style="padding-left: 100px;">
+								<a href="/buy/view/${i.NO }">${fn:substring(i.TITLE, 0, 12)}</a><br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<div class="col-md-4">
 		<h2>무료나눔</h2>
-		<c:forEach var="k" items="${data.free }">
-			<a href="/FreeDistribute/view/${k.NO }">${fn:substring(k.TITLE, 0, 12)}</a><br/>
-		</c:forEach>
+		<br/>
+		<c:choose>
+			<c:when test="${auth_id eq null }">
+				<div class="row">
+					<div class="col-sm-1">
+						<c:forEach var="i"  begin="1" end="${data.freeCnt }" >
+							<div align="left" style="padding-left: 100px;">
+								${i } <br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="col-sm-11">
+						<c:forEach var="i"  items="${data.free }" >
+							<div align="left" style="padding-left: 100px;">
+								${fn:substring(i.TITLE, 0, 12)} <br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="row">
+					<div class="col-sm-1">
+						<c:forEach var="i"  begin="1" end="${data.freeCnt }" >
+							<div align="left" style="padding-left: 100px;">
+								${i } <br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="col-sm-11">
+						<c:forEach var="i"  items="${data.free }" >
+							<div align="left" style="padding-left: 100px;">
+								<a href="/FreeDistribute/view/${i.NO }">${fn:substring(i.TITLE, 0, 12)}</a><br/><br/>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 <script>

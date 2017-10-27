@@ -7,6 +7,10 @@
 		insert into note values(note_seq.nextval, #{receiver}, #{sender}, #{content}, #{time}, 'n', 'n')
 	</insert>
 	
+	<select id="memberAll" resultType="java.util.ArrayList">
+		select id from member
+	</select>
+	
 	<select id="receiv_read" resultType="java.util.HashMap">
 		select * from note where no=#{no} and receiver=#{id}
 	</select>
