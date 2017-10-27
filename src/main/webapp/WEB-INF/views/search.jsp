@@ -23,30 +23,18 @@ th, td {
 <div>
 <h3>삽니다 게시판</h3>
 <c:forEach var="obj" items="${total.buy }">
-<<<<<<< HEAD
-		<a href="/buy/view/${obj.NO}">${obj.TITLE }</a><br/>
-=======
-		<a href="/buy/view/${obj.NO}">${obj.TITLE }</a>
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
+	${obj.NO} <a href="/buy/view/${obj.NO}">${obj.TITLE }</a><br/>
 </c:forEach>
 </div>
 <div>
 <h3>자유게시판 게시판</h3>
 <c:forEach var="obj" items="${total.free }">
-<<<<<<< HEAD
 		<a href="/freeBoard/view/${obj.NO}">${obj.TITLE }</a><br/>
-=======
-		<a href="/freeboard/view/${obj.NO}">${obj.TITLE }</a>
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 </c:forEach>
 </div>
 <div>
 <h3>거래후기 게시판</h3>
 <c:forEach var="obj" items="${total.after }">
-<<<<<<< HEAD
 		<a href="/after/view/${obj.NO}">${obj.TITLE }</a><br/>
-=======
-		<a href="/after/view/${obj.NO}">${obj.TITLE }</a>
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 </c:forEach>
 </div>

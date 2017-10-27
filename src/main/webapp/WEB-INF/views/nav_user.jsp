@@ -76,21 +76,15 @@
 			$("#note_cnt").html(d.cnt);
 			$("#point").html(d.point);
 		})
-	}
+	})
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
-
 	} 
+	cnt();
 	
 </script>
 
 <script>
-
-
-	} 
-	cnt();
-
-
 
 	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
