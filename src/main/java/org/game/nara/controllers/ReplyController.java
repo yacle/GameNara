@@ -29,4 +29,16 @@ ReplyDao replyDao;
 		return replyDao.list(bno);
 	}
 	
+	@RequestMapping("/update")
+	@ResponseBody
+	public int replyUpdate(@RequestBody ReplyVO vo) {
+		return replyDao.update(vo);
+	}
+	
+	@RequestMapping("/delete/{rno}")
+	@ResponseBody
+	public int replyDelte(@PathVariable Integer rno) {
+		return replyDao.delete(rno);
+	}
+	
 }

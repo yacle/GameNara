@@ -25,7 +25,7 @@ SqlSessionTemplate temp;
 	}
 	
 	public int delete(Integer rno){
-		return temp.update("reply.deletet", rno);
+		return temp.update("reply.delete", rno);
 	}
 
 }
