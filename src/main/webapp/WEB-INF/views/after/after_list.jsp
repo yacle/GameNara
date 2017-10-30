@@ -6,14 +6,16 @@
 th {
 	border-bottom: 1px solid;
 }
-
+.view{
+	color: black;
+}
 th, td {
 	padding: 10px;
 	text-align:center;
 	vertical-align: middle;
 }
 </style>
-<div align="center" style="line-height: 35px">
+<div class="view" align="center" style="line-height: 35px">
 	<h2>거래후기게시판</h2>
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.

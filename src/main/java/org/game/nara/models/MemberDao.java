@@ -49,8 +49,8 @@ SqlSessionTemplate temp;
 		return temp.selectOne("member.readProfile", id);
 	}
 	
-	public int addProfile(Map map) {
-		return temp.update("member.addProfile", map);
+	public int addProfile(MemberVO vo) {
+		return temp.update("member.addProfile", vo);
 	}
 	
 	public int emailReg(Map map) {

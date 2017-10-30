@@ -111,8 +111,9 @@ public class MemberController {
 	
 	
 	@PostMapping("/profile")
-	public String profilePostHandle(Map map, @RequestParam(name="profile") MultipartFile f, HttpSession session) throws IllegalStateException, IOException {
-		String id = (String)session.getAttribute("auth_id");
+	@ResponseBody
+	public String profilePostHandle(@RequestParam Map map, @RequestParam(name="profile") MultipartFile f) throws IllegalStateException, IOException {
+		String id = (String)map.get("id");
 		if(f.getSize()>0) {
 		String fmt = sdf.format(System.currentTimeMillis());
 		String type = f.getContentType();
@@ -120,12 +121,13 @@ public class MemberController {
 		String name = id+"_"+fmt+"."+fileType[1];
 		File up = new File(application.getRealPath("/profiles"), name);
 		f.transferTo(up);
-		map.put("id", id);
-		map.put("profile",name);
-		int r = mDao.addProfile(map);
+		MemberVO vo = new MemberVO();
+		vo.setId(id);
+		vo.setProfile(name);
+		int r = mDao.addProfile(vo);
+		return "save success";
 		}
-		String uri = "/member/info?id="+id;
-		return uri;
+		return "save fail";
 	}
 	
 	@RequestMapping("/emailReg")

@@ -11,12 +11,13 @@
 
 <div align="center">
 <h2>단체쪽지전송</h2>
-<h3>TO : [${id}]</h3>
-	<input type="hidden" id="receiver" name="receiver" value="${id}"/>
-	<input type="hidden" id="sender" name="sender" value="${auth_id}"/>
-	<small><span id="time" name="time"></span></small><br/>
-	<textarea rows="15" cols="45" id="content" name="content" placeholder="보낼내용.." required></textarea><br/><br/>
-	<button type="button" id="send" name="send">SEND</button>
+<h3>TO : ALL MEMBER</h3>
+<form action="/chat/note_sendAll" method="post" >
+	<input type="hidden" name="sender" value="${auth_id}"/>
+	<small><span name="nowtime"></span></small><br/>
+	<input type="hidden" name="time">
+	<textarea rows="15" cols="45" name="content" placeholder="보낼내용.." required></textarea><br/><br/>
+	<button type="submit">SEND</button>
 </form>
 </div>
 
@@ -46,25 +47,9 @@
 		case 6: day="토"; break;	
 		}
 		var t = y+"년 "+(mon+1)+"월 "+date+"일 "+day+"요일 "+h+":"+m+":"+s;
-		document.getElementById("time").innerHTML =t;
+		$("#nowtime").html(t);
+		$("#time").val(t);
 	}
 	setInterval(printTime, 1000);
-
-	$("#send").click(function(){
-		$.ajax({
-			"type":"post",
-			"async":true,
-			"url":"/chat/note_sendAll",
-			"data":{
-				"receiver":JSON.stringify($("#receiver").val()),
-				"sender":$("#sender").val(),
-				"content":$("#content").val(),
-				"time":$("#time").html()
-			}
-		}).done(function(obj){
-			window.alert("["+obj.trim()+"]");
-			window.close();
-		})
-	})
 
 </script>

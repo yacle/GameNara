@@ -2,11 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <style>
-body {
-    background-image: url("/profiles/game_bg1.jpg");
-	background-color: #1abc9c;
-	color: #ffffff;
-  }
+.all{
+	background-color:Gainsboro ;
 }
 </style>
 <html>
@@ -22,6 +19,7 @@ body {
 	
 	<title><tiles:getAsString name="title" />-${auth_id }</title> 
 	</head>
+<div class="all">
 <body>
 <div class="container">
 	<header >
@@ -29,12 +27,12 @@ body {
 	</header>
 	<c:choose>
 		<c:when test="${empty auth_id}">
-			<nav class="navbar navbar-default">
+			<nav class="navbar navbar-inverse">
 				<tiles:insertAttribute name="nav" />
 			</nav>
 		</c:when>
 		<c:otherwise>
-			<nav class="navbar navbar-default">
+			<nav class="navbar navbar-inverse">
 				<tiles:insertAttribute name="nav_user" />
 			</nav>
 		</c:otherwise>
@@ -47,4 +45,5 @@ body {
 	</footer>
 	</div>
 </body>
+</div>
 </html>

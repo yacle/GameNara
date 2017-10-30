@@ -120,34 +120,23 @@ SellDao sellDao;
 		int r = chatDao.sendNoteDelHandle(m);
 		return  r;
 	}
-
-	@GetMapping("/note_sendAll")
-	public ModelAndView noteAllSendHandle() {
+	
+	@RequestMapping("/note_sendAll")
+	public ModelAndView AllSendHandle() {
 		ModelAndView mav = new ModelAndView();
-		List memAll = chatDao.memberAll();
-		String json = new Gson().toJson(memAll );
 		mav.addObject("section", "chat/note_sendAll");
-		mav.addObject("id",json);
-		
 		return mav;
 	}
 	
 	@PostMapping("/note_sendAll")
-	@ResponseBody
-	public String noteAllSendHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
-		int r = chatDao.noteAddHandle(map);
-		List<String> list =  mapper.readValue((String)map.get("receiver"), List.class);
-		System.out.println("¸®½Ã¹ö=?"+list);
-		for(String ss : list) {
-			System.out.println(ss);
-			nws.sendMessageToUser(ss, (String)map.get("content"));
-		}
-		if(r!=0) {
-			return "send complate";
-		}else {
-			return "send fail";
+	public void postAllSend(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
+		List<Map> list =  chatDao.memberAll();;
+		String content = (String)map.get("content");
+		for(Map ss : list) {
+			map.put("receiver", (String)ss.get("ID"));
+			System.out.println(map.toString());
+			int r = chatDao.noteAddHandle(map);
+			nws.sendMessageToUser((String)ss.get("ID"), content);
 		}
 	}
-	
-	
 }

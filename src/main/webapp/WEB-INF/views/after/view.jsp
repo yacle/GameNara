@@ -3,7 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%-- ---------------------------------------------------- --%>
 <style>
-
+.view{
+	color: black;
+}
 button{
 	font-size: 12px;
 	border-radius: 6px;
@@ -20,7 +22,7 @@ textarea {
     resize: none;
 }
 </style>
-<div align="center" style="line-height: 35px">
+<div class="view" align="center">
 	<h2>거래후기게시판</h2>
 		<div align="left">
 	</div>
