@@ -28,11 +28,19 @@
   </table>
 </div>
 <div align="right">
-	<a href="/chat/noteAllSend" ><button type="button" 
-		class="btn btn-default dropdown-toggle-right btn-sm" id="allSend" name="allSend">전체쪽지전송</button></a>
+	<button type="button" 
+		class="btn btn-default dropdown-toggle-right btn-sm" id="allSend" name="allSend">전체쪽지전송</button>
 </div>
 
+<script>
+	$("#allSend").click(function(){
+		var url="/chat/note_sendAll";
+		window.open(url, "noteSend", "width=400, height=550");
+	});		
 
+	
+	
+</script>
 
 
 
