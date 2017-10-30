@@ -79,26 +79,11 @@ ServletContext application;
 	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");
 		Map map = adDao.readAfter(num);
-		List list = adDao.readReply(num);
 		mav.addObject("section", "after/view");
 		mav.addObject("one", map);
-		mav.addObject("list", list);
 		return mav;
 	}
 	
-	@RequestMapping("/reply_save")
-	@ResponseBody
-	public String replySaveHandle(@RequestParam Map map) {
-		int r = adDao.addReply(map);
-		return "r";
-	}
-	
-	@RequestMapping("/reply_delete")
-	@ResponseBody
-	public String replyDeleteHandle(@RequestParam Map map) {
-		int r = adDao.deleteReply((String)map.get("num"));
-		return "r";
-	}
 	
 	@RequestMapping("/modify")
 	@ResponseBody
