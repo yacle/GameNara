@@ -2,34 +2,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<style>
+th {
+	border-bottom: 1px solid;
+}
 
+th, td {
+	padding: 10px;
+	text-align:center;
+	vertical-align: middle;
+}
+</style>
 <div align="center" style="line-height: 35px">
 	<h2>거래후기게시판</h2>
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
 	<input type="hidden" id="my" value="${auth_id }"/>
-	<table class="table table-striped" >
+	<table style="width: 95%; background-color: #EAEAEA;" class="table table-bordered">
 		<thead>
 			<tr>
-				<th style="align:center; width:10%">글번호</th>
-				<th style="align:center; width:50%">글제목</th>
-				<th style="align:center; width:15%">작성자</th>
-				<th style="align:center; width:15%">작성일자</th>
-				<th style="align:center; width:10%">조회수</th>
+				<th width="10%">글번호</th>
+				<th width="50%" >글제목</th>
+				<th width="15%">작성자</th>
+				<th width="15%">작성일자</th>
+				<th width="10%">조회수</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td>
+					<td style="text-align: left; padding-left: 30px;">
 						<c:if test="${auth_id ne null}">
 							<a href="/after/view/${obj.NO}">
 						</c:if>
 						${fn:substring(obj.TITLE, 0, 12)}
 						<c:if test="${auth_id ne null}"></a></c:if>
-						<span class="badge">${obj.C }</span>
+						<span class="badge">${obj.CNT }</span>
 					</td>
 					<td>
 						<div class="dropdown">

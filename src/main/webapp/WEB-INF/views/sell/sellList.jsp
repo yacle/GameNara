@@ -5,11 +5,12 @@
 <style>
 th {
 	border-bottom: 1px solid;
-	text-align: left;
 }
 
 th, td {
 	padding: 10px;
+	text-align: center;
+	vertical-align: middle;
 }
 </style>
 <div align="right" style="margin-bottom: 10px;">
@@ -24,8 +25,7 @@ th, td {
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
 	<input type="hidden" id="my" value="${auth_id }"/>
-	<table style="width: 95%; background-color: #EAEAEA;"
-		class="table table-bordered">
+	<table style="width: 95%; background-color: #EAEAEA;" class="table table-bordered">
 		<thead>
 			<tr>
 				<th style="width: 10%">글번호</th>
@@ -56,12 +56,13 @@ th, td {
 				</c:choose>
 				<c:choose>
 					<c:when test="${auth_level >= 2 }">
-						<td><a href="/sell/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a>
+						<td style="text-align: left"><a href="/sell/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a>
 					</c:when>
 					<c:otherwise>
 						<td><a href="/notice">${fn:substring(obj.TITLE, 0, 12) }</a>
 					</c:otherwise>	
 				</c:choose>
+				<span class="badge">${obj.CNT }</span>
 				<c:if test="${obj.STATE == '1' }">
 					<span class="label label-info">[거래중]</span>
 				</c:if> 

@@ -27,5 +27,10 @@ SqlSessionTemplate temp;
 	public int delete(Integer rno){
 		return temp.update("reply.delete", rno);
 	}
+	
+	public int count(Integer bno) {
+		return temp.selectOne("reply.count", bno);
+	}
+	
 
 }

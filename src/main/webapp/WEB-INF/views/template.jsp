@@ -4,7 +4,6 @@
 <style>
 body {
     background-image: url("/profiles/game_bg1.jpg");
-    background-repeat: no-repeat;
 	background-color: #1abc9c;
 	color: #ffffff;
   }

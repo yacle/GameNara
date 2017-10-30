@@ -19,4 +19,5 @@
 		delete from reply where rno=#{rno}
 	</delete>
 	
+	
 </mapper>

@@ -39,7 +39,8 @@
 		update sell set state=#{state} where no =#{no}
 	</update>
 	<select id="sellList" resultType="java.util.HashMap">
-		select * from sell order by no desc
+		select b.*, t.cnt from sell b left join 
+       	(select bno, count(*) as cnt from reply group by bno ) t on b.no = t.bno order by no desc
 	</select>
 	<select id="console" resultType="java.util.HashMap">
 		select * from sell where category=1 order by no desc

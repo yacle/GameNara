@@ -18,27 +18,37 @@
 						<div class="thumbnail">
 						<c:choose>
 							<c:when test="${empty list[i].PIC }">
-								<img src="/profiles/default02.jpg" class="img-thumbnail" alt="Article Photo" width="200px" height="200px">
+								<img src="/profiles/default02.jpg" class="img-thumbnail" alt="Article Photo" width="200px" height="200px"><br/>
 							</c:when>
 							<c:otherwise>
-								<img src="/sellB_File/${list[i].PIC}" class="img-thumbnail" alt="Article Photo" width="200px" height="200px">
+								<img src="/sellB_File/${list[i].PIC}" class="img-thumbnail" alt="Article Photo" width="200px" height="200px"><br/>
 							</c:otherwise>
 						</c:choose>
+						<p>
 						<c:choose>
 							<c:when test="${list[i].CATEGORY eq 0}">
-							<p><strong>기타</strong></p>
+								<strong>기타</strong>
 							</c:when>
 							<c:when test="${list[i].CATEGORY eq 1}">
-							<p><strong>콘솔</strong></p>
+								<strong>콘솔</strong>
 							</c:when>
 							<c:when test="${list[i].CATEGORY eq 2}">
-							<p><strong>게임타이틀</strong></p>
+								<strong>게임타이틀</strong>
 							</c:when>
 							<c:otherwise>
-							<p><strong>주변기기</strong></p>
+								<strong>주변기기</strong>
 							</c:otherwise>
 						</c:choose>
-						<p>${list[i].TITLE}</p>
+							<c:if test="${list[i].STATE == '1' }">
+								<span class="label label-info">[거래중]</span>
+							</c:if> 
+							<c:if test="${list[i].STATE == '2' }">
+								<span class="label label-info">[거래완료]</span>
+							</c:if>
+						</p>
+						<p>${list[i].TITLE}  <span class="badge">${list[i].CNT }</span>
+							
+						</p>
 					</div>
 				</div>
 			</a>
