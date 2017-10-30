@@ -79,9 +79,8 @@ public class BecomeController {
 	
 	@RequestMapping("/add_rst")
 	@ResponseBody
-	public int buyadjustHandle(@RequestParam Map param,ModelMap map) throws SQLException {
-		int b = becomeDao.adjust(param);
-			return b;
+	public int buyadjustHandle(@RequestParam Map param){
+		return becomeDao.adjust(param);
 	}
 
 }
