@@ -5,7 +5,7 @@
 <mapper namespace="freeD">
 	<select id="listAll" resultType="java.util.HashMap">
 			select b.*, t.c from free_distribute b left join 
-        	(select parent, count(*) as c from freeboard_reply group by parent ) t on b.no = t.parent order by no desc
+        	(select bno, count(*) as c from reply group by bno ) t on b.no = t.bno order by no desc
 	</select>
 
 	<insert id="addOne">
@@ -25,9 +25,5 @@
 	<update id="endSet">
 		update free_distribute set end=#{end} where no=#{no}
 	</update>
-	<!--  
-	 <select id="readReply" resultType="java.util.HashMap">
-		select * from freeboard_reply where parent=#{parent} order by no desc
-	</select> -->
 	 
 </mapper>

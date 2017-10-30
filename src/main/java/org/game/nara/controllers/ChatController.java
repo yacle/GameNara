@@ -129,6 +129,7 @@ SellDao sellDao;
 	}
 	
 	@PostMapping("/note_sendAll")
+<<<<<<< HEAD
 	public void postAllSend(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
 		List<Map> list =  chatDao.memberAll();;
 		String content = (String)map.get("content");
@@ -137,6 +138,19 @@ SellDao sellDao;
 			System.out.println(map.toString());
 			int r = chatDao.noteAddHandle(map);
 			nws.sendMessageToUser((String)ss.get("ID"), content);
+=======
+	@ResponseBody
+	public String noteAllSendHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
+		int r = chatDao.noteAddHandle(map);
+		List<String> list =  mapper.readValue((String)map.get("receiver"), List.class);
+		for(String ss : list) {
+			nws.sendMessageToUser(ss, (String)map.get("content"));
+		}
+		if(r!=0) {
+			return "send complate";
+		}else {
+			return "send fail";
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		}
 	}
 }

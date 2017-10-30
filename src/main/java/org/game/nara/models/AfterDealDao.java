@@ -28,17 +28,6 @@ SqlSessionTemplate temp;
 		return temp.insert("after.addPoint", id);
 	}
 	
-	public int addReply(Map map) {
-		return temp.insert("after.addReply", map);
-	}
-	
-	public List readReply(String parent) {
-		return temp.selectList("after.readReply", parent);
-	}
-	
-	public int deleteReply(String no) {
-		return temp.delete("after.deleteReply", no);
-	}
 	
 	public int modifyAfter(Map map) {
 		return temp.update("after.modifyAfter", map);

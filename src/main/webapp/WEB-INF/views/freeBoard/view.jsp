@@ -61,7 +61,7 @@ textarea {
 			<button type="button" id="c" style="display: none;">취소</button>
 			<button type="button" id="d">삭제</button>
 		</c:if>
-		<a href="/after/list" ><button>BACK</button></a>
+		<a href="/freeBoard/list" ><button>BACK</button></a>
 	</div>
 	<hr/>
 </div>
