@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -61,11 +62,26 @@ public class BecomeController {
 	public ModelAndView becomeviewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");	
 		Map one = becomeDao.readOne(num);
-		int b = becomeDao.countup(num);
-		one.put("countup", b);
 		mav.addObject("one", one);
 		mav.addObject("section", "become_member/view");
 		return mav;
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteReplyHandle(@RequestParam Map num) {
+		int rst=0;
+		int ok = becomeDao.delete(num);
+		if(ok==1) {
+			rst =1;
+		}
+		return "redirect:/become_member/list"; 
+	}
+	
+	@RequestMapping("/add_rst")
+	@ResponseBody
+	public int buyadjustHandle(@RequestParam Map param,ModelMap map) throws SQLException {
+		int b = becomeDao.adjust(param);
+			return b;
 	}
 
 }

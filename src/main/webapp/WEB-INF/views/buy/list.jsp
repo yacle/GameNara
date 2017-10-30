@@ -87,8 +87,7 @@ th, td {
 
 							<td><fmt:formatDate pattern="yyyy.MM.dd"
 									value="${obj.ADD_DATE }" /></td>
-							<td>${obj.COUNT }</td>
-									
+							<td>${obj.COUNT }</td>	
 						</c:otherwise>
 					</c:choose>
 				</tr>
@@ -106,8 +105,10 @@ th, td {
 		var url="/chat/noteSend?id="+obj;
 		window.open(url, "noteSend", "width=400, height=550");
 	}
+	
 
 </script>
+
 <script>
 
 //포인트체크

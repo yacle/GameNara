@@ -9,6 +9,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.game.nara.models.FreeBoardDao;
+import org.game.nara.models.MemberDao;
 import org.game.nara.models.buyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,9 @@ public class buycontroller {
 
 	@Autowired
 	SimpleDateFormat sdf;
+	
+	@Autowired
+	MemberDao memberDao;
 
 	@RequestMapping(value="/list/{category}")
 	public ModelAndView buyListHandle(@PathVariable(value="category")int category) throws SQLException {
@@ -141,6 +145,15 @@ public class buycontroller {
 			rst =1;
 		}
 		return "redirect:/buy/list/"+rst; 
+	}
+	
+	@RequestMapping("/info")
+	public ModelAndView noteSendHandle(@RequestParam MemberVO id) {
+		ModelAndView mav = new ModelAndView();
+		id=buyDao.readInfo(id);
+		mav.addObject("section", "buy/info");
+		mav.addObject("info", id);
+		return mav;
 	}
 	
 

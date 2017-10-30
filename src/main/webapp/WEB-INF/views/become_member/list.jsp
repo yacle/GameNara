@@ -35,8 +35,12 @@ th, td {
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO }</td>
+<<<<<<< HEAD
+					<td><a href="/become_member/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a><span class="badge">${obj.C }</span> 
+=======
 					<td style="text-align: left; padding-left: 30px;"><a href="/become_member/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
 						<span class="badge">${obj.C }</span>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 					<td>
 					<c:choose>
 						<c:when test="${auth_id ne null}">
