@@ -10,6 +10,8 @@ th {
 }
 th, td {
 	padding: 10px;
+	text-align:center;
+	vertical-align: middle;
 }
 </style>
 <div align="center" style="line-height: 35px">
@@ -33,7 +35,7 @@ th, td {
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/become_member/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+					<td style="text-align: left; padding-left: 30px;"><a href="/become_member/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
 						<span class="badge">${obj.C }</span>
 					<td>
 					<c:choose>

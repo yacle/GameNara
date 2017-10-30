@@ -10,6 +10,8 @@ th {
 }
 th, td {
 	padding: 10px;
+	text-align:center;
+	vertical-align: middle;
 }
 </style>
 <div align="center" style="line-height: 35px">
@@ -18,8 +20,7 @@ th, td {
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
 	<input type="hidden" id="my" value="${auth_id }"/>
-	<table style="width: 95%; background-color: #EAEAEA;"
-		class="table table-bordered">
+	<table style="width: 95%; background-color: #EAEAEA;" class="table table-bordered">
 		<thead>
 			<tr>
 				<th style="width: 10%">글번호</th>
@@ -36,17 +37,17 @@ th, td {
 					<c:choose>
 						<c:when test="${auth_id ne null}">
 							<c:if test="${obj.ATTACH ne null }">
-								<td><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+								<td style="text-align: left; padding-left: 30px;"><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
 								<img id="pf" src="/profiles/board_def.JPG" style="height:10px; width:10px;"/>
 								<span class="badge">${obj.CNT }</span>
 							</c:if>
 							<c:if test="${obj.ATTACH eq null }">
-								<td><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+								<td style="text-align: left; padding-left: 30px;"><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
 								<span class="badge">${obj.CNT }</span>
 							</c:if>
 						</c:when>
 						<c:otherwise>
-							<td>${fn:substring(obj.TITLE, 0, 12) }</td>
+							<td style="text-align: left; padding-left: 30px;">${fn:substring(obj.TITLE, 0, 12) }</td>
 						</c:otherwise>
 					</c:choose>
 					<td>
