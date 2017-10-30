@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.game.nara.models.ChatDao;
 import org.game.nara.models.SellDao;
 import org.game.nara.wsControllers.NoteWSHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/chat")
@@ -40,7 +44,7 @@ SellDao sellDao;
 		mav.addObject("id", id);
 		return mav;
 	}
-	
+
 	@PostMapping("/note_send")
 	@ResponseBody
 	public String noteSendHandle(@RequestParam Map map) {
@@ -117,17 +121,33 @@ SellDao sellDao;
 		return  r;
 	}
 
-	@RequestMapping("/noteAllSend")
+	@GetMapping("/note_sendAll")
 	public ModelAndView noteAllSendHandle() {
 		ModelAndView mav = new ModelAndView();
 		List memAll = chatDao.memberAll();
-		System.out.println("ListAllID"+memAll);
-		mav.addObject("section", "chat/noteSend");
-		mav.addObject("id",memAll);
+		String json = new Gson().toJson(memAll );
+		mav.addObject("section", "chat/note_sendAll");
+		mav.addObject("id",json);
+		
 		return mav;
 	}
 	
-	
+	@PostMapping("/note_sendAll")
+	@ResponseBody
+	public String noteAllSendHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
+		int r = chatDao.noteAddHandle(map);
+		List<String> list =  mapper.readValue((String)map.get("receiver"), List.class);
+		System.out.println("¸®½Ã¹ö=?"+list);
+		for(String ss : list) {
+			System.out.println(ss);
+			nws.sendMessageToUser(ss, (String)map.get("content"));
+		}
+		if(r!=0) {
+			return "send complate";
+		}else {
+			return "send fail";
+		}
+	}
 	
 	
 }

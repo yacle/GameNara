@@ -69,10 +69,10 @@ td{
 						<td>카테고리</td>
 						<td>
 							<select class="update-group" name="category" style="padding: 5px; border:none" disabled>
-								<option value="1" <c:if test="${map.CATEGORY eq 1 }">selected</c:if> >콘솔기기</option>
-								<option value="2" <c:if test="${map.CATEGORY eq 2 }">selected</c:if> >게임타이틀</option>
-								<option value="3" <c:if test="${map.CATEGORY eq 3 }">selected</c:if> >주변기기</option>
-								<option value="0" <c:if test="${map.CATEGORY eq 0 }">selected</c:if> >기타</option>
+								<option value="1" <c:if test="${map.CATEGORY eq 1 }"> selected </c:if> > 콘솔기기</option>
+								<option value="2" <c:if test="${map.CATEGORY eq 2 }"> selected </c:if> > 게임타이틀</option>
+								<option value="3" <c:if test="${map.CATEGORY eq 3 }"> selected </c:if> > 주변기기</option>
+								<option value="0" <c:if test="${map.CATEGORY eq 0 }"> selected </c:if> > 기타</option>
 							</select>
 						</td>
 					</tr>

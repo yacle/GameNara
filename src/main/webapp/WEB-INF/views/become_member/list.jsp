@@ -18,7 +18,8 @@ th, td {
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
-	<table class="table table-striped" >
+	<table style="width: 95%; background-color: #EAEAEA;"
+		class="table table-bordered">
 		<thead>
 			<tr>
 				<th style="width: 10%">글번호</th>

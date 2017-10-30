@@ -28,7 +28,7 @@ th, td {
 			<tr>
 				<th style="width: 10%">No</th>
 				<th style="width: 15%">보낸사람</th>
-				<th style="width: 50%">받은 메세지</th>
+				<th style="width: 50%">받은 메세지	</th>
 				<th style="width: 15%">받은시간</th>
 				<th style="width: 10%">삭제</th>
 			</tr>

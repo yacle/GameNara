@@ -19,7 +19,8 @@ th, td {
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
 	<input type="hidden" id="my" value="${auth_id }"/>
-	<table class="table table-striped" >
+	<table style="width: 95%; background-color: #EAEAEA;"
+		class="table table-bordered">
 		<thead>
 			<tr>
 				<th style="width: 10%">글번호</th>

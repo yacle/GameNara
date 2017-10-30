@@ -7,7 +7,7 @@
 		insert into note values(note_seq.nextval, #{receiver}, #{sender}, #{content}, #{time}, 'n', 'n')
 	</insert>
 	
-	<select id="memberAll" resultType="java.util.ArrayList">
+	<select id="memberAll" resultType="java.util.HashMap">
 		select id from member
 	</select>
 	
