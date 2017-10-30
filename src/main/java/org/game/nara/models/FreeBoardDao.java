@@ -24,7 +24,7 @@ public class FreeBoardDao {
 	}
 
 	public Map readOne(String num) {
-	
+		int r = tmp.update("freeB.countOne", num);
 		return  tmp.selectOne("freeB.readOne", num);
 	}
 	
