@@ -32,10 +32,19 @@ td {
 }
 </style>
 <div align="center" style="line-height: 35px">
+<<<<<<< HEAD
 	<h2><a href="/become_member/list">게시판</a></h2>
 	<hr />
+=======
+	<h2>가입인사게시판</h2>
+		<div align="left">
+		
+	</div>
+	<hr/>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	<div style="width: 90%; border-radius: 10px; ; padding-left: 20px;" align="left">
 		<input type="hidden" id="num" value="${one.NO }" />
+<<<<<<< HEAD
 		<h2>${one.TITLE}</h2><br/>
 		<p style="padding-left: 10px;">
 			<small id="buyid">
@@ -57,9 +66,75 @@ td {
 			</c:if>
 			<a href="/become_member/list" ><button type="button" class="btn btn-default">목록</button></a>
 		</div>
+=======
+		<h3>${one.TITLE }</h3>
+		<div class="row">
+	    	<div class="col-sm-10">
+	    		<small>작성자 : ${one.ID } | 작성일 : 
+	    			<fmt:formatDate pattern="MM.dd.yyyy HH:mm:ss" value="${one.ADD_DATE }" /> 
+				</small>
+			</div>
+		    <div class="col-sm-2">
+		    	<small>조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" /></small>
+		    </div>
+		</div>							
+			<textarea rows="5" id="comment" disabled>${one.DETAIL }</textarea>
+		</div><br/>
+	<div style="margin-right:100px" align="right">
+		<c:if test="${one.WRITER eq auth_id}">
+			<button type="button" id="m">수정</button>
+			<button type="button" id="s" style="display: none;">저장</button>
+			<button type="button" id="c" style="display: none;">취소</button>
+			<button type="button" id="d">삭제</button>
+		</c:if>
+		<a href="/become_member/list" ><button>BACK</button></a>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	</div>
+<<<<<<< HEAD
+=======
+	<hr/>
+</div>
+<script>
+	//글 수정 버튼	
+	$("#m").click(function(){
+		document.getElementById("comment").disabled=false;
+		$("#comment").css("background-color","#f8f8f8");
+		$("#m").css("display","none");
+		$("#d").css("display","none");
+		$("#c").css("display","inline");
+		$("#s").css("display","inline");
+		$("#s").click(function(){
+			$.ajax({
+				"type":"post",
+				"async":false,
+				"url":"/after/modify",
+				"data":{
+					"comment" : $("#comment").val(),
+					"no" : $("#num").val()
+				}
+			}).done(function(r) {
+				document.getElementById("comment").disabled = true;
+				$("#m").css("display", "inline");
+				$("#s").css("display", "none");
+			})
+		})
+		//글 수정 취소 버튼
+		$("#c").click(function(){
+			window.location.reload();
+		})
+	})
+</script>
+
+<%-- Reply input form --%>
+<div class="row" >
+	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
+	<div class="col-md-8"><textarea rows="1" id="content"></textarea></div>
+	<div class="col-md-1">비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자" required></div>
+	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 </div>
 <hr/>
+<<<<<<< HEAD
 
 <script>
 //게시글 수정
@@ -115,6 +190,8 @@ $("#delete").click(function(){
 	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
 </div>
 <hr/>
+=======
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 <!-- Reply List View -->
 <span id="replies"></span>
 <!-- Reply 수정  modal-->
@@ -209,9 +286,44 @@ $("#replies").on("click", "#m button", function(){
 			cfm.hide();
 			window.alert("비밀번호를 확인하세요");
 		}
+<<<<<<< HEAD
+=======
 	})
 })
 
+// modal form controll
+$("#replyModBtn").click(function(){
+	$.ajax({
+		"type": "post",
+		"async":false,
+		"url":"/replies/update",
+		"headers": {
+			"Content-Type": "application/json",
+			"X-HTTP-Method-Override": "POST"
+		},
+		"dataType":"text",
+		"data":JSON.stringify({
+			"rno": $("#replyhead").html(),
+			"replytext":$("#replytext").val()
+		})
+	}).done(function(){
+		$("#myModal").modal("hide");
+		list();
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
+	})
+})
+<<<<<<< HEAD
+=======
+$("#replyDelBtn").click(function(){
+	var rno = $("#replyhead").html();
+	$.get("/replies/delete/"+rno, function(){
+		$("#myModal").modal("hide");
+		list();
+	})
+})
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
+
+<<<<<<< HEAD
 // modal form controll
 $("#replyModBtn").click(function(){
 	$.ajax({
@@ -240,5 +352,10 @@ $("#replyDelBtn").click(function(){
 	})
 })
 
+=======
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 </script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git

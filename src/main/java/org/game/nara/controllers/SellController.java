@@ -127,7 +127,6 @@ SimpleDateFormat sdf;
 	
 	@RequestMapping("/update")
 	public String picupdateHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IllegalStateException, IOException {
-		System.out.println(map.toString());
 		if(pic.getSize() > 0) {
 			String id = (String)map.get("writer");
 			String fmt = sdf.format(System.currentTimeMillis());
@@ -140,7 +139,6 @@ SimpleDateFormat sdf;
 			pic.transferTo(up);
 			map.put("pic", name);
 			sellDao.sellUpdate(map);
-			System.out.println(map.toString());
 		}else {
 			sellDao.sellUpdate2(map);
 		}

@@ -85,7 +85,6 @@ public class buycontroller {
 
 	@RequestMapping("/end")
 	public ModelAndView buyendHandle(@RequestParam Map param) {
-		System.out.println(param.toString());
 		int li = buyDao.endset(param);
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/view");

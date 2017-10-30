@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
-import org.game.nara.models.FreeBoard_ReplyDao;
 import org.game.nara.models.FreeDistributeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +59,6 @@ public class FreeDistributeControllers {
 		if(mpf.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/freeD_File");
-			System.out.println("pppppath==>"+path);
 			String name = id+"_"+fmt;
 			
 			File dir = new File(path);
@@ -81,11 +79,8 @@ public class FreeDistributeControllers {
 	   public ModelAndView FreeDistributeViewHandle(@PathVariable String num) throws SQLException {
 	      ModelAndView mav = new ModelAndView("temp");   // 바로 뷰이름지정
 	      Map one = FD_Dao.readOne(num);
-	      FD_Dao.countOne(num);
-	      //List<Map> r = FD_Dao.readReply(num);
 	      mav.addObject("one", one);
 	      mav.addObject("section", "FreeDistribute/view");
-	      //mav.addObject("reply", r);
 	      return mav;
 	   }
 	

@@ -23,11 +23,8 @@ public class FreeDistributeDao {
 	}
 	
 	public Map readOne(String num) {
+		tmp.update("freeD.countOne",num);
 		return tmp.selectOne("freeD.readOne", num);
-	}
-	
-	public int countOne(String num) {
-		return tmp.update("freeD.countOne",num);
 	}
 	
 	public int endSet (Map map) {

@@ -20,7 +20,6 @@ ReplyDao replyDao;
 	@RequestMapping("/add")
 	@ResponseBody
 	public int register(@RequestBody ReplyVO vo) {
-		System.out.println(vo.toString());
 		return replyDao.create(vo);
 	}
 	
