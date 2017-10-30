@@ -8,18 +8,20 @@
 <head>
   <style>
   body {
+  background-color: #9FC93C;
       position: relative; 
   }
-  #section1 {padding-top:50px;height:1000px;color: #fff;}
-  #section2 {padding-top:50px;height:1000px;color: #fff; }
-  #section3 {padding-top:50px;height:1000px;color: #fff; }
-  #section41 {padding-top:50px;height:1000px;color: #fff;}
-  #section42 {padding-top:50px;height:1000px;color: #fff;}
+  #section1 {padding-top:50px;height:1000px;color: black; }
+  #section2 {padding-top:50px;height:1000px;color: black; }
+  #section3 {padding-top:50px;height:1000px;color: black; }
+  #section41 {padding-top:50px;height:1000px;color: black;}
+  #section42 {padding-top:50px;height:1000px;color: black;}
   </style>
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class="row">
+<div class="col-sm-3">
+<nav class="navbar navbar-inverse navbar-fixed" id="nav">
   <div class="container-fluid">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -27,57 +29,171 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">맨위로</a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="#section1">Section 1</a></li>
-          <li><a href="#section2">Section 2</a></li>
-          <li><a href="#section3">Section 3</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#section41">Section 4-1</a></li>
-              <li><a href="#section42">Section 4-2</a></li>
-            </ul>
-          </li>
+          <li><a href="#section1">buy</a></li>
+          <li><a href="#section2">sell </a></li>
+          <li><a href="#section3">after</a></li>
+          <li><a href="#section41">free</a></li>
+          <li><a href="#section42">freedis</a></li>
         </ul>
       </div>
+      </div>
     </div>
-  </div>
-</nav>    
-
+</nav>
+</div>
+<h1 align="center">MY WORLD</h1>
+<div class="col-sm-9">
 <div id="section1" class="container-fluid">
+<h2>buy에서 쓴글</h2><br/>
+<table style="width: 95%; background-color: #EAEAEA;"
+		class="table table-bordered">
+		<thead>
+			<tr>
+				<th style="width: 10%">글번호</th>
+				<th style="width: 43%">글제목</th>
+				<th style="width: 15%">작성일자</th>
+				<th style="width: 10%">조회수</th>
+			</tr>
+		</thead>
+			<tbody>
         <c:forEach var="obj" items="${total.buy }">
-				<a href="/buy/view/${obj.NO}">${obj.TITLE }</a><br/><hr/>
+				<tr>
+					<td>${obj.NO }</td>
+					<td><a href="/buy/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.ADD_DATE }" /></td>
+					<td>${obj.COUNT }</td>
+					</tr>
 		</c:forEach>
+			</tbody>
+</table>
 </div>
 <div id="section2" class="container-fluid">
-  <h1>Section 2</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+<h2>sell에서 쓴글</h2><br/>
+<table style="width: 95%; background-color: #EAEAEA;"
+		class="table table-bordered">
+		<thead>
+			<tr>
+				<th style="width: 10%">글번호</th>
+				<th style="width: 43%">글제목</th>
+				<th style="width: 15%">작성일자</th>
+				<th style="width: 10%">조회수</th>
+			</tr>
+		</thead>
+			<tbody>
+        <c:forEach var="obj" items="${total.sell }">
+				<tr>
+					<td>${obj.NO }</td>
+					<td><a href="/buy/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.REGDATE }" /></td>
+					<td>${obj.COUNT }</td>
+					</tr>
+		</c:forEach>
+			</tbody>
+</table>
 </div>
 <div id="section3" class="container-fluid">
-  <h1>Section 3</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+<h2>after에서 쓴글</h2><br/>
+<table style="width: 95%; background-color: #EAEAEA;"
+		class="table table-bordered">
+		<thead>
+			<tr>
+				<th style="width: 10%">글번호</th>
+				<th style="width: 43%">글제목</th>
+				<th style="width: 15%">작성일자</th>
+				<th style="width: 10%">조회수</th>
+			</tr>
+		</thead>
+			<tbody>
+        <c:forEach var="obj" items="${total.after }">
+				<tr>
+					<td>${obj.NO }</td>
+					<td><a href="/buy/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.ADD_DATE }" /></td>
+					<td>${obj.COUNT }</td>
+					</tr>
+		</c:forEach>
+			</tbody>
+</table>
 </div>
 <div id="section41" class="container-fluid">
-  <h1>Section 4 Submenu 1</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
+<h2>free에서 쓴글</h2><br/>
+<table style="width: 95%; background-color: #EAEAEA;"
+		class="table table-bordered">
+		<thead>
+			<tr>
+				<th style="width: 10%">글번호</th>
+				<th style="width: 43%">글제목</th>
+				<th style="width: 15%">작성일자</th>
+				<th style="width: 10%">조회수</th>
+			</tr>
+		</thead>
+			<tbody>
+        <c:forEach var="obj" items="${total.free }">
+				<tr>
+					<td>${obj.NO }</td>
+					<td><a href="/buy/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.FB_DATE }" /></td>
+					<td>${obj.VIEW_CNT }</td>
+					</tr>
+		</c:forEach>
+			</tbody>
+</table>
+</div> 
 <div id="section42" class="container-fluid">
-  <h1>Section 4 Submenu 2</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
+<h2>freedis에서 쓴글</h2><br/>
+<table style="width: 95%; background-color: #EAEAEA;"
+		class="table table-bordered">
+		<thead>
+			<tr>
+				<th style="width: 10%">글번호</th>
+				<th style="width: 43%">글제목</th>
+				<th style="width: 15%">작성일자</th>
+				<th style="width: 10%">조회수</th>
+			</tr>
+		</thead>
+			<tbody>
+        <c:forEach var="obj" items="${total.freedis }">
+				<tr>
+					<td>${obj.NO }</td>
+					<td><a href="/buy/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.FD_DATE }" /></td>
+					<td>${obj.VIEW_CNT }</td>
+					</tr>
+		</c:forEach>
+			</tbody>
+</table>
 
+</div>
+</div>
+</div>
 <script>
 $(document).ready(function(){
     $('body').scrollspy({target: ".navbar", offset: 50});   
 });
 </script>
 
+<script>
+$(document).ready(function() {
+
+	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	var floatPosition = parseInt($("#nav").css('top'));
+	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+		var newPosition = scrollTop + floatPosition + "px";
+
+		 $("#nav").css('top', newPosition);
+
+	}).scroll();
+
+});
+
+</script>
 </body>
 </html>

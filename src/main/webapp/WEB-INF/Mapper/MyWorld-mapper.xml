@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="myworld">
 	<select id="after" resultType="java.util.HashMap">
-	select * from buy where buy_id=#{id}
+	select * from after where writer=#{id}
 	</select>
 	<select id="freedis" resultType="java.util.HashMap">
 		select * from free_distribute where writer=#{id}
@@ -17,5 +17,8 @@
 	</select>
 	<select id="sell" resultType="java.util.HashMap">
 		select * from sell where writer=#{id}
+	</select>
+	<select id="member" resultType="java.util.HashMap">
+		select * from member where id=#{id}
 	</select>
 </mapper>
