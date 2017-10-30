@@ -137,9 +137,7 @@ SellDao sellDao;
 	public String noteAllSendHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
 		int r = chatDao.noteAddHandle(map);
 		List<String> list =  mapper.readValue((String)map.get("receiver"), List.class);
-		System.out.println("¸®½Ã¹ö=?"+list);
 		for(String ss : list) {
-			System.out.println(ss);
 			nws.sendMessageToUser(ss, (String)map.get("content"));
 		}
 		if(r!=0) {

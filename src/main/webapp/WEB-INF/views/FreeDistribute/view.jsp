@@ -31,11 +31,11 @@ textarea {
 		<div class="row">
 	    	<div class="col-sm-10">
 	    		<small>작성자 : ${one.WRITER } | 작성일 : 
-	    			<fmt:formatDate pattern="MM.dd.yyyy HH:mm:ss" value="${one.ADD_DATE }" /> 
+	    			<fmt:formatDate pattern="MM.dd.yyyy HH:mm:ss" value="${one.FD_DATE }" /> 
 				</small>
 			</div>
 		    <div class="col-sm-2">
-		    	<small>조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" /></small>
+		    	<small>조회수 : <fmt:formatNumber value="${one.VIEW_CNT}" pattern="#,###" /></small>
 		    </div>
 		</div>							
 		<c:choose>

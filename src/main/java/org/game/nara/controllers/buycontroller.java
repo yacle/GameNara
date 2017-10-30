@@ -81,7 +81,6 @@ public class buycontroller {
 
 	@RequestMapping("/end")
 	public ModelAndView buyendHandle(@RequestParam Map param) {
-		System.out.println(param.toString());
 		int li = buyDao.endset(param);
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/view");
@@ -118,7 +117,6 @@ public class buycontroller {
 	@ResponseBody
 	public String buycheckpoint(MemberVO vo) {
 		MemberVO point=buyDao.checkpoint(vo);
-		System.out.println(point.toString());
 		if(point.getPoint()<500) {
 			return "ok";
 		}else {
@@ -137,10 +135,8 @@ public class buycontroller {
 	
 	@RequestMapping("/delete")
 	public String deleteReplyHandle(@RequestParam Map num) {
-		System.out.println(num.toString());
 		int rst=0;
 		int ok = buyDao.delete(num);
-		System.out.println(ok);
 		if(ok==1) {
 			rst =1;
 		}

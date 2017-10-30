@@ -67,7 +67,6 @@ ServletContext application;
 			pic.transferTo(up);
 			map.put("attach", name);
 		}
-		System.out.println(map.toString());
 		map.put("writer", id);
 		int r = adDao.addAfter(map);
 	//	if (r!=0) {
