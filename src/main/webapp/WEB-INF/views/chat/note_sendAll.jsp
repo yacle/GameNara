@@ -13,43 +13,57 @@
 <h2>단체쪽지전송</h2>
 <h3>TO : ALL MEMBER</h3>
 <form action="/chat/note_sendAll" method="post" >
-	<input type="hidden" name="sender" value="${auth_id}"/>
+	<input type="hidden" id="sender" value="${auth_id}"/>
 	<small><span name="nowtime"></span></small><br/>
-	<input type="hidden" name="time">
-	<textarea rows="15" cols="45" name="content" placeholder="보낼내용.." required></textarea><br/><br/>
-	<button type="submit">SEND</button>
+	<textarea rows="15" cols="45" id="content" placeholder="보낼내용.." required></textarea><br/><br/>
+	<button type="button" id="send">SEND</button>
 </form>
 </div>
 
 <script>
-	function num(a){
-		if(a<10){
-			a = "0"+a;
+$("#send").click(function(){
+	$.ajax({
+		url:"/chat/note_sendAll",
+		type:"post",
+		async:false,
+		data:{
+			"sender":$("#sender").val(),
+			"content":$("#content").val(),
+		},
+		success:function(obj){
+			window.alert(obj+"명에게 메세지가 전달되었읍니다.");
+			window.close();
 		}
-		return a;
+	})
+})
+
+function num(a){
+	if(a<10){
+		a = "0"+a;
 	}
-	function printTime(){
-		var d = new Date();
-		var y = d.getFullYear();
-		var mon = d.getMonth();
-		var date = d.getDate();
-		var day = d.getDay();
-		var h = num(d.getHours());
-		var m = num(d.getMinutes());
-		var s = num(d.getSeconds());
-		switch(day){
-		case 0: day="일"; break; 
-		case 1: day="월"; break; 
-		case 2: day="화"; break; 
-		case 3: day="수"; break;
-		case 4: day="목"; break;
-		case 5: day="금"; break;
-		case 6: day="토"; break;	
-		}
-		var t = y+"년 "+(mon+1)+"월 "+date+"일 "+day+"요일 "+h+":"+m+":"+s;
-		$("#nowtime").html(t);
-		$("#time").val(t);
+	return a;
+}
+function printTime(){
+	var d = new Date();
+	var y = d.getFullYear();
+	var mon = d.getMonth();
+	var date = d.getDate();
+	var day = d.getDay();
+	var h = num(d.getHours());
+	var m = num(d.getMinutes());
+	var s = num(d.getSeconds());
+	switch(day){
+	case 0: day="일"; break; 
+	case 1: day="월"; break; 
+	case 2: day="화"; break; 
+	case 3: day="수"; break;
+	case 4: day="목"; break;
+	case 5: day="금"; break;
+	case 6: day="토"; break;	
 	}
-	setInterval(printTime, 1000);
+	var t = y+"년 "+(mon+1)+"월 "+date+"일 "+day+"요일 "+h+":"+m+":"+s;
+	$("#nowtime").html(t);
+}
+setInterval(printTime, 1000);
 
 </script>

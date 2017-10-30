@@ -28,12 +28,14 @@ SqlSessionTemplate temp;
 		int r04 = temp.selectOne("master.freecnt", id);
 		int r05 = temp.selectOne("master.sellcnt", id);
 		int r06 = temp.selectOne("master.logcnt", id);
+		int r07 = temp.selectOne("master.replycnt", id);
 		map.put("after", r01);
 		map.put("free_distribute", r02);
 		map.put("buy", r03);
 		map.put("freeboard", r04);
 		map.put("sell", r05);
 		map.put("logcnt", r06);
+		map.put("replycnt", r07);
 		return map;
 	}
 }

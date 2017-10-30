@@ -3,7 +3,7 @@ package org.game.nara;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-public class paging {
+public class Paging {
 	
 	private int pageSize; // 게시 글 수
 	private int firstPageNo; // 첫 번째 페이지 번호

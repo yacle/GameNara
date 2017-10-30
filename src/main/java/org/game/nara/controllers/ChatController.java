@@ -128,14 +128,16 @@ SellDao sellDao;
 	}
 	
 	@PostMapping("/note_sendAll")
-	public void postAllSend(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
-		List<Map> list =  chatDao.memberAll();;
+	@ResponseBody
+	public int postAllSend(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
+		List<Map> list =  chatDao.memberAll();
 		String content = (String)map.get("content");
+		int r=0;
 		for(Map ss : list) {
 			map.put("receiver", (String)ss.get("ID"));
-			System.out.println(map.toString());
-			int r = chatDao.noteAddHandle(map);
+			r += chatDao.noteAddHandle(map);
 			nws.sendMessageToUser((String)ss.get("ID"), content);
 		}
+		return r;
 	}
 }
