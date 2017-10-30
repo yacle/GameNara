@@ -21,10 +21,17 @@ public class becomeDao {
 		return true;
 	}
 
+
 	public Map readOne(String num) {
+		template.update("become_member.countup",num);
 		return template.selectOne("become_member.readOne", num);
+		}
+	
+	public int delete(Map num) {
+		return template.delete("become_member.delete",num);
 	}
-	public int countup(String num) {
-		return template.update("become_member.countup",num);
+	
+	public int adjust (Map map) {
+		return template.update("become_member.adjust",map);
 	}
 }

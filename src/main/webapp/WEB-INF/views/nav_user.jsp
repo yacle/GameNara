@@ -49,7 +49,7 @@
 				</button>
 				<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="/member/info?id=${auth_id}">PROFILE</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="/MyWorld/myworld">MyWorld</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/MyWorld/myworld?id=${auth_id }">MyWorld</a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
 						<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">POINT : <span id="point"></span></a></li>
@@ -104,4 +104,12 @@ $("#submit").click(function() {
 	})
 })
 
+</script>
+
+<script>
+function openchat(obj){
+		var url="/chat/noteSend?id="+obj;
+		window.open(url, "noteSend", "width=400, height=550");
+	}
+	
 </script>

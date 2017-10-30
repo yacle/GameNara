@@ -65,9 +65,11 @@ td {
 				<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
 				<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
 			</c:if>
+			<a href="/buy/list/1" ><button type="button" class="btn btn-default">목록</button></a>
 		</div>
 	</div>
 </div>
+
 <hr/>
 
 <script>
@@ -157,7 +159,7 @@ $("#delete").click(function(){
 		</div>
 	</div>
 </div>
-	 
+
 <script>
 var bno = $("#num").val();
 // 댓글 목록 불러오기

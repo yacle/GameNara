@@ -9,7 +9,8 @@
 	</insert>
 
 	<select id="list" resultType="java.util.HashMap">
-		select *from become_member
+		select b.*, t.c from become_member b left join 
+       	(select bno, count(*) as c from reply group by bno ) t on b.no = t.bno order by no desc
 	</select>
 
 	<select id="readOne" parameterType="java.lang.String"
@@ -20,4 +21,12 @@
 	<update id="countup">
 		update become_member set count = count+1 where no =#{no}
 	</update>
+	
+	<delete id="delete">
+		delete from become_member where no=#{no}
+	</delete>
+	
+	 <update id="adjust"> 
+		update become_member set detail=#{detail} where no =#{no}
+	 </update>
 </mapper>

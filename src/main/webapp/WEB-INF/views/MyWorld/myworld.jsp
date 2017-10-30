@@ -87,7 +87,7 @@
         <c:forEach var="obj" items="${total.sell }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/buy/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><a href="/sell/view/${obj.NO}">${obj.TITLE }</a></td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.REGDATE }" /></td>
 					<td>${obj.COUNT }</td>
 					</tr>
@@ -111,7 +111,7 @@
         <c:forEach var="obj" items="${total.after }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/buy/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><a href="/after/view/${obj.NO}">${obj.TITLE }</a></td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.ADD_DATE }" /></td>
 					<td>${obj.COUNT }</td>
 					</tr>
@@ -135,7 +135,7 @@
         <c:forEach var="obj" items="${total.free }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/buy/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><a href="/freeBoard/view/${obj.NO}">${obj.TITLE }</a><span class="badge">${obj.C }</span></td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.FB_DATE }" /></td>
 					<td>${obj.VIEW_CNT }</td>
 					</tr>
@@ -159,7 +159,7 @@
         <c:forEach var="obj" items="${total.freedis }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/buy/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><a href="/FreeDistribute/view/${obj.NO}">${obj.TITLE }</a></td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.FD_DATE }" /></td>
 					<td>${obj.VIEW_CNT }</td>
 					</tr>

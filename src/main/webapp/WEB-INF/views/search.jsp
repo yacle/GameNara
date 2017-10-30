@@ -13,15 +13,15 @@ th, td {
 	padding: 10px;
 }
 </style>
-<h2 align="center">검색 내용</h2>
-<h4 align="center">최근 7개 항목만 검색 됩니다</h4><hr/>
+<h1 align="center">검색 내용</h1>
+<h3 align="center">최근 7개 항목만 검색 됩니다</h3><hr/>
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-md-3" >
 		<h3>팝니다 게시판</h3><br/>
 			<c:forEach var="obj" items="${total.sell }">
 				<a href="/sell/view/${obj.NO}">${obj.TITLE }</a><br/><hr/>
 			</c:forEach>
-			<a href="/sell/list/1"><h6 align="right">팝니다 게시판으로</h6></a>
+			<a href="/sell/list?category=1&&type=map"><h6 align="right">팝니다 게시판으로</h6></a>
 	</div>	
 	<div class="col-md-3">		
 		<h3>삽니다 게시판</h3><br/>

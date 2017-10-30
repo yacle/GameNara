@@ -62,4 +62,8 @@ public class buyDao {
 		return template.selectOne("buy.checkpoint",vo);
 	}
 	
+	public MemberVO readInfo(MemberVO id) {
+		return template.selectOne("member.readInfo", id);
+	}
+	
 }

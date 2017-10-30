@@ -14,7 +14,6 @@ public class MyWorldDao {
 SqlSessionTemplate template;
 
 public Map mysearch(String id) throws Exception{
-	System.out.println(id.toString());
 	Map map= new HashMap();
 	List<Map> s=template.selectList("myworld.sell", id);
 	List<Map> f=template.selectList("myworld.free", id);

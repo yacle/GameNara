@@ -33,7 +33,7 @@ th, td {
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/become_member/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a>
+					<td><a href="/become_member/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a><span class="badge">${obj.C }</span> 
 					<td>
 						<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">

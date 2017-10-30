@@ -17,7 +17,8 @@
 	 </update>
 	 
 	<select id="list" resultType="java.util.HashMap">
-			select * from buy order by no desc
+		select b.*, t.c from buy b left join 
+       	(select bno, count(*) as c from reply group by bno ) t on b.no = t.bno order by no desc
 	</select>
 	
 	<select id="readOne" parameterType="java.lang.String"
@@ -57,8 +58,5 @@
 	select * from member where id=#{id}
 	</select>
 	
-	<select id="replyno" resultType="int">
-	select count(*) from reply where bno=#{bno}
-	</select>
 	
 </mapper>
