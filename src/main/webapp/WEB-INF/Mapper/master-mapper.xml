@@ -27,7 +27,7 @@
 		select no, title from after where writer=#{id}
 	</select>
 	<select id="reply" resultType="java.util.HashMap">
-		select rno as no, replytext as title from reply where replyer=#{id}
+		select bno as no, replytext as title from reply where replyer=#{id}
 	</select>
 <!-- board count --> 	
 	<select id="sellcnt" resultType="int">

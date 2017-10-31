@@ -33,10 +33,15 @@
 			<c:forEach var="i" items="${data}">
 			<tr>	
 				<td>${i.NO }</td>
-				<td>${i.TITLE }</td>
+				<td><a href="${path}${i.NO}" onclick="javascript:window.close();">${i.TITLE }</a></td>
 			</tr>
 			</c:forEach>
 		</table>
 		</div>
 	</body>
 </html>
+<script>
+	$("#href", parent.document).action=""
+		
+	});
+</script>

@@ -38,20 +38,20 @@
 	<update id="state">
 		update sell set state=#{state} where no =#{no}
 	</update>
-	<select id="sellList" resultType="org.game.nara.SellVO">
+	<select id="sellList" resultType="java.util.HashMap">
 		select b.*, t.cnt from sell b left join 
        	(select bno, count(*) as cnt from reply group by bno ) t on b.no = t.bno order by no desc
 	</select>
-	<select id="console" resultType="org.game.nara.SellVO">
+	<select id="console" resultType="java.util.HashMap">
 		select * from sell where category=1 order by no desc
 	</select>
-	<select id="title" resultType="org.game.nara.SellVO">
+	<select id="title" resultType="java.util.HashMap">
 		select * from sell where category=2 order by no desc
 	</select>
-	<select id="acce" resultType="org.game.nara.SellVO">
+	<select id="acce" resultType="java.util.HashMap">
 		select * from sell where category=3 order by no desc
 	</select>
-	<select id="other" resultType="org.game.nara.SellVO">
+	<select id="other" resultType="java.util.HashMap">
 		select * from sell where category=0 order by no desc
 	</select>
 	<delete id="delete">

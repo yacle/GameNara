@@ -17,31 +17,27 @@ th, td {
 <h3 align="center">최근 7개 항목만 검색 됩니다</h3><hr/>
 <div class="row">
 	<div class="col-md-3" >
-		<h3>팝니다 게시판</h3><br/>
+		<a href="/sell/list?category=0&&type=map"><h3>팝니다</h3></a><br/>
 			<c:forEach var="obj" items="${total.sell }">
-				<a href="/sell/view/${obj.NO}">${obj.TITLE }</a><br/><hr/>
+				<a href="/sell/view/${obj.NO}">${obj.TITLE }</a><hr/>
 			</c:forEach>
-			<a href="/sell/list?category=1&&type=map"><h6 align="right">팝니다 게시판으로</h6></a>
 	</div>	
 	<div class="col-md-3">		
-		<h3>삽니다 게시판</h3><br/>
+		<a href="/buy/list/1"><h3>삽니다</h3></a><br/>
 		<c:forEach var="i" items="${total.buy }">
-			<a href="/buy/view/${i.NO}">${i.TITLE }</a><br/><hr/>
+			<a href="/buy/view/${i.NO}">${i.TITLE }</a><hr/>
 		</c:forEach>
-		<a href="/buy/list/1"><h6 align="right">삽니다 게시판으로</h6></a>
 	</div>	
 	<div class="col-md-3">	
-		<h3>자유게시판 게시판</h3><br/>
+		<a href="/freeBoard/list"><h3>자유게시판</h3></a><br/>
 		<c:forEach var="j" items="${total.free }">
-			<a href="/freeBoard/view/${j.NO}">${j.TITLE }</a><br/><hr/>
+			<a href="/freeBoard/view/${j.NO}">${j.TITLE }</a><hr/>
 		</c:forEach>
-		<a href="/freeBoard/list"><h6 align="right">자유게시판으로</h6></a>
 	</div>	
 	<div class="col-md-3">	
-		<h3>거래후기 게시판</h3><br/>
+		<a href="/after/list"><h3>거래후기</h3></a><br/>
 		<c:forEach var="k" items="${total.after }">
-			<a href="/after/view/${k.NO}">${k.TITLE }</a><br/><hr/>
+			<a href="/after/view/${k.NO}">${k.TITLE }</a><hr/>
 		</c:forEach>
-		<a href="/after/list"><h6 align="right">거래후기 게시판으로</h6></a>
 	</div>
 </div>

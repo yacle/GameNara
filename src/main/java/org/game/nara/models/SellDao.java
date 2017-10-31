@@ -34,19 +34,19 @@ SqlSessionTemplate temp;
 		return temp.update("sell.state", map);
 	}
 	
-	public List<SellVO> sellList() {
+	public List<Map> sellList() {
 		return temp.selectList("sell.sellList");
 	}
-	public List<SellVO> sellConsole() {
+	public List<Map> sellConsole() {
 		return temp.selectList("sell.console");
 	}
-	public List<SellVO> sellTitle() {
+	public List<Map> sellTitle() {
 		return temp.selectList("sell.title");
 	}
-	public List<SellVO> sellAcce() {
+	public List<Map> sellAcce() {
 		return temp.selectList("sell.acce");
 	}
-	public List<SellVO> sellOther() {
+	public List<Map> sellOther() {
 		return temp.selectList("sell.other");
 	}
 	
