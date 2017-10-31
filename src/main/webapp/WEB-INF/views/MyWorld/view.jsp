@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 합쳐지고 최소화된 최신 CSS - JQuery-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
 button {
 	font-size: 12px;
@@ -8,7 +17,7 @@ button {
 }
 
 textarea {
-	width: 100%;
+	width: 70%;
 	padding: 12px 20px;
 	box-sizing: border-box;
 	border: 2px solid #ccc;
@@ -34,32 +43,20 @@ td {
 <div align="center" style="line-height: 35px">
 	<h2><a href="/buy/list/1">게시판</a></h2>
 	<hr />
-	<div style="width: 90%; border-radius: 10px; ; padding-left: 20px;" align="left">
+	<div style="width: 70%; border-radius: 10px; ; padding-left: 20px;" align="left">
 		<input type="hidden" id="num" value="${one.NO }" />
-		<c:if test="${one.END == 1 }">
-			<h2 id="title">${one.TITLE }</h2>
-			<h3>거래중</h3>
-		</c:if>
-		<c:if test="${one.END == 2 }">
-			<del><h2>${one.TITLE }</h2></del>
-			<h3>거래완료</h3>
-		</c:if>
 		<p style="padding-left: 10px;">
 			<small id="buyid">
-				작성자 : ${one.BUY_ID } | 
-				작성일 : <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" />
+				작성자 : ${one.WRITER } | 
 				조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" /> 
-				<c:if test="${auth_id eq one.BUY_ID }">
-					<button id="end">계약완료</button>
-				</c:if>
 			</small>
 		</p>
 	</div><br />
 	<div class="row" align="center">
 		<input type="hidden" id="id" value="${auth_id}">
-		<textarea class="update-group" rows="10" width="1000px" placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
+		<textarea class="update-group" rows="10" width="700px" placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
 		<div align="right"> 
-			<c:if test="${auth_id eq one.BUY_ID }">
+			<c:if test="${auth_id eq one.WRITER }">
 				<button type="button" class="btn btn-default" id="modify">수정</button>
 				<button type="button" class="btn btn-default" id="delete">삭제</button>
 				<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>

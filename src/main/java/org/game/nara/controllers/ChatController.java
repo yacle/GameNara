@@ -36,6 +36,13 @@ ObjectMapper mapper;
 SellDao sellDao;
 
 
+@RequestMapping("/QnA")
+public ModelAndView QnAHandle() {
+	ModelAndView mav = new ModelAndView("temp");
+	mav.addObject("section", "chat/QnA");
+	return mav;
+}
+
 	@RequestMapping("/noteSend")
 	public ModelAndView noteSendHandle(@RequestParam String id) {
 		ModelAndView mav = new ModelAndView();

@@ -53,4 +53,5 @@ SqlSessionTemplate temp;
 	public int deleteOne(String no) {
 		return temp.delete("sell.delete", no);
 	}
+
 }

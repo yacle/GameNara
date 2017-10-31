@@ -3,17 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 CSS - JQuery-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-<!DOCTYPE html>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- 합쳐지고 최소화된 최신 CSS - JQuery-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<!-- 부가적인 테마 -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<html>
 <head>
   <style>
   body {
@@ -71,7 +69,7 @@
  <h2>info</h2> 
 <p>아이디 : ${auth_id}</p>
 <p>이메일 : ${obj.EMAIL}</p>
-<p>레벨 : ${obj.LEV} Lv</p>
+<p>레벨 : LV.${obj.LEV}</p>
 <p>포인트 : ${obj.POINT } point</p>
     </c:forEach>
  </div>
@@ -94,7 +92,7 @@
         <c:forEach var="obj" items="${total.buy }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/buy/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><a href="/MyWorld/buy/${obj.NO}">${obj.TITLE }</a></td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.ADD_DATE }" /></td>
 					<td>${obj.COUNT }</td>
 					</tr>
@@ -118,7 +116,7 @@
         <c:forEach var="obj" items="${total.sell }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/sell/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><a href="/MyWorld/sell/${obj.NO}">${obj.TITLE }</a></td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.REGDATE }" /></td>
 					<td>${obj.COUNT }</td>
 					</tr>
