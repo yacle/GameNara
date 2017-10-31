@@ -6,14 +6,16 @@
 th {
 	border-bottom: 1px solid;
 }
-
+.view{
+	color: black;
+}
 th, td {
 	padding: 10px;
 	text-align:center;
 	vertical-align: middle;
 }
 </style>
-<div align="center" style="line-height: 35px">
+<div class="view" align="center" style="line-height: 35px">
 	<h2>거래후기게시판</h2>
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
@@ -72,6 +74,17 @@ th, td {
 		</c:choose>
 	</p>
 </div>
+<div align="center">
+	<jsp:include page="../paging.jsp" flush="true">
+	    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+	    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+	    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
+	    <jsp:param name="pageNo" value="${paging.pageNo}" />
+	    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
+	    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+	    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+	</jsp:include>
+</div>
 <script>
 	function openchat(obj){
 		var url="/chat/noteSend?id="+obj;
@@ -93,7 +106,4 @@ th, td {
 		window.open(url, "", "width=400, height=550");
 	}
 </script>
-
-
-
 

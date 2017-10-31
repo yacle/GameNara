@@ -81,7 +81,7 @@ X : 권한없음
 		<tr>
 			<td colspan="10" style="height: 100px; padding-left: 20px; text-align: left;">
 			&#9734; 포인트 지급 : 회원가입시 1000포인트, 자유게시판 글쓰기시 200포인트 지급<br/><br/>
-			&#9734; 포인트 차감 : SELL, BUY, EXCHANGE 게시판 글쓰기시 500포인트 차감</td>
+			&#9734; 포인트 차감 : SELL, BUY 게시판 글쓰기시 500포인트 차감</td>
 		</tr>
 	</tbody>
 </table>

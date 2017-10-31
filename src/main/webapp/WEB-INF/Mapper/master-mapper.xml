@@ -29,5 +29,8 @@
 	<select id="logcnt" resultType="int">
 		select log_cnt from member where id=#{id}
 	</select>
+	<select id="replycnt" resultType="int">
+		select count(*) from reply where replyer=#{id}
+	</select>
 	
 </mapper>

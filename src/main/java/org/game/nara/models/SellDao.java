@@ -2,6 +2,7 @@ package org.game.nara.models;
 
 import java.util.*;
 
+import org.game.nara.SellVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,41 +12,41 @@ public class SellDao {
 @Autowired
 SqlSessionTemplate temp;
 
-	public int sellAdd(Map map) {
-		return temp.insert("sell.add", map);
+	public int sellAdd(SellVO vo) {
+		return temp.insert("sell.add", vo);
 	}
 	public int subtractPoint(String id) {
 		return temp.update("sell.subtractPoint", id);
 	}
-	public Map sellOne(String no) {
+	public SellVO sellOne(String no) {
 		temp.update("sell.countup", no);
 		return temp.selectOne("sell.sellOne", no);
 	}
 	
-	public int sellUpdate(Map map) {
-		return temp.update("sell.sellUpdate", map);
+	public int sellUpdate(SellVO vo) {
+		return temp.update("sell.sellUpdate", vo);
 	}
-	public int sellUpdate2(Map map) {
-		return temp.update("sell.sellUpdate2", map);
+	public int sellUpdate2(SellVO vo) {
+		return temp.update("sell.sellUpdate2", vo);
 	}
 	
 	public int stateUpdate(Map map) {
 		return temp.update("sell.state", map);
 	}
 	
-	public List sellList() {
+	public List<SellVO> sellList() {
 		return temp.selectList("sell.sellList");
 	}
-	public List sellConsole() {
+	public List<SellVO> sellConsole() {
 		return temp.selectList("sell.console");
 	}
-	public List sellTitle() {
+	public List<SellVO> sellTitle() {
 		return temp.selectList("sell.title");
 	}
-	public List sellAcce() {
+	public List<SellVO> sellAcce() {
 		return temp.selectList("sell.acce");
 	}
-	public List sellOther() {
+	public List<SellVO> sellOther() {
 		return temp.selectList("sell.other");
 	}
 	

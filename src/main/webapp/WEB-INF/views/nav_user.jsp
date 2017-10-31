@@ -10,11 +10,11 @@
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">SELL<span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><a href="/sell/list?category=1&&type=map">TOTAL</a></li>
-				<li><a href="/sell/list?category=2&&type=map">CONSOLE</a></li>
-				<li><a href="/sell/list?category=3&&type=map">GAME TITLE</a></li>
-				<li><a href="/sell/list?category=4&&type=map">ACCESSORY</a></li>
-				<li><a href="/sell/list?category=5&&type=map">ETC</a></li>
+				<li><a href="/sell/list?category=0&&type=map">TOTAL</a></li>
+				<li><a href="/sell/list?category=1&&type=map">CONSOLE</a></li>
+				<li><a href="/sell/list?category=2&&type=map">GAME TITLE</a></li>
+				<li><a href="/sell/list?category=3&&type=map">ACCESSORY</a></li>
+				<li><a href="/sell/list?category=4&&type=map">ETC</a></li>
 			</ul></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">BUY<span class="caret"></span></a>

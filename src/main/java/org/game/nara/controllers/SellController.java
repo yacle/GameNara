@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.SellVO;
 import org.game.nara.models.SellDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,8 +42,8 @@ SimpleDateFormat sdf;
 		return mav;
 	}
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String freeBoardAddPostHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
-		String id = (String)map.get("writer");
+	public String freeBoardAddPostHandle(@RequestParam SellVO vo, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
+		String id = vo.getWRITER();
 		if(pic.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
@@ -55,9 +56,9 @@ SimpleDateFormat sdf;
 	
 			File up = new File(application.getRealPath("/sellB_File"), name);
 			pic.transferTo(up);
-			map.put("pic", name);
+			vo.setPIC(name);
 		}
-		int r = sellDao.sellAdd(map);
+		int r = sellDao.sellAdd(vo);
 		if (r!=0) {
 			sellDao.subtractPoint(id);
 		}
@@ -75,7 +76,7 @@ SimpleDateFormat sdf;
 			mav.addObject("section","sell/sellList");
 		}
 		switch(category) {
-		case "1":
+		case "0":
 			List ttl = sellDao.sellList();
 			int total = ttl.size();
 			mav.addObject("list", ttl);
@@ -83,14 +84,14 @@ SimpleDateFormat sdf;
 			mav.addObject("cnt", total);	
 			break;
 			
-		case "2":
+		case "1":
 			List cons = sellDao.sellConsole();
 			int con = cons.size();
 			mav.addObject("list", cons);
 			mav.addObject("title","콘솔팝니다");
 			mav.addObject("cnt", con);	
 			break;
-		case "3":
+		case "2":
 			List titl = sellDao.sellTitle();
 			int tit = titl.size();
 			mav.addObject("list", titl);
@@ -98,14 +99,14 @@ SimpleDateFormat sdf;
 			mav.addObject("cnt", tit);		
 			break;
 	
-		case "4":
+		case "3":
 			List acce = sellDao.sellAcce();
 			int acc = acce.size();
 			mav.addObject("list", acce);
 			mav.addObject("title","주변기기 팝니다");
 			mav.addObject("cnt", acc);	
 			break;
-		case "5":
+		case "4":
 			List othe = sellDao.sellOther();
 			int oth = othe.size();
 			mav.addObject("list", othe);
@@ -119,16 +120,16 @@ SimpleDateFormat sdf;
 	@RequestMapping("/view/{num}")
 	public ModelAndView buyViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
-		Map map = sellDao.sellOne(num);
+		SellVO vo = sellDao.sellOne(num);
 		mav.addObject("section", "sell/sellView");
-		mav.addObject("map", map);
+		mav.addObject("map", vo);
 		return mav;
 	}
 	
 	@RequestMapping("/update")
-	public String picupdateHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IllegalStateException, IOException {
+	public String picupdateHandle(@RequestParam SellVO vo, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IllegalStateException, IOException {
 		if(pic.getSize() > 0) {
-			String id = (String)map.get("writer");
+			String id = vo.getWRITER();
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
 			String name = id+"_"+fmt;
@@ -137,12 +138,12 @@ SimpleDateFormat sdf;
 				dir.mkdirs();
 			File up = new File(application.getRealPath("/sellB_File"), name);
 			pic.transferTo(up);
-			map.put("pic", name);
-			sellDao.sellUpdate(map);
+			vo.setPIC(name);
+			sellDao.sellUpdate(vo);
 		}else {
-			sellDao.sellUpdate2(map);
+			sellDao.sellUpdate2(vo);
 		}
-		String url="redirect:/sell/view/"+(String)map.get("no");
+		String url="redirect:/sell/view/"+vo.getNO();
 		return url;
 	}
 	
@@ -160,6 +161,6 @@ SimpleDateFormat sdf;
 	@RequestMapping("/delete/{no}")
 	public String deleteHandle(@PathVariable String no) throws SQLException {
 		int r = sellDao.deleteOne(no);
-		return "redirect:/sell/list?category=1&&type=map";
+		return "redirect:/sell/list?category=0&&type=map";
 	}
 }

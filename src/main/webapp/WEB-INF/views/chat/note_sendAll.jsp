@@ -11,60 +11,59 @@
 
 <div align="center">
 <h2>단체쪽지전송</h2>
-<h3>TO : [${id}]</h3>
-	<input type="hidden" id="receiver" name="receiver" value="${id}"/>
-	<input type="hidden" id="sender" name="sender" value="${auth_id}"/>
-	<small><span id="time" name="time"></span></small><br/>
-	<textarea rows="15" cols="45" id="content" name="content" placeholder="보낼내용.." required></textarea><br/><br/>
-	<button type="button" id="send" name="send">SEND</button>
+<h3>TO : ALL MEMBER</h3>
+<form action="/chat/note_sendAll" method="post" >
+	<input type="hidden" id="sender" value="${auth_id}"/>
+	<small><span name="nowtime"></span></small><br/>
+	<textarea rows="15" cols="45" id="content" placeholder="보낼내용.." required></textarea><br/><br/>
+	<button type="button" id="send">SEND</button>
 </form>
 </div>
 
 <script>
-	function num(a){
-		if(a<10){
-			a = "0"+a;
-		}
-		return a;
-	}
-	function printTime(){
-		var d = new Date();
-		var y = d.getFullYear();
-		var mon = d.getMonth();
-		var date = d.getDate();
-		var day = d.getDay();
-		var h = num(d.getHours());
-		var m = num(d.getMinutes());
-		var s = num(d.getSeconds());
-		switch(day){
-		case 0: day="일"; break; 
-		case 1: day="월"; break; 
-		case 2: day="화"; break; 
-		case 3: day="수"; break;
-		case 4: day="목"; break;
-		case 5: day="금"; break;
-		case 6: day="토"; break;	
-		}
-		var t = y+"년 "+(mon+1)+"월 "+date+"일 "+day+"요일 "+h+":"+m+":"+s;
-		document.getElementById("time").innerHTML =t;
-	}
-	setInterval(printTime, 1000);
-
-	$("#send").click(function(){
-		$.ajax({
-			"type":"post",
-			"async":true,
-			"url":"/chat/note_sendAll",
-			"data":{
-				"receiver":JSON.stringify($("#receiver").val()),
-				"sender":$("#sender").val(),
-				"content":$("#content").val(),
-				"time":$("#time").html()
-			}
-		}).done(function(obj){
-			window.alert("["+obj.trim()+"]");
+$("#send").click(function(){
+	$.ajax({
+		url:"/chat/note_sendAll",
+		type:"post",
+		async:false,
+		data:{
+			"sender":$("#sender").val(),
+			"content":$("#content").val(),
+		},
+		success:function(obj){
+			window.alert(obj+"명에게 메세지가 전달되었읍니다.");
 			window.close();
-		})
+		}
 	})
+})
+
+function num(a){
+	if(a<10){
+		a = "0"+a;
+	}
+	return a;
+}
+function printTime(){
+	var d = new Date();
+	var y = d.getFullYear();
+	var mon = d.getMonth();
+	var date = d.getDate();
+	var day = d.getDay();
+	var h = num(d.getHours());
+	var m = num(d.getMinutes());
+	var s = num(d.getSeconds());
+	switch(day){
+	case 0: day="일"; break; 
+	case 1: day="월"; break; 
+	case 2: day="화"; break; 
+	case 3: day="수"; break;
+	case 4: day="목"; break;
+	case 5: day="금"; break;
+	case 6: day="토"; break;	
+	}
+	var t = y+"년 "+(mon+1)+"월 "+date+"일 "+day+"요일 "+h+":"+m+":"+s;
+	$("#nowtime").html(t);
+}
+setInterval(printTime, 1000);
 
 </script>

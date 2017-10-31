@@ -19,13 +19,12 @@
 			</c:choose>
 		</p>
 		<p>
-		<form action="/member/profile" method="post" id="form"
-			enctype="multipart/form-data" align="center">
+		<form id="file" align="center">
 			<input id="profile" type="file" name="profile" style="display: none" />
 			<span id="picName"></span><br />
 			<button type="button" class="btn btn-default" id="sbt">적용</button>
-			<button type="button" class="btn btn-default"
-				onclick="javascript:location.reload()">취소</button>
+			<button type="button" class="btn btn-default" onclick="javascript:location.reload()">취소</button>
+			<input type="hidden" name="id" value="${auth_id }">
 		</form>
 		</p>
 	</div>
@@ -111,7 +110,7 @@
 </div>
 </form>
 <script>
-
+// 개인정보 저장
 $("#submit").click(function(){
 	$.ajax({
 		"type":"post",
@@ -129,15 +128,29 @@ $("#submit").click(function(){
 		}
 	}).done(function(obj){
 		window.alert(obj);
-		window.location.reload();
 	})
 })
-
+// profile 사진 저장
 $("#sbt").click(function(){
 	if(window.confirm("프로필 변경을 저장하시겠습니까?")) {
-		$("#form").submit();
+		var file = $("#file")[0];
+		var data = new FormData(file);
+		$.ajax({
+			type:"post",
+			enctype:"multipart/form-data",
+			url:"/member/profile",
+			data:data,
+			processData: false,
+			contentType: false,
+			cache: false,
+			timeout: 600000,
+			success: function(obj){
+				window.alert(obj);
+			}
+		})
 	}
 })
+// profile 사진 선택하기
 $("#pf").click(function(){
 	$("#profile").click();
 })
@@ -148,7 +161,7 @@ $("#profile").change(function(){
 	}
 	reader.readAsDataURL(this.files[0]);
 })
-
+// 이메일 인증 코드 전송
 $("#emailReg").click(function(){
 	$.ajax({
 		"type":"post",
@@ -161,7 +174,7 @@ $("#emailReg").click(function(){
 		window.alert("인증코드를 발송하였습니다.")
 	})
 })
-
+// 인증코드 확인
 $("#regCode").change(function(){
 	$.ajax({
 		"type":"post",
@@ -181,6 +194,7 @@ $("#regCode").change(function(){
 		}
 	})
 })	
+// 닉네임 중복 검사
 $("#nick").keyup(function(){
 	var i = $("#nick").val();
 	if(i.length>1){

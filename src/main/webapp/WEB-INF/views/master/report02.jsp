@@ -44,7 +44,7 @@ th, td {
 			<td>${map.freeboard}</td>
 			<td>${map.after}</td>
 			<td>${map.logcnt}</td>
-			<td></td>
+			<td>${map.replycnt}</td>
 		</tr>
 	</tbody>
     
