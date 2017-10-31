@@ -10,7 +10,7 @@
 
 	<select id="list" resultType="java.util.HashMap">
 		select b.*, t.c from become_member b left join 
-       	(select bno, count(*) as c from reply group by bno ) t on b.no = t.bno order by no desc
+        (select bno, count(*) as c from reply group by bno ) t on b.no = t.bno order by no desc
 
 	</select>
 

@@ -3,25 +3,43 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 합쳐지고 최소화된 최신 CSS - JQuery-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <html>
 <head>
   <style>
   body {
-  background-color: #9FC93C;
-      position: relative; 
+      position: relative;
+      background-color:Gainsboro; 
   }
+  
   #section1 {padding-top:50px;height:1000px;color: black; }
   #section2 {padding-top:50px;height:1000px;color: black; }
   #section3 {padding-top:50px;height:1000px;color: black; }
   #section41 {padding-top:50px;height:1000px;color: black;}
   #section42 {padding-top:50px;height:1000px;color: black;}
+  
+  #info {
+	position: absolute;
+	width: 170px;
+	height: 200px;
+	left: 50px;
+	top: 10px;
+
+}
   </style>
 </head>
 <body>
-<div class="row">
-<div class="col-sm-3">
-<nav class="navbar navbar-inverse navbar-fixed" id="nav">
+
+<nav class="navbar navbar-inverse navbar-fixed-top" id="nav">
   <div class="container-fluid">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -44,11 +62,24 @@
       </div>
     </div>
 </nav>
+
+<br/><br/><h1 align="center">MY WORLD</h1>
+ <div class="row">
+<div class="col-sm-3">
+  <c:forEach var="obj" items="${total.member }">
+  <div id="info">
+ <h2>info</h2> 
+<p>아이디 : ${auth_id}</p>
+<p>이메일 : ${obj.EMAIL}</p>
+<p>레벨 : ${obj.LEV} Lv</p>
+<p>포인트 : ${obj.POINT } point</p>
+    </c:forEach>
+ </div>
 </div>
-<h1 align="center">MY WORLD</h1>
-<div class="col-sm-9">
+
+<div class="col-sm-8">
 <div id="section1" class="container-fluid">
-<h2>buy에서 쓴글</h2><br/>
+<h2><a href="/buy/list/1">BUY</a>에서 쓴글</h2><br/>
 <table style="width: 95%; background-color: #EAEAEA;"
 		class="table table-bordered">
 		<thead>
@@ -174,13 +205,11 @@
 $(document).ready(function(){
     $('body').scrollspy({target: ".navbar", offset: 50});   
 });
-</script>
 
-<script>
 $(document).ready(function() {
 
 	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-	var floatPosition = parseInt($("#nav").css('top'));
+	var floatPosition = parseInt($("#info").css('top'));
 	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
 
 	$(window).scroll(function() {
@@ -188,12 +217,17 @@ $(document).ready(function() {
 		var scrollTop = $(window).scrollTop();
 		var newPosition = scrollTop + floatPosition + "px";
 
-		 $("#nav").css('top', newPosition);
-
+	
+		 $("#info").css('top', newPosition);
+		 
+		/*
+		$("#floatMenu").stop().animate({
+			"top" : newPosition
+		}, 500);
+*/
 	}).scroll();
 
 });
-
 </script>
 </body>
 </html>
