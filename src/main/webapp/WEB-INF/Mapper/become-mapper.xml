@@ -10,11 +10,7 @@
 
 	<select id="list" resultType="java.util.HashMap">
 		select b.*, t.c from become_member b left join 
-<<<<<<< HEAD
-       	(select bno, count(*) as c from reply group by bno ) t on b.no = t.bno order by no desc
-=======
-        	(select bno, count(*) as c from reply group by bno ) t on b.no = t.bno order by no desc
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
+        (select bno, count(*) as c from reply group by bno ) t on b.no = t.bno order by no desc
 	</select>
 
 	<select id="readOne" parameterType="java.lang.String"

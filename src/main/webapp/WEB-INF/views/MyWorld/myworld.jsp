@@ -3,12 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- 합쳐지고 최소화된 최신 CSS - JQuery-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <html>
 <head>
   <style>
   body {
-  background-color: #9FC93C;
       position: relative; 
   }
   #section1 {padding-top:50px;height:1000px;color: black; }
@@ -19,9 +27,7 @@
   </style>
 </head>
 <body>
-<div class="row">
-<div class="col-sm-3">
-<nav class="navbar navbar-inverse navbar-fixed" id="nav">
+<nav class="navbar navbar-inverse navbar-fixed-top" id="nav">
   <div class="container-fluid">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -45,10 +51,10 @@
     </div>
 </nav>
 </div>
-<h1 align="center">MY WORLD</h1>
-<div class="col-sm-9">
+<br/><br/><h1 align="center">MY WORLD</h1>
+
 <div id="section1" class="container-fluid">
-<h2>buy에서 쓴글</h2><br/>
+<h2><a href="/buy/list/1">BUY</a>에서 쓴글</h2><br/>
 <table style="width: 95%; background-color: #EAEAEA;"
 		class="table table-bordered">
 		<thead>
@@ -174,26 +180,6 @@
 $(document).ready(function(){
     $('body').scrollspy({target: ".navbar", offset: 50});   
 });
-</script>
-
-<script>
-$(document).ready(function() {
-
-	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-	var floatPosition = parseInt($("#nav").css('top'));
-	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
-
-	$(window).scroll(function() {
-		// 현재 스크롤 위치를 가져온다.
-		var scrollTop = $(window).scrollTop();
-		var newPosition = scrollTop + floatPosition + "px";
-
-		 $("#nav").css('top', newPosition);
-
-	}).scroll();
-
-});
-
 </script>
 </body>
 </html>
