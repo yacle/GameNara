@@ -6,6 +6,6 @@
 			<li class="active"><a href="/index">HOME</a></li>
 			<li><a href="/notice">공지사항</a></li>
 			<li><a href="/notice_info">개인정보처리방침</a></li>
-			<li><a href="#">고객센터</a></li>
+			<li><a href="/chat/QnA">고객센터</a></li>
 		</ul>
 	</div>

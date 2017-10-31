@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.game.nara.SellVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,5 +30,14 @@ public Map mysearch(String id) throws Exception{
 	map.put("member",mb);
 	return map;
 }
-	
+
+public Map readOne(String num) {
+	template.update("buy.countup",num);
+	return template.selectOne("myworld.buyread", num);
+	}
+
+public SellVO sellOne(String no) {
+	template.update("sell.countup", no);
+	return template.selectOne("sell.sellOne", no);
+}
 }
