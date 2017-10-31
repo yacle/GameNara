@@ -49,7 +49,7 @@
 				</button>
 				<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="/member/info?id=${auth_id}">PROFILE</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openmyworld('${auth.id }')">Myworld</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openmyworld('${auth_id }')">Myworld</a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="/chat/note_list?id=${auth_id }">Message 
 						<span class="badge" style="background-color: DodgerBlue" id="note_cnt"></span></a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">POINT : <span id="point"></span></a></li>
@@ -118,6 +118,6 @@ function openchat(obj){
 <script>
 	function openmyworld(obj){
 		var url="/MyWorld/myworld?id="+obj;		
-		window.open(url, "myworld", "width=800, height=800");
+		window.open(url, "myworld", "width=900, height=900");
 	}
 </script>

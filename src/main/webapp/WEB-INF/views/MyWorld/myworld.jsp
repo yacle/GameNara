@@ -17,16 +17,28 @@
 <head>
   <style>
   body {
-      position: relative; 
+      position: relative;
+      background-color:Gainsboro; 
   }
+  
   #section1 {padding-top:50px;height:1000px;color: black; }
   #section2 {padding-top:50px;height:1000px;color: black; }
   #section3 {padding-top:50px;height:1000px;color: black; }
   #section41 {padding-top:50px;height:1000px;color: black;}
   #section42 {padding-top:50px;height:1000px;color: black;}
+  
+  #info {
+	position: absolute;
+	width: 170px;
+	height: 200px;
+	left: 50px;
+	top: 10px;
+
+}
   </style>
 </head>
 <body>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" id="nav">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -50,9 +62,22 @@
       </div>
     </div>
 </nav>
-</div>
-<br/><br/><h1 align="center">MY WORLD</h1>
 
+<br/><br/><h1 align="center">MY WORLD</h1>
+ <div class="row">
+<div class="col-sm-3">
+  <c:forEach var="obj" items="${total.member }">
+  <div id="info">
+ <h2>info</h2> 
+<p>아이디 : ${auth_id}</p>
+<p>이메일 : ${obj.EMAIL}</p>
+<p>레벨 : ${obj.LEV} Lv</p>
+<p>포인트 : ${obj.POINT } point</p>
+    </c:forEach>
+ </div>
+</div>
+
+<div class="col-sm-8">
 <div id="section1" class="container-fluid">
 <h2><a href="/buy/list/1">BUY</a>에서 쓴글</h2><br/>
 <table style="width: 95%; background-color: #EAEAEA;"
@@ -179,6 +204,29 @@
 <script>
 $(document).ready(function(){
     $('body').scrollspy({target: ".navbar", offset: 50});   
+});
+
+$(document).ready(function() {
+
+	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	var floatPosition = parseInt($("#info").css('top'));
+	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+		var newPosition = scrollTop + floatPosition + "px";
+
+	
+		 $("#info").css('top', newPosition);
+		 
+		/*
+		$("#floatMenu").stop().animate({
+			"top" : newPosition
+		}, 500);
+*/
+	}).scroll();
+
 });
 </script>
 </body>
