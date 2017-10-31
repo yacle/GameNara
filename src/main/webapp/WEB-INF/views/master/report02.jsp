@@ -21,36 +21,38 @@ th, td {
 }
 </style>
 <div align="center">
-<table width="100%">
-	<thead>
-		<tr>
-			<th colspan="5">게시글</th>
-			<th rowspan="2">로그인</th>
-			<th rowspan="2">댓글</th>
-		</tr>
-		<tr>
-			<th>SELL</th>
-			<th>BUY</th>
-			<th>FREE_Dist</th>
-			<th>Freeboard</th>
-			<th>After_Deal</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>${map.sell}</td>
-			<td>${map.buy}</td>
-			<td>${map.free_distribute}</td>
-			<td>${map.freeboard}</td>
-			<td>${map.after}</td>
-			<td>${map.logcnt}</td>
-			<td>${map.replycnt}</td>
-		</tr>
-	</tbody>
-    
-
-	</table>
+	<table width="100%">
+		<thead>
+			<tr>
+				<th colspan="5">게시글</th>
+				<th rowspan="2">로그인</th>
+				<th rowspan="2">댓글</th>
+			</tr>
+			<tr>
+				<th>SELL</th>
+				<th>BUY</th>
+				<th>FREE_Dist</th>
+				<th>Freeboard</th>
+				<th>After_Deal</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>${map.sellcnt}</td>
+				<td>${map.buycnt}</td>
+				<td>${map.free_distributecnt}</td>
+				<td>${map.freeboardcnt}</td>
+				<td>${map.aftercnt}</td>
+				<td>${map.logcnt}</td>
+				<td>${map.replycnt}</td>
+			</tr>
+		</tbody>
+	</table><br/>
 </div>
+<div align="center">
+<iframe src="/master/board?board=sell&&id=${map.ID}" height="300px" width="97%" style="border:none;">
+</div>
+
 
 
 

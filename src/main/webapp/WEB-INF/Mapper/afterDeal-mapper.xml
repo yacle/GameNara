@@ -24,11 +24,4 @@
 		update after set comments=#{comment} where no=#{no}
 	</update>
 
-	<select id="boardList" resultType="org.game.nara.Paging">
-		SELECT * FROM
-			(SELECT ROWNUM rnum, A.* FROM (SELECT * FROM after ORDER BY no DESC) A 
-				WHERE ROWNUM &lt; = #{endRowNum})
-					WHERE rnum &gt; = #{startRowNum}
-	</select>
-
 </mapper>

@@ -10,21 +10,40 @@
 	<select id="memberOne" resultType="java.util.HashMap">
 		select * from (select m1.email, m1.lev, m2.* from member m1 join member_info m2 on m1.id=m2.id) where id=#{id}
 	</select>
-	
-	<select id="aftercnt" resultType="int">
-		select count(*) from after where writer=#{id}
+<!-- board data -->	
+	<select id="sell" resultType="java.util.HashMap">
+		select no, title from sell where writer=#{id}
 	</select>
-	<select id="freediscnt" resultType="int">
-		select count(*) from free_distribute where writer=#{id}
+	<select id="buy" resultType="java.util.HashMap">
+		select no, title from buy where buy_id=#{id}
+	</select>
+	<select id="freedis" resultType="java.util.HashMap">
+		select no, title from free_distribute where writer=#{id}
+	</select>
+	<select id="free" resultType="java.util.HashMap">
+		select no, title from freeboard where writer=#{id}
+	</select>
+	<select id="after" resultType="java.util.HashMap">
+		select no, title from after where writer=#{id}
+	</select>
+	<select id="reply" resultType="java.util.HashMap">
+		select rno as no, replytext as title from reply where replyer=#{id}
+	</select>
+<!-- board count --> 	
+	<select id="sellcnt" resultType="int">
+		select count(*) from sell where writer=#{id}
 	</select>
 	<select id="buycnt" resultType="int">
 		select count(*) from buy where buy_id=#{id}
 	</select>
+	<select id="freediscnt" resultType="int">
+		select count(*) from free_distribute where writer=#{id}
+	</select>
 	<select id="freecnt" resultType="int">
 		select count(*) from freeboard where writer=#{id}
 	</select>
-	<select id="sellcnt" resultType="int">
-		select count(*) from sell where writer=#{id}
+	<select id="aftercnt" resultType="int">
+		select count(*) from after where writer=#{id}
 	</select>
 	<select id="logcnt" resultType="int">
 		select log_cnt from member where id=#{id}
@@ -32,5 +51,4 @@
 	<select id="replycnt" resultType="int">
 		select count(*) from reply where replyer=#{id}
 	</select>
-	
 </mapper>

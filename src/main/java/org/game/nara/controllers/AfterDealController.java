@@ -9,7 +9,6 @@ import java.util.*;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
-import org.game.nara.Paging;
 import org.game.nara.models.AfterDealDao;
 import org.game.nara.models.ReplyDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +43,6 @@ ServletContext application;
 		mav.addObject("section", "after/after_list");
 		mav.addObject("list", li);
 		mav.addObject("cnt", li.size());
-		Paging paging = new Paging();
-		paging.setTotalCount(li.size());
-		mav.addObject("paging", paging);
-		System.out.println(paging.toString());
 		return mav;
 	}
 	
