@@ -37,7 +37,7 @@
 		<li><a>[${auth_id} Level] : ${auth_level}</a></li>
 		<li><div class="form-group">
 	 		<form class="navbar-form" action="/search" method="post">
-				<input type="text" name="word" class="form-control" placeholder="Search" >
+				<input type="text"  id="word" name="word" class="form-control" placeholder="Search" >
 				<button type="submit" class="btn btn-default btn-sm" id="submit">Submit</button>
 			</form>	
 		</div></li>
@@ -99,7 +99,7 @@ $("#submit").click(function() {
 		"async" : false,
 		"url" : "/search",
 		"data" : {
-			"search" : $("#search").val()
+			"search" : $("#word").val()
 		}
 	})
 })
@@ -118,6 +118,6 @@ function openchat(obj){
 <script>
 	function openmyworld(obj){
 		var url="/MyWorld/myworld?id="+obj;		
-		window.open(url, "myworld", "width=900, height=900");
+		window.open(url, "myworld", "width=1100, height=900");
 	}
 </script>

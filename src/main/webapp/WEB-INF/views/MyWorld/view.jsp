@@ -39,16 +39,22 @@ td {
 	height: 55px;
 	align: center;
 }
+all{
+	background-color:Gainsboro ;
+}
 </style>
-<div align="center" style="line-height: 35px">
-	<h2><a href="/buy/list/1">게시판</a></h2>
+<div align="center" style="line-height: 35px" >
+	<h2>게시판</h2>
 	<hr />
 	<div style="width: 70%; border-radius: 10px; ; padding-left: 20px;" align="left">
 		<input type="hidden" id="num" value="${one.NO }" />
 		<p style="padding-left: 10px;">
+		<h2> ${one.TITLE }</h2>
 			<small id="buyid">
-				작성자 : ${one.WRITER } | 
-				조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" /> 
+				작성자 : ${one.WRITER }
+				<p align="right">
+				 조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" />
+				 </p>
 			</small>
 		</p>
 	</div><br />

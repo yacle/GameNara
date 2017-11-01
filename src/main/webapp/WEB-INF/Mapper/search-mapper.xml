@@ -4,19 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="search">
 	<select id="sellsearch" resultType="java.util.HashMap">
-	 	SELECT * FROM sell WHERE REGEXP_LIKE (title || detail, #{word}) and rownum &lt;= 7 order by no DESC
+	 	SELECT * FROM sell WHERE REGEXP_LIKE (title || detail, #{word}, 'i') and rownum &lt;= 7 order by no DESC
 	</select>
 	 
 	<select id="buysearch" resultType="java.util.HashMap">
-		SELECT * FROM buy WHERE REGEXP_LIKE (title || detail, #{word}) and rownum &lt;= 7 order by no DESC
+		SELECT * FROM buy WHERE REGEXP_LIKE (title || detail, #{word}, 'i') and rownum &lt;= 7 order by no DESC
 	</select>
 	 
 	<select id="freeboardsearch" resultType="java.util.HashMap">
-		SELECT * FROM freeboard WHERE REGEXP_LIKE (title || coment, #{word}) and rownum &lt;= 7 order by no DESC
+		SELECT * FROM freeboard WHERE REGEXP_LIKE (title || coment, #{word}, 'i') and rownum &lt;= 7 order by no DESC
 	</select>
 	
 	<select id="aftersearch" resultType="java.util.HashMap">
-		SELECT * FROM after WHERE REGEXP_LIKE (title || comments, #{word}) and rownum &lt;= 7 order by no DESC
+		SELECT * FROM after WHERE REGEXP_LIKE (title || comments, #{word}, 'i') and rownum &lt;= 7 order by no DESC
 	</select>
 </mapper>
 
