@@ -22,7 +22,7 @@ textarea {
 				</div>
 				<div class="form-group">
 					<label for="comment">보낼 내용</label> 
-					<textarea class="form-control" rows="5" name="content" id="content" style="width: 80%;">[문의사항 & 건의 사항]</textarea>
+					<textarea class="form-control" rows="5" name="content" id="content" style="width: 80%;" placeholder="[문의사항 & 건의 사항]"></textarea>
 				</div>
 			</form>
 			<br/>
