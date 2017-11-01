@@ -36,8 +36,8 @@
 		</li>
 		<li><a>[${auth_id} Level] : ${auth_level}</a></li>
 		<li><div class="form-group">
-	 		<form class="navbar-form navbar-left" action="/search" method="post">
-				<input type="text" name="search" class="form-control" placeholder="Search" >
+	 		<form class="navbar-form" action="/search" method="post">
+				<input type="text" name="word" class="form-control" placeholder="Search" >
 				<button type="submit" class="btn btn-default btn-sm" id="submit">Submit</button>
 			</form>	
 		</div></li>

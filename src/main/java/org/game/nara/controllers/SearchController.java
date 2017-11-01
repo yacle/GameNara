@@ -20,7 +20,8 @@ SearchDao search;
 @RequestMapping("/search")
 public ModelAndView freeBoardViewHandle(@RequestParam Map map) throws Exception {
 	ModelAndView mav = new ModelAndView("temp");
-	Map total = search.buysearch((String) map.get("search"));
+	String word = (String)map.get("word");
+	Map total = search.search(word);
 	mav.addObject("section", "search");
 	mav.addObject("total", total);
 	return mav;

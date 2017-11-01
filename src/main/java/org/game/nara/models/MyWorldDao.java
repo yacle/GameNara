@@ -22,12 +22,14 @@ public Map mysearch(String id) throws Exception{
 	List<Map> a=template.selectList("myworld.after", id);
 	List<Map> fd=template.selectList("myworld.freedis", id);
 	List<Map> mb=template.selectList("myworld.member", id);
+	List<Map> pf=template.selectList("myworld.profile", id);
 	map.put("sell", s);
 	map.put("free", f);
 	map.put("buy", b);
 	map.put("after", a);
 	map.put("freedis", fd);
 	map.put("member",mb);
+	map.put("profile",pf);
 	return map;
 }
 

@@ -29,6 +29,7 @@ public ModelAndView myworldViewHandle(HttpSession session) throws Exception {
 	String id = (String) session.getAttribute("auth_id");
 	ModelAndView mav = new ModelAndView();
 	Map total = mydao.mysearch(id);
+	System.out.println(total);
 	mav.addObject("section", "MyWorld/myworld");
 	mav.addObject("total", total);
 	return mav;

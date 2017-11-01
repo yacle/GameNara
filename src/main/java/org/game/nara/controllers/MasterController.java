@@ -57,26 +57,31 @@ MasterDao masterDao;
 			List listSell= (List) total.get("sell");
 			mav.addObject("data", listSell);
 			mav.addObject("title", "SELL BOARD");
+			mav.addObject("path", "sell/view/");
 			break;
 		case "buy":
 			List listBuy= (List) total.get("buy");
 			mav.addObject("data", listBuy);
 			mav.addObject("title", "BUY BOARD");
+			mav.addObject("path", "/buy/view/");
 			break;
 		case "free_dist":
 			List listfreedist= (List) total.get("free_dist");
 			mav.addObject("data", listfreedist);
 			mav.addObject("title", "FREE_DISTRIBUTE BOARD");
+			mav.addObject("path", "/FreeDistribute/view/");
 			break;
 		case "freeboard":
 			List listFreeboard= (List) total.get("freeboard");
 			mav.addObject("data", listFreeboard);
 			mav.addObject("title", "FREEBOARD BOARD");
+			mav.addObject("path", "/freeBoard/view/");
 			break;
 		case "after":
 			List listAfter= (List) total.get("after");
 			mav.addObject("data", listAfter);
 			mav.addObject("title", "AFTER DEAL BOARD");
+			mav.addObject("path", "/after/view/");
 			break;
 		case "reply":
 			List listReply= (List) total.get("reply");
@@ -85,5 +90,11 @@ MasterDao masterDao;
 			break;
 		}
 		return mav;
+	}
+	
+	@RequestMapping("sell/view/{no}")
+	public String boardview(@PathVariable String no) {
+		String url="sell/view/"+no;
+		return url;
 	}
 }

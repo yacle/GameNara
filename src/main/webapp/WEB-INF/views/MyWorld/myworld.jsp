@@ -64,15 +64,18 @@
 <br/><br/><h1 align="center">MY WORLD</h1>
  <div class="row">
 <div class="col-sm-3">
-  <c:forEach var="obj" items="${total.member }">
-  <div id="info">
- <h2>info</h2> 
-<p>아이디 : ${auth_id}</p>
-<p>이메일 : ${obj.EMAIL}</p>
-<p>레벨 : LV.${obj.LEV}</p>
-<p>포인트 : ${obj.POINT } point</p>
-    </c:forEach>
- </div>
+	<div id="info">
+		<h2>info</h2>
+		<c:forEach var="obj" items="${total.profile }">
+			<img id="pf" class="img-responsive" src="/profiles/${obj.PROFILE}" style="width: 120; height: 120;"/>
+		</c:forEach>
+		<c:forEach var="obj" items="${total.member }">
+			<p>아이디 : ${auth_id}</p>
+			<p>이메일 : ${obj.EMAIL}</p>
+			<p>레벨 : LV.${obj.LEV}</p>
+			<p>포인트 : ${obj.POINT } point</p>
+		</c:forEach>
+	</div>
 </div>
 
 <div class="col-sm-8">

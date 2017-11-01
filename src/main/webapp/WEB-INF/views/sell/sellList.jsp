@@ -14,7 +14,7 @@ th, td {
 }
 </style>
 <div align="right" style="margin-bottom: 10px;">
-	<a href="/sell/list?category=1&&type=map"><span class="glyphicon glyphicon-th"></span>앨범형</button></a> | 
+	<a href="/sell/list?category=0&&type=map"><span class="glyphicon glyphicon-th"></span>앨범형</button></a> | 
 	<a><span class="glyphicon glyphicon-list-alt"></span>게시판형</a>
 	<a href="/sell/sellForm"><button type="button" id="write" class="btn btn-primary btn-sm">글작성</button></a><br/>
 	<input type="hidden" id="id" value="${auth_id }">
