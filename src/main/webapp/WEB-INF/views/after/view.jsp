@@ -42,9 +42,14 @@ textarea {
 		</div>							
 		<c:choose>
 			<c:when test="${one.ATTACH ne null}">
-				<textarea rows="5" id="comment" disabled>${one.COMMENTS }</textarea>
-				<img id="pf" class="img-responsive" src="/afterB_File/${one.ATTACH}" />
-				
+				<div class="row">
+					<div class="col-md-3">
+						<img id="pf" class="img-responsive" src="/afterB_File/${one.ATTACH}" style="width: 200; height: 200;"/>
+					</div>
+					<div class="col-md-9">
+						<textarea rows="5" id="comment" disabled>${one.COMMENTS }</textarea>
+					</div>
+				</div>
 			</c:when>
 			<c:otherwise>
 				<textarea rows="5" id="comment" disabled>${one.COMMENTS }</textarea>
