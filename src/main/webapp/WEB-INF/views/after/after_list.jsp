@@ -35,14 +35,22 @@ th, td {
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td style="text-align: left; padding-left: 30px;">
-						<c:if test="${auth_id ne null}">
-							<a href="/after/view/${obj.NO}">
-						</c:if>
-						${fn:substring(obj.TITLE, 0, 12)}
-						<c:if test="${auth_id ne null}"></a></c:if>
-						<span class="badge">${obj.CNT }</span>
-					</td>
+					<c:choose>
+						<c:when test="${auth_id ne null}">
+							<c:if test="${obj.ATTACH ne null }">
+								<td style="text-align: left; padding-left: 30px;"><a href="/after/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+								<img id="pf" src="/profiles/board_def.JPG" style="height:10px; width:10px;"/>
+								<span class="badge">${obj.CNT }</span>
+							</c:if>
+							<c:if test="${obj.ATTACH eq null }">
+								<td style="text-align: left; padding-left: 30px;"><a href="/after/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+								<span class="badge">${obj.CNT }</span>
+							</c:if>
+						</c:when>
+						<c:otherwise>
+							<td style="text-align: left; padding-left: 30px;">${fn:substring(obj.TITLE, 0, 12) }</td>
+						</c:otherwise>
+					</c:choose>
 					<td>
 						<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">

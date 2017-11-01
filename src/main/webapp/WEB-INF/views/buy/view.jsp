@@ -44,21 +44,25 @@ td {
 			<del><h2>${one.TITLE }</h2></del>
 			<h3>거래완료</h3>
 		</c:if>
-		<p style="padding-left: 10px;">
-			<small id="buyid">
-				작성자 : ${one.BUY_ID } | 
-				작성일 : <fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${one.ADD_DATE }" />
-				조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" /> 
-				<c:if test="${auth_id eq one.BUY_ID }">
-					<button id="end">계약완료</button>
-				</c:if>
-			</small>
-		</p>
+			<div class="row">
+		    	<div class="col-sm-10">
+		    		<small>작성자 : ${one.BUY_ID } | 작성일 : 
+		    			<fmt:formatDate pattern="MM.dd.yyyy HH:mm:ss" value="${one.ADD_DATE }" /> 
+					</small>
+				</div>
+			    <div class="col-sm-2">
+			    	<small>조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" /></small>
+			    </div>
+			</div>	
+			<c:if test="${auth_id eq one.BUY_ID }">
+				<button id="end">계약완료</button>
+			</c:if>
+			<textarea class="update-group" rows="5" placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
 	</div><br />
 	<div class="row" align="center">
 		<input type="hidden" id="id" value="${auth_id}">
-		<textarea class="update-group" rows="10" width="1000px" placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
-		<div align="right"> 
+		
+		<div align="right" style="margin-right: 100px"> 
 			<c:if test="${auth_id eq one.BUY_ID }">
 				<button type="button" class="btn btn-default" id="modify">수정</button>
 				<button type="button" class="btn btn-default" id="delete">삭제</button>

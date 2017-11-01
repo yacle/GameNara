@@ -42,7 +42,7 @@ textarea {
 			<c:when test="${one.ATTACH ne null}">
 				<div class="row">
 					<div class="col-md-3">
-						<img id="pf" class="img-responsive" src="/freeB_File/${one.ATTACH}" style="width: 300; height: 300;"/>
+						<img id="pf" class="img-responsive" src="/freeB_File/${one.ATTACH}" style="width: 200; height: 200;"/>
 					</div>
 					<div class="col-md-9">
 						<textarea rows="5" id="comment" disabled>${one.COMENT }</textarea>
