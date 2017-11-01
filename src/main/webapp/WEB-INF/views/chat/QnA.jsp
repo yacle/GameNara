@@ -39,7 +39,7 @@ $("#send").click(function(){
 		"data":{
 			"receiver":$("#receiver").val(),
 			"sender":$("#sender").val(),
-			"content":$("#content").val(),
+			"content":"[문의사항 & 건의 사항]"+"<br/>"+$("#content").val(),
 		}
 	}).done(function(obj){
 		window.alert("[성공적으로 보냈습니다. 감사합니다.]");
