@@ -31,13 +31,27 @@ public Map mysearch(String id) throws Exception{
 	return map;
 }
 
-public Map readOne(String num) {
+public Map buyread(String num) {
 	template.update("buy.countup",num);
 	return template.selectOne("myworld.buyread", num);
 	}
 
-public SellVO sellOne(String no) {
+public SellVO sellread(String no) {
 	template.update("sell.countup", no);
-	return template.selectOne("sell.sellOne", no);
+	return template.selectOne("myworld.sellread", no);
 }
+public Map afterread(String no) {
+	int r = template.update("after.cnt", no);
+	return template.selectOne("myworld.afterread", no);
+}
+public Map freeread(String num) {
+	int r = template.update("freeB.countOne", num);
+	return  template.selectOne("myworld.freeread", num);
+}
+
+public Map freedisread(String num) {
+	template.update("freeD.countOne",num);
+	return template.selectOne("myworld.freeisread", num);
+}
+
 }

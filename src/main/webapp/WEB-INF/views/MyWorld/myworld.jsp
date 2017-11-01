@@ -77,7 +77,7 @@
 
 <div class="col-sm-8">
 <div id="section1" class="container-fluid">
-<h2><a href="/buy/list/1">BUY</a>에서 쓴글</h2><br/>
+<h2>BUY</a>에서 쓴글</h2><br/>
 <table style="width: 95%; background-color: #EAEAEA;"
 		class="table table-bordered">
 		<thead>
@@ -140,7 +140,7 @@
         <c:forEach var="obj" items="${total.after }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/after/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><a href="/MyWorld/after/${obj.NO}">${obj.TITLE }</a></td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.ADD_DATE }" /></td>
 					<td>${obj.COUNT }</td>
 					</tr>
@@ -164,7 +164,7 @@
         <c:forEach var="obj" items="${total.free }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/freeBoard/view/${obj.NO}">${obj.TITLE }</a><span class="badge">${obj.C }</span></td>
+					<td><a href="/MyWorld/free/${obj.NO}">${obj.TITLE }</a><span class="badge">${obj.C }</span></td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.FB_DATE }" /></td>
 					<td>${obj.VIEW_CNT }</td>
 					</tr>
@@ -188,7 +188,7 @@
         <c:forEach var="obj" items="${total.freedis }">
 				<tr>
 					<td>${obj.NO }</td>
-					<td><a href="/FreeDistribute/view/${obj.NO}">${obj.TITLE }</a></td>
+					<td><a href="/MyWorld/freedis/${obj.NO}">${obj.TITLE }</a></td>
 					<td><fmt:formatDate pattern="yyyy.MM.dd" value="${obj.FD_DATE }" /></td>
 					<td>${obj.VIEW_CNT }</td>
 					</tr>

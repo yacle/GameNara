@@ -36,17 +36,38 @@ public ModelAndView myworldViewHandle(HttpSession session) throws Exception {
 
 @RequestMapping(path = "/buy/{num}")
 public String buyViewHandle(@PathVariable String num, Model model) throws SQLException {
-	Map one = mydao.readOne(num);
+	Map one = mydao.buyread(num);
 	model.addAttribute("one",one);
 	return "MyWorld/view";
 }
 
 @RequestMapping("/sell/{num}")
 public String sellViewHandle(@PathVariable String num, Model model) throws SQLException {
-	SellVO one = mydao.sellOne(num);
+	SellVO one = mydao.sellread(num);
 	model.addAttribute("one", one);
 	return "MyWorld/view";
 }
+
+@RequestMapping("/after/{num}")
+public String afterViewHandle(@PathVariable String num, Model model) throws SQLException {
+	Map one = mydao.afterread(num);
+	model.addAttribute("one", one);
+	return "MyWorld/view";
+}
+
+@RequestMapping("/free/{num}")
+public String freeViewHandle(@PathVariable String num, Model model) throws SQLException {
+	Map one = mydao.freeread(num);
+	model.addAttribute("one", one);
+	return "MyWorld/view";
+}
+@RequestMapping("/freedis/{num}")
+public String freedisViewHandle(@PathVariable String num, Model model) throws SQLException {
+	Map one = mydao.freedisread(num);
+	model.addAttribute("one", one);
+	return "MyWorld/view";
+}
+
 
 }
 
