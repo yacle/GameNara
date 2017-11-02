@@ -83,6 +83,7 @@
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	}  
 	cnt();
+	
 	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
