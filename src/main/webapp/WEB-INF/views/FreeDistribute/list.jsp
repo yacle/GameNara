@@ -98,14 +98,14 @@ th, td {
 				"receiver":obj,
 				"sender" : $("#my").val()
 			}
-		}).done(function(e){
-			console.log(e);
-			if(e=="no"){
-				window.alert("상대방이 접속중이 아닙니다.");
-			}else{
+		}).done(function (r){
+			if(r == "yes"){	
 				var url="/chatting/chatPage?id="+obj;
 				window.open(url, "", "width=400, height=550");
+			}else{
+				window.alert("현재 접속하지 않은 사용자입니다.")
 			}
 		})
+		
 	}
 </script>
