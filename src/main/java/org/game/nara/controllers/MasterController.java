@@ -48,29 +48,25 @@ MasterDao masterDao;
 	
 	@RequestMapping("/board")
 	@ResponseBody
-	public List report03Handel(@RequestBody Map map) {
+	public List report03Handel(@RequestParam Map map) {
 		List list = new ArrayList();
 		String board = (String) map.get("board");
 		String id = (String) map.get("id");
-		Map total = masterDao.reportData(id);
 		switch(board) {
 		case "sell":
-			list = (List) total.get("sell");
+			list = masterDao.sellData(id);
 			break;
 		case "buy":
-			list = (List) total.get("buy");
+			list = masterDao.buyData(id);
 			break;
 		case "freedist":
-			list = (List) total.get("free_dist");
+			list = masterDao.freedistData(id);
 			break;
 		case "free":
-			list = (List) total.get("freeboard");
+			list = masterDao.freeData(id);
 			break;
 		case "after":
-			list = (List) total.get("after");
-			break;
-		case "reply":
-			list = (List) total.get("reply");
+			list = masterDao.afterData(id);
 			break;
 		}
 		return list;

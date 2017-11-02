@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <ul class="nav nav-tabs">
 	<li><a href="/master/manage_member">Total</a></li>
-    <li><a href="/master/report?id=${map.ID}">Menu 1</a></li>
-    <li><a id="m3">Menu 2</a></li>
+    <li><a href="/master/report?id=${map.ID}">회원정보</a></li>
+    <li><a id="m3">게시판 Report</a></li>
     <li><a style="color: black;">[회원ID : ${map.ID}]</a></li>
   </ul>
 
@@ -51,16 +51,15 @@ th, td {
 <div id="div1"></div>
 <script>
 $("#sell").click(function(){
-	$.getJSON("/master/board?id=${map.ID}&&board=sell", function(data){
-		var title="<br/><div align=\center\'><h2>SELL Board</h2><br/>";
+	$.getJSON("/master/board?board=sell&&id=${map.ID}", function(data){
+		var title="<br/><h2>SELL Board</h2><br/>";
 		var str="";
 		$(data).each(
 			function(){
 				str += "<div class='row'>"
 						+"<div class='col-md-1' align='center'>"+this.NO+"</div>"
 						+"<div class='col-md-2' align='center'>"+this.WRITER+"</div>"
-						+"<div class='col-md-8'>"
-							+"<div class='row'>"+this.TITLE+"</div>"
+						+"<div class='col-md-8'><a href=\'/sell/view/"+this.NO+"\'>"+this.TITLE+"</a></div>"
 						+"</div>"
 					  +"</div><hr/>"
 				})
@@ -68,16 +67,15 @@ $("#sell").click(function(){
 	})	
 })
 $("#buy").click(function(){
-	$.getJSON("/master/board?id=${map.ID}&&board=buy", function(data){
-		var title="<br/><div align=\center\'><h2>BUY Board</h2><br/>";
+	$.getJSON("/master/board?board=buy&&id=${map.ID}", function(data){
+		var title="<br/><h2>BUY Board</h2><br/>";
 		var str="";
 		$(data).each(
 			function(){
 				str += "<div class='row'>"
 						+"<div class='col-md-1' align='center'>"+this.NO+"</div>"
 						+"<div class='col-md-2' align='center'>"+this.BUY_ID+"</div>"
-						+"<div class='col-md-8'>"
-							+"<div class='row'>"+this.TITLE+"</div>"
+						+"<div class='col-md-8'><a href=\'/buy/view/"+this.NO+"\'>"+this.TITLE+"</a></div>"
 						+"</div>"
 					  +"</div><hr/>"
 				})
@@ -85,16 +83,15 @@ $("#buy").click(function(){
 	})	
 })
 $("#freedist").click(function(){
-	$.getJSON("/master/board?id=${map.ID}&&board=freedist", function(data){
-		var title="<br/><div align=\center\'><h2>FREE DISTRIBUTE Board</h2><br/>";
+	$.getJSON("/master/board?board=freedist&&id=${map.ID}", function(data){
+		var title="<br/><h2>FREE DISTRIBUTE Board</h2><br/>";
 		var str="";
 		$(data).each(
 			function(){
 				str += "<div class='row'>"
 						+"<div class='col-md-1' align='center'>"+this.NO+"</div>"
 						+"<div class='col-md-2' align='center'>"+this.WRITER+"</div>"
-						+"<div class='col-md-8'>"
-							+"<div class='row'>"+this.TITLE+"</div>"
+						+"<div class='col-md-8'><a href=\'/FreeDistribute/view/"+this.NO+"\'>"+this.TITLE+"</a></div>"
 						+"</div>"
 					  +"</div><hr/>"
 				})
@@ -102,16 +99,15 @@ $("#freedist").click(function(){
 	})	
 })
 $("#free").click(function(){
-	$.getJSON("/master/board?id=${map.ID}&&board=free", function(data){
-		var title="<br/><div align=\center\'><h2>FREEBOARD Board</h2><br/>";
+	$.getJSON("/master/board?board=free&&id=${map.ID}", function(data){
+		var title="<br/><h2>FREEBOARD Board</h2><br/>";
 		var str="";
 		$(data).each(
 			function(){
 				str += "<div class='row'>"
 						+"<div class='col-md-1' align='center'>"+this.NO+"</div>"
 						+"<div class='col-md-2' align='center'>"+this.WRITER+"</div>"
-						+"<div class='col-md-8'>"
-							+"<div class='row'>"+this.TITLE+"</div>"
+						+"<div class='col-md-8'><a href=\'/freeBoard/view/"+this.NO+"\'>"+this.TITLE+"</a></div>"
 						+"</div>"
 					  +"</div><hr/>"
 				})
@@ -119,16 +115,15 @@ $("#free").click(function(){
 	})	
 })
 $("#after").click(function(){
-	$.getJSON("/master/board?id=${map.ID}&&board=sell", function(data){
-		var title="<br/><div align=\center\'><h2>AFTER DEAL Board</h2><br/>";
+	$.getJSON("/master/board?board=after&&id=${map.ID}", function(data){
+		var title="<br/><h2>AFTER DEAL Board</h2><br/>";
 		var str="";
 		$(data).each(
 			function(){
 				str += "<div class='row'>"
 						+"<div class='col-md-1' align='center'>"+this.NO+"</div>"
 						+"<div class='col-md-2' align='center'>"+this.WRITER+"</div>"
-						+"<div class='col-md-8'>"
-							+"<div class='row'>"+this.TITLE+"</div>"
+						+"<div class='col-md-8'><a href=\'/after/view/"+this.NO+"\'>"+this.TITLE+"</a></div>"
 						+"</div>"
 					  +"</div><hr/>"
 				})

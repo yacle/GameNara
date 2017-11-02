@@ -43,16 +43,10 @@ SimpleDateFormat sdf;
 		mav.addObject("section", "sell/sell_form");
 		return mav;
 	}
-<<<<<<< HEAD
-	
-	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String freeBoardAddPostHandle(@RequestParam SellVO vo, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
-		String id = vo.getWRITER();
-=======
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String freeBoardAddPostHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
-		String id = (String)map.get("writer");
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
+	public String fsellBoardAddPostHandle(SellVO vo)throws SQLException, IOException {
+		MultipartFile pic = vo.getPic();
+		String id = vo.getWriter();
 		if(pic.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
@@ -65,7 +59,6 @@ SimpleDateFormat sdf;
 	
 			File up = new File(application.getRealPath("/sellB_File"), name);
 			pic.transferTo(up);
-			map.put("pic", name);
 		}
 		int r = sellDao.sellAdd(map);
 		if (r!=0) {
@@ -74,6 +67,7 @@ SimpleDateFormat sdf;
 		return  "redirect:/sell/list?category=1&&type=map";
 	}
 	
+
 	@RequestMapping(value="/list")
 	public ModelAndView buyListHandle(@RequestParam Map map) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");

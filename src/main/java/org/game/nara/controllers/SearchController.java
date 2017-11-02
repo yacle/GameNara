@@ -19,21 +19,9 @@ SearchDao search;
 
 @RequestMapping("/search")
 public ModelAndView freeBoardViewHandle(@RequestParam Map map) throws Exception {
-<<<<<<< HEAD
-	System.out.println("map="+map);
-=======
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	ModelAndView mav = new ModelAndView("temp");
 	String word = (String)map.get("word");
-<<<<<<< HEAD
-	System.out.println("String word="+word);
-=======
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	Map total = search.search(word);
-<<<<<<< HEAD
-	System.out.println("total="+total);
-=======
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	mav.addObject("section", "search");
 	mav.addObject("total", total);
 	return mav;

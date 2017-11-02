@@ -12,8 +12,8 @@ public class SellDao {
 @Autowired
 SqlSessionTemplate temp;
 
-	public int sellAdd(Map map) {
-		return temp.insert("sell.add", map);
+	public int sellAdd(SellVO vo) {
+		return temp.insert("sell.add", vo);
 	}
 	public int subtractPoint(String id) {
 		return temp.update("sell.subtractPoint", id);
