@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+	<h2 align="center">${title}게시판</h2>
 <div align="right" style="margin-bottom: 10px;">
 	<a><span class="glyphicon glyphicon-th"></span>앨범형</button></a> | 
 	<a href="/sell/list?category=0&&type=list"><span class="glyphicon glyphicon-list-alt"></span>게시판형</a>

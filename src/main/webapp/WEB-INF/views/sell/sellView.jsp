@@ -29,50 +29,50 @@ td{
 	align: center;
 }
 </style>
-<h2>NO.<span id="no">${map.NO }</span></h2>
+<h2>NO.<span id="no">${map.no }</span></h2>
 	<div class="row">
 		<div class="col-md-4"  align="center">
 		
 		<c:choose>
-			<c:when test="${empty map.PIC }">
+			<c:when test="${empty map.pic }">
 			<img src="/profiles/default02.jpg" id="pf" alt="기본이미지" style="height: 300px; width: 300px;"/>
 			</c:when>
 			<c:otherwise>
-			<img src="/sellB_File/${map.PIC}" id="pf" alt="기본이미지" style="height: 300px; width: 300px;"/>
+			<img src="/sellB_File/${map.pic}" id="pf" alt="기본이미지" style="height: 300px; width: 300px;"/>
 			</c:otherwise>	
 		</c:choose>
 			<form action="/sell/update" method="post" id="form" enctype="multipart/form-data">
 				<input id="pic" class="update-group" type="file" name="pic" style="display: none" disabled/>
-				<input type="hidden" name="no" value="${map.NO }"/>
-				<input type="hidden" name="writer" value="${map.WRITER }"/>			
+				<input type="hidden" name="no" value="${map.no }"/>
+				<input type="hidden" name="writer" value="${map.writer }"/>			
 		</div>
 		<div class="col-md-8">
 			<table>
 				<tbody>
 					<tr>
 						<td width="14%">제    목</td>
-						<td width="86%"><input type="text" id="title" class="update-group" name="title" value="${map.TITLE }" size="75" disabled></td>
+						<td width="86%"><input type="text" id="title" class="update-group" name="title" value="${map.title }" size="75" disabled></td>
 					</tr>
 					<tr>
 						<td>판매가격</td>
-						<td><input type="text" class="update-group" name="price" value="${map.PRICE }" size="75" disabled></td>
+						<td><input type="text" class="update-group" name="price" value="${map.price }" size="75" disabled></td>
 					</tr>
 					<tr>
 						<td>연락처</td>
-						<td><input type="text" class="update-group" name="contact" value="${map.CONTACT }" size="75" disabled></td>
+						<td><input type="text" class="update-group" name="contact" value="${map.contact }" size="75" disabled></td>
 					</tr>
 					<tr>
 						<td>거래방법</td>
-						<td><input type="text" class="update-group" name="deal_method" value="${map.DEAL_METHOD }" size="75" disabled></td>
+						<td><input type="text" class="update-group" name="deal_method" value="${map.deal_method }" size="75" disabled></td>
 					</tr>
 					<tr>
 						<td>카테고리</td>
 						<td>
 							<select class="update-group" name="category" style="padding: 5px; border:none" disabled>
-								<option value="1" <c:if test="${map.CATEGORY eq 1 }"> selected </c:if> > 콘솔기기</option>
-								<option value="2" <c:if test="${map.CATEGORY eq 2 }"> selected </c:if> > 게임타이틀</option>
-								<option value="3" <c:if test="${map.CATEGORY eq 3 }"> selected </c:if> > 주변기기</option>
-								<option value="0" <c:if test="${map.CATEGORY eq 0 }"> selected </c:if> > 기타</option>
+								<option value="1" <c:if test="${map.category eq 1 }"> selected </c:if> > 콘솔기기</option>
+								<option value="2" <c:if test="${map.category eq 2 }"> selected </c:if> > 게임타이틀</option>
+								<option value="3" <c:if test="${map.category eq 3 }"> selected </c:if> > 주변기기</option>
+								<option value="0" <c:if test="${map.category eq 0 }"> selected </c:if> > 기타</option>
 							</select>
 						</td>
 					</tr>
@@ -81,22 +81,19 @@ td{
 						<td>
 							<div class="dropdown">
 								<button class="btn dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-									<span id="receiver">${map.WRITER }</span>
+									<span id="receiver">${map.writer }</span>
 								<span class="caret"></span></button>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${map.WRITER }')">쪽지보내기</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${map.writer }')">쪽지보내기</a></li>
 									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">1:1채팅초대</a></li>
-									<li role="presentation" class="divider"></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 								</ul>
 								<c:choose>
-									<c:when test="${map.STATE==0 }">
+									<c:when test="${map.state==0 }">
 										<button class="btn dropdown-toggle" type="button" id="deal">구매신청</button>
 									</c:when>
-									<c:when test="${map.STATE==1 }">
+									<c:when test="${map.state==1 }">
 										<b id="state_02">거래중</b>
-										<c:if test="${auth_id eq map.WRITER }">
+										<c:if test="${auth_id eq map.writer }">
 											<button type="button" class="btn btn-primary" id="deal_cancle"><small>거래취소</small></button>
 											<button type="button" class="btn btn-primary" id="deal_end"><small>거래완료</small></button>
 										</c:if>
@@ -115,9 +112,9 @@ td{
 		
 	<div class="row" align="center">
 		<input type="hidden" id="id" value="${auth_id}">
-		<p><textarea class="update-group" rows="10" width="1000px" placeholder="상세내용" name="detail"  disabled>${map.DETAIL }</textarea></p>
+		<p><textarea class="update-group" rows="10" width="1000px" placeholder="상세내용" name="detail"  disabled>${map.detail }</textarea></p>
 		</form>
-		<c:if test="${auth_id eq map.WRITER }">
+		<c:if test="${auth_id eq map.writer }">
 			<button type="button" class="btn btn-default" id="modify">수정</button>
 			<button type="button" class="btn btn-default" id="delete">삭제</button>
 			<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>

@@ -12,7 +12,7 @@ h2{
 <hr/>
 <div class="row" align="center" style="font-size: 18px">
 	<div class="col-md-4">
-		<h2>팝니다</h2>
+		<h2>[팝니다]</h2>
 		<br/>
 		<c:choose>
 			<c:when test="${auth_id eq null }">
@@ -54,7 +54,7 @@ h2{
 		</c:choose>
 	</div>
 	<div class="col-md-4">
-		<h2>삽니다</h2>
+		<h2>[삽니다]</h2>
 		<br/>
 		<c:choose>
 			<c:when test="${auth_id eq null }">
@@ -96,7 +96,7 @@ h2{
 		</c:choose>
 	</div>
 	<div class="col-md-4">
-		<h2>무료나눔</h2>
+		<h2>[무료나눔]</h2>
 		<br/>
 		<c:choose>
 			<c:when test="${auth_id eq null }">
@@ -138,6 +138,7 @@ h2{
 		</c:choose>
 	</div>
 </div>
+<div align="center"><h4>최근 5개 리스트만 보여집니다!!</h4></div><br/>
 <script>
 $("#sell").click(function(){
 	location.href="/notice";
