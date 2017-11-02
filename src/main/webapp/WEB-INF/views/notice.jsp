@@ -22,7 +22,6 @@ X : 권한없음
 			<td width="8%">공지사항</td>
 			<td width="8%">SELL</td>
 			<td width="8%">BUY</td>
-			<td width="8%">EXCHANGE</td>
 			<td width="8%">무료나눔</td>
 			<td width="8%">가입인사</td>
 			<td width="10%">자유게시판</td>
@@ -31,21 +30,30 @@ X : 권한없음
 	</thead>
 	<tbody>
 		<tr>
+			<td>GUEST</td>
+			<td>GUEST 방문시</td>
+			<td>☐</td>
+			<td>X</td>
+			<td>X</td>
+			<td>X</td>
+			<td>X</td>
+			<td>△</td>
+			<td>△</td>
+		</tr>
+		<tr>
 			<td>레벨 1</td>
 			<td>회원 가입시</td>
 			<td>☐</td>
 			<td>X</td>
 			<td>△</td>
 			<td>△</td>
+			<td>◯</td>
+			<td>◯</td>
 			<td>△</td>
-			<td>◯</td>
-			<td>◯</td>
-			<td>X</td>
 		</tr>
 		<tr>
 			<td>레벨 2</td>
 			<td>가입인사글 & 자유게시판 1회 글쓰기</td>
-			<td>☐</td>
 			<td>☐</td>
 			<td>☐</td>
 			<td>☐</td>
@@ -64,12 +72,10 @@ X : 권한없음
 			<td>◯</td>
 			<td>◯</td>
 			<td>◯</td>
-			<td>◯</td>
 		</tr>
 		<tr>
 			<td>레벨 4</td>
 			<td>스탭</td>
-			<td>◯</td>
 			<td>◯</td>
 			<td>◯</td>
 			<td>◯</td>

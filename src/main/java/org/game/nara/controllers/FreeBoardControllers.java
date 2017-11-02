@@ -53,9 +53,9 @@ public class FreeBoardControllers {
 	}
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String freeBoardAddPostHandle(@RequestParam Map param, ModelMap map, HttpSession session, 
-		@RequestParam(name = "attach") MultipartFile mpf) throws SQLException, IOException {
-		String id = (String)session.getAttribute("auth_id");
+	public String freeBoardAddPostHandle(@RequestParam Map param, @RequestParam(name = "attach") MultipartFile mpf) throws SQLException, IOException {
+		String id = (String)param.get("writer");
+		String lev = (String)param.get("lev");
 		if(mpf.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/freeB_File");
@@ -73,6 +73,9 @@ public class FreeBoardControllers {
 		boolean b = boardDao.addOne(param);
 		if (b) {
 			boardDao.addPoint(id);
+		}
+		if(lev.equals('1')){
+			
 		}
 		return  "redirect:/freeBoard/list";
 	}

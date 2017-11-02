@@ -49,4 +49,8 @@
 		update member_info set email_reg='authorized' where id=#{id}
 	</update>
 	
+	<select id="levelcheck">
+		select count(f.*) from freeboard f where writer=#{id}
+	</select>
+	
 </mapper>

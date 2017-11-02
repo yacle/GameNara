@@ -5,29 +5,15 @@
       <a class="navbar-brand" href="/index">GAMENARA</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/notice">NOTICE</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">SELL<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">TOTAL</a></li>
-          <li><a href="#">CONSOLE</a></li>
-          <li><a href="#">GAME TITLE</a></li>
-          <li><a href="#">ACCESSORY</a></li>
-          <li><a href="#">ETC</a></li>
-        </ul>
+      <li><a href="/notice">NOTICE</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" onclick="javascript:log()">SELL<span class="caret"></span></a>
       </li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">BUY<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="">TOTAL</a></li>
-          <li><a href="#">CONSOLE</a></li>
-          <li><a href="#">GAME TITLE</a></li>
-          <li><a href="#">ACCESSORY</a></li>
-          <li><a href="#">ETC</a></li>
-        </ul>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" onclick="javascript:log()">BUY<span class="caret"></span></a>
       </li>
-      <li><a href="#">FREE PRESENT</a></li>
+      <li><a href="#" onclick="javascript:log()">FREE PRESENT</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">COMMUNITY<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">가입인사</a></li>
+          <li><a href="#" onclick="javascript:log()">가입인사</a></li>
           <li><a href="/freeBoard/list">자유게시판</a></li>
           <li><a href="/after/list">거래후기</a></li>
         </ul>
@@ -39,5 +25,10 @@
     </ul>
   </div>
 
+<script>
 
+var log = function(){
+	window.alert("로그인후 사용하세요");
+}
+</script>
 

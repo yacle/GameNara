@@ -45,11 +45,8 @@ th, td {
 								<span id="receiver" value="${obj.ID }">${obj.ID }</span>
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>
-								<li role="presentation" class="divider"></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 							</ul>
 					</div>
 					</c:when>
@@ -65,9 +62,7 @@ th, td {
 		</tbody>
 	</table>
 	<p align="right" style="margin-right: 30px;">
-			<c:if test="${auth_id ne null}">
-				<a href="/freeBoard/add"><button type="button" style="padding: 5px;">글작성</button></a>
-			</c:if>
+		<a href="/become_member/add"><button type="button" style="padding: 5px;">글작성</button></a>
 	</p>
 </div>
 
