@@ -2,6 +2,7 @@ package org.game.nara;
 
 public class SellVO {
 
+<<<<<<< HEAD
 	private int NO;
 	private String WRITER;
 	private String TITLE;
@@ -16,75 +17,98 @@ public class SellVO {
 	private int COUNT;
 	public int getNO() {
 		return NO;
+=======
+	private int no;
+	
+	private String writer;
+	private String title;
+	private int price;
+	private String detail;
+	private String contact;
+	private String deal_method;
+	private String pic;
+	private String regdate;
+	private String state;
+	private int category;
+	private int count;
+	@Override
+	public String toString() {
+		return "SellVO [no=" + no + ", writer=" + writer + ", title=" + title + ", price=" + price + ", detail="
+				+ detail + ", contact=" + contact + ", deal_method=" + deal_method + ", pic=" + pic + ", regdate="
+				+ regdate + ", state=" + state + ", category=" + category + ", count=" + count + "]";
 	}
-	public void setNO(int nO) {
-		NO = nO;
+	public int getNo() {
+		return no;
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	}
-	public String getWRITER() {
-		return WRITER;
+	public void setNo(int no) {
+		this.no = no;
 	}
-	public void setWRITER(String wRITER) {
-		WRITER = wRITER;
+	public String getWriter() {
+		return writer;
 	}
-	public String getTITLE() {
-		return TITLE;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
-	public void setTITLE(String tITLE) {
-		TITLE = tITLE;
+	public String getTitle() {
+		return title;
 	}
-	public int getPRICE() {
-		return PRICE;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public void setPRICE(int pRICE) {
-		PRICE = pRICE;
+	public int getPrice() {
+		return price;
 	}
-	public String getDETAIL() {
-		return DETAIL;
+	public void setPrice(int price) {
+		this.price = price;
 	}
-	public void setDETAIL(String dETAIL) {
-		DETAIL = dETAIL;
+	public String getDetail() {
+		return detail;
 	}
-	public String getCONTACT() {
-		return CONTACT;
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
-	public void setCONTACT(String cONTACT) {
-		CONTACT = cONTACT;
+	public String getContact() {
+		return contact;
 	}
-	public String getDEAL_METHOD() {
-		return DEAL_METHOD;
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
-	public void setDEAL_METHOD(String dEAL_METHOD) {
-		DEAL_METHOD = dEAL_METHOD;
+	public String getDeal_method() {
+		return deal_method;
 	}
-	public String getPIC() {
-		return PIC;
+	public void setDeal_method(String deal_method) {
+		this.deal_method = deal_method;
 	}
-	public void setPIC(String pIC) {
-		PIC = pIC;
+	public String getPic() {
+		return pic;
 	}
-	public String getREGDATE() {
-		return REGDATE;
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
-	public void setREGDATE(String rEGDATE) {
-		REGDATE = rEGDATE;
+	public String getRegdate() {
+		return regdate;
 	}
-	public String getSTATE() {
-		return STATE;
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
-	public void setSTATE(String sTATE) {
-		STATE = sTATE;
+	public String getState() {
+		return state;
 	}
-	public int getCATEGORY() {
-		return CATEGORY;
+	public void setState(String state) {
+		this.state = state;
 	}
-	public void setCATEGORY(int cATEGORY) {
-		CATEGORY = cATEGORY;
+	public int getCategory() {
+		return category;
 	}
-	public int getCOUNT() {
-		return COUNT;
+	public void setCategory(int category) {
+		this.category = category;
 	}
-	public void setCOUNT(int cOUNT) {
-		COUNT = cOUNT;
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	@Override
 	public String toString() {
@@ -92,5 +116,6 @@ public class SellVO {
 				+ DETAIL + ", CONTACT=" + CONTACT + ", DEAL_METHOD=" + DEAL_METHOD + ", PIC=" + PIC + ", REGDATE="
 				+ REGDATE + ", STATE=" + STATE + ", CATEGORY=" + CATEGORY + ", COUNT=" + COUNT + "]";
 	}
+	
 	
 }

@@ -16,8 +16,10 @@ import org.game.nara.models.SellDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,10 +43,16 @@ SimpleDateFormat sdf;
 		mav.addObject("section", "sell/sell_form");
 		return mav;
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public String freeBoardAddPostHandle(@RequestParam SellVO vo, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
 		String id = vo.getWRITER();
+=======
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String freeBoardAddPostHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
+		String id = (String)map.get("writer");
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		if(pic.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
@@ -57,9 +65,9 @@ SimpleDateFormat sdf;
 	
 			File up = new File(application.getRealPath("/sellB_File"), name);
 			pic.transferTo(up);
-			vo.setPIC(name);
+			map.put("pic", name);
 		}
-		int r = sellDao.sellAdd(vo);
+		int r = sellDao.sellAdd(map);
 		if (r!=0) {
 			sellDao.subtractPoint(id);
 		}
@@ -128,9 +136,9 @@ SimpleDateFormat sdf;
 	}
 	
 	@RequestMapping("/update")
-	public String picupdateHandle(@RequestParam SellVO vo, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IllegalStateException, IOException {
+	public String picupdateHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IllegalStateException, IOException {
 		if(pic.getSize() > 0) {
-			String id = vo.getWRITER();
+			String id = (String)map.get("writer");
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
 			String name = id+"_"+fmt;
@@ -139,12 +147,12 @@ SimpleDateFormat sdf;
 				dir.mkdirs();
 			File up = new File(application.getRealPath("/sellB_File"), name);
 			pic.transferTo(up);
-			vo.setPIC(name);
-			sellDao.sellUpdate(vo);
+			map.put("pic", name);
+			sellDao.sellUpdate(map);
 		}else {
-			sellDao.sellUpdate2(vo);
+			sellDao.sellUpdate2(map);
 		}
-		String url="redirect:/sell/view/"+vo.getNO();
+		String url="redirect:/sell/view/"+(String)map.get("no");
 		return url;
 	}
 	

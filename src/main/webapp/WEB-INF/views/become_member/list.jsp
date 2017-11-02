@@ -62,9 +62,7 @@ th, td {
 		</tbody>
 	</table>
 	<p align="right" style="margin-right: 30px;">
-			<c:if test="${auth_id ne null}">
-				<a href="/freeBoard/add"><button type="button" style="padding: 5px;">글작성</button></a>
-			</c:if>
+		<a href="/become_member/add"><button type="button" style="padding: 5px;">글작성</button></a>
 	</p>
 </div>
 
@@ -84,8 +82,14 @@ th, td {
 				"receiver":obj,
 				"sender" : $("#my").val()
 			}
+		}).done(function (r){
+			if(r == "yes"){	
+				var url="/chatting/chatPage?id="+obj;
+				window.open(url, "", "width=400, height=550");
+			}else{
+				window.alert("현재 접속하지 않은 사용자입니다.")
+			}
 		})
-		var url="/chatting/chatPage?id="+obj;
-		window.open(url, "", "width=400, height=550");
+		
 	}
 </script>
