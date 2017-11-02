@@ -60,7 +60,7 @@ SimpleDateFormat sdf;
 			File up = new File(application.getRealPath("/sellB_File"), name);
 			pic.transferTo(up);
 		}
-		int r = sellDao.sellAdd(map);
+		int r = sellDao.sellAdd(vo);
 		if (r!=0) {
 			sellDao.subtractPoint(id);
 		}
