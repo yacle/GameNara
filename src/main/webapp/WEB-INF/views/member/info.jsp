@@ -106,6 +106,7 @@
 <div class="form-group">
 	<div class="col-sm-offset-0 col-sm-12" align="center">
 		<button type="button" class="btn btn-default" id="submit">Submit</button>
+		<a href="#" onClick="history.back()" class="btn btn-default">뒤로</button></a>
 	</div>
 </div>
 </form>

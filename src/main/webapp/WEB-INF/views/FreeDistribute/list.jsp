@@ -63,11 +63,8 @@ th, td {
 								<span id="receiver" value="${obj.WRITER }">${obj.WRITER }</span>
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>
-								<li role="presentation" class="divider"></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 							</ul>
 						</div>
 					</td>
@@ -98,14 +95,14 @@ th, td {
 				"receiver":obj,
 				"sender" : $("#my").val()
 			}
-		}).done(function(e){
-			console.log(e);
-			if(e=="no"){
-				window.alert("상대방이 접속중이 아닙니다.");
-			}else{
+		}).done(function (r){
+			if(r == "yes"){	
 				var url="/chatting/chatPage?id="+obj;
 				window.open(url, "", "width=400, height=550");
+			}else{
+				window.alert("현재 접속하지 않은 사용자입니다.")
 			}
 		})
+		
 	}
 </script>

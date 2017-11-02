@@ -17,7 +17,8 @@ button {
 }
 
 textarea {
-	width: 70%;
+	
+	width: 650px;
 	padding: 12px 20px;
 	box-sizing: border-box;
 	border: 2px solid #ccc;
@@ -39,14 +40,12 @@ td {
 	height: 55px;
 	align: center;
 }
-all{
-	background-color:Gainsboro ;
-}
+
 </style>
-<div align="center" style="line-height: 35px" >
+<div align="center" style="line-height: 35px; padding:50px;">
 	<h2>게시판</h2>
 	<hr />
-	<div style="width: 70%; border-radius: 10px; ; padding-left: 20px;" align="left">
+	<div style="width: 100%; border-radius: 10px; ; padding-left: 20px;" align="left">
 		<input type="hidden" id="num" value="${one.NO }" />
 		<p style="padding-left: 10px;">
 		<h2> ${one.TITLE }</h2>
@@ -57,10 +56,22 @@ all{
 				 </p>
 			</small>
 		</p>
-	</div><br />
+	</div>
 	<div class="row" align="center">
 		<input type="hidden" id="id" value="${auth_id}">
-		<textarea class="update-group" rows="10" width="700px" placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
+	<c:if test="${empty one.PIC}">
+		<textarea class="update-group" rows="10" height="300px;" width="500px" placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
+	</c:if>
+	<c:if test="${!empty one.PIC}">
+	<div class="row">
+		<div class="col-md-4">
+			<img id="pf" class="img-responsive" src="/freeB_File/${one.PIC}" style="width: 250; height: 300;"/>
+		</div>
+	<div class="col-md-8" align="left">
+		<textarea rows="5" id="comment" disabled>${one.DETAIL }</textarea>
+	</div>
+	</div>
+	</c:if>
 		<div align="right"> 
 			<c:if test="${auth_id eq one.WRITER }">
 				<button type="button" class="btn btn-default" id="modify">수정</button>
@@ -135,7 +146,7 @@ $("#delete").click(function(){
 })
 </script>
 <%-- Reply input form --%>
-<div class="row" >
+<div class="row">
 	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
 	<div class="col-md-8"><textarea rows="1" id="content"></textarea></div>
 	<div class="col-md-1">비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자" required></div>

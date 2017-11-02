@@ -64,7 +64,7 @@
 	</ul>
 </div>
 <script>
-	var nws = new WebSocket("ws://192.168.10.74/ws/note");
+	var nws = new WebSocket("ws://192.168.10.73/ws/note");
 	var cnt = function(){
 		$.ajax({
 			"type":"post",
@@ -83,7 +83,8 @@
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	}  
 	cnt();
-	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
+	
+	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
 		if(obj.chat =="chatting"){
@@ -92,18 +93,7 @@
 				window.open(url, "", "width=400, height=550");
 			}
 		}
-	} 
-$("#submit").click(function() {
-	$.ajax({
-		"type" : "post",
-		"async" : false,
-		"url" : "/search",
-		"data" : {
-			"search" : $("#word").val()
-		}
-	})
-})
-
+	}
 </script>
 
 <script>
@@ -118,6 +108,6 @@ function openchat(obj){
 <script>
 	function openmyworld(obj){
 		var url="/MyWorld/myworld?id="+obj;		
-		window.open(url, "myworld", "width=1100, height=900");
+		window.open(url, "myworld", "width=1150, height=900");
 	}
 </script>

@@ -50,7 +50,7 @@ public class buycontroller {
 		
 		case 1:
 			mav.addObject("list", li);
-			mav.addObject("title","삽니다 전체 ");
+			mav.addObject("title","삽니다 게시판");
 			mav.addObject("cnt", li.size());			
 			break;
 			
@@ -121,7 +121,7 @@ public class buycontroller {
 	@ResponseBody
 	public String buycheckpoint(MemberVO vo) {
 		MemberVO point=buyDao.checkpoint(vo);
-		if(point.getPoint()<500) {
+		if(point.getPoint()<500 || point.getLev()<=2) {
 			return "ok";
 		}else {
 			return "no";

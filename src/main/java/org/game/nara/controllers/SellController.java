@@ -43,9 +43,16 @@ SimpleDateFormat sdf;
 		mav.addObject("section", "sell/sell_form");
 		return mav;
 	}
+<<<<<<< HEAD
+	
+	@RequestMapping(path = "/add", method = RequestMethod.POST)
+	public String freeBoardAddPostHandle(@RequestParam SellVO vo, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
+		String id = vo.getWRITER();
+=======
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String freeBoardAddPostHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
 		String id = (String)map.get("writer");
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		if(pic.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");

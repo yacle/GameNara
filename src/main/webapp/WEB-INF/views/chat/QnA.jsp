@@ -16,9 +16,9 @@ textarea {
 			<hr/>
 				<br/><div class="form-group">
 				<input type="hidden" id="receiver" name="receiver" value="admin" />
-					<label for="comment">작성자</label> <input type="text"
+					<label for="comment" for="writer">작성  자</label> <input type="text"
 						style="width: 80%;" class="form-control" name="sender" id="sender"
-						value="${auth_id }">
+						value="${auth_id }" disabled>
 				</div>
 				<div class="form-group">
 					<label for="comment">보낼 내용</label> 
