@@ -8,12 +8,27 @@
       <li><a href="/notice">NOTICE</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" onclick="javascript:log()">SELL<span class="caret"></span></a>
       </li>
+<<<<<<< HEAD
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">BUY<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/log/login/success">TOTAL</a></li>
+          <li><a href="/log/login/success">CONSOLE</a></li>
+          <li><a href="/log/login/success">GAME TITLE</a></li>
+          <li><a href="/log/login/success">ACCESSORY</a></li>
+          <li><a href="/log/login/success">ETC</a></li>
+        </ul>
+=======
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" onclick="javascript:log()">BUY<span class="caret"></span></a>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
       </li>
       <li><a href="#" onclick="javascript:log()">FREE PRESENT</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">COMMUNITY<span class="caret"></span></a>
         <ul class="dropdown-menu">
+<<<<<<< HEAD
+          <li><a href="/log/login/success">가입인사</a></li>
+=======
           <li><a href="#" onclick="javascript:log()">가입인사</a></li>
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
           <li><a href="/freeBoard/list">자유게시판</a></li>
           <li><a href="/after/list">거래후기</a></li>
         </ul>

@@ -14,7 +14,7 @@ th, td {
 }
 </style>
 <div align="center" style="line-height: 35px">
-	<h2>${title}게시판</h2>
+	<h2>${title}</h2>
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
@@ -65,11 +65,8 @@ th, td {
 								<span id="receiver" value="${obj.BUY_ID }">${obj.BUY_ID }</span>
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.BUY_ID }')">쪽지보내기</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.BUY_ID }')">1:1채팅초대</a></li>
-								<li role="presentation" class="divider"></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 							</ul>
 						</div>
 					</td>
@@ -122,7 +119,7 @@ $("#check").click(function() {
 		}
 	}).done(function(obj){
 		if(obj=="ok"){
-			window.alert("포인트가 부족합니다!");
+			window.alert("포인트및 레벨이 맞지않습니다!");
 			location.href="/notice"
 		}else{
 			location.href = "/buy/add";

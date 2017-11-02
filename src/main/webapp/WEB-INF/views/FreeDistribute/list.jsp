@@ -63,11 +63,8 @@ th, td {
 								<span id="receiver" value="${obj.WRITER }">${obj.WRITER }</span>
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">INFO</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>
-								<li role="presentation" class="divider"></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
 							</ul>
 						</div>
 					</td>
