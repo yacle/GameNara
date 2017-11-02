@@ -92,18 +92,7 @@
 				window.open(url, "", "width=400, height=550");
 			}
 		}
-	} 
-$("#submit").click(function() {
-	$.ajax({
-		"type" : "post",
-		"async" : false,
-		"url" : "/search",
-		"data" : {
-			"search" : $("#word").val()
-		}
-	})
-})
-
+	}
 </script>
 
 <script>
@@ -118,6 +107,6 @@ function openchat(obj){
 <script>
 	function openmyworld(obj){
 		var url="/MyWorld/myworld?id="+obj;		
-		window.open(url, "myworld", "width=1100, height=900");
+		window.open(url, "myworld", "width=1150, height=900");
 	}
 </script>

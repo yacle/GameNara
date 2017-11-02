@@ -53,7 +53,7 @@ public Map freeread(String num) {
 
 public Map freedisread(String num) {
 	template.update("freeD.countOne",num);
-	return template.selectOne("myworld.freeisread", num);
+	return template.selectOne("myworld.freedisread", num);
 }
 
 }

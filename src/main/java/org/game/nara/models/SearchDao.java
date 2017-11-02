@@ -14,6 +14,7 @@ public class SearchDao {
 SqlSessionTemplate template;
 
 	public Map search(String word) throws Exception{
+		System.out.println("word="+word);
 		Map map = new HashMap();
 		List s=template.selectList("search.sellsearch", word);
 		List f=template.selectList("search.freeboardsearch", word);

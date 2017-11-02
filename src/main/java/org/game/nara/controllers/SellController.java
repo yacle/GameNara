@@ -41,9 +41,12 @@ SimpleDateFormat sdf;
 		mav.addObject("section", "sell/sell_form");
 		return mav;
 	}
+	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public String freeBoardAddPostHandle(@RequestParam SellVO vo, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
-		String id = vo.getWRITER();
+		System.out.println("vo="+vo.toString());
+		System.out.println("pic="+pic.toString());
+		String id = vo.getWriter();
 		if(pic.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
@@ -56,7 +59,7 @@ SimpleDateFormat sdf;
 	
 			File up = new File(application.getRealPath("/sellB_File"), name);
 			pic.transferTo(up);
-			vo.setPIC(name);
+			vo.setPic(name);
 		}
 		int r = sellDao.sellAdd(vo);
 		if (r!=0) {
@@ -129,7 +132,7 @@ SimpleDateFormat sdf;
 	@RequestMapping("/update")
 	public String picupdateHandle(@RequestParam SellVO vo, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IllegalStateException, IOException {
 		if(pic.getSize() > 0) {
-			String id = vo.getWRITER();
+			String id = vo.getWriter();
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
 			String name = id+"_"+fmt;
@@ -138,12 +141,12 @@ SimpleDateFormat sdf;
 				dir.mkdirs();
 			File up = new File(application.getRealPath("/sellB_File"), name);
 			pic.transferTo(up);
-			vo.setPIC(name);
+			vo.setPic(name);
 			sellDao.sellUpdate(vo);
 		}else {
 			sellDao.sellUpdate2(vo);
 		}
-		String url="redirect:/sell/view/"+vo.getNO();
+		String url="redirect:/sell/view/"+vo.getNo();
 		return url;
 	}
 	
