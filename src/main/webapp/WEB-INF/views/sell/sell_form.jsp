@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-4">
 		<img src="/profiles/default02.jpg" id="pf" alt="기본이미지" style="height: 300px; width: 300px;" />
-			<input id="pic" type="file" name="pic" style="display: none" />
+			<input id="pic" type="file" name="picdata" style="display: none" />
 			<span id="picName"></span><br />
 		</div>
 		<div class="col-md-8">

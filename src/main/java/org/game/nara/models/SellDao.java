@@ -23,11 +23,11 @@ SqlSessionTemplate temp;
 		return temp.selectOne("sell.sellOne", no);
 	}
 	
-	public int sellUpdate(Map map) {
-		return temp.update("sell.sellUpdate", map);
+	public int sellUpdate(SellVO vo) {
+		return temp.update("sell.sellUpdate", vo);
 	}
-	public int sellUpdate2(Map map) {
-		return temp.update("sell.sellUpdate2", map);
+	public int sellUpdate2(SellVO vo) {
+		return temp.update("sell.sellUpdate2", vo);
 	}
 	
 	public int stateUpdate(Map map) {

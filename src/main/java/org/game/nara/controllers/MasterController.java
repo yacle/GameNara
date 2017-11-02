@@ -71,10 +71,8 @@ MasterDao masterDao;
 		}
 		return list;
 	}
-	
-	@RequestMapping("sell/view/{no}")
-	public String boardview(@PathVariable String no) {
-		String url="sell/view/"+no;
-		return url;
-	}
+
 }
+
+
+

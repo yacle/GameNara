@@ -11,7 +11,7 @@ textarea {
 </style>
 <body>
 		<div class="container">
-			<h1>QNA</h1>
+			<h1>Q&A</h1>
 			<p><h4>문의사항이나 건의사항을 보내주시면 빠른시간내에 확인후 조취를 취하겠습니다.</h4></p>
 			<hr/>
 				<br/><div class="form-group">

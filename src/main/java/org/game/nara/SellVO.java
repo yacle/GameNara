@@ -7,8 +7,8 @@ public class SellVO {
 	@Override
 	public String toString() {
 		return "SellVO [no=" + no + ", writer=" + writer + ", title=" + title + ", price=" + price + ", detail="
-				+ detail + ", contact=" + contact + ", deal_method=" + deal_method + ", pic=" + pic + ", regdate="
-				+ regdate + ", state=" + state + ", category=" + category + ", count=" + count + "]";
+				+ detail + ", contact=" + contact + ", deal_method=" + deal_method + ", regdate="
+				+ regdate + ", state=" + state + ", category=" + category + ", count=" + count + ", pic=" + pic+"]";
 	}
 	private int no;
 	private String writer;
@@ -17,17 +17,25 @@ public class SellVO {
 	private String detail;
 	private String contact;
 	private String deal_method;
-	private MultipartFile pic;
 	private String regdate;
 	private String state;
 	private int category;
 	private int count;
+	private String pic;
+	private MultipartFile picdata;
 	
 	
-	public MultipartFile getPic() {
+
+	public MultipartFile getPicdata() {
+		return picdata;
+	}
+	public void setPicdata(MultipartFile picdata) {
+		this.picdata = picdata;
+	}
+	public String getPic() {
 		return pic;
 	}
-	public void setPic(MultipartFile pic) {
+	public void setPic(String pic) {
 		this.pic = pic;
 	}
 	public int getNo() {

@@ -45,7 +45,6 @@ public String buyViewHandle(@PathVariable String num, Model model) throws SQLExc
 public String sellViewHandle(@PathVariable String num, Model model) throws SQLException {
 	SellVO one = mydao.sellread(num);
 	model.addAttribute("one", one);
-	System.out.println(one.toString());
 	return "MyWorld/view";
 }
 

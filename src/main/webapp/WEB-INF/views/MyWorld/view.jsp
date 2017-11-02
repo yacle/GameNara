@@ -46,34 +46,34 @@ td {
 	<h2>게시판</h2>
 	<hr />
 	<div style="width: 100%; border-radius: 10px; ; padding-left: 20px;" align="left">
-		<input type="hidden" id="num" value="${one.NO }" />
+		<input type="hidden" id="num" value="${one.no }" />
 		<p style="padding-left: 10px;">
-		<h2> ${one.TITLE }</h2>
+		<h2> ${one.title }</h2>
 			<small id="buyid">
-				작성자 : ${one.WRITER }
+				작성자 : ${one.writer}
 				<p align="right">
-				 조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" />
-				 </p>
+				 조회수 : <fmt:formatNumber value="${one.count}" pattern="#,###" />
+				</p>
 			</small>
 		</p>
 	</div>
 	<div class="row" align="center">
 		<input type="hidden" id="id" value="${auth_id}">
-	<c:if test="${empty one.PIC}">
-		<textarea class="update-group" rows="10" height="300px;" width="500px" placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
+	<c:if test="${empty one.pic}">
+		<textarea class="update-group" rows="10" height="300px;" width="500px" placeholder="상세내용" id="comment" disabled>${one.detail }</textarea>
 	</c:if>
-	<c:if test="${!empty one.PIC}">
+	<c:if test="${!empty one.pic}">
 	<div class="row">
 		<div class="col-md-4">
-			<img id="pf" class="img-responsive" src="/freeB_File/${one.PIC}" style="width: 250; height: 300;"/>
+			<img id="pf" class="img-responsive" src="/freeB_File/${one.pic}" style="width: 250; height: 300;"/>
 		</div>
 	<div class="col-md-8" align="left">
-		<textarea rows="5" id="comment" disabled>${one.DETAIL }</textarea>
+		<textarea rows="5" id="comment" disabled>${one.detail }</textarea>
 	</div>
 	</div>
 	</c:if>
 		<div align="right"> 
-			<c:if test="${auth_id eq one.WRITER }">
+			<c:if test="${auth_id eq one.writer }">
 				<button type="button" class="btn btn-default" id="modify">수정</button>
 				<button type="button" class="btn btn-default" id="delete">삭제</button>
 				<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
@@ -124,7 +124,7 @@ $("#end").click(function() {
 		"url" : "/buy/end",
 		"data" : {
 			"end" : '2',
-			"no" : '${one.NO}'
+			"no" : '${one.no}'
 		}
 	})
 	location.reload();
