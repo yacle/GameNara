@@ -12,19 +12,19 @@
 	</select>
 <!-- board data -->	
 	<select id="sell" resultType="java.util.HashMap">
-		select no, title from sell where writer=#{id}
+		select no, title, writer from sell where writer=#{id}
 	</select>
 	<select id="buy" resultType="java.util.HashMap">
-		select no, title from buy where buy_id=#{id}
+		select no, title, buy_id from buy where buy_id=#{id}
 	</select>
 	<select id="freedis" resultType="java.util.HashMap">
-		select no, title from free_distribute where writer=#{id}
+		select no, title, writer from free_distribute where writer=#{id}
 	</select>
 	<select id="free" resultType="java.util.HashMap">
-		select no, title from freeboard where writer=#{id}
+		select no, title, writer from freeboard where writer=#{id}
 	</select>
 	<select id="after" resultType="java.util.HashMap">
-		select no, title from after where writer=#{id}
+		select no, title, writer from after where writer=#{id}
 	</select>
 	<select id="reply" resultType="java.util.HashMap">
 		select bno as no, replytext as title from reply where replyer=#{id}

@@ -6,8 +6,10 @@ import org.game.nara.models.MasterDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -45,51 +47,33 @@ MasterDao masterDao;
 	}
 	
 	@RequestMapping("/board")
-	public ModelAndView report03Handel(@RequestParam Map map) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("section", "master/board");
+	@ResponseBody
+	public List report03Handel(@RequestBody Map map) {
+		List list = new ArrayList();
 		String board = (String) map.get("board");
 		String id = (String) map.get("id");
 		Map total = masterDao.reportData(id);
-		mav.addObject("id", id);
 		switch(board) {
 		case "sell":
-			List listSell= (List) total.get("sell");
-			mav.addObject("data", listSell);
-			mav.addObject("title", "SELL BOARD");
-			mav.addObject("path", "sell/view/");
+			list = (List) total.get("sell");
 			break;
 		case "buy":
-			List listBuy= (List) total.get("buy");
-			mav.addObject("data", listBuy);
-			mav.addObject("title", "BUY BOARD");
-			mav.addObject("path", "/buy/view/");
+			list = (List) total.get("buy");
 			break;
-		case "free_dist":
-			List listfreedist= (List) total.get("free_dist");
-			mav.addObject("data", listfreedist);
-			mav.addObject("title", "FREE_DISTRIBUTE BOARD");
-			mav.addObject("path", "/FreeDistribute/view/");
+		case "freedist":
+			list = (List) total.get("free_dist");
 			break;
-		case "freeboard":
-			List listFreeboard= (List) total.get("freeboard");
-			mav.addObject("data", listFreeboard);
-			mav.addObject("title", "FREEBOARD BOARD");
-			mav.addObject("path", "/freeBoard/view/");
+		case "free":
+			list = (List) total.get("freeboard");
 			break;
 		case "after":
-			List listAfter= (List) total.get("after");
-			mav.addObject("data", listAfter);
-			mav.addObject("title", "AFTER DEAL BOARD");
-			mav.addObject("path", "/after/view/");
+			list = (List) total.get("after");
 			break;
 		case "reply":
-			List listReply= (List) total.get("reply");
-			mav.addObject("data", listReply);
-			mav.addObject("title", "REPLY BOARD");
+			list = (List) total.get("reply");
 			break;
 		}
-		return mav;
+		return list;
 	}
 	
 	@RequestMapping("sell/view/{no}")

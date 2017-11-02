@@ -33,7 +33,7 @@
 			<c:forEach var="i" items="${data}">
 			<tr>	
 				<td>${i.NO }</td>
-				<td><a href="${path}${i.NO}" onclick="javascript:window.close();">${i.TITLE }</a></td>
+				<td>${i.TITLE }</td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -41,7 +41,5 @@
 	</body>
 </html>
 <script>
-	$("#href", parent.document).action=""
-		
-	});
+
 </script>
