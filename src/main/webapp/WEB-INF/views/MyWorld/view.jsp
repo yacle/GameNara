@@ -65,7 +65,7 @@ td {
 	<c:if test="${!empty one.PIC}">
 	<div class="row">
 		<div class="col-md-4">
-			<img id="pf" class="img-responsive" src="/freeB_File/${one.ATTACH}" style="width: 250; height: 300;"/>
+			<img id="pf" class="img-responsive" src="/freeB_File/${one.PIC}" style="width: 250; height: 300;"/>
 		</div>
 	<div class="col-md-8" align="left">
 		<textarea rows="5" id="comment" disabled>${one.DETAIL }</textarea>

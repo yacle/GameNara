@@ -32,10 +32,11 @@ td {
 }
 </style>
 <div align="center" style="line-height: 35px">
-	<h2><a href="/buy/list/1">게시판</a></h2>
+	<h2>BUY게시판</a></h2>
 	<hr />
 	<div style="width: 90%; border-radius: 10px; ; padding-left: 20px;" align="left">
 		<input type="hidden" id="num" value="${one.NO }" />
+		<div>
 		<c:if test="${one.END == 1 }">
 			<h2 id="title">${one.TITLE }</h2>
 			<h3>거래중</h3>
@@ -44,6 +45,10 @@ td {
 			<del><h2>${one.TITLE }</h2></del>
 			<h3>거래완료</h3>
 		</c:if>
+			<c:if test="${auth_id eq one.BUY_ID }">
+				<button id="end" style="background-color:white">계약완료</button>
+			</c:if>
+		</div>
 			<div class="row">
 		    	<div class="col-sm-10">
 		    		<small>작성자 : ${one.BUY_ID } | 작성일 : 
@@ -54,9 +59,6 @@ td {
 			    	<small>조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" /></small>
 			    </div>
 			</div>	
-			<c:if test="${auth_id eq one.BUY_ID }">
-				<button id="end">계약완료</button>
-			</c:if>
 			<textarea class="update-group" rows="5" placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
 	</div><br />
 	<div class="row" align="center">

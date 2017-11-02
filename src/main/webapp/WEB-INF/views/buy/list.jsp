@@ -14,7 +14,7 @@ th, td {
 }
 </style>
 <div align="center" style="line-height: 35px">
-	<h2>${title}게시판</h2>
+	<h2>${title}</h2>
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
@@ -119,7 +119,7 @@ $("#check").click(function() {
 		}
 	}).done(function(obj){
 		if(obj=="ok"){
-			window.alert("포인트가 부족합니다!");
+			window.alert("포인트및 레벨이 맞지않습니다!");
 			location.href="/notice"
 		}else{
 			location.href = "/buy/add";

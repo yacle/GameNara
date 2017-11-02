@@ -17,17 +17,17 @@
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">BUY<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="">TOTAL</a></li>
-          <li><a href="#">CONSOLE</a></li>
-          <li><a href="#">GAME TITLE</a></li>
-          <li><a href="#">ACCESSORY</a></li>
-          <li><a href="#">ETC</a></li>
+          <li><a href="/log/login/success">TOTAL</a></li>
+          <li><a href="/log/login/success">CONSOLE</a></li>
+          <li><a href="/log/login/success">GAME TITLE</a></li>
+          <li><a href="/log/login/success">ACCESSORY</a></li>
+          <li><a href="/log/login/success">ETC</a></li>
         </ul>
       </li>
       <li><a href="#">FREE PRESENT</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">COMMUNITY<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">가입인사</a></li>
+          <li><a href="/log/login/success">가입인사</a></li>
           <li><a href="/freeBoard/list">자유게시판</a></li>
           <li><a href="/after/list">거래후기</a></li>
         </ul>
