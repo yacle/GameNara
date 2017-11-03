@@ -38,7 +38,7 @@ th, td {
 				<tr>
 					<td>${obj.NO} </td>
 					<td>${obj.RECEIVER }</td>
-					<td><span id="noteView">${fn:substring(obj.CONTENT, 0, 30) }</span></td>
+					<td><span id="noteView">${obj.CONTENT }</span></td>
 					<td><small>${obj.SENDTIME }</small></td>
 					<td><input type="checkbox" name="noteDel" class="delcheck" value="${obj.NO}"></td>
 					<input type="hidden" id="id" name="id" value="${auth_id }"/>

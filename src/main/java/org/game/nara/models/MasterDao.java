@@ -53,4 +53,8 @@ SqlSessionTemplate temp;
 	public List afterData(String id) {
 		return temp.selectList("master.after", id);
 	}
+	
+	public int levelChange(Map map) {
+		return temp.update("master.level", map);
+	}
 }	

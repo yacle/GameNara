@@ -49,4 +49,8 @@
 	<select id="replycnt" resultType="int">
 		select count(*) from reply where replyer=#{id}
 	</select>
+	
+	<update id="level">
+		update member set lev=#{level} where id =#{id}
+	</update>
 </mapper>

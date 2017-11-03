@@ -33,21 +33,21 @@ th, td {
 		<tbody>
 			<c:forEach var="obj" items="${list }">
 				<tr>
-					<td>${obj.NO }</td>
+					<td>${obj.no }</td>
 					<c:choose>
 						<c:when test="${auth_id ne null}">
-							<c:if test="${obj.ATTACH ne null }">
-								<td style="text-align: left; padding-left: 30px;"><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+							<c:if test="${obj.attach ne null }">
+								<td style="text-align: left; padding-left: 30px;"><a href="/freeBoard/view/${obj.no}">${fn:substring(obj.title, 0, 12)}</a>
 								<img id="pf" src="/profiles/board_def.JPG" style="height:10px; width:10px;"/>
-								<span class="badge">${obj.CNT }</span>
+								<span class="badge">${obj.cnt }</span>
 							</c:if>
-							<c:if test="${obj.ATTACH eq null }">
-								<td style="text-align: left; padding-left: 30px;"><a href="/freeBoard/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
-								<span class="badge">${obj.CNT }</span>
+							<c:if test="${obj.attach eq null }">
+								<td style="text-align: left; padding-left: 30px;"><a href="/freeBoard/view/${obj.no}">${fn:substring(obj.title, 0, 12)}</a>
+								<span class="badge">${obj.cnt }</span>
 							</c:if>
 						</c:when>
 						<c:otherwise>
-							<td style="text-align: left; padding-left: 30px;">${fn:substring(obj.TITLE, 0, 12) }</td>
+							<td style="text-align: left; padding-left: 30px;">${fn:substring(obj.title, 0, 12) }</td>
 						</c:otherwise>
 					</c:choose>
 					<td>
@@ -55,21 +55,21 @@ th, td {
 						<c:when test="${auth_id ne null}">
 					<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-								<span id="receiver" value="${obj.WRITER }">${obj.WRITER }</span>
+								<span id="receiver" value="${obj.writer }">${obj.writer }</span>
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>	
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.writer }')">쪽지보내기</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.writer }')">1:1채팅초대</a></li>	
 							</ul>
 					</div>
 					</c:when>
 					<c:otherwise>
-						${obj.WRITER }
+						${obj.writer }
 					</c:otherwise>
 					</c:choose>
 					</td>
-					<td><fmt:formatDate value="${obj.FB_DATE }" pattern="yyyy-MM-dd"/></td>
-					<td>${obj.VIEW_CNT }</td>
+					<td><fmt:formatDate value="${obj.fb_date }" pattern="yyyy-MM-dd"/></td>
+					<td>${obj.view_cnt }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -51,17 +51,24 @@ th, td {
 							<td style="text-align: left; padding-left: 30px;">${fn:substring(obj.TITLE, 0, 12) }</td>
 						</c:otherwise>
 					</c:choose>
-					<td>
-						<div class="dropdown">
-							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-								<span id="receiver" value="${obj.WRITER }">${obj.WRITER }</span>
-							<span class="caret"></span></button>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>
-							</ul>
-						</div>
-					</td>
+					<c:choose>
+						<c:when test="${auth_id eq null }">
+							<td>${obj.WRITER }</td>
+						</c:when>
+						<c:otherwise>
+						<td>
+							<div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+									<span id="receiver" value="${obj.WRITER }">${obj.WRITER }</span>
+								<span class="caret"></span></button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>
+								</ul>
+							</div>
+						</td>
+						</c:otherwise>
+					</c:choose>
 					<td><fmt:formatDate value="${obj.ADD_DATE }" pattern="yyyy-MM-dd"/></td>
 					<td>${obj.COUNT }</td>
 				</tr>

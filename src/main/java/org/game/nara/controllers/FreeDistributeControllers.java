@@ -10,6 +10,9 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.BuyVO;
+import org.game.nara.FreeBoardVO;
+import org.game.nara.FreeDistributeVO;
 import org.game.nara.models.FreeDistributeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,7 +40,7 @@ public class FreeDistributeControllers {
 	
 	@RequestMapping("/list")
 	public ModelAndView FreeDistributeListHandle() throws SQLException {
-		List<Map> li = FD_Dao.listAll();
+		List<FreeDistributeVO> li = FD_Dao.listAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "FreeDistribute/list");
 		mav.addObject("list", li);
@@ -53,10 +57,10 @@ public class FreeDistributeControllers {
 	}
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String FreeDistributeAddPostHandle(@RequestParam Map param, ModelMap map, HttpSession session, 
-		@RequestParam(name = "attach") MultipartFile mpf) throws SQLException, IOException {
-		String id = (String)session.getAttribute("auth_id");
-		if(mpf.getSize() > 0) {
+	public String FreeDistributeAddPostHandle(FreeDistributeVO vo) throws SQLException, IOException {
+		MultipartFile picdata = vo.getPicdata();
+		String id = vo.getWriter();
+		if(picdata.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/freeD_File");
 			String name = id+"_"+fmt;
@@ -67,10 +71,10 @@ public class FreeDistributeControllers {
 			}
 	
 			File up = new File(application.getRealPath("/freeD_File"), name);
-			mpf.transferTo(up);
-			param.put("attach", name);
+			picdata.transferTo(up);
+			vo.setAttach(name);
 		}
-		FD_Dao.addOne(param);
+		FD_Dao.addOne(vo);
 		
 		return  "redirect:/FreeDistribute/list";
 	}
@@ -85,20 +89,24 @@ public class FreeDistributeControllers {
 	   }
 	
 	@RequestMapping("/end")
-	public ModelAndView buyendHandle(@RequestParam Map param) {
-		int li = FD_Dao.endSet(param);
+	public ModelAndView buyendHandle(FreeDistributeVO vo) {
+		int li = FD_Dao.endSet(vo);
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "FreeDistribute/view");
 		return mav;
 	}
 	
+	@RequestMapping("/modify")
+	@ResponseBody
+	public int modifyHandle(FreeDistributeVO vo) {
+		int r = FD_Dao.modifyFreeD(vo);
+		return r;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping("/delete")
+	public String deleteHandle(FreeDistributeVO vo) {
+		int ok = FD_Dao.delete(vo);
+		return "redirect:/freeBoard/list"; 
+	}
 	
 }

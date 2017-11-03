@@ -72,6 +72,17 @@ MasterDao masterDao;
 		return list;
 	}
 
+	@RequestMapping("/chgLevel")
+	@ResponseBody
+	public String levelChange(@RequestParam Map map) {
+		int r = masterDao.levelChange(map);
+		if(r==0) {
+			return "update fail";
+		}else {
+			return "update success";
+		}
+	}
+	
 }
 
 

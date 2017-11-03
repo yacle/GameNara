@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.game.nara.BuyVO;
 import org.game.nara.controllers.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,37 +15,43 @@ public class buyDao {
 	@Autowired
 	SqlSessionTemplate template;
 
-//리스트 전체 불러오기
-	public List<Map> readAll() {
+
+
+
+	public List<BuyVO> readAll() {
 		return template.selectList("buy.list");
 	}
-//콘솔 리스트만 불러오기
-	public List<Map> consoleread() {
+
+	public List<BuyVO> consoleread() {
 		return template.selectList("buy.consoleread");
 	}
-//타이틀 리스트만 불러오기
-	public List<Map> titleread() {
+
+	public List<BuyVO> titleread() {
+
 		return template.selectList("buy.titleread");
 	}
-//주변기기 리스트만 불러오기
-	public List<Map> accessoryread() {
+
+	public List<BuyVO> accessoryread() {
+
 		return template.selectList("buy.accessoryread");
 	}
-//기타 리스트만 불러오기
-	public List<Map> othersread() {
+	
+	public List<BuyVO> othersread() {
+
 		return template.selectList("buy.othersread");
 	}
-//거래완료 버튼
-	public int endset (Map map) {
-		return template.update("buy.endset",map);
+
+	
+	public int endset (BuyVO vo) {
+		return template.update("buy.endset", vo);
 	}
 	
-	public int adjust (Map map) {
-		return template.update("buy.adjust",map);
+	public int adjust (BuyVO vo) {
+		return template.update("buy.adjust",vo);
 	}
 	
-	public boolean addOne(Map map) {
-		template.insert("buy.add", map);
+	public boolean addOne(BuyVO vo) {
+		template.insert("buy.add", vo);
 		return true;
 	}
 
@@ -53,8 +60,8 @@ public class buyDao {
 		return template.selectOne("buy.readOne", num);
 		}
 
-	public int delete(Map num) {
-		return template.delete("buy.delete",num);
+	public int delete(BuyVO vo) {
+		return template.delete("buy.delete",vo);
 	}
 	
 	public MemberVO checkpoint(MemberVO vo) {

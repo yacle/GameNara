@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.BuyVO;
 import org.game.nara.models.FreeBoardDao;
 import org.game.nara.models.MemberDao;
 import org.game.nara.models.buyDao;
@@ -43,7 +44,7 @@ public class buycontroller {
 
 	@RequestMapping(value="/list/{category}")
 	public ModelAndView buyListHandle(@PathVariable(value="category")int category) throws SQLException {
-		List<Map> li = buyDao.readAll();
+		List<BuyVO> li = buyDao.readAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section","buy/list");
 		switch(category) {
@@ -84,8 +85,8 @@ public class buycontroller {
 	}	
 
 	@RequestMapping("/end")
-	public ModelAndView buyendHandle(@RequestParam Map param) {
-		int li = buyDao.endset(param);
+	public ModelAndView buyendHandle(BuyVO vo) {
+		int li = buyDao.endset(vo);
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/view");
 		return mav;
@@ -100,9 +101,9 @@ public class buycontroller {
 
 
 	@PostMapping(path = "/add")
-	public String buyaddpostHandle(@RequestParam Map param, ModelMap map, HttpSession session) throws SQLException {
-		boolean b = buyDao.addOne(param);
-		String id = (String) session.getAttribute("auth_id");
+	public String buyaddpostHandle(BuyVO vo) throws SQLException {
+		boolean b = buyDao.addOne(vo);
+		String id = vo.getBuy_id();
 		if (b) {
 			freeDao.subPoint(id);
 		}
@@ -112,8 +113,8 @@ public class buycontroller {
 
 	@RequestMapping("/add_rst")
 	@ResponseBody
-	public int buyadjustHandle(@RequestParam Map param,ModelMap map) throws SQLException {
-		int b = buyDao.adjust(param);
+	public int buyadjustHandle(BuyVO vo) throws SQLException {
+		int b = buyDao.adjust(vo);
 			return b;
 	}
 	
@@ -138,9 +139,9 @@ public class buycontroller {
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteReplyHandle(@RequestParam Map num) {
+	public String deleteReplyHandle(BuyVO vo) {
 		int rst=0;
-		int ok = buyDao.delete(num);
+		int ok = buyDao.delete(vo);
 		if(ok==1) {
 			rst =1;
 		}

@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr class="success">
         <td>${map.ID }(${map.NAME })</td>
         <td>${map.GENDER }</td>
         <td>${map.PHONE_NUM }</td>
@@ -40,10 +40,11 @@
 			"async" : false,
 			"url" : "/master/chgLevel",
 			"data" : {
-				"lev" : lev,
+				"level" : lev,
 				"id" : id
 			}
 		}).done(function(b) {
 			window.alert("수정되었습니다");
+		})
 	})
 </script>

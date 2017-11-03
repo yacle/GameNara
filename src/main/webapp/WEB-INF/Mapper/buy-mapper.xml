@@ -16,7 +16,7 @@
 		update buy set detail=#{detail} where no =#{no}
 	 </update>
 	 
-	<select id="list" resultType="java.util.HashMap">
+	<select id="list" resultType="org.game.nara.BuyVO">
 		select b.*, t.c from buy b left join 
        	(select bno, count(*) as c from reply group by bno ) t on b.no = t.bno order by no desc
 	</select>
@@ -31,22 +31,22 @@
 	</update>
 
 	<select id="consoleread" parameterType="java.lang.String"
-		resultType="java.util.HashMap">
+		resultType="org.game.nara.BuyVO">
 		select * from buy where category=1
 	</select>
 
 	<select id="titleread" parameterType="java.lang.String"
-		resultType="java.util.HashMap">
+		resultType="org.game.nara.BuyVO">
 		select * from buy where category=2
 	</select>
 
 	<select id="accessoryread" parameterType="java.lang.String"
-		resultType="java.util.HashMap">
+		resultType="org.game.nara.BuyVO">
 		select * from buy where category=3
 	</select>
 
 	<select id="othersread" parameterType="java.lang.String"
-		resultType="java.util.HashMap">
+		resultType="org.game.nara.BuyVO">
 		select * from buy where category=0
 	</select>
 	

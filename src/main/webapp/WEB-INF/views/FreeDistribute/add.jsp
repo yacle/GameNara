@@ -24,7 +24,7 @@
 				
 				<div class="form-group">
 					<label for="comment">File:</label>
-					<input type="file" name="attach">
+					<input type="file" name="picdata">
 				</div>
 				
 
