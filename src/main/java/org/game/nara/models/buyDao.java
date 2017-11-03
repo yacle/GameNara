@@ -14,28 +14,27 @@ public class buyDao {
 	@Autowired
 	SqlSessionTemplate template;
 
-
+//리스트 전체 불러오기
 	public List<Map> readAll() {
 		return template.selectList("buy.list");
 	}
-	
+//콘솔 리스트만 불러오기
 	public List<Map> consoleread() {
 		return template.selectList("buy.consoleread");
-
 	}
+//타이틀 리스트만 불러오기
 	public List<Map> titleread() {
 		return template.selectList("buy.titleread");
-
 	}
+//주변기기 리스트만 불러오기
 	public List<Map> accessoryread() {
 		return template.selectList("buy.accessoryread");
-
 	}
-	
+//기타 리스트만 불러오기
 	public List<Map> othersread() {
 		return template.selectList("buy.othersread");
 	}
-	
+//거래완료 버튼
 	public int endset (Map map) {
 		return template.update("buy.endset",map);
 	}

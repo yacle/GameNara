@@ -64,4 +64,5 @@ public Map memberOne(String id) {
 	return template.selectOne("master.memberOne", id);
 }
 
+
 }

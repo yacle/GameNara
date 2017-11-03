@@ -17,27 +17,63 @@ th, td {
 <h3 align="center">최근 7개 항목만 검색 됩니다</h3><hr/>
 <div class="row">
 	<div class="col-md-3" >
-		<a href="/sell/list?category=0&&type=map"><h3>팝니다</h3></a><br/>
+		<h3>팝니다 게시판</h3><br/>
+		<c:choose>
+			<c:when test="${auth_level >= 2 }">
+				<c:forEach var="obj" items="${total.sell }">
+					<a href="/sell/view/${obj.NO}">${obj.TITLE }</a><hr/>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
 			<c:forEach var="obj" items="${total.sell }">
-				<a href="/sell/view/${obj.NO}">${obj.TITLE }</a><hr/>
-			</c:forEach>
+					<a href="/notice">${obj.TITLE }</a><hr/>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</div>	
 	<div class="col-md-3">		
-		<a href="/buy/list/1"><h3>삽니다</h3></a><br/>
-		<c:forEach var="i" items="${total.buy }">
-			<a href="/buy/view/${i.NO}">${i.TITLE }</a><hr/>
-		</c:forEach>
+		<h3>삽니다 게시판</h3><br/>
+		<c:choose>
+			<c:when test="${auth_level >= 2 }">
+				<c:forEach var="obj" items="${total.buy }">
+					<a href="/buy/view/${obj.NO}">${obj.TITLE }</a><hr/>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+			<c:forEach var="obj" items="${total.buy }">
+					<a href="/notice">${obj.TITLE }</a><hr/>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</div>	
 	<div class="col-md-3">	
-		<a href="/freeBoard/list"><h3>자유게시판</h3></a><br/>
-		<c:forEach var="j" items="${total.free }">
-			<a href="/freeBoard/view/${j.NO}">${j.TITLE }</a><hr/>
-		</c:forEach>
+		<h3>자유게시판</h3><br/>
+		<c:choose>
+			<c:when test="${auth_level >= 2 }">
+				<c:forEach var="obj" items="${total.free }">
+					<a href="/freeBoard/view/${obj.NO}">${obj.TITLE }</a><hr/>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+			<c:forEach var="obj" items="${total.free }">
+					<a href="/notice">${obj.TITLE }</a><hr/>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</div>	
 	<div class="col-md-3">	
-		<a href="/after/list"><h3>거래후기</h3></a><br/>
-		<c:forEach var="k" items="${total.after }">
-			<a href="/after/view/${k.NO}">${k.TITLE }</a><hr/>
-		</c:forEach>
+		<h3>거래후기 게시판</h3><br/>
+	<c:choose>
+			<c:when test="${auth_level >= 2 }">
+				<c:forEach var="obj" items="${total.after }">
+					<a href="/after/view/${obj.NO}">${obj.TITLE }</a><hr/>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+			<c:forEach var="obj" items="${total.after }">
+					<a href="/notice">${obj.TITLE }</a><hr/>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>

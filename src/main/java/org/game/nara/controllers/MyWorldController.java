@@ -38,6 +38,7 @@ public ModelAndView myworldViewHandle(HttpSession session) throws Exception {
 public String buyViewHandle(@PathVariable String num, Model model) throws SQLException {
 	Map one = mydao.buyread(num);
 	model.addAttribute("one",one);
+	model.addAttribute("category", "삽니다");
 	return "MyWorld/view";
 }
 
@@ -45,6 +46,8 @@ public String buyViewHandle(@PathVariable String num, Model model) throws SQLExc
 public String sellViewHandle(@PathVariable String num, Model model) throws SQLException {
 	Map one = mydao.sellread(num);
 	model.addAttribute("one", one);
+	model.addAttribute("img", "sellB_File");
+	model.addAttribute("category", "팝니다");
 	return "MyWorld/view";
 }
 
@@ -52,6 +55,8 @@ public String sellViewHandle(@PathVariable String num, Model model) throws SQLEx
 public String afterViewHandle(@PathVariable String num, Model model) throws SQLException {
 	Map one = mydao.afterread(num);
 	model.addAttribute("one", one);
+	model.addAttribute("img", "afterB_File");
+	model.addAttribute("category", "거래후기");
 	return "MyWorld/view";
 }
 
@@ -59,6 +64,8 @@ public String afterViewHandle(@PathVariable String num, Model model) throws SQLE
 public String freeViewHandle(@PathVariable String num, Model model) throws SQLException {
 	Map one = mydao.freeread(num);
 	model.addAttribute("one", one);
+	model.addAttribute("img", "freeB_File");
+	model.addAttribute("category", "자유");
 	return "MyWorld/view";
 }
 
@@ -66,6 +73,8 @@ public String freeViewHandle(@PathVariable String num, Model model) throws SQLEx
 public String freedisViewHandle(@PathVariable String num, Model model) throws SQLException {
 	Map one = mydao.freedisread(num);
 	model.addAttribute("one", one);
+	model.addAttribute("img", "freeD_File");
+	model.addAttribute("category", "무료나눔");
 	return "MyWorld/view";
 }
 

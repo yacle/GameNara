@@ -54,12 +54,12 @@ td {
 		</div><br/>
 	<div style="margin-right:100px" align="right">
 		<c:if test="${one.WRITER eq auth_id}">
-			<button type="button" id="modify">수정</button>
-			<button type="button" id="update" style="display: none;">저장</button>
-			<button type="button" id="cancle" style="display: none;">취소</button>
-			<button type="button" id="delete">삭제</button>
+			<button type="button" class="btn btn-default" id="modify">수정</button>
+			<button type="button" class="btn btn-default" id="update" style="display: none;">저장</button>
+			<button type="button" class="btn btn-default" id="cancle" style="display: none;">취소</button>
+			<button type="button" class="btn btn-default" id="delete">삭제</button>
 		</c:if>
-		<a href="#" onClick="history.back()" class="btn btn-default">목록</button></a>
+		<a href="#" onClick="history.back()" ><button type="button" class="btn btn-default" style="color:black">목록</button></a>
 	</div>
 	<hr/>
 </div>

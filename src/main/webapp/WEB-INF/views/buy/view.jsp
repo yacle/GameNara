@@ -69,9 +69,9 @@ td {
 				<button type="button" class="btn btn-default" id="modify">수정</button>
 				<button type="button" class="btn btn-default" id="delete">삭제</button>
 				<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
-				<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
+				<button type="reset"  class="btn btn-default" id="cancle" style="display: none">취소</button>
 			</c:if>
-			<a href="#" onClick="history.back()" class="btn btn-default">목록</button></a>
+			<a href="#" onClick="history.back()" ><button type="button" class="btn btn-default" style="color:black">목록</button></a>
 		</div>
 	</div>
 </div>

@@ -108,6 +108,6 @@ function openchat(obj){
 <script>
 	function openmyworld(obj){
 		var url="/MyWorld/myworld?id="+obj;		
-		window.open(url, "myworld", "width=1150, height=900");
+		window.open(url, "myworld", "width=900, height=800");
 	}
 </script>
