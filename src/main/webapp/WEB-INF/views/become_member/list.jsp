@@ -45,8 +45,8 @@ th, td {
 								<span id="receiver" value="${obj.ID }">${obj.ID }</span>
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.ID }')">쪽지보내기</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.ID }')">1:1채팅초대</a></li>
 							</ul>
 					</div>
 					</c:when>

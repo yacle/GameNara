@@ -91,6 +91,7 @@ public ModelAndView QnAHandle() {
 		List list = chatDao.receiveNoteListHandle(id);
 		mav.addObject("section", "chat/receiveNoteList");
 		mav.addObject("list", list);
+		mav.addObject("cnt", list.size());
 		return mav;
 	}
 	
@@ -100,6 +101,7 @@ public ModelAndView QnAHandle() {
 		List list = chatDao.sendNoteListHandle(id);
 		mav.addObject("section", "chat/sendNoteList");
 		mav.addObject("list", list);
+		mav.addObject("cnt", list.size());
 		return mav;
 	}
 	

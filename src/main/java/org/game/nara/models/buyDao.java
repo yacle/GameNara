@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.game.nara.BuyVO;
 import org.game.nara.controllers.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,37 +16,37 @@ public class buyDao {
 	SqlSessionTemplate template;
 
 
-	public List<Map> readAll() {
+	public List<BuyVO> readAll() {
 		return template.selectList("buy.list");
 	}
 	
-	public List<Map> consoleread() {
+	public List<BuyVO> consoleread() {
 		return template.selectList("buy.consoleread");
 
 	}
-	public List<Map> titleread() {
+	public List<BuyVO> titleread() {
 		return template.selectList("buy.titleread");
 
 	}
-	public List<Map> accessoryread() {
+	public List<BuyVO> accessoryread() {
 		return template.selectList("buy.accessoryread");
 
 	}
 	
-	public List<Map> othersread() {
+	public List<BuyVO> othersread() {
 		return template.selectList("buy.othersread");
 	}
 	
-	public int endset (Map map) {
-		return template.update("buy.endset",map);
+	public int endset (BuyVO vo) {
+		return template.update("buy.endset", vo);
 	}
 	
 	public int adjust (Map map) {
 		return template.update("buy.adjust",map);
 	}
 	
-	public boolean addOne(Map map) {
-		template.insert("buy.add", map);
+	public boolean addOne(BuyVO vo) {
+		template.insert("buy.add", vo);
 		return true;
 	}
 
