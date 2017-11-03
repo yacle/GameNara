@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.BuyVO;
 import org.game.nara.models.FreeBoardDao;
 import org.game.nara.models.MemberDao;
 import org.game.nara.models.buyDao;
@@ -43,7 +44,7 @@ public class buycontroller {
 
 	@RequestMapping(value="/list/{category}")
 	public ModelAndView buyListHandle(@PathVariable(value="category")int category) throws SQLException {
-		List<Map> li = buyDao.readAll();
+		List<BuyVO> li = buyDao.readAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section","buy/list");
 		switch(category) {
@@ -84,8 +85,8 @@ public class buycontroller {
 	}	
 
 	@RequestMapping("/end")
-	public ModelAndView buyendHandle(@RequestParam Map param) {
-		int li = buyDao.endset(param);
+	public ModelAndView buyendHandle(BuyVO vo) {
+		int li = buyDao.endset(vo);
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "buy/view");
 		return mav;
@@ -100,9 +101,9 @@ public class buycontroller {
 
 
 	@PostMapping(path = "/add")
-	public String buyaddpostHandle(@RequestParam Map param, ModelMap map, HttpSession session) throws SQLException {
-		boolean b = buyDao.addOne(param);
-		String id = (String) session.getAttribute("auth_id");
+	public String buyaddpostHandle(BuyVO vo) throws SQLException {
+		boolean b = buyDao.addOne(vo);
+		String id = vo.getBuy_id();
 		if (b) {
 			freeDao.subPoint(id);
 		}
