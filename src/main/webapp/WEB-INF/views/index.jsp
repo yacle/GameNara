@@ -45,7 +45,15 @@ h2{
 					<div class="col-sm-11">
 						<c:forEach var="i"  items="${data.sell }" >
 							<div align="left" style="padding-left: 100px;">
-								<a href="/sell/view/${i.NO }">${fn:substring(i.TITLE, 0, 12)}</a><br/><br/>
+								<c:choose>
+									<c:when test="${auth_level > 1 }">
+										<a href="/sell/view/${i.NO }">${fn:substring(i.TITLE, 0, 12)}</a>
+									</c:when>
+									<c:otherwise>
+										<a href="/notice">${fn:substring(i.TITLE, 0, 12)}</a>
+									</c:otherwise>
+								</c:choose>
+								<br/><br/>
 							</div>
 						</c:forEach>
 					</div>
@@ -87,7 +95,14 @@ h2{
 					<div class="col-sm-11">
 						<c:forEach var="i"  items="${data.buy }" >
 							<div align="left" style="padding-left: 100px;">
-								<a href="/buy/view/${i.NO }">${fn:substring(i.TITLE, 0, 12)}</a><br/><br/>
+							<c:choose>
+								<c:when test="${auth_level > 1 }">
+									<a href="/buy/view/${i.NO }">${fn:substring(i.TITLE, 0, 12)}</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/notice">${fn:substring(i.TITLE, 0, 12)}</a>
+								</c:otherwise>
+							</c:choose>
 							</div>
 						</c:forEach>
 					</div>
@@ -129,7 +144,14 @@ h2{
 					<div class="col-sm-11">
 						<c:forEach var="i"  items="${data.free }" >
 							<div align="left" style="padding-left: 100px;">
-								<a href="/FreeDistribute/view/${i.NO }">${fn:substring(i.TITLE, 0, 12)}</a><br/><br/>
+							<c:choose>
+								<c:when test="${auth_level > 1 }">
+									<a href="/FreeDistribute/view/${i.NO }">${fn:substring(i.TITLE, 0, 12)}</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/notice">${fn:substring(i.TITLE, 0, 12)}</a>
+								</c:otherwise>
+							</c:choose>
 							</div>
 						</c:forEach>
 					</div>
@@ -137,7 +159,7 @@ h2{
 			</c:otherwise>
 		</c:choose>
 	</div>
-</div>
+</div><br/><br/>
 <div align="center"><h4>최근 5개 리스트만 보여집니다!!</h4></div><br/>
 <script>
 $("#sell").click(function(){
