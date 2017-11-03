@@ -13,17 +13,15 @@ th, td {
 	vertical-align: middle;
 }
 </style>
+<h2 align="center">${title}게시판</h2>
 <div align="right" style="margin-bottom: 10px;">
+		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	<a href="/sell/list?category=0&&type=map"><span class="glyphicon glyphicon-th"></span>앨범형</button></a> | 
 	<a><span class="glyphicon glyphicon-list-alt"></span>게시판형</a>
 	<a href="/sell/sellForm"><button type="button" id="write" class="btn btn-primary btn-sm">글작성</button></a><br/>
 	<input type="hidden" id="id" value="${auth_id }">
 </div>
 <div align="center" style="line-height: 35px">
-	<h2>${title}게시판</h2>
-	<p align="right" style="margin-right: 30px;">
-		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
-	</p>
 	<input type="hidden" id="my" value="${auth_id }"/>
 	<table style="width: 95%; background-color: #EAEAEA;" class="table table-bordered">
 		<thead>

@@ -47,6 +47,8 @@ MemberDao mDao;
 	@RequestMapping("/logout")
 	public String logoutHandle(HttpSession session) {
 		session.removeAttribute("auth_id");
+		session.removeAttribute("auth_level");
+		session.removeAttribute("auth_point");
 		return "redirect:/index";
 	}
 

@@ -46,14 +46,14 @@ td {
 	<h2>게시판</h2>
 	<hr />
 	<div style="width: 100%; border-radius: 10px; ; padding-left: 20px;" align="left">
-		<input type="hidden" id="num" value="${one.no }" />
+		<input type="hidden" id="num" value="${one.NO }" />
 		<p style="padding-left: 10px;">
-		<h2> ${one.title }</h2>
+		<h2> ${one.TITLE }</h2>
 			<small id="buyid">
-				작성자 : ${one.WRITER }
+				작성자 : ${one.WRITER}
 				<p align="right">
 				 조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" />
-				 </p>
+				</p>
 			</small>
 		</p>
 	</div>
@@ -124,7 +124,7 @@ $("#end").click(function() {
 		"url" : "/buy/end",
 		"data" : {
 			"end" : '2',
-			"no" : '${one.NO}'
+			"no" : '${one.no}'
 		}
 	})
 	location.reload();

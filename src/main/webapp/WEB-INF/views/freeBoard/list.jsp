@@ -98,7 +98,7 @@ th, td {
 				"sender" : $("#my").val()
 			}
 		}).done(function (r){
-			if(r == "yes"){
+			if(r == "yes"){	
 				var url="/chatting/chatPage?id="+obj;
 				window.open(url, "", "width=400, height=550");
 			}else{

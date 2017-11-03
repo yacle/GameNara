@@ -1,7 +1,14 @@
 package org.game.nara;
 
-public class SellVO {
+import org.springframework.web.multipart.MultipartFile;
 
+public class SellVO {
+	@Override
+	public String toString() {
+		return "SellVO [no=" + no + ", writer=" + writer + ", title=" + title + ", price=" + price + ", detail="
+				+ detail + ", contact=" + contact + ", deal_method=" + deal_method + ", regdate="
+				+ regdate + ", state=" + state + ", category=" + category + ", count=" + count + ", pic=" + pic+"]";
+	}
 	private int no;
 	private String writer;
 	private String title;
@@ -9,19 +16,28 @@ public class SellVO {
 	private String detail;
 	private String contact;
 	private String deal_method;
-	private String pic;
 	private String regdate;
 	private String state;
 	private int category;
 	private int count;
-	@Override
-	public String toString() {
-		return "SellVO [no=" + no + ", writer=" + writer + ", title=" + title + ", price=" + price + ", detail="
-				+ detail + ", contact=" + contact + ", deal_method=" + deal_method + ", pic=" + pic + ", regdate="
-				+ regdate + ", state=" + state + ", category=" + category + ", count=" + count + "]";
+	private String pic;
+	private MultipartFile picdata;
+	
+	public MultipartFile getPicdata() {
+		return picdata;
+	}
+	public void setPicdata(MultipartFile picdata) {
+		this.picdata = picdata;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
 	public int getNo() {
 		return no;
+
 	}
 	public void setNo(int no) {
 		this.no = no;
@@ -61,12 +77,6 @@ public class SellVO {
 	}
 	public void setDeal_method(String deal_method) {
 		this.deal_method = deal_method;
-	}
-	public String getPic() {
-		return pic;
-	}
-	public void setPic(String pic) {
-		this.pic = pic;
 	}
 	public String getRegdate() {
 		return regdate;

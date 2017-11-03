@@ -38,7 +38,7 @@
 	<select id="freeread" resultType="java.util.HashMap">
 	select no,title,coment as detail,writer,fb_date as regdate,view_cnt as count,attach as pic from freeboard where no=#{no}
 	</select>
-	<select id="sellread" resultType="org.game.nara.SellVO">
+	<select id="sellread" resultType="java.util.HashMap">
 		select no,title,detail,writer,regdate,count,pic from sell where no=#{no}
 	</select>
 </mapper>

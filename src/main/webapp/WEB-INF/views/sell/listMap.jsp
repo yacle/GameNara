@@ -2,9 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<h2 align="center">${title}게시판</h2>
 <div align="right" style="margin-bottom: 10px;">
+	총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	<a><span class="glyphicon glyphicon-th"></span>앨범형</button></a> | 
 	<a href="/sell/list?category=0&&type=list"><span class="glyphicon glyphicon-list-alt"></span>게시판형</a>
 	<a><button type="button" id="write" class="btn btn-primary btn-sm">글작성</button></a><br/>
+		
 	<input type="hidden" id="id" value="${auth_id }">
 </div>
 <div class="row text-center">

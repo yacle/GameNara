@@ -42,31 +42,34 @@ SimpleDateFormat sdf;
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "sell/sell_form");
 		return mav;
+
 	}
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String freeBoardAddPostHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IOException {
-		String id = (String)map.get("writer");
-		if(pic.getSize() > 0) {
+	public String fsellBoardAddPostHandle(SellVO vo)throws SQLException, IOException {
+		MultipartFile picdata = vo.getPicdata();
+		String id = vo.getWriter();
+		if(picdata.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
 			String name = id+"_"+fmt;
-			
 			File dir = new File(path);
 			if (!dir.isDirectory()) {
 				dir.mkdirs();
 			}
 	
 			File up = new File(application.getRealPath("/sellB_File"), name);
-			pic.transferTo(up);
-			map.put("pic", name);
+			picdata.transferTo(up);
+			vo.setPic(name);
 		}
-		int r = sellDao.sellAdd(map);
+		int r = sellDao.sellAdd(vo);
 		if (r!=0) {
 			sellDao.subtractPoint(id);
 		}
-		return  "redirect:/sell/list?category=1&&type=map";
+		return  "redirect:/sell/list?category=0&&type=map";
 	}
 	
+
 	@RequestMapping(value="/list")
 	public ModelAndView buyListHandle(@RequestParam Map map) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");
@@ -129,9 +132,10 @@ SimpleDateFormat sdf;
 	}
 	
 	@RequestMapping("/update")
-	public String picupdateHandle(@RequestParam Map map, @RequestParam(name = "pic") MultipartFile pic) throws SQLException, IllegalStateException, IOException {
-		if(pic.getSize() > 0) {
-			String id = (String)map.get("writer");
+	public String picupdateHandle(SellVO vo) throws SQLException, IllegalStateException, IOException {
+		MultipartFile picdata = vo.getPicdata();
+		if(picdata.getSize() > 0) {
+			String id = vo.getWriter();
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
 			String name = id+"_"+fmt;
@@ -139,13 +143,13 @@ SimpleDateFormat sdf;
 			if (!dir.isDirectory())
 				dir.mkdirs();
 			File up = new File(application.getRealPath("/sellB_File"), name);
-			pic.transferTo(up);
-			map.put("pic", name);
-			sellDao.sellUpdate(map);
+			picdata.transferTo(up);
+			vo.setPic(name);
+			sellDao.sellUpdate(vo);
 		}else {
-			sellDao.sellUpdate2(map);
+			sellDao.sellUpdate2(vo);
 		}
-		String url="redirect:/sell/view/"+(String)map.get("no");
+		String url="redirect:/sell/view/"+vo.getNo();
 		return url;
 	}
 	

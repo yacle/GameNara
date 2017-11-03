@@ -120,7 +120,7 @@ td{
 			<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
 			<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
 		</c:if>
-		<a href="/sell/list?category=1&&type=list"><button type="button" class="btn btn-default">목록</button></a>
+		<a href="/sell/list?category=0&&type=map"><button type="button" class="btn btn-default">목록</button></a>
 	</div>
 <hr/>
 <script>

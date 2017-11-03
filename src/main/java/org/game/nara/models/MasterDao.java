@@ -38,21 +38,19 @@ SqlSessionTemplate temp;
 		return map;
 	}
 	
-	public Map reportData(String id) {
-		Map map = new HashMap();
-		
-		List r01 = temp.selectList("master.after", id);
-		List r02 = temp.selectList("master.freedis", id);
-		List r03 = temp.selectList("master.buy", id);
-		List r04 = temp.selectList("master.free", id);
-		List r05 = temp.selectList("master.sell", id);
-		List r07 = temp.selectList("master.reply", id);
-		map.put("after", r01);
-		map.put("free_dist", r02);
-		map.put("buy", r03);
-		map.put("freeboard", r04);
-		map.put("sell", r05);
-		map.put("reply", r07);
-		return map;
+	public List sellData(String id) {
+		return temp.selectList("master.sell", id);
 	}
-}
+	public List buyData(String id) {
+		return temp.selectList("master.buy", id);
+	}
+	public List freedistData(String id) {
+		return temp.selectList("master.freedis", id);
+	}
+	public List freeData(String id) {
+		return temp.selectList("master.free", id);
+	}
+	public List afterData(String id) {
+		return temp.selectList("master.after", id);
+	}
+}	

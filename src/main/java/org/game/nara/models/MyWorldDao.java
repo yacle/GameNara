@@ -38,9 +38,9 @@ public Map buyread(String num) {
 	return template.selectOne("myworld.buyread", num);
 	}
 
-public SellVO sellread(String no) {
-	template.update("sell.countup", no);
-	return template.selectOne("myworld.sellread", no);
+public Map sellread(String num) {
+	template.update("sell.countup", num);
+	return template.selectOne("myworld.sellread", num);
 }
 public Map afterread(String no) {
 	int r = template.update("after.cnt", no);
@@ -54,6 +54,14 @@ public Map freeread(String num) {
 public Map freedisread(String num) {
 	template.update("freeD.countOne",num);
 	return template.selectOne("myworld.freedisread", num);
+}
+
+public List memberList() {
+return template.selectList("master.memberList");
+}
+
+public Map memberOne(String id) {
+	return template.selectOne("master.memberOne", id);
 }
 
 }

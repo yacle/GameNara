@@ -43,9 +43,8 @@ public String buyViewHandle(@PathVariable String num, Model model) throws SQLExc
 
 @RequestMapping("/sell/{num}")
 public String sellViewHandle(@PathVariable String num, Model model) throws SQLException {
-	SellVO one = mydao.sellread(num);
+	Map one = mydao.sellread(num);
 	model.addAttribute("one", one);
-	System.out.println(one.toString());
 	return "MyWorld/view";
 }
 
@@ -62,6 +61,7 @@ public String freeViewHandle(@PathVariable String num, Model model) throws SQLEx
 	model.addAttribute("one", one);
 	return "MyWorld/view";
 }
+
 @RequestMapping("/freedis/{num}")
 public String freedisViewHandle(@PathVariable String num, Model model) throws SQLException {
 	Map one = mydao.freedisread(num);
