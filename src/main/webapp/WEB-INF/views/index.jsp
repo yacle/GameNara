@@ -8,7 +8,7 @@ h2{
 }
 
 </style>
-<h2 class="bg-primary"><strong>중고 게임의 모든것</strong></h2>
+<h2 class="bg-primary"><strong>ALL of The GAME</strong></h2>
 <hr/>
 <div class="row" align="center" style="font-size: 18px">
 	<div class="col-md-4">

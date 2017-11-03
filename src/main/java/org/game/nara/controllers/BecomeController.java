@@ -6,12 +6,15 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.LevelReqVO;
 import org.game.nara.models.FreeBoardDao;
 import org.game.nara.models.becomeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,5 +85,29 @@ public class BecomeController {
 	public int buyadjustHandle(@RequestParam Map param){
 		return becomeDao.adjust(param);
 	}
-
+	
+	@GetMapping("/levelup")
+	public ModelAndView levelupHandle() {
+		ModelAndView mav = new ModelAndView("temp");
+		mav.addObject("section", "become_member/levelup");
+		return mav;
+	}
+	
+	@RequestMapping("/levelReqList")
+	@ResponseBody
+	public List<LevelReqVO> levelReqList() {
+		return becomeDao.levelReqList();
+	}
+	
+	@RequestMapping("/levelReqAdd")
+	@ResponseBody
+	public int levelReqAdd(LevelReqVO vo){
+		return becomeDao.leverReqAdd(vo);
+	}
+	
+	@RequestMapping("/levelReqDel")
+	@ResponseBody
+	public int levelReqDel(String no){
+		return becomeDao.leverReqDel(no);
+	}
 }

@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="become_member">
+	<!-- 가입인사 게시판 -->
 	<insert id="add">
 		insert into become_member
 		values(become_member_seq.nextval,#{title},#{id},#{detail},sysdate,0)
@@ -30,4 +31,15 @@
 	 <update id="adjust"> 
 		update become_member set detail=#{detail} where no =#{no}
 	 </update>
+	 
+	 <!-- 등업게시판 -->
+	 <insert id="levelboard">
+	 	insert into levelboard values(level_seq.nextval, #{id}, #{contents}, sysdate, #{pwd})
+	 </insert>
+	 <select id="levelReqList" resultType="org.game.nara.LevelReqVO">
+	 	select * from levelboard order by no desc
+	 </select>
+	 <delete id="levelReqDel">
+		delete from levelboard where no=#{no}
+	</delete>
 </mapper>
