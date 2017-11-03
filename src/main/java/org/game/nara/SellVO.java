@@ -2,24 +2,7 @@ package org.game.nara;
 
 public class SellVO {
 
-<<<<<<< HEAD
-	private int NO;
-	private String WRITER;
-	private String TITLE;
-	private int PRICE;
-	private String DETAIL;
-	private String CONTACT;
-	private String DEAL_METHOD;
-	private String PIC;
-	private String REGDATE;
-	private String STATE;
-	private int CATEGORY;
-	private int COUNT;
-	public int getNO() {
-		return NO;
-=======
 	private int no;
-	
 	private String writer;
 	private String title;
 	private int price;
@@ -39,7 +22,6 @@ public class SellVO {
 	}
 	public int getNo() {
 		return no;
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	}
 	public void setNo(int no) {
 		this.no = no;
@@ -110,12 +92,5 @@ public class SellVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	@Override
-	public String toString() {
-		return "SellVO [NO=" + NO + ", WRITER=" + WRITER + ", TITLE=" + TITLE + ", PRICE=" + PRICE + ", DETAIL="
-				+ DETAIL + ", CONTACT=" + CONTACT + ", DEAL_METHOD=" + DEAL_METHOD + ", PIC=" + PIC + ", REGDATE="
-				+ REGDATE + ", STATE=" + STATE + ", CATEGORY=" + CATEGORY + ", COUNT=" + COUNT + "]";
-	}
-	
 	
 }

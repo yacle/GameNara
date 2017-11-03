@@ -83,12 +83,7 @@
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	}  
 	cnt();
-<<<<<<< HEAD
-	
-	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
-=======
 	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
 		if(obj.chat =="chatting"){
