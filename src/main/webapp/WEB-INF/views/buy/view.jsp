@@ -71,7 +71,7 @@ td {
 				<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
 				<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
 			</c:if>
-			<a href="#" onClick="history.back()" class="btn btn-default">목록</button></a>
+			<a href="/buy/list/1"><button type="button">목록</button></a>
 		</div>
 	</div>
 </div>

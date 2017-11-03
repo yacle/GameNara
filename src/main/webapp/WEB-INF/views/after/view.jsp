@@ -63,7 +63,7 @@ textarea {
 			<button type="button" id="c" style="display: none;">취소</button>
 			<button type="button" id="d">삭제</button>
 		</c:if>
-		<a href="#" onClick="history.back()" class="btn btn-default">목록</button></a>
+		<a href="/after/after_list"><button type="button">목록</button></a>
 	</div>
 	<hr/>
 </div>
