@@ -23,7 +23,7 @@
 				
 				<div class="form-group">
 					<label for="attach">File:</label>
-					<input type="file" name="attach">
+					<input type="file" name="picdata">
 				</div>	
 				<input type="hidden" name="lev" value="${auth_level }">
 				<button type="submit">글등록</button>

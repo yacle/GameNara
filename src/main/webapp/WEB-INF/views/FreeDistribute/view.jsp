@@ -56,42 +56,60 @@ textarea {
 	</div><br/>
 	<div style="margin-right:100px" align="right">
 		<c:if test="${one.WRITER eq auth_id}">
-			<button type="button" id="m">수정</button>
-			<button type="button" id="s" style="display: none;">저장</button>
-			<button type="button" id="c" style="display: none;">취소</button>
-			<button type="button" id="d">삭제</button>
+			<button type="button" id="modify">수정</button>
+			<button type="button" id="save" style="display: none;">저장</button>
+			<button type="button" id="cancle" style="display: none;">취소</button>
+			<button type="button" id="delete">삭제</button>
 		</c:if>
 		<a href="#" onClick="history.back()" class="btn btn-default">목록</button></a>
 	</div>
 	<hr/>
 </div>
 <script>
-	$("#m").click(function(){
-		document.getElementById("comment").disabled=false;
-		$("#comment").css("background-color","#f8f8f8");
-		$("#m").css("display","none");
-		$("#d").css("display","none");
-		$("#c").css("display","inline");
-		$("#s").css("display","inline");
-		$("#s").click(function(){
-			$.ajax({
-				"type":"post",
-				"async":false,
-				"url":"/after/modify",
-				"data":{
-					"comment" : $("#comment").val(),
-					"no" : $("#num").val()
-				}
-			}).done(function(r) {
-				document.getElementById("comment").disabled = true;
-				$("#m").css("display", "inline");
-				$("#s").css("display", "none");
-			})
-		})
-		$("#c").click(function(){
-			window.location.reload();
+//글 수정 버튼	
+$("#modify").click(function(){
+	document.getElementById("comment").disabled=false;
+	$("#comment").css("background-color","#f8f8f8");
+	$("#modify").css("display","none");
+	$("#delete").css("display","none");
+	$("#cancle").css("display","inline");
+	$("#save").css("display","inline");
+	$("#save").click(function(){
+		$.ajax({
+			"type":"post",
+			"async":false,
+			"url":"/FreeDistribute/modify",
+			"data":{
+				"coment" : $("#comment").val(),
+				"no" : $("#num").val()
+			}
+		}).done(function(r) {
+			window.alert("수정되었습니다");
+			document.getElementById("comment").disabled = true;
+			$("#modify").css("display", "inline");
+			$("#save").css("display", "none");
 		})
 	})
+	//글 수정 취소 버튼
+	$("#cancle").click(function(){
+		window.location.reload();
+	})
+})
+
+//게시글 삭제
+$("#delete").click(function(){
+if (window.confirm("삭제하시겠습니까?")) {
+	$.ajax({
+		"type" : "post",
+		"async" : false,
+		"url" : "/FreeDistribute/delete",
+		"data" : {
+			"no" : $("#num").val()
+			}
+	});
+	location.href = "/FreeDistribute/list";
+}
+})
 </script>
 
 <%-- Reply input form --%>
