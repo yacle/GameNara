@@ -42,7 +42,9 @@ SimpleDateFormat sdf;
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "sell/sell_form");
 		return mav;
+
 	}
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String fsellBoardAddPostHandle(SellVO vo)throws SQLException, IOException {
 		MultipartFile picdata = vo.getPicdata();
@@ -51,7 +53,6 @@ SimpleDateFormat sdf;
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/sellB_File");
 			String name = id+"_"+fmt;
-			
 			File dir = new File(path);
 			if (!dir.isDirectory()) {
 				dir.mkdirs();

@@ -18,7 +18,7 @@ button {
 
 textarea {
 	
-	width: 650px;
+	width: 80%;
 	padding: 12px 20px;
 	box-sizing: border-box;
 	border: 2px solid #ccc;
@@ -40,40 +40,46 @@ td {
 	height: 55px;
 	align: center;
 }
+.all{
+background-color:Gainsboro ;
+}
 
 </style>
-<div align="center" style="line-height: 35px; padding:50px;">
-	<h2>게시판</h2>
-	<hr />
+<div class="all">
+<div align="center" style="line-height: 35px; padding:20px;">
+	<h2>My World</h2>
+	<div align="left"><h2>${category} 게시판</h2></div><hr/>
 	<div style="width: 100%; border-radius: 10px; ; padding-left: 20px;" align="left">
-		<input type="hidden" id="num" value="${one.no }" />
+		<input type="hidden" id="num" value="${one.NO }" />
 		<p style="padding-left: 10px;">
-		<h2> ${one.title }</h2>
+			<h2>No.${one.NO}</h2>
+		<h2> ${one.TITLE }</h2>
 			<small id="buyid">
-				작성자 : ${one.writer}
+				작성자 : ${one.WRITER} |
+				 작성일 : <fmt:formatDate pattern="MM.dd.yyyy HH:mm:ss" value="${one.REGDATE }" /> 
 				<p align="right">
-				 조회수 : <fmt:formatNumber value="${one.count}" pattern="#,###" />
+				 조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" />
 				</p>
 			</small>
 		</p>
 	</div>
 	<div class="row" align="center">
 		<input type="hidden" id="id" value="${auth_id}">
-	<c:if test="${empty one.pic}">
-		<textarea class="update-group" rows="10" height="300px;" width="500px" placeholder="상세내용" id="comment" disabled>${one.detail }</textarea>
+	<c:if test="${empty one.PIC}">
+		<textarea class="update-group" rows="10" placeholder="상세내용" id="comment" disabled>${one.DETAIL }</textarea>
 	</c:if>
-	<c:if test="${!empty one.pic}">
+	<c:if test="${!empty one.PIC}">
 	<div class="row">
 		<div class="col-md-4">
-			<img id="pf" class="img-responsive" src="/freeB_File/${one.pic}" style="width: 250; height: 300;"/>
+			<img id="pf" class="img-responsive" src="/${img}/${one.PIC}" style="width: 300px; height: 300px;"/>
 		</div>
 	<div class="col-md-8" align="left">
-		<textarea rows="5" id="comment" disabled>${one.detail }</textarea>
+		<textarea rows="5" id="comment" style="width:85%; height:300px;" disabled>${one.DETAIL }</textarea>
 	</div>
 	</div>
 	</c:if>
-		<div align="right"> 
-			<c:if test="${auth_id eq one.writer }">
+		<br/><div align="right"> 
+			<c:if test="${auth_id eq one.WRITER }">
 				<button type="button" class="btn btn-default" id="modify">수정</button>
 				<button type="button" class="btn btn-default" id="delete">삭제</button>
 				<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
@@ -85,7 +91,35 @@ td {
 </div>
 
 <hr/>
-
+<%-- Reply input form --%>
+<div class="row"">
+	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
+	<div class="col-md-8"><textarea rows="1" id="content"></textarea></div>
+	<div class="col-md-1">비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자" required></div>
+	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
+</div>
+<hr/>
+<!-- Reply List View -->
+<span id="replies"></span>
+<!-- Reply 수정  modal-->
+<div class="modal fade" id="myModal" role="dialog" >
+    <div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title"><span id="replyhead"></span>번 댓글 수정</h4>
+			</div>
+			<div class="modal-body">
+				<textarea rows="2" cols="70" id="replytext"></textarea>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" id="replyModBtn">Save</button>
+				<button type="button" class="btn btn-default" id="replyDelBtn">Delete</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
 <script>
 //게시글 수정
 $("#modify").click(function() {
@@ -145,34 +179,6 @@ $("#delete").click(function(){
 	}
 })
 </script>
-<%-- Reply input form --%>
-<div class="row">
-	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
-	<div class="col-md-8"><textarea rows="1" id="content"></textarea></div>
-	<div class="col-md-1">비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자" required></div>
-	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
-</div>
-<hr/>
-<!-- Reply List View -->
-<span id="replies"></span>
-<!-- Reply 수정  modal-->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title"><span id="replyhead"></span>번 댓글 수정</h4>
-			</div>
-			<div class="modal-body">
-				<textarea rows="2" cols="70" id="replytext"></textarea>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" id="replyModBtn">Save</button>
-				<button type="button" class="btn btn-default" id="replyDelBtn">Delete</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-			</div>
-		</div>
-	</div>
-</div>
 
 <script>
 var bno = $("#num").val();

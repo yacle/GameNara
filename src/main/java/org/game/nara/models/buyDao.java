@@ -16,26 +16,31 @@ public class buyDao {
 	SqlSessionTemplate template;
 
 
+
+
 	public List<BuyVO> readAll() {
 		return template.selectList("buy.list");
 	}
-	
+
 	public List<BuyVO> consoleread() {
 		return template.selectList("buy.consoleread");
-
 	}
+
 	public List<BuyVO> titleread() {
+
 		return template.selectList("buy.titleread");
-
 	}
-	public List<BuyVO> accessoryread() {
-		return template.selectList("buy.accessoryread");
 
+	public List<BuyVO> accessoryread() {
+
+		return template.selectList("buy.accessoryread");
 	}
 	
 	public List<BuyVO> othersread() {
+
 		return template.selectList("buy.othersread");
 	}
+
 	
 	public int endset (BuyVO vo) {
 		return template.update("buy.endset", vo);

@@ -3,7 +3,6 @@ package org.game.nara;
 import org.springframework.web.multipart.MultipartFile;
 
 public class SellVO {
-
 	@Override
 	public String toString() {
 		return "SellVO [no=" + no + ", writer=" + writer + ", title=" + title + ", price=" + price + ", detail="
@@ -24,8 +23,6 @@ public class SellVO {
 	private String pic;
 	private MultipartFile picdata;
 	
-	
-
 	public MultipartFile getPicdata() {
 		return picdata;
 	}
@@ -40,6 +37,7 @@ public class SellVO {
 	}
 	public int getNo() {
 		return no;
+
 	}
 	public void setNo(int no) {
 		this.no = no;
@@ -104,4 +102,5 @@ public class SellVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	
 }

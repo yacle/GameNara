@@ -82,8 +82,7 @@
 	nws.onmessage =function(e){
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	}  
-	cnt();
-	
+	cnt();	
 	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
@@ -108,6 +107,6 @@ function openchat(obj){
 <script>
 	function openmyworld(obj){
 		var url="/MyWorld/myworld?id="+obj;		
-		window.open(url, "myworld", "width=1150, height=900");
+		window.open(url, "myworld", "width=900, height=800");
 	}
 </script>

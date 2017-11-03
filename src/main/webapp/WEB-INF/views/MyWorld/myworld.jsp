@@ -19,11 +19,11 @@
       background-color:Gainsboro; 
   }
   
-  #section1 {padding-top:50px;height:1000px;color: black; }
-  #section2 {padding-top:50px;height:1000px;color: black; }
-  #section3 {padding-top:50px;height:1000px;color: black; }
-  #section41 {padding-top:50px;height:1000px;color: black;}
-  #section42 {padding-top:50px;height:1000px;color: black;}
+  #section1 {padding-bottom:850px;padding-top:50px;color: black; }
+  #section2 {padding-bottom:850px;padding-top:50px;color: black; }
+  #section3 {padding-bottom:850px;padding-top:50px;color: black; }
+  #section41 {padding-bottom:850px;padding-top:50px;color: black;}
+  #section42 {padding-bottom:850px;padding-top:50px;color: black;}
   
   #info {
 	position: absolute;

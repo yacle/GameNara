@@ -58,12 +58,12 @@ textarea {
 	</div><br/>
 	<div style="margin-right:100px" align="right">
 		<c:if test="${one.WRITER eq auth_id}">
-			<button type="button" id="m">수정</button>
-			<button type="button" id="s" style="display: none;">저장</button>
-			<button type="button" id="c" style="display: none;">취소</button>
-			<button type="button" id="d">삭제</button>
+			<button type="button" class="btn btn-default" id="m">수정</button>
+			<button type="button" class="btn btn-default" id="s" style="display: none;">저장</button>
+			<button type="button" class="btn btn-default" id="c" style="display: none;">취소</button>
+			<button type="button" class="btn btn-default" id="d">삭제</button>
 		</c:if>
-		<a href="/after/after_list"><button type="button">목록</button></a>
+		<a href="#" onClick="history.back()" ><button type="button" class="btn btn-default" style="color:black">목록</button></a>
 	</div>
 	<hr/>
 </div>
