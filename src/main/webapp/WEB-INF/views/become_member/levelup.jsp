@@ -99,6 +99,7 @@ X : 권한없음
 	<div class="col-md-7"><textarea rows="2" cols="100%" id="content"></textarea></div>
 	<div class="col-md-2" align="right">비밀번호:<br/><input type="text" id="pwd" size="5" placeholder="4자리 숫자" required></div>
 	<div class="col-md-1" style="padding: 10px;"><button type="button" id="sendbtn">등록</button></div>
+	<input type="hidden" id="level" value="${auth_level }">
 </div>
 <hr/>
 <!-- 등업신청 List View -->
@@ -106,19 +107,31 @@ X : 권한없음
 
 <script>
 // 댓글 목록 불러오기
+var level=$("#level").val();
 var list = function(){
 	$.getJSON("/become_member/levelReqList", function(data){
 		var str="";
 		$(data).each(
 			function(){
-				str += "<div class='row'>"
-					+"<div class='col-md-2' align='center'>"+this.id+"</div>"
-					+"<div class='col-md-9'>"+this.contents+"</div>"
-					+"<div class='col-md-1' id='m'>"
-						+"<button type='button' id='delBtn' data-no='"+this.no+"' pw='"+this.pwd+"'>삭제</button><br/>"
-						+"<input type='text'  id='replypwd' size='5' placeholder='비밀번호' style='display:none;'>"
-					+"</div>"
-				+"</div><hr/>"
+				if(level>4){
+					str += "<div class='row'>"
+						+"<div class='col-md-2' align='center'><a href='/master/report?id="+this.id+"'>"+this.id+"</a></div>"
+						+"<div class='col-md-7'>"+this.contents+"</div>"
+						+"<div class='col-md-2' align='right'><input type='text'  id='inputpwd' size='5' placeholder='비밀번호' style='display:none;'></div>"
+						+"<div class='col-md-1' id='m'>"
+						+"<button type='button' id='delBtn' data-no='"+this.no+"' pw='"+this.pwd+"' >삭제</button><br/>"
+						+"</div>"
+						+"</div><hr/>"
+				}else{
+					str += "<div class='row'>"
+						+"<div class='col-md-2' align='center'>"+this.id+"</div>"
+						+"<div class='col-md-7'>"+this.contents+"</div>"
+						+"<div class='col-md-2' align='right'><input type='text'  id='inputpwd' size='5' placeholder='비밀번호' style='display:none;'></div>"
+						+"<div class='col-md-1' id='m'>"
+						+"<button type='button' id='delBtn' data-no='"+this.no+"' pw='"+this.pwd+"' >삭제</button><br/>"
+						+"</div>"
+						+"</div><hr/>"
+				}
 			})
 		$("#levelReqList").html(str);
 	})
@@ -153,23 +166,24 @@ $("#sendbtn").click(function(){
 		window.alert("비밀번호를 입력하세요");
 	}
 })
-
-$("#delBtn").click(function(){
+// 삭제
+$("#levelReqList").on("click", "#m button", function(){
 	var levelReq = $(this);
-	var no = levelReq.attr("date-no");
+	var no = levelReq.attr("data-no");
 	var pwd = levelReq.attr("pw");
-	var inputpw = $(this).next().next();
+	var inputpw = $(this).parent().prev().children();
 	inputpw.show();
 	inputpw.change(function(){
 		var pw = inputpw.val();
+		console.log("pw:"+pw+"/pwd:"+pwd);
 		if(pwd== pw){
 			$.ajax({
 				"type": "post",
 				"async":false,
 				"url":"/become_member/levelReqDel",
-				"data":
-					"no":no,
-				})
+				"data":{
+					"no":no
+				}
 			}).done(function(){
 				list();
 			})
@@ -178,8 +192,6 @@ $("#delBtn").click(function(){
 			window.alert("비밀번호를 확인하세요");
 		}
 	})
-	
 })
-
 </script>
 

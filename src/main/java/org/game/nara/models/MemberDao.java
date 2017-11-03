@@ -14,6 +14,7 @@ SqlSessionTemplate temp;
 
 
 	public MemberVO check(MemberVO vo) {
+		temp.update("member.logcnt", vo);
 		return temp.selectOne("member.check", vo);
 	}
 	

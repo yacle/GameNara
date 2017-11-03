@@ -47,7 +47,7 @@ public class becomeDao {
 		return template.insert("become_member.levelboard", vo);
 	}
 	
-	public int leverReqDel(String no) {
+	public int leverReqDel(Object no) {
 		return template.delete("become_member.levelReqDel", no);
 	}
 }
