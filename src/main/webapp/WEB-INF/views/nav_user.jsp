@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+
 <div class="container-fluid">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="/index">GAMENARA</a>

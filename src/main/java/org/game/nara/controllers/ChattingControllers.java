@@ -56,6 +56,5 @@ public class ChattingControllers {
 			e.printStackTrace();
 		}
 		return rst;
-		
 	}
 }
