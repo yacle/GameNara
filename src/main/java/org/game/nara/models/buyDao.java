@@ -41,8 +41,8 @@ public class buyDao {
 		return template.update("buy.endset", vo);
 	}
 	
-	public int adjust (Map map) {
-		return template.update("buy.adjust",map);
+	public int adjust (BuyVO vo) {
+		return template.update("buy.adjust",vo);
 	}
 	
 	public boolean addOne(BuyVO vo) {
@@ -55,8 +55,8 @@ public class buyDao {
 		return template.selectOne("buy.readOne", num);
 		}
 
-	public int delete(Map num) {
-		return template.delete("buy.delete",num);
+	public int delete(BuyVO vo) {
+		return template.delete("buy.delete",vo);
 	}
 	
 	public MemberVO checkpoint(MemberVO vo) {
