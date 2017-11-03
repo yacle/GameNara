@@ -113,8 +113,8 @@ public class buycontroller {
 
 	@RequestMapping("/add_rst")
 	@ResponseBody
-	public int buyadjustHandle(@RequestParam Map param,ModelMap map) throws SQLException {
-		int b = buyDao.adjust(param);
+	public int buyadjustHandle(BuyVO vo) throws SQLException {
+		int b = buyDao.adjust(vo);
 			return b;
 	}
 	
@@ -139,9 +139,9 @@ public class buycontroller {
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteReplyHandle(@RequestParam Map num) {
+	public String deleteReplyHandle(BuyVO vo) {
 		int rst=0;
-		int ok = buyDao.delete(num);
+		int ok = buyDao.delete(vo);
 		if(ok==1) {
 			rst =1;
 		}

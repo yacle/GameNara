@@ -34,42 +34,42 @@ th, td {
 		<tbody>
 			<c:forEach var="obj" items="${list }">
 				<tr>
-					<td>${obj.NO }</td>
+					<td>${obj.no }</td>
 					<c:choose>	
 						<c:when test="${auth_level gt 1}">
-							<c:if test="${obj.ATTACH ne null }">
-								<td style="text-align: left; padding-left: 30px;"><a href="/FreeDistribute/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+							<c:if test="${obj.attach ne null }">
+								<td style="text-align: left; padding-left: 30px;"><a href="/FreeDistribute/view/${obj.no}">${fn:substring(obj.title, 0, 12)}</a>
 								<img id="pf" src="/profiles/board_def.JPG" style="height:10px; width:10px;"/>
-								<span class="badge">${obj.C }</span>
-								<c:if test="${obj.END == 1 }">
+								<span class="badge">${obj.cnt }</span>
+								<c:if test="${obj.end == 1 }">
 									<span class="label label-info">[나눔완료]</span>
 								</c:if>
 							</c:if>
-							<c:if test="${obj.ATTACH eq null }">
-								<td style="text-align: left; padding-left: 30px;"><a href="/FreeDistribute/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
-								<span class="badge">${obj.C }</span>
-								<c:if test="${obj.END == 1 }">
+							<c:if test="${obj.attach eq null }">
+								<td style="text-align: left; padding-left: 30px;"><a href="/FreeDistribute/view/${obj.no}">${fn:substring(obj.title, 0, 12)}</a>
+								<span class="badge">${obj.cnt }</span>
+								<c:if test="${obj.end == 1 }">
 									<span class="label label-info">[나눔완료]</span>
 								</c:if>
 							</c:if>
 						</c:when>
 						<c:otherwise>
-							<td style="text-align: left; padding-left: 30px;"><a href="/notice">${fn:substring(obj.TITLE, 0, 12) }</a></td>
+							<td style="text-align: left; padding-left: 30px;"><a href="/notice">${fn:substring(obj.title, 0, 12) }</a></td>
 						</c:otherwise>	
 					</c:choose>
 					<td>	
 					<div class="dropdown">
 							<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-								<span id="receiver" value="${obj.WRITER }">${obj.WRITER }</span>
+								<span id="receiver" value="${obj.writer }">${obj.writer }</span>
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.WRITER }')">쪽지보내기</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.WRITER }')">1:1채팅초대</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.writer }')">쪽지보내기</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.writer }')">1:1채팅초대</a></li>
 							</ul>
 						</div>
 					</td>
-					<td><fmt:formatDate value="${obj.FD_DATE }" pattern="yyyy-MM-dd"/></td>
-					<td>${obj.VIEW_CNT }</td>
+					<td><fmt:formatDate value="${obj.fd_date }" pattern="yyyy-MM-dd"/></td>
+					<td>${obj.view_cnt }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

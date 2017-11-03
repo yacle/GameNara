@@ -59,7 +59,7 @@ td {
 			<button type="button" id="cancle" style="display: none;">취소</button>
 			<button type="button" id="delete">삭제</button>
 		</c:if>
-		<a href="#" onClick="history.back()" class="btn btn-default">목록</button></a>
+		<a href="/become_member/list"><button type="button">목록</button></a>
 	</div>
 	<hr/>
 </div>

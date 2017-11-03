@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="freeD">
-	<select id="listAll" resultType="java.util.HashMap">
+	<select id="listAll" resultType="org.game.nara.FreeDistributeVO">
 			select b.*, t.c from free_distribute b left join 
         	(select bno, count(*) as c from reply group by bno ) t on b.no = t.bno order by no desc
 	</select>
@@ -25,5 +25,13 @@
 	<update id="endSet">
 		update free_distribute set end=#{end} where no=#{no}
 	</update>
+	 
+	 	<update id="modifyFreeD">
+		update free_distribute set coment=#{coment} where no=#{no}
+	</update>
+	 
+	 <delete id="delete">
+		delete from free_distribute where no=#{no}
+	</delete>
 	 
 </mapper>

@@ -11,6 +11,8 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.BuyVO;
+import org.game.nara.FreeBoardVO;
 import org.game.nara.models.FreeBoardDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,7 +40,7 @@ public class FreeBoardControllers {
 	
 	@RequestMapping("/list")
 	public ModelAndView freeBoardListHandle() throws SQLException {
-		List<Map> li = boardDao.listAll();
+		List<FreeBoardVO> li = boardDao.listAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "freeBoard/list");
 		mav.addObject("list", li);
@@ -53,10 +56,10 @@ public class FreeBoardControllers {
 	}
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String freeBoardAddPostHandle(@RequestParam Map param, @RequestParam(name = "attach") MultipartFile mpf) throws SQLException, IOException {
-		String id = (String)param.get("writer");
-		String lev = (String)param.get("lev");
-		if(mpf.getSize() > 0) {
+	public String freeBoardAddPostHandle(FreeBoardVO vo) throws SQLException, IOException {
+		MultipartFile picdata = vo.getPicdata();
+		String id = vo.getWriter();
+		if(picdata.getSize() > 0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/freeB_File");
 			String name = id+"_"+fmt;
@@ -67,15 +70,12 @@ public class FreeBoardControllers {
 			}
 	
 			File up = new File(application.getRealPath("/freeB_File"), name);
-			mpf.transferTo(up);
-			param.put("attach", name);
+			picdata.transferTo(up);
+			vo.setAttach(name);
 		}
-		boolean b = boardDao.addOne(param);
-		if (b) {
+		int b = boardDao.addOne(vo);
+		if (b !=0) {
 			boardDao.addPoint(id);
-		}
-		if(lev.equals('1')){
-			
 		}
 		return  "redirect:/freeBoard/list";
 	}
@@ -89,6 +89,17 @@ public class FreeBoardControllers {
 	      return mav;
 	   }
 		
+	@RequestMapping("/modify")
+	@ResponseBody
+	public int modifyHandle(FreeBoardVO vo) {
+		int r = boardDao.modifyFreeB(vo);
+		return r;
+	}
 	
+	@RequestMapping("/delete")
+	public String deleteHandle(FreeBoardVO vo) {
+		int ok = boardDao.delete(vo);
+		return "redirect:/freeBoard/list"; 
+	}
 }
 
