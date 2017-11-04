@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.game.nara.BuyVO;
-import org.game.nara.controllers.MemberVO;
+import org.game.nara.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,9 +14,6 @@ import org.springframework.stereotype.Repository;
 public class buyDao {
 	@Autowired
 	SqlSessionTemplate template;
-
-
-
 
 	public List<BuyVO> readAll() {
 		return template.selectList("buy.list");
@@ -50,9 +47,8 @@ public class buyDao {
 		return template.update("buy.adjust",vo);
 	}
 	
-	public boolean addOne(BuyVO vo) {
-		template.insert("buy.add", vo);
-		return true;
+	public int addOne(BuyVO vo) {
+		return template.insert("buy.add", vo);
 	}
 
 	public Map readOne(String num) {

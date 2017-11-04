@@ -2,6 +2,7 @@ package org.game.nara.models;
 
 import java.util.*;
 
+import org.game.nara.AfterVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,11 +12,11 @@ public class AfterDealDao {
 @Autowired
 SqlSessionTemplate temp;
 
-	public int addAfter(Map map) {
-		return temp.insert("after.add", map);
+	public int addAfter(AfterVO vo) {
+		return temp.insert("after.add", vo);
 	}
 	
-	public Map readAfter(String no) {
+	public AfterVO readAfter(String no) {
 		int r = temp.update("after.cnt", no);
 		return temp.selectOne("after.detail", no);
 	}

@@ -9,6 +9,7 @@ import java.util.*;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.AfterVO;
 import org.game.nara.models.AfterDealDao;
 import org.game.nara.models.ReplyDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/after")
 public class AfterDealController {
 @Autowired
-AfterDealDao adDao;
+AfterDealDao afterDao;
 @Autowired
 ReplyDao replyDao;
 @Autowired
@@ -38,7 +39,7 @@ ServletContext application;
 
 	@GetMapping("/list")
 	public ModelAndView afterDeal_List_Handle() {
-		List li = adDao.listAfter();
+		List li = afterDao.listAfter();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "after/after_list");
 		mav.addObject("list", li);
@@ -53,9 +54,9 @@ ServletContext application;
 		return mav;
 	}
 	@PostMapping("/add")
-	public String freeBoardAddPostHandle(@RequestParam Map map, HttpSession session, @RequestParam(name="pic") MultipartFile pic) 
-			throws IllegalStateException, IOException{
-		String id = (String)session.getAttribute("auth_id");
+	public String freeBoardAddPostHandle(AfterVO vo) throws IllegalStateException, IOException{
+		String id = vo.getWriter();
+		MultipartFile pic = vo.getPicdata();
 		if(pic.getSize()>0) {
 			String fmt = sdf.format(System.currentTimeMillis());
 			String path = application.getRealPath("/afterB_File");
@@ -65,22 +66,21 @@ ServletContext application;
 					dir.mkdirs();
 			File up = new File(application.getRealPath("/afterB_File"), name);
 			pic.transferTo(up);
-			map.put("attach", name);
+			vo.setAttach(name);
 		}
-		map.put("writer", id);
-		int r = adDao.addAfter(map);
-	//	if (r!=0) {
-	//		adDao.addPoint(id);
-	//	}
+		int r = afterDao.addAfter(vo);
+		if (r!=0) {
+			afterDao.addPoint(id);
+		}
 		return "redirect:/after/list";
 	}
 	
-	@RequestMapping("/view/{num}")
-	public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
+	@RequestMapping("/view/{no}")
+	public ModelAndView freeBoardViewHandle(@PathVariable String no) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp");
-		Map map = adDao.readAfter(num);
+		AfterVO vo = afterDao.readAfter(no);
 		mav.addObject("section", "after/view");
-		mav.addObject("one", map);
+		mav.addObject("vo", vo);
 		return mav;
 	}
 	
@@ -88,7 +88,7 @@ ServletContext application;
 	@RequestMapping("/modify")
 	@ResponseBody
 	public int modifyHandle(@RequestParam Map map) {
-		int r = adDao.modifyAfter(map);
+		int r = afterDao.modifyAfter(map);
 		return r;
 	}
 }

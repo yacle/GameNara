@@ -1,4 +1,4 @@
-package org.game.nara.controllers;
+package org.game.nara;
 
 import java.util.Date;
 import java.util.Map;

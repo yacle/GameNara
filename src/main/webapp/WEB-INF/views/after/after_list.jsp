@@ -48,7 +48,8 @@ th, td {
 							</c:if>
 						</c:when>
 						<c:otherwise>
-							<td style="text-align: left; padding-left: 30px;">${fn:substring(obj.TITLE, 0, 12) }</td>
+							<td style="text-align: left; padding-left: 30px;">${fn:substring(obj.TITLE, 0, 12) }
+							<span class="badge">${obj.CNT }</span></td>
 						</c:otherwise>
 					</c:choose>
 					<c:choose>

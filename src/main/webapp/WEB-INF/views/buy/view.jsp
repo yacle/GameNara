@@ -71,7 +71,7 @@ td {
 				<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
 				<button type="reset"  class="btn btn-default" id="cancle" style="display: none">취소</button>
 			</c:if>
-			<a href="#" onClick="history.back()" ><button type="button" class="btn btn-default" style="color:black">목록</button></a>
+			<button type="button" class="btn btn-default" onClick="history.back()">목록</button>
 		</div>
 	</div>
 </div>
@@ -132,8 +132,13 @@ $("#delete").click(function(){
 			"data" : {
 				"no" : $("#num").val()
 				}
-		});
-		location.href = "/buy/list/1";
+		}).done(function(obj){
+			if(obj==0){
+				window.alert("삭제 실패!")
+			}else{
+				location.href = "/buy/list/1";
+			}
+		})
 	}
 })
 </script>

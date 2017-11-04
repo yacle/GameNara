@@ -13,6 +13,7 @@ import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.MemberVO;
 import org.game.nara.models.MemberDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;

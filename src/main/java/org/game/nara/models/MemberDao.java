@@ -2,7 +2,7 @@ package org.game.nara.models;
 
 import java.util.*;
 
-import org.game.nara.controllers.MemberVO;
+import org.game.nara.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

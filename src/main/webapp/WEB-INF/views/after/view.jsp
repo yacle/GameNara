@@ -3,16 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%-- ---------------------------------------------------- --%>
 <style>
-.view{
-	color: black;
-}
-button{
-	font-size: 12px;
-	border-radius: 6px;
-}
-p{
-	display: none;
-}
 textarea {
     width: 100%;
     padding: 12px 20px;
@@ -22,86 +12,96 @@ textarea {
     resize: none;
 }
 </style>
-<div class="view" align="center">
+<div align="center">
 	<h2>거래후기게시판</h2>
 		<div align="left">
 	</div>
 	<hr/>
 	<div style="width: 90%; border-radius: 10px; ; padding-left: 20px;" align="left">
-		<input type="hidden" id="num" value="${one.NO }" />
-		<h3>${one.TITLE }</h3>
+		<input type="hidden" id="num" value="${vo.no }" />
+		<h3>${vo.title }</h3>
 		<div class="row">
-	    	<div class="col-sm-10">
-	    		<small>작성자 : ${one.WRITER } | 작성일 : 
-	    			<fmt:formatDate pattern="MM.dd.yyyy HH:mm:ss" value="${one.ADD_DATE }" /> 
+	    	<div class="col-md-10">
+	    		<small>작성자 : ${vo.writer } | 작성일 : 
+	    			<fmt:formatDate pattern="yyyy.MM.dd HH:mm:ss" value="${vo.add_date }" /> 
 				</small>
 			</div>
-		    <div class="col-sm-2">
-		    	<small>조회수 : <fmt:formatNumber value="${one.COUNT}" pattern="#,###" /></small>
+		    <div class="col-md-2" align="center">
+		    	<small>조회수 : <fmt:formatNumber value="${vo.count}" pattern="#,###" /></small>
 		    </div>
 		</div>							
 		<c:choose>
-			<c:when test="${one.ATTACH ne null}">
+			<c:when test="${vo.attach ne null}">
 				<div class="row">
 					<div class="col-md-3">
-						<img id="pf" class="img-responsive" src="/afterB_File/${one.ATTACH}" style="width: 200; height: 200;"/>
+						<img id="pf" class="img-responsive" src="/afterB_File/${vo.attach}" style="width: 200; height: 200;"/>
 					</div>
 					<div class="col-md-9">
-						<textarea rows="5" id="comment" disabled>${one.COMMENTS }</textarea>
+						<textarea rows="5" id="content" style="background-color:beige" disabled>${vo.content }</textarea>
 					</div>
 				</div>
 			</c:when>
 			<c:otherwise>
-				<textarea rows="5" id="comment" disabled>${one.COMMENTS }</textarea>
+				<textarea rows="5" id="content" style="background-color:beige" disabled>${vo.content }</textarea>
 			</c:otherwise>
 		</c:choose>
 	</div><br/>
-	<div style="margin-right:100px" align="right">
-		<c:if test="${one.WRITER eq auth_id}">
+	<div style="margin-right:60px" align="right">
+		<c:if test="${vo.writer eq auth_id}">
 			<button type="button" class="btn btn-default" id="m">수정</button>
 			<button type="button" class="btn btn-default" id="s" style="display: none;">저장</button>
 			<button type="button" class="btn btn-default" id="c" style="display: none;">취소</button>
 			<button type="button" class="btn btn-default" id="d">삭제</button>
 		</c:if>
-		<a href="#" onClick="history.back()" ><button type="button" class="btn btn-default" style="color:black">목록</button></a>
+		<button type="button" class="btn btn-default" onClick="history.back()">목록</button>
 	</div>
 	<hr/>
 </div>
 <script>
-	$("#m").click(function(){
-		document.getElementById("comment").disabled=false;
-		$("#comment").css("background-color","#f8f8f8");
-		$("#m").css("display","none");
-		$("#d").css("display","none");
-		$("#c").css("display","inline");
-		$("#s").css("display","inline");
-		$("#s").click(function(){
-			$.ajax({
-				"type":"post",
-				"async":false,
-				"url":"/after/modify",
-				"data":{
-					"comment" : $("#comment").val(),
-					"no" : $("#num").val()
-				}
-			}).done(function(r) {
-				document.getElementById("comment").disabled = true;
-				$("#m").css("display", "inline");
-				$("#s").css("display", "none");
-			})
-		})
-		$("#c").click(function(){
-			window.location.reload();
+<%--  내용 수정 --%>
+$("#m").click(function(){
+	document.getElementById("content").disabled=false;
+	$("#content").css("background-color","#f8f8f8");
+	$("#m").css("display","none");
+	$("#d").css("display","none");
+	$("#c").css("display","inline");
+	$("#s").css("display","inline");
+	$("#s").click(function(){
+		$.ajax({
+			"type":"post",
+			"async":false,
+			"url":"/after/modify",
+			"data":{
+				"content" : $("#content").val(),
+				"no" : $("#num").val()
+			}
+		}).done(function(r) {
+			document.getElementById("content").disabled = true;
+			$("#content").css("background-color","beige");
+			$("#m").css("display", "inline");
+			$("#s").css("display", "none");
 		})
 	})
+	$("#c").click(function(){
+		window.location.reload();
+	})
+})
 </script>
 
-<%-- Reply input form --%>
+<!-- Reply input form -->
 <div class="row" >
-	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
-	<div class="col-md-8"><textarea rows="1" id="content"></textarea></div>
-	<div class="col-md-1">비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자" required></div>
-	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
+	<div class="col-md-2" style="padding: 10px;" align="center">
+		<span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span>
+	</div>
+	<div class="col-md-8">
+		<textarea rows="1" id="replyContent"></textarea>
+	</div>
+	<div class="col-md-1">
+		비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자" required>
+	</div>
+	<div class="col-md-1" style="padding: 10px;">
+		<button type="button" id="replysendbtn">등록</button>
+	</div>
 </div>
 <hr/>
 <!-- Reply List View -->
@@ -155,7 +155,7 @@ $("#replysendbtn").click(function(){
 	var replypw = $("#pwd").val();
 	if(replypw != null){
 		var replyer = $("#auth_id").html();
-		var replytext = $("#content").val();
+		var replytext = $("#replyContent").val();
 		$.ajax({
 			"type": "post",
 			"async":false,
@@ -172,7 +172,7 @@ $("#replysendbtn").click(function(){
 				"pwd":replypw
 			})
 		}).done(function(){
-			$("#content").val("");
+			$("#replyContent").val("");
 			$("#pwd").val("");
 			list();
 		})

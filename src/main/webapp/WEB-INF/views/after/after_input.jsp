@@ -19,21 +19,21 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-3" for="comment">Comment:</label>
+			<label class="control-label col-sm-3" for="content">Comment:</label>
 			<div class="col-sm-9">
-				<textarea class="form-control" rows="5" name="comment" style="width: 80%;"></textarea>
+				<textarea class="form-control" rows="5" name="content" style="width: 80%;"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-3" for="parent">거래글 번호</label>
+			<label class="control-label col-sm-3" for="parent_no">거래글 번호</label>
 			<div class="col-sm-9">
-				<input type="text"class="form-control" style="width: 80%;" name="parent">
+				<input type="text"class="form-control" style="width: 80%;" name="parent_no">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-3" for="attach">사진:</label>
+			<label class="control-label col-sm-3" for="picdata">사진:</label>
 			<div class="col-sm-9">
-				<input type="file" name="pic">
+				<input type="file" name="picdata">
 			</div>
 		</div>
 		<div align="center">

@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.MemberVO;
 import org.game.nara.models.MemberDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

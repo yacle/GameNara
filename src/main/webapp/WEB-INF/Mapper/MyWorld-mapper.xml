@@ -27,7 +27,7 @@
 	</select>
 	
 	<select id="afterread" resultType="java.util.HashMap">
-	select no,title,comments as detail,writer,ADD_DATE as regdate,attach as pic,COUNT from after where no=#{no}
+	select no,title,content as detail,writer,ADD_DATE as regdate,attach as pic,COUNT from after where no=#{no}
 	</select>
 	<select id="freedisread" resultType="java.util.HashMap">
 		select no,title,coment as detail,writer,fd_date as regdate,view_cnt as count,attach as pic from free_distribute where no=#{no}

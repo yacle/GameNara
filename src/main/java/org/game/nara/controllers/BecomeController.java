@@ -27,7 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class BecomeController {
 	@Autowired
 	becomeDao becomeDao;
-	
 	@Autowired
 	FreeBoardDao freeboardDao;
 

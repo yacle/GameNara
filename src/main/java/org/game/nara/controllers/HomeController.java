@@ -1,4 +1,4 @@
-package org.game.nara;
+package org.game.nara.controllers;
 
 import java.text.DateFormat;
 import java.util.Date;

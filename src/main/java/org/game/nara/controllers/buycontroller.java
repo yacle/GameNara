@@ -2,6 +2,7 @@ package org.game.nara.controllers;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.game.nara.BuyVO;
+import org.game.nara.MemberVO;
 import org.game.nara.models.FreeBoardDao;
 import org.game.nara.models.MemberDao;
 import org.game.nara.models.buyDao;
@@ -44,12 +46,13 @@ public class buycontroller {
 
 	@RequestMapping(value="/list/{category}")
 	public ModelAndView buyListHandle(@PathVariable(value="category")int category) throws SQLException {
-		List<BuyVO> li = buyDao.readAll();
+		List<BuyVO> li = new ArrayList<>();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section","buy/list");
 		switch(category) {
 		
 		case 1:
+			li = buyDao.readAll();
 			mav.addObject("list", li);
 			mav.addObject("title","삽니다 게시판");
 			mav.addObject("cnt", li.size());			
@@ -102,12 +105,12 @@ public class buycontroller {
 
 	@PostMapping(path = "/add")
 	public String buyaddpostHandle(BuyVO vo) throws SQLException {
-		boolean b = buyDao.addOne(vo);
+		int r = buyDao.addOne(vo);
 		String id = vo.getBuy_id();
-		if (b) {
+		if (r!=0) {
 			freeDao.subPoint(id);
 		}
-			return "redirect:/buy/list/1";
+		return "redirect:/buy/list/1";
 	}
 
 
@@ -115,7 +118,7 @@ public class buycontroller {
 	@ResponseBody
 	public int buyadjustHandle(BuyVO vo) throws SQLException {
 		int b = buyDao.adjust(vo);
-			return b;
+		return b;
 	}
 	
 	@RequestMapping("/checkpoint")
@@ -129,33 +132,19 @@ public class buycontroller {
 		}
 	}
 	
-	@RequestMapping(path = "/view/{num}")
+	@RequestMapping("/view/{num}")
 	public ModelAndView buyViewHandle(@PathVariable String num) throws SQLException {
 		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
 		Map one = buyDao.readOne(num);
-		mav.addObject("one", one);  
 		mav.addObject("section", "buy/view");
+		mav.addObject("one", one);  
 		return mav;
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteReplyHandle(BuyVO vo) {
-		int rst=0;
-		int ok = buyDao.delete(vo);
-		if(ok==1) {
-			rst =1;
-		}
-		return "redirect:/buy/list/"+rst; 
+	@ResponseBody
+	public int deleteReplyHandle(BuyVO vo) {
+		int r = buyDao.delete(vo);
+		return r; 
 	}
-	
-	@RequestMapping("/info")
-	public ModelAndView noteSendHandle(@RequestParam MemberVO id) {
-		ModelAndView mav = new ModelAndView();
-		id=buyDao.readInfo(id);
-		mav.addObject("section", "buy/info");
-		mav.addObject("info", id);
-		return mav;
-	}
-	
-
 }
