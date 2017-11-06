@@ -127,9 +127,15 @@ td{
 // 게시글 삭제
 $("#delete").click(function(){
 	if(window.confirm("게시글을 삭제하시겠읍니까?")){
-		var no = $("#no").html();
-		var uri = "/sell/delete/"+no;
-		location.href = uri;
+		$.ajax({
+			"type" : "post",
+			"async" : true,
+			"url" : "/sell/delete",
+			"data" : {
+				"no" : $("#no").html(),
+				"pic" : '${map.pic}'
+			}
+		})
 	}
 })
 // 거래취소

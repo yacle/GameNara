@@ -164,9 +164,13 @@ SimpleDateFormat sdf;
 		}
 	}
 	
-	@RequestMapping("/delete/{no}")
-	public String deleteHandle(@PathVariable String no) throws SQLException {
-		int r = sellDao.deleteOne(no);
+	@RequestMapping("/delete")
+	public String deleteHandle(@RequestParam Map map) throws SQLException {
+		System.out.println(map.toString());
+		int r = sellDao.deleteOne((String)map.get("no"));
+		File picdata = new File(application.getRealPath("/sellB_file"),(String)map.get("pic"));
+		boolean check = picdata.delete();
+		System.out.println(check);
 		return "redirect:/sell/list?category=0&&type=map";
 	}
 }
