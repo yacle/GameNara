@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 public class MemberVO {
 
 	private String id;
+	private String keep;
 	private String password;
 	private String email;
 	private int lev;

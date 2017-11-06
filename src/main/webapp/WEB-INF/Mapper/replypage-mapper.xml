@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="replyPage">
+	<select id="getReplyList" resultType="org.game.nara.ReplyVO">
+		select * 
+	    from (SELECT ROWNUM rnum, A.* 
+	        FROM (SELECT * 
+	            FROM reply  where bno=#{bno} ORDER BY rno DESC) A
+	        WHERE ROWNUM &lt;= #{endRowNum }) 
+	    where rnum &gt;= #{startRowNum }
+	</select>
+	
+	<select id="getReplyCount" resultType="int">
+		select count(*) from reply where bno=#{bno}
+	</select>
+</mapper>

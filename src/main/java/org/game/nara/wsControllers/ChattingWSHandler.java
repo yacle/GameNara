@@ -41,7 +41,5 @@ public class ChattingWSHandler extends TextWebSocketHandler {
 				rst="yes";
 			}
 		return rst;
-		
 	}
-	
 }

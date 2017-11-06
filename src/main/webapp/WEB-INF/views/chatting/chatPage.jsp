@@ -14,11 +14,9 @@
 	<input type="hidden" id="receiver" name="receiver" value="${id}"/>
 	<input type="hidden" id="sender" name="sender" value="${auth_id}"/>
 	<small><span id="time" name="time"></span></small><br/>
-	<div
-		style="width: 80%; height: 60%; background-color: #D5D5D5; font-size: 10pt;"
-		align="left" id="content"></div><br/>
-	<input  type="text" id="msg" style="width: 80%;">
-</div>
+	<div style="width: 80%; height: 60%; background-color: #D5D5D5; font-size: 10pt;" align="left" id="content"></div><br/>
+		<input  type="text" id="msg" style="width: 80%;">
+	</div>
 
 <script>
 	//메시지 전송
@@ -34,15 +32,13 @@
 			}
 		})
 		this.value = "";
-		
 	}
-	//메시지 내용 확인
+	// 받은 메시지 내용 확인
 	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	cws.onmessage = function(e) {
 		var obj =JSON.parse(e.data);
 		var m = "<p><b>"+ obj.sender+"</b> : " +obj.msg +"</p>";
 		document.getElementById("content").innerHTML += m;
-		
 	}
 	//채팅 접속
 	cws.onopen = function(e) {

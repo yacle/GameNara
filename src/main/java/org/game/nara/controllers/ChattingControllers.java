@@ -6,6 +6,7 @@ import java.util.Map;
 import org.game.nara.wsControllers.ChattingWSHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,7 @@ public class ChattingControllers {
 	@Autowired
 	ObjectMapper mapper;
 
-	@RequestMapping("/chatPage")
+	@GetMapping("/chatPage")
 	public ModelAndView chatSendHandle(@RequestParam String id) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("section", "chatting/chatPage");
