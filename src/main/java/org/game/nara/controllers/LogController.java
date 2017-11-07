@@ -37,7 +37,7 @@ MemberDao mDao;
 	}
 	
 	@PostMapping("/login")
-	public String loginPostHandle(MemberVO vo, @RequestParam(value="keep") String keep, HttpSession session, HttpServletResponse response ) {
+	public String loginPostHandle(MemberVO vo, HttpSession session, HttpServletResponse response ) {
 		vo = mDao.check(vo);
 		if(vo!=null) {
 			session.setAttribute("auth_id", vo.getId());
