@@ -9,8 +9,7 @@ public class FreeBoardVO {
 	@Override
 	public String toString() {
 		return "FreeBoardVO [no=" + no + ", writer=" + writer + ", title=" + title + ", coment=" + coment + ", fb_date="
-				+ fb_date + ", view_cnt=" + view_cnt + ", like_cnt=" + like_cnt + ", notice=" + notice + ", attach="
-				+ attach + "]";
+				+ fb_date + ", view_cnt=" + view_cnt + ", attach=" + attach + ", cnt=" + cnt + "]";
 	}
 	
 	private int no;
@@ -19,8 +18,6 @@ public class FreeBoardVO {
 	private String coment;
 	private Date fb_date;
 	private int view_cnt;
-	private int like_cnt;
-	private String notice;
 	private String attach;
 	private int cnt;
 	private MultipartFile picdata;
@@ -60,18 +57,6 @@ public class FreeBoardVO {
 	}
 	public void setView_cnt(int view_cnt) {
 		this.view_cnt = view_cnt;
-	}
-	public int getLike_cnt() {
-		return like_cnt;
-	}
-	public void setLike_cnt(int like_cnt) {
-		this.like_cnt = like_cnt;
-	}
-	public String getNotice() {
-		return notice;
-	}
-	public void setNotice(String notice) {
-		this.notice = notice;
 	}
 	public String getAttach() {
 		return attach;
