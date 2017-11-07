@@ -47,12 +47,8 @@ public class MemberController {
 	}
 	
 	@PostMapping("/join")
-	public ModelAndView joinPostHandle(@RequestParam Map map) {
+	public ModelAndView joinPostHandle(MemberVO vo) {
 		ModelAndView mav = new ModelAndView("temp");
-		MemberVO vo=new MemberVO();
-		vo.setId((String)map.get("id"));
-		vo.setPassword((String)map.get("password"));
-		vo.setEmail((String)map.get("email"));
 		int r = mDao.addMember(vo);
 		if(r!=0) {
 			mav.addObject("section", "log/login");
@@ -102,6 +98,7 @@ public class MemberController {
 	@PostMapping("/info")
 	@ResponseBody
 	public String infoPostHandle(@RequestParam Map map, HttpSession session) {
+		System.out.println(map.toString());
 		int r = mDao.addInfo(map);
 		if(r!=0) {
 			return "save complate";

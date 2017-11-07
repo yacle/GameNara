@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.*;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -29,5 +30,10 @@ public class NoteWSHandler extends TextWebSocketHandler {
 			}
 		}
 	}
-	
+	@Override
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		Map<String, Object> hs = session.getAttributes();
+		String id = (String)hs.get("auth_id");
+		users.remove(id);
+	}
 }

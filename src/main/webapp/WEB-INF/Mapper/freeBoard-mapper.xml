@@ -10,7 +10,7 @@
 
 	<insert id="addOne">
 		insert into freeboard
-		values(freeboard_seq.nextval,#{writer},#{title},#{coment},sysdate,0,0,null,#{attach, jdbcType=VARCHAR})
+		values(freeboard_seq.nextval,#{writer},#{title},#{coment},sysdate,0,#{attach, jdbcType=VARCHAR})
 	</insert>
 
 	<select id="readOne" parameterType="java.lang.String"
