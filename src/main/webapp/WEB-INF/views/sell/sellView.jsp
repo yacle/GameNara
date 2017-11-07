@@ -9,11 +9,12 @@ button{
 }
 
 textarea {
-    width: 100%;
+    width: 95%;
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
+    resize: none;
 }
 input[type=text]:disabled {
     background: #F8F8FF;
@@ -112,13 +113,15 @@ td{
 		
 	<div class="row" align="center">
 		<input type="hidden" id="id" value="${auth_id}">
-		<p><textarea class="update-group" rows="10" width="1000px" placeholder="상세내용" name="detail"  disabled>${map.detail }</textarea></p>
+		<p><textarea class="update-group" rows="10" width="800px" placeholder="상세내용" name="detail"  disabled>${map.detail }</textarea></p>
 		</form>
 		<c:if test="${auth_id eq map.writer }">
-			<button type="button" class="btn btn-default" id="modify">수정</button>
-			<button type="button" class="btn btn-default" id="delete">삭제</button>
-			<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
-			<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
+			<c:if test="${map.state ne 2 }">
+				<button type="button" class="btn btn-default" id="modify">수정</button>
+				<button type="button" class="btn btn-default" id="delete">삭제</button>
+				<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
+				<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
+			</c:if>
 		</c:if>
 		<a href="/sell/list?category=0&&type=map"><button type="button" class="btn btn-default">목록</button></a>
 	</div>
@@ -167,6 +170,9 @@ $("#deal_end").click(function(){
 			"state" : 2
 		}
 	}).done(function(obj){
+		if(window.confirm("거래후기를 남기시겠습니까?")){
+			location.href="/after/add/"+$("#no").html();
+		}
 		window.alert(obj);
 	})
 })
@@ -227,7 +233,7 @@ $("#deal").click(function(){
 		}
 	}).done(function(obj){
 		window.alert("[거래신청 쪽지를 보냈읍니다.]");
-		
+		document.getElementById("deal").disabled=true;
 	})
 })
 // time view

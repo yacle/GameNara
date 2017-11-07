@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" name="ppassword" id="password" placeholder="Enter password (8자 이상 영문 대소문자, 숫자가 포함되어야 합니다)" style="width:50%">
+      <input type="password" class="form-control" name="password" id="password" placeholder="Enter password (8자 이상 영문 대소문자, 숫자가 포함되어야 합니다)" style="width:50%">
       <span id="pwdcheck"></span>
     </div>
 
@@ -54,8 +54,8 @@ $("#id").keyup(function(){
 		$("#idcheck").html("아이디는 5자이상 입력하십시오.");
 	}
 })
-$("#pwd").keyup(function(){
-	var pwd=$("#pwd").val();
+$("#password").keyup(function(){
+	var pwd=$("#password").val();
 	var a = /[a-z]/.test(pwd);
 	var b = /[A-Z]/.test(pwd);
 	var c = /[0-9]/.test(pwd);
@@ -67,7 +67,7 @@ $("#pwd").keyup(function(){
 		$("#pwdcheck").html("8자 이상 영문 대소문자, 숫자가 포함되어야 합니다");
 	}
 })
-$("#pwd").change(function(){
+$("#password").change(function(){
 	if(id==true && pw==true){
 		document.getElementById("submitbtn").disabled=false;
 	}

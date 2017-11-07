@@ -35,23 +35,20 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="name">Name:</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" id="name"
-						value="${map.name }" placeholder="Enter Name" name="name">
+					<input type="text" class="form-control" id="name" value="${map.name }" placeholder="Enter Name" name="name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="nick">NickName:</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" id="nick"
-						value="${map.nickname }" placeholder="Enter NickName" name="nick"><span
-						id="nickcheck"></span>
+					<input type="text" class="form-control" id="nick" value="${map.nickname }" placeholder="Enter NickName" name="nick">
+					<span id="nickcheck"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="gender">Gender:</label>
 				<div class="col-sm-9">
-					<select class="form-control" id="gender" name="gender"
-						value="${map.gender eq m ? Male:Female }">
+					<select class="form-control" id="gender" name="gender" value="${map.gender eq m ? Male:Female }">
 						<option value="m">Male</option>
 						<option value="f">Female</option>
 					</select>
@@ -60,15 +57,13 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="email">Email:</label>
 				<div class="col-sm-9">
-					<input type="email" class="form-control" id="email"
-						value="${map.email}">
+					<input type="email" class="form-control" id="email" value="${map.email}">
 					<c:choose>
-						<c:when test="${empty map.email_reg }">
+						<c:when test="${map.email_reg eq 'unauthorized'}">
 							<button type="button" id="emailReg">
 								<small>인증메일보내기</small>
 							</button>
-							<span id="codeInput"><input type="text" id="regCode"
-								placeholder="Entet Code"></span>
+							<span id="codeInput"><input type="text" id="regCode" placeholder="Entet Code"></span>
 						</c:when>
 						<c:otherwise>
 						인증완료
@@ -87,17 +82,14 @@
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="addr">ADDRESS:</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" id="addr"
-						value="${map.address }" placeholder="Enter Address" name="addr">
+					<input type="text" class="form-control" id="addr" value="${map.address }" placeholder="Enter Address" name="addr">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3" for="birth">BIRTH:</label>
 				<div class="col-sm-9">
-					<fmt:formatDate var="date" value="${map.birth }"
-						pattern="yyyy-MM-dd" />
-					<input type="date" class="form-control" id="birth" value="${date }"
-						placeholder="Enter Birth" name="birth">
+					<fmt:formatDate var="date" value="${map.birth }" pattern="yyyy-MM-dd" />
+					<input type="date" class="form-control" id="birth" value="${date }" placeholder="Enter Birth" name="birth">
 				</div>
 			</div>
 		</div>
@@ -105,14 +97,15 @@
 </div>
 <div class="form-group">
 	<div class="col-sm-offset-0 col-sm-12" align="center">
-		<button type="button" class="btn btn-default" id="submit">Submit</button>
+		<button type="button" class="btn btn-default" id="info">Submit</button>
 		<a href="#" onClick="history.back()" class="btn btn-default">뒤로</button></a>
 	</div>
 </div>
 </form>
 <script>
 // 개인정보 저장
-$("#submit").click(function(){
+$("#info").click(function(){
+	console.log("submit");
 	$.ajax({
 		"type":"post",
 		"async":false,
