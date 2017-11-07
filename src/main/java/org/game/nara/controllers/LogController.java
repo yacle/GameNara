@@ -38,27 +38,11 @@ MemberDao mDao;
 	
 	@PostMapping("/login")
 	public String loginPostHandle(MemberVO vo, HttpSession session, HttpServletResponse response ) {
-<<<<<<< HEAD
-		String keep="";
-		if(vo.getKeep()!=null) {
-			keep="keep";
-		}
-=======
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		vo = mDao.check(vo);
 		if(vo!=null) {
 			session.setAttribute("auth_id", vo.getId());
 			session.setAttribute("auth_level", vo.getLev());
 			session.setAttribute("auth_point",vo.getPoint());
-<<<<<<< HEAD
-			if(keep!=null){
-				Cookie c = new Cookie("keep", vo.getId());
-				c.setMaxAge(60*60*24*7);
-				c.setPath("/");
-				response.addCookie(c);
-			}
-=======
->>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 			return "redirect:/index";
 		}else {
 			return "redirect:/log/login/fail";
