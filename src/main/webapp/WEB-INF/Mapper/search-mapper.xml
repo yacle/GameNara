@@ -16,7 +16,7 @@
 	</select>
 	
 	<select id="aftersearch" resultType="java.util.HashMap">
-		SELECT * FROM after WHERE REGEXP_LIKE (title || comments, #{word}, 'i') and rownum &lt;= 7 order by no DESC
+		SELECT * FROM after WHERE REGEXP_LIKE (title || content, #{word}, 'i') and rownum &lt;= 7 order by no DESC
 	</select>
 </mapper>
 
