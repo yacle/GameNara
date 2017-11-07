@@ -21,7 +21,7 @@
     </ul>
 	 <ul class="nav navbar-nav navbar-right">
       <li><a href="/member/join"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="/log/login/success"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="/log/login/into"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>
 

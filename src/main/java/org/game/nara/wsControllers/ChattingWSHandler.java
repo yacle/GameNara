@@ -17,6 +17,7 @@ public class ChattingWSHandler extends TextWebSocketHandler {
 	List<WebSocketSession> list = new ArrayList<>();
 	Map<String, WebSocketSession> users = new HashMap<>();
 	
+	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		list.add(session);

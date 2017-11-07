@@ -43,12 +43,6 @@ MemberDao mDao;
 			session.setAttribute("auth_id", vo.getId());
 			session.setAttribute("auth_level", vo.getLev());
 			session.setAttribute("auth_point",vo.getPoint());
-			if(keep!=null){
-				Cookie c = new Cookie("keep", vo.getId());	// default 라는 이름의 쿠키(내용은 off) 생성
-				c.setMaxAge(60*60*24*7);
-				c.setPath("/");
-				response.addCookie(c);
-			}
 			return "redirect:/index";
 		}else {
 			return "redirect:/log/login/fail";
