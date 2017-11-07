@@ -61,7 +61,7 @@ textarea {
 			<button type="button" id="cancle" style="display: none;">취소</button>
 			<button type="button" id="delete">삭제</button>
 		</c:if>
-		<a href="#" onClick="history.back()" ><button type="button" class="btn btn-default" style="color:black">목록</button></a>
+		<a href="/freeBoard/list"><button type="button">목록</button></a>
 	</div>
 	<hr/>
 </div>
