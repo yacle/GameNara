@@ -38,7 +38,8 @@
 	cws.onmessage = function(e) {
 		var obj =JSON.parse(e.data);
 		var m = "<p><b>"+ obj.sender+"</b> : " +obj.msg +"</p>";
-		document.getElementById("content").innerHTML += m;
+		var n = "<p align='right'><b>"+ obj.sender+"</b> : " +obj.msg +"</p>";
+			document.getElementById("content").innerHTML += m;	
 	}
 	//채팅 접속
 	cws.onopen = function(e) {
