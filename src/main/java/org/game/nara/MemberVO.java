@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 public class MemberVO {
 
 	private String id;
-	private String keep;
 	private String password;
 	private String email;
 	private int lev;
@@ -22,6 +21,7 @@ public class MemberVO {
 	private Date birth;
 	private String name;
 	private String email_reg;
+	
 	public String getPhone_num() {
 		return phone_num;
 	}

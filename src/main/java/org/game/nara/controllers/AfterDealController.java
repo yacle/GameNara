@@ -47,14 +47,16 @@ ServletContext application;
 		return mav;
 	}
 	
-	@GetMapping("/add")
-	public ModelAndView afterDeal_add_Handle() {
+	@GetMapping("/add/{parent_no}")
+	public ModelAndView afterDeal_add_Handle(@PathVariable String parent_no) {
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "after/after_input");
+		mav.addObject("no", parent_no);
 		return mav;
 	}
 	@PostMapping("/add")
 	public String freeBoardAddPostHandle(AfterVO vo) throws IllegalStateException, IOException{
+		System.out.println(vo.toString());
 		String id = vo.getWriter();
 		MultipartFile pic = vo.getPicdata();
 		if(pic.getSize()>0) {

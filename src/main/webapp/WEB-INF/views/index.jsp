@@ -103,6 +103,7 @@ h2{
 									<a href="/notice">${fn:substring(i.TITLE, 0, 12)}</a>
 								</c:otherwise>
 							</c:choose>
+							<br/><br/>
 							</div>
 						</c:forEach>
 					</div>
@@ -152,6 +153,7 @@ h2{
 									<a href="/notice">${fn:substring(i.TITLE, 0, 12)}</a>
 								</c:otherwise>
 							</c:choose>
+							<br/><br/>
 							</div>
 						</c:forEach>
 					</div>

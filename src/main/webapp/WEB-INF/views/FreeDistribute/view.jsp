@@ -27,7 +27,12 @@ textarea {
 	<hr/>
 	<div style="width: 90%; border-radius: 10px; ; padding-left: 20px;" align="left">
 		<input type="hidden" id="num" value="${one.NO }" />
-		<h3>${one.TITLE }</h3>
+		<c:if test="${one.END == null }">
+			<h3 id="title">${one.TITLE }</h3>
+		</c:if>
+		<c:if test="${one.END == 2 }">
+			<del><h3>${one.TITLE }</h3></del>
+		</c:if>
 		<div class="row">
 	    	<div class="col-sm-10">
 	    		<small>작성자 : ${one.WRITER } | 작성일 : 
@@ -56,12 +61,15 @@ textarea {
 	</div><br/>
 	<div style="margin-right:100px" align="right">
 		<c:if test="${one.WRITER eq auth_id}">
+			<c:if test="${one.END ne 2}">
+				<button type="button" id="ok">나눔 완료</button>
+			</c:if>
 			<button type="button" id="modify">수정</button>
 			<button type="button" id="save" style="display: none;">저장</button>
 			<button type="button" id="cancle" style="display: none;">취소</button>
 			<button type="button" id="delete">삭제</button>
 		</c:if>
-		<a href="/freeDistribute/list"><button type="button">목록</button></a>
+		<a href="/FreeDistribute/list"><button type="button">목록</button></a>
 	</div>
 	<hr/>
 </div>
@@ -110,6 +118,21 @@ if (window.confirm("삭제하시겠습니까?")) {
 	location.href = "/FreeDistribute/list";
 }
 })
+
+//거래완료 버튼
+$("#ok").click(function() {
+	$.ajax({
+		"type" : "post",
+		"async" : false,
+		"url" : "/FreeDistribute/end",
+		"data" : {
+			"end" : '2',
+			"no" : $("#num").val()
+		}
+	})
+	location.reload();
+	
+});
 </script>
 
 <%-- Reply input form --%>

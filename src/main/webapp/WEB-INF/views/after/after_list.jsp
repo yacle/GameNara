@@ -79,7 +79,7 @@ th, td {
 	<p align="right" style="margin-right: 30px;">
 		<c:choose>
 			<c:when test="${auth_id ne null}">
-				<a href="/after/add"><button type="button" style="padding: 5px;">글작성</button></a>
+				<a href="/after/add/0"><button type="button" style="padding: 5px;">글작성</button></a>
 			</c:when>
 			<c:otherwise>
 				<button type="button" style="padding: 5px;">글작성</button></a>
