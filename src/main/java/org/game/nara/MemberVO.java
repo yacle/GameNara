@@ -105,5 +105,11 @@ public class MemberVO {
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}
+	public String getKeep() {
+		return keep;
+	}
+	public void setKeep(String keep) {
+		this.keep = keep;
+	}
 
 }

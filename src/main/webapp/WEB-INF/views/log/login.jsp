@@ -12,14 +12,14 @@
 	<form action="/log/login" method="post">
 		<div class="form-group">
 			<label for="id">ID:</label>
-			<input type="text" class="form-control" name="id" id="id" placeholder="Enter ID" style="width:50%">
+			<input type="text" class="form-control" name="id" placeholder="Enter ID" style="width:50%">
 		</div>
 		<div class="form-group">
 			<label for="pwd">Password:</label>
-			<input type="password" class="form-control" name="password" id="password" placeholder="Enter password" style="width:50%">
+			<input type="password" class="form-control" name="password" placeholder="Enter password" style="width:50%">
 		</div>
 		<div class="checkbox">
-			<label><input type="checkbox" name="keep"> Remember me</label>
+			<label><input type="checkbox" name="keep" value="keep"> Remember me</label>
 		</div>
 		<button type="submit" class="btn btn-default">Submit</button>
 	</form>

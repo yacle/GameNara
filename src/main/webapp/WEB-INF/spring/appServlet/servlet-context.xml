@@ -107,7 +107,7 @@
 	<!-- intercepter -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/log/login"/>
+			<mvc:mapping path="/log/login/into"/>
 			<bean class="org.game.nara.interceptors.interceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

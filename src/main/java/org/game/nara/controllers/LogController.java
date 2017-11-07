@@ -24,7 +24,7 @@ public class LogController {
 @Autowired
 MemberDao mDao;
 
-	@GetMapping("/login/{fail}")
+	@RequestMapping("/login/{fail}")
 	public ModelAndView loginHandle(@PathVariable String fail) {
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "log/login");
@@ -37,14 +37,18 @@ MemberDao mDao;
 	}
 	
 	@PostMapping("/login")
-	public String loginPostHandle(MemberVO vo, @RequestParam(value="keep") String keep, HttpSession session, HttpServletResponse response ) {
+	public String loginPostHandle(MemberVO vo, HttpSession session, HttpServletResponse response ) {
+		String keep="";
+		if(vo.getKeep()!=null) {
+			keep="keep";
+		}
 		vo = mDao.check(vo);
 		if(vo!=null) {
 			session.setAttribute("auth_id", vo.getId());
 			session.setAttribute("auth_level", vo.getLev());
 			session.setAttribute("auth_point",vo.getPoint());
 			if(keep!=null){
-				Cookie c = new Cookie("keep", vo.getId());	// default 라는 이름의 쿠키(내용은 off) 생성
+				Cookie c = new Cookie("keep", vo.getId());
 				c.setMaxAge(60*60*24*7);
 				c.setPath("/");
 				response.addCookie(c);

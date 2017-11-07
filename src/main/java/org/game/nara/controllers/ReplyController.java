@@ -54,6 +54,7 @@ ReplyDao replyDao;
 	}
 	
 	@RequestMapping("/paging")
+	@ResponseBody
 	public ModelAndView getReplyList(PageDTO dto, @RequestParam(value="pageNo", required=false) String pageNo) {
 		dto.setPageSize(10);
 		dto.setPageNo(1);
@@ -64,9 +65,8 @@ ReplyDao replyDao;
 		dto.setTotalCount(replyDao.totalcnt(dto.getBno()));
 		List<ReplyVO> replyList = replyDao.getReplyList(dto);
 		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "replytest");
 		mav.addObject("replyList", replyList);
-		mav.addObject("paging", dto);
+		mav.addObject("param", dto);
 		return mav;
 	}
 	

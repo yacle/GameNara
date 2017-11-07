@@ -19,10 +19,10 @@ public class interceptor extends HandlerInterceptorAdapter{
 						session.setAttribute("auth_id", id);
 					}
 				}
-				return true;
-			}else {
-				response.sendRedirect("/log/login");
+				response.sendRedirect("/index");
 				return false;
+			}else {
+				return true;
 			}
 	}
 }
