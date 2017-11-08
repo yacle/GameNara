@@ -11,8 +11,10 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.game.nara.MemberVO;
 import org.game.nara.SellVO;
 import org.game.nara.models.SellDao;
+import org.game.nara.models.buyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,6 +38,9 @@ SellDao sellDao;
 ServletContext application;
 @Autowired
 SimpleDateFormat sdf;
+@Autowired
+buyDao buydao;
+
 
 	@RequestMapping("/sellForm")
 	public ModelAndView sellformHandle() {
@@ -173,4 +178,16 @@ SimpleDateFormat sdf;
 		System.out.println(check);
 		return "redirect:/sell/list?category=0&&type=map";
 	}
+	
+	@RequestMapping("/checkpoint")
+	@ResponseBody
+	public String buycheckpoint(MemberVO vo) {
+		MemberVO point=buydao.checkpoint(vo);
+		if(point.getPoint()<500 || point.getLev()<=2) {
+			return "ok";
+		}else {
+			return "no";
+		}
+	}
+	
 }

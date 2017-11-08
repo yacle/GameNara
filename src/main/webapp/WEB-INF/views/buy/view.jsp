@@ -46,7 +46,7 @@ td {
 			<h3>거래완료</h3>
 		</c:if>
 			<c:if test="${auth_id eq one.BUY_ID }">
-				<button id="end" style="background-color:white">계약완료</button>
+				<button id="end" style="background-color:white">거래완료</button>
 			</c:if>
 		</div>
 			<div class="row">

@@ -2,6 +2,7 @@ package org.game.nara.models;
 
 import java.util.*;
 
+import org.game.nara.MemberVO;
 import org.game.nara.SellVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,5 @@ SqlSessionTemplate temp;
 	public int deleteOne(String no) {
 		return temp.delete("sell.delete", no);
 	}
-
+	
 }

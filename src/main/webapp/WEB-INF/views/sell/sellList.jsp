@@ -18,7 +18,7 @@ th, td {
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	<a href="/sell/list?category=0&&type=map"><span class="glyphicon glyphicon-th"></span>앨범형</button></a> | 
 	<a><span class="glyphicon glyphicon-list-alt"></span>게시판형</a>
-	<a href="/sell/sellForm"><button type="button" id="write" class="btn btn-primary btn-sm">글작성</button></a><br/>
+	<button type="button" id="write" class="btn btn-primary btn-sm">글작성</button><br/>
 	<input type="hidden" id="id" value="${auth_id }">
 </div>
 <div align="center" style="line-height: 35px">
@@ -88,22 +88,6 @@ th, td {
 </div>
 
 <script>
-$("#write").click(function(){
-	$.ajax({
-		"type":"post",
-		"async":false,
-		"url":"/member/pointcheck",
-		"data":{
-			"id":$("#id").val(),
-		}
-	}).done(function(obj){
-		if(obj=='ok'){
-			location.href="/sell/sellForm";
-		}else{
-			window.alert("포인트가 부족합니다.")
-		}
-	})
-})
 function openchat(obj){
 	var url="/chat/noteSend?id="+obj;
 	window.open(url, "noteSend", "width=400, height=550");
@@ -122,5 +106,24 @@ function chatting(obj){
 	})
 	var url="/chatting/chatPage?id="+obj;
 	window.open(url, "", "width=400, height=550");
-}	
+}
+
+//포인트체크 & 레벨 
+$("#write").click(function() {
+	$.ajax({
+		"type" : "POST",
+		"async" : false,
+		"url" : "/sell/checkpoint",
+		"data" : {
+			"id" : $("#id").val()
+		}
+	}).done(function(obj){
+		if(obj=="ok"){
+			window.alert("포인트및 레벨이 맞지않습니다!");
+		}else{
+			location.href = "/sell/sellForm";
+		}
+	})
+});
+
 </script>

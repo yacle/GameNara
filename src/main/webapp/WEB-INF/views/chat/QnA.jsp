@@ -3,6 +3,7 @@
 <style>
 textarea {
 	width: 500%;
+	height: 600px;
 	padding: 12px 20px;
 	box-sizing: border-box;
 	border: 2px solid #ccc;
@@ -22,7 +23,7 @@ textarea {
 				</div>
 				<div class="form-group">
 					<label for="comment">보낼 내용</label> 
-					<textarea class="form-control" rows="5" name="content" id="content" style="width: 80%;" placeholder="[문의사항 & 건의 사항]"></textarea>
+					<textarea class="form-control" rows="5" name="content" id="content" style="width: 80%; height : 300px;" placeholder="[문의사항 & 건의 사항]"></textarea>
 				</div>
 			</form>
 			<br/>

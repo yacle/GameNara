@@ -116,7 +116,6 @@ $("#check").click(function() {
 	}).done(function(obj){
 		if(obj=="ok"){
 			window.alert("포인트및 레벨이 맞지않습니다!");
-			location.href="/notice"
 		}else{
 			location.href = "/buy/add";
 		}
