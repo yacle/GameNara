@@ -35,7 +35,7 @@
 				<li><a href="/after/list">거래후기</a></li>
 			</ul>
 		</li>
-		<li><a>[${auth_id} Level] : ${auth_level}</a></li>
+		<li><a>[${auth_id} Level] : <span id="level"></span></a></li>
 		<li><div class="form-group">
 	 		<form class="navbar-form" action="/search" method="post">
 				<input type="text"  id="word" name="word" class="form-control" placeholder="Search" size="18px">
@@ -78,6 +78,7 @@
 			var d = JSON.parse(r);
 			$("#note_cnt").html(d.cnt);
 			$("#point").html(d.point);
+			$("#level").html(d.level);
 		})
 	}
 	nws.onmessage =function(e){

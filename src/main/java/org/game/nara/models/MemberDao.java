@@ -36,6 +36,10 @@ SqlSessionTemplate temp;
 		return temp.selectOne("member.pointcheck", id);
 	}
 	
+	public int levelcheck(String id) {
+		return temp.selectOne("member.levelcheck", id);
+	}
+	
 	public MemberVO readInfo(MemberVO vo) {
 		return temp.selectOne("member.readInfo", vo);
 	}

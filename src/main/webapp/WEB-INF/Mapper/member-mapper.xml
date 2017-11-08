@@ -29,6 +29,10 @@
 		select point from member where id=#{id}
 	</select>
 	
+	<select id="levelcheck" resultType="int">
+		select lev from member where id=#{id}
+	</select>
+	
 	<update id="addProfile">
 		update member_info set profile=#{profile} where id=#{id}
 	</update>

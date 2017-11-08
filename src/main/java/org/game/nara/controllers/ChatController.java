@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.game.nara.models.ChatDao;
+import org.game.nara.models.MemberDao;
 import org.game.nara.models.SellDao;
 import org.game.nara.wsControllers.NoteWSHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ChatController {
 @Autowired
 ChatDao chatDao;
+@Autowired
+MemberDao mDao;
 @Autowired
 NoteWSHandler nws;
 @Autowired
@@ -82,7 +85,8 @@ SellDao sellDao;
 	public String note_cntHandle(@RequestParam Map map) {
 		int r = chatDao.receiv_cntHandle((String)map.get("id"));
 		int p = chatDao.readPoint((String)map.get("id"));
-		String json = String.format("{\"point\":%d,\"cnt\":%d}", p, r);
+		int l = mDao.levelcheck((String)map.get("id"));
+		String json = String.format("{\"point\":%d,\"cnt\":%d,\"level\":%d}", p, r, l);
 		return json;
 	}
 	
