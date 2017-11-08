@@ -25,11 +25,6 @@
 	<update id="subPoint">
 		UPDATE MEMBER set POINT= point-500 where id=#{id}
 	</update>
-	
-	 <update id="upLevel">
-		UPDATE MEMBER set lev= 3 where id=#{id}
-	</update>
-		
 	<update id="countOne"> 
 		update freeboard set view_cnt = view_cnt+1 where no =#{no}
 	</update>

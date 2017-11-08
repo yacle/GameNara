@@ -37,10 +37,6 @@ public class FreeBoardDao {
 		return tmp.update("freeB.subPoint",id);
 	}
 	
-	public int upLevel(String id) {
-		return tmp.update("freeB.upLevel",id);
-	}
-	
 	public int modifyFreeB(FreeBoardVO vo) {
 		return tmp.update("freeB.modifyFreeB",vo);
 	}

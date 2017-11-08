@@ -98,7 +98,6 @@ public class MemberController {
 	@PostMapping("/info")
 	@ResponseBody
 	public String infoPostHandle(@RequestParam Map map, HttpSession session) {
-		System.out.println(map.toString());
 		int r = mDao.addInfo(map);
 		if(r!=0) {
 			return "save complate";

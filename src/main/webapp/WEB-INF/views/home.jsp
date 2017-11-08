@@ -24,6 +24,6 @@ body {
 			<a href="/index/1">ENTER</a>
 		</h1>
 	</div>
-div>
+</div>
 </body>
 </html>

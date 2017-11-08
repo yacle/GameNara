@@ -6,6 +6,7 @@
 		<a class="navbar-brand" href="/">GAMENARA</a>
 	</div>
 	<ul class="nav navbar-nav">
+	<li class="active"><a href="/index/1">HOME</a></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">SELL<span class="caret"></span></a>
 			<ul class="dropdown-menu">
