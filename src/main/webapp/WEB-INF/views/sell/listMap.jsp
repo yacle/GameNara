@@ -11,71 +11,71 @@
 </div>
 <div class="row text-center">
 	<c:forEach var="i" begin="0" end="${cnt}" step="1">
-		<c:choose>
-			<c:when test="${empty list[i].NO }">
-			</c:when>
-			<c:otherwise>
+		<c:if test="${empty list[i].NO }">
+			<c:if test="${auth_level >1 }">
 				<a href="/sell/view/${list[i].NO}">
-					<div class="col-sm-3">
-						<div class="thumbnail">
-						<c:choose>
-							<c:when test="${empty list[i].PIC }">
-								<img src="/profiles/default02.jpg" class="img-thumbnail" alt="Article Photo" width="200px" height="200px"><br/>
-							</c:when>
-							<c:otherwise>
-								<img src="/sellB_File/${list[i].PIC}" class="img-thumbnail" alt="Article Photo" width="200px" height="200px"><br/>
-							</c:otherwise>
-						</c:choose>
-						<p>
-						<c:choose>
-							<c:when test="${list[i].CATEGORY eq 0}">
-								<strong>기타</strong>
-							</c:when>
-							<c:when test="${list[i].CATEGORY eq 1}">
-								<strong>콘솔</strong>
-							</c:when>
-							<c:when test="${list[i].CATEGORY eq 2}">
-								<strong>게임타이틀</strong>
-							</c:when>
-							<c:otherwise>
-								<strong>주변기기</strong>
-							</c:otherwise>
-						</c:choose>
-							<c:if test="${list[i].STATE == '1' }">
-								<span class="label label-info">[거래중]</span>
-							</c:if> 
-							<c:if test="${list[i].STATE == '2' }">
-								<span class="label label-info">[거래완료]</span>
-							</c:if>
-						</p>
-						<p>${list[i].TITLE}  <span class="badge">${list[i].CNT }</span>
-							
-						</p>
+			</c:if>
+				<div class="col-sm-3">
+					<div class="thumbnail">
+					<c:choose>
+						<c:when test="${empty list[i].PIC }">
+							<img src="/profiles/default02.jpg" class="img-thumbnail" alt="Article Photo" width="200px" height="200px"><br/>
+						</c:when>
+						<c:otherwise>
+							<img src="/sellB_File/${list[i].PIC}" class="img-thumbnail" alt="Article Photo" width="200px" height="200px"><br/>
+						</c:otherwise>
+					</c:choose>
+					<p>
+					<c:choose>
+						<c:when test="${list[i].CATEGORY eq 0}">
+							<strong>기타</strong>
+						</c:when>
+						<c:when test="${list[i].CATEGORY eq 1}">
+							<strong>콘솔</strong>
+						</c:when>
+						<c:when test="${list[i].CATEGORY eq 2}">
+							<strong>게임타이틀</strong>
+						</c:when>
+						<c:otherwise>
+							<strong>주변기기</strong>
+						</c:otherwise>
+					</c:choose>
+					<c:if test="${list[i].STATE == '1' }">
+						<span class="label label-info">[거래중]</span>
+					</c:if> 
+					<c:if test="${list[i].STATE == '2' }">
+						<span class="label label-info">[거래완료]</span>
+					</c:if>
+					</p>
+					<p>${list[i].TITLE}  <span class="badge">${list[i].CNT }</span></p>
 					</div>
 				</div>
+		<c:if test="${auth_level >1 }">
 			</a>
-			</c:otherwise>
-		</c:choose>
+		</c:if>
+		</c:if>
 		<c:if test="${i%4 eq 3}">
 			<div class="row"></div>
 		</c:if>
 	</c:forEach>   
 </div> 
 <script>
-$("#write").click(function(){
+//포인트체크 & 레벨 
+$("#write").click(function() {
 	$.ajax({
-		"type":"post",
-		"async":false,
-		"url":"/member/pointcheck",
-		"data":{
-			"id":$("#id").val(),
+		"type" : "POST",
+		"async" : false,
+		"url" : "/sell/checkpoint",
+		"data" : {
+			"id" : $("#id").val()
 		}
 	}).done(function(obj){
 		if(obj=="ok"){
-			location.href="/sell/sellForm";
+			window.alert("보유 포인트와 레벨을 확인하세요");
 		}else{
-			window.alert("포인트가 부족합니다.")
+			location.href = "/sell/sellForm";
 		}
 	})
-})
+});
+
 </script>  

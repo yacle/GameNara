@@ -17,9 +17,8 @@ public class becomeDao {
 		return template.selectList("become_member.list");
 	}
 	
-	public boolean addOne(Map map) {
-		template.insert("become_member.add", map);
-		return true;
+	public int addOne(Map map) {
+		return template.insert("become_member.add", map);
 	}
 
 	public Map readOne(String num) {

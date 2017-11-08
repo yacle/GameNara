@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 public class MemberVO {
 
+	private String keep;
+
 	private String id;
 	private String password;
 	private String email;
@@ -22,6 +24,12 @@ public class MemberVO {
 	private String name;
 	private String email_reg;
 	
+	public String getKeep() {
+		return keep;
+	}
+	public void setKeep(String keep) {
+		this.keep = keep;
+	}
 	public String getPhone_num() {
 		return phone_num;
 	}

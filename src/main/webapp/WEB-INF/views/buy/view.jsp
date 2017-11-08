@@ -39,14 +39,14 @@ td {
 		<div>
 		<c:if test="${one.END == 1 }">
 			<h2 id="title">${one.TITLE }</h2>
-			<h3>거래중</h3>
+			<h3 id="deal">거래중</h3>
 		</c:if>
 		<c:if test="${one.END == 2 }">
 			<del><h2>${one.TITLE }</h2></del>
 			<h3>거래완료</h3>
 		</c:if>
 			<c:if test="${auth_id eq one.BUY_ID }">
-				<button id="end" style="background-color:white">계약완료</button>
+				<button id="end" style="background-color:white">거래완료</button>
 			</c:if>
 		</div>
 			<div class="row">
@@ -119,7 +119,7 @@ $("#end").click(function() {
 			"no" : '${one.NO}'
 		}
 	})
-	location.reload();
+	$("#deal").html("거래완료");
 });
 	
 //게시글 삭제

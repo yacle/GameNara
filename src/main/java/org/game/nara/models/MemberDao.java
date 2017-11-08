@@ -57,6 +57,4 @@ SqlSessionTemplate temp;
 	public int emailReg(Map map) {
 		return temp.update("member.emailReg2", map);
 	}
-
-
 }

@@ -88,11 +88,9 @@ public class buycontroller {
 	}	
 
 	@RequestMapping("/end")
-	public ModelAndView buyendHandle(BuyVO vo) {
+	@ResponseBody
+	public void buyendHandle(BuyVO vo) {
 		int li = buyDao.endset(vo);
-		ModelAndView mav = new ModelAndView("temp");
-		mav.addObject("section", "buy/view");
-		return mav;
 	}
 	
 	@RequestMapping(path = "/add", method = RequestMethod.GET)

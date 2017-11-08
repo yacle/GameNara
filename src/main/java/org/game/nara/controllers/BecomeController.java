@@ -49,16 +49,12 @@ public class BecomeController {
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	public String becomeAddPostHandle(@RequestParam Map param, ModelMap map,HttpSession session) throws SQLException {
-		boolean b = becomeDao.addOne(param);
+		int b = becomeDao.addOne(param);
 		String id = (String)session.getAttribute("auth_id");
-		if (b) {
+		if (b!=0) {
 			freeboardDao.addPoint(id);
-			freeboardDao.upLevel(id);
-			return "redirect:/become_member/list";
 		}
-		map.put("result", b);
-		map.put("section", "become_member/add_rst");
-		return "temp";
+		return "redirect:/become_member/list";
 	}
 	
 	@RequestMapping(path = "/view/{num}")

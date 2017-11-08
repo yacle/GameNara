@@ -32,8 +32,8 @@ public class NoteWSHandler extends TextWebSocketHandler {
 	}
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		Map<String, Object> hs = session.getAttributes();
-		String id = (String)hs.get("auth_id");
-		users.remove(id);
+		// TODO Auto-generated method stub
+		super.afterConnectionClosed(session, status);
+
 	}
 }

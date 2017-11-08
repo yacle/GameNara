@@ -3,6 +3,7 @@ package org.game.nara.controllers;
 import java.util.*;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -38,23 +39,38 @@ MemberDao mDao;
 	
 	@PostMapping("/login")
 	public String loginPostHandle(MemberVO vo, HttpSession session, HttpServletResponse response ) {
+		String keep = vo.getKeep();
 		vo = mDao.check(vo);
 		if(vo!=null) {
 			session.setAttribute("auth_id", vo.getId());
 			session.setAttribute("auth_level", vo.getLev());
 			session.setAttribute("auth_point",vo.getPoint());
-			return "redirect:/index";
+			if(keep!=null){
+				Cookie c = new Cookie("keep", vo.getId());	// default 라는 이름의 쿠키(내용은 off) 생성
+				c.setMaxAge(60*60*24*7);
+				c.setPath("/");
+				response.addCookie(c);
+			}
+			return "redirect:/index/1";
 		}else {
 			return "redirect:/log/login/fail";
 		}
 	}
 	
 	@RequestMapping("/logout")
-	public String logoutHandle(HttpSession session) {
-		session.removeAttribute("auth_id");
-		session.removeAttribute("auth_level");
-		session.removeAttribute("auth_point");
-		return "redirect:/index";
+	public String logoutHandle(HttpServletRequest request,  HttpServletResponse response, HttpSession session) {
+		session.invalidate();
+		Cookie[] ar=request.getCookies();
+			if(ar!=null){
+				for(Cookie cm : ar){
+					if(cm.getName().equals("keep")){
+						cm.setMaxAge(0);
+						cm.setPath("/");
+						response.addCookie(cm);
+					}
+				}
+			}	
+		return "redirect:/index/1";
 	}
 
 }

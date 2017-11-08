@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.game.nara.wsControllers.ChattingWSHandler;
+import org.game.nara.wsControllers.NoteWSHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +19,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 @RequestMapping("/chatting")
 public class ChattingControllers {
-	
+	@Autowired
+	NoteWSHandler nws;	
 	@Autowired
 	ChattingWSHandler cws;
-	
 	@Autowired
 	ObjectMapper mapper;
 
@@ -57,5 +58,15 @@ public class ChattingControllers {
 			e.printStackTrace();
 		}
 		return rst;
+	}
+	
+	
+	@PostMapping("/deny")
+	@ResponseBody
+	public void noteSendHandle(@RequestParam Map map) throws IOException {
+		String receiver = (String) map.get("receiver");
+		String sender = (String) map.get("sender");
+		String msg = (String) map.get("msg");
+		cws.sendMessageToUser(receiver, msg, sender);
 	}
 }

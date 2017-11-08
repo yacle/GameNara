@@ -3,9 +3,10 @@
 
 <div class="container-fluid">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="/index">GAMENARA</a>
+		<a class="navbar-brand" href="/">GAMENARA</a>
 	</div>
 	<ul class="nav navbar-nav">
+	<li class="active"><a href="/index/1">HOME</a></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">SELL<span class="caret"></span></a>
 			<ul class="dropdown-menu">
@@ -64,7 +65,7 @@
 	</ul>
 </div>
 <script>
-	var nws = new WebSocket("ws://192.168.10.73/ws/note");
+	var nws = new WebSocket("ws://192.168.10.74/ws/note");
 	var cnt = function(){
 		$.ajax({
 			"type":"post",
@@ -83,13 +84,24 @@
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	}  
 	cnt();	
-	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
+	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
 		if(obj.chat =="chatting"){
 			if(window.confirm(obj.sender+"님으로 부터 1대1 채팅 신청이 왔습니다.")){
 				var url="/chatting/chatPage?id="+obj.sender;
 				window.open(url, "", "width=400, height=550");
+			}else{
+				$.ajax({
+					"type":"post",
+					"async":false,
+					"url":"/chatting/deny",
+					"data":{
+						"sender":$("#tool").html(),
+						"receiver" :obj.sender,
+						"msg" : "채팅을 거절하셨습니다."
+					}
+				})
 			}
 		}
 	}
@@ -100,6 +112,6 @@ function openchat(obj){
 
 	function openmyworld(obj){
 		var url="/MyWorld/myworld?id="+obj;		
-		window.open(url, "myworld", "width=900, height=800");
+		window.open(url, "myworld", "width=1050, height=800");
 	}
 </script>

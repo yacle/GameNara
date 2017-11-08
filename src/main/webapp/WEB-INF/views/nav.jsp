@@ -2,7 +2,7 @@
 
    <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/index">GAMENARA</a>
+      <a class="navbar-brand" href="/">GAMENARA</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a href="/notice">NOTICE</a></li>

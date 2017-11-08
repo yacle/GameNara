@@ -19,10 +19,16 @@
 			<input type="password" class="form-control" name="password" placeholder="Enter password" style="width:50%">
 		</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<div class="checkbox">
 			<label><input type="checkbox" name="keep" value="keep"> Remember me</label>
 		</div>
 =======
+>>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
+=======
+		<div class="checkbox">
+			<label><input type="checkbox" name="keep" value="keep"> Remember me</label>
+		</div>
 >>>>>>> branch 'master' of https://github.com/yacle/GameNara.git
 		<button type="submit" class="btn btn-default">Submit</button>
 	</form>

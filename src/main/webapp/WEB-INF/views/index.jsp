@@ -10,6 +10,11 @@ h2{
 </style>
 <h2 class="bg-primary"><strong>ALL of The GAME</strong></h2>
 <hr/>
+<c:if test="${notice eq '2' }">
+<script>
+	window.alert("접근이 금지된 경로입니다.");
+</script>
+</c:if>
 <div class="row" align="center" style="font-size: 18px">
 	<div class="col-md-4">
 		<h2>[팝니다]</h2>
