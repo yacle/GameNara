@@ -11,11 +11,12 @@ td{
 <div align="center">
 	<h2>등업신청 게시판</h2>
 </div><hr/>
+<div  style="background-color: #EAEAEA;" >
 ◯ : 읽기&쓰기&emsp;/&emsp;    
 ☐: 읽기&emsp; /&emsp;
 △ : 게시판 리스트만 볼 수 있읍니다.&emsp;/&emsp;    
 X : 권한없음
-<table border="1" align="center">
+<table border="1" align="center" style="background-color: #EAEAEA;">
 	<thead>
 		<tr>
 			<td width="6%">구분</td>
@@ -94,7 +95,8 @@ X : 권한없음
 	</tbody>
 </table><br/>
 <%-- 등업신청 input form --%>
-<div class="row" >
+
+<div class="row">
 	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
 	<div class="col-md-7"><textarea rows="2" cols="100%" id="content"></textarea></div>
 	<div class="col-md-2" align="right">비밀번호:<br/><input type="text" id="pwd" size="5" placeholder="4자리 숫자" required></div>
@@ -103,8 +105,8 @@ X : 권한없음
 </div>
 <hr/>
 <!-- 등업신청 List View -->
-<span id="levelReqList"></span>
-
+<span id="levelReqList" ></span>
+</div>
 <script>
 // 댓글 목록 불러오기
 var level=$("#level").val();

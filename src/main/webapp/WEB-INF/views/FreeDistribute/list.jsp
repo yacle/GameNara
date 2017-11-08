@@ -20,15 +20,15 @@ th, td {
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
 	<input type="hidden" id="my" value="${auth_id }"/>
-	<table style="width: 95%; background-color: #EAEAEA;"
+	<table style="background-color: #EAEAEA;"
 		class="table table-bordered">
 		<thead>
 			<tr>
 				<th style="width: 10%">글번호</th>
-				<th style="width: 45%">글제목</th>
+				<th style="width: 50%">글제목</th>
 				<th style="width: 15%">작성자</th>
 				<th style="width: 15%">작성일자</th>
-				<th style="width: 15%">조회수</th>
+				<th style="width: 10%">조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,7 +38,7 @@ th, td {
 					<c:choose>	
 						<c:when test="${auth_level gt 1}">
 							<c:if test="${obj.attach ne null }">
-								<td style="text-align: left; padding-left: 30px;"><a href="/FreeDistribute/view/${obj.no}">${fn:substring(obj.title, 0, 12)}</a>
+								<td style="text-align: left; padding-left: 30px;"><a href="/FreeDistribute/view/${obj.no}">${obj.title}</a>
 								<img id="pf" src="/profiles/board_def.JPG" style="height:10px; width:10px;"/>
 								<span class="badge">${obj.cnt }</span>
 								<c:if test="${obj.end == 2 }">
@@ -46,7 +46,7 @@ th, td {
 								</c:if>
 							</c:if>
 							<c:if test="${obj.attach eq null }">
-								<td style="text-align: left; padding-left: 30px;"><a href="/FreeDistribute/view/${obj.no}">${fn:substring(obj.title, 0, 12)}</a>
+								<td style="text-align: left; padding-left: 30px;"><a href="/FreeDistribute/view/${obj.no}">${obj.title}</a>
 								<span class="badge">${obj.cnt }</span>
 								<c:if test="${obj.end == 2 }">
 									<span class="label label-info">[나눔완료]</span>
@@ -54,7 +54,7 @@ th, td {
 							</c:if>
 						</c:when>
 						<c:otherwise>
-							<td style="text-align: left; padding-left: 30px;"><a href="/notice">${fn:substring(obj.title, 0, 12) }</a></td>
+							<td style="text-align: left; padding-left: 30px;">${obj.title}</td>
 						</c:otherwise>	
 					</c:choose>
 					<td>	

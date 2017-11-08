@@ -17,6 +17,7 @@ th, td {
 	<ul class="pagination">
 		<li><a href="/chat/note_list?id=${auth_id }">받은 쪽지함</a></li>
 		<li><a href="">보낸 쪽지함</a></li>
+		<li><a href="/chatting/chatList?id=${auth_id }">채팅메세지함</a></li>
 	</ul>
 	<h2>보낸 쪽지함</h2>
 	<p align="right" style="margin-right: 30px;">

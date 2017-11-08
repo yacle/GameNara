@@ -23,13 +23,13 @@ th, td {
 </div>
 <div align="center" style="line-height: 35px">
 	<input type="hidden" id="my" value="${auth_id }"/>
-	<table style="width: 95%; background-color: #EAEAEA;" class="table table-bordered">
+	<table style="background-color: #EAEAEA;" class="table table-bordered">
 		<thead>
 			<tr>
 				<th style="width: 10%">글번호</th>
-				<th style="width: 10%">구분</th>
-				<th style="width: 43%">글제목</th>
-				<th style="width: 15%">작성자</th>
+				<th style="width: 15%">구분</th>
+				<th style="width: 40%">글제목</th>
+				<th style="width: 10%">작성자</th>
 				<th style="width: 15%">작성일자</th>
 				<th style="width: 10%">조회수</th>
 			</tr>
@@ -57,7 +57,7 @@ th, td {
 						<td style="text-align: left"><a href="/sell/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12) }</a>
 					</c:when>
 					<c:otherwise>
-						<td><a href="/notice">${fn:substring(obj.TITLE, 0, 12) }</a>
+						<td style="text-align: left">${fn:substring(obj.TITLE, 0, 12) }
 					</c:otherwise>	
 				</c:choose>
 				<span class="badge">${obj.CNT }</span>
@@ -119,7 +119,7 @@ $("#write").click(function() {
 		}
 	}).done(function(obj){
 		if(obj=="ok"){
-			window.alert("포인트및 레벨이 맞지않습니다!");
+			window.alert("공지사항에서 레벨과 포인트를 확인하세요.");
 		}else{
 			location.href = "/sell/sellForm";
 		}

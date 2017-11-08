@@ -6,7 +6,7 @@
 		<a class="navbar-brand" href="/">GAMENARA</a>
 	</div>
 	<ul class="nav navbar-nav">
-	<li class="active"><a href="/index/1">HOME</a></li>
+	<li><a href="/index/1"><b>HOME</b></a></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">SELL<span class="caret"></span></a>
 			<ul class="dropdown-menu">
@@ -25,7 +25,7 @@
 				<li><a href="/buy/list/4">ACCESSORY</a></li>
 				<li><a href="/buy/list/0">ETC</a></li>
 			</ul></li>
-		<li><a href="/FreeDistribute/list">FREE PRESENT</a></li>
+		<li><a href="/FreeDistribute/list">Free Present</a></li>
 		<li class="dropdown"><a class="dropdown-toggle"
 			data-toggle="dropdown" href="#">COMMUNITY<span class="caret"></span></a>
 			<ul class="dropdown-menu">
@@ -38,13 +38,13 @@
 		<li><a>[${auth_id} Level] : ${auth_level}</a></li>
 		<li><div class="form-group">
 	 		<form class="navbar-form" action="/search" method="post">
-				<input type="text"  id="word" name="word" class="form-control" placeholder="Search" >
+				<input type="text"  id="word" name="word" class="form-control" placeholder="Search" size="18px">
 				<button type="submit" class="btn btn-default btn-sm" id="submit">Submit</button>
 			</form>	
 		</div></li>
 		<li class="dropdown">
 			<ul class="nav navbar-nav navbar-right">
-				<button class="btn btn-default dropdown-toggle-right btn-sm" type="button" id="menu1" data-toggle="dropdown" style="margin-top: 10px" >
+				<button class="btn btn-default dropdown-toggle-right btn-sm" type="button" id="menu1" data-toggle="dropdown" style="margin-top: 10px; margin-right:0px;" >
 					<span data-toggle="tooltip" id="tool" onclick="javascript:cnt()">${auth_id}</span>
 					<span class="caret"></span>
 				</button>
@@ -65,7 +65,7 @@
 	</ul>
 </div>
 <script>
-	var nws = new WebSocket("ws://192.168.10.74/ws/note");
+	var nws = new WebSocket("ws://192.168.0.5/ws/note");
 	var cnt = function(){
 		$.ajax({
 			"type":"post",
@@ -84,7 +84,7 @@
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	}  
 	cnt();	
-	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
+	var cws = new WebSocket("ws://192.168.0.5/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
 		if(obj.chat =="chatting"){

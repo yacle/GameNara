@@ -6,11 +6,11 @@
 <style>
 th {
 	border-bottom: 1px solid;
-	text-align: left;
 }
 
 th, td {
 	padding: 10px;
+	text-align: center;
 }
 </style>
 <div align="center" style="line-height: 35px">
@@ -19,13 +19,13 @@ th, td {
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>
 	<input type="hidden" id="my" value="${auth_id }"/>
-	<table style="width: 95%; background-color: #EAEAEA;" class="table table-bordered">
+	<table style="background-color: #EAEAEA;" class="table table-bordered">
 		<thead>
 			<tr>
 				<th style="width: 10%">글번호</th>
-				<th style="width: 10%">구분</th>
-				<th style="width: 43%">글제목</th>
-				<th style="width: 15%">작성자</th>
+				<th style="width: 15%">구분</th>
+				<th style="width: 40%">글제목</th>
+				<th style="width: 10%">작성자</th>
 				<th style="width: 15%">작성일자</th>
 				<th style="width: 10%">조회수</th>
 			</tr>
@@ -50,7 +50,7 @@ th, td {
 					</c:choose>
 					<c:choose>
 						<c:when test="${auth_level >= 2 }">
-							<td>
+							<td style="text-align: left">
 								<a href="/buy/view/${obj.no}">${fn:substring(obj.title, 0, 12) }</a>
 									<span class="badge">${obj.c }</span> 
 								<c:if test="${obj.end == 1 }">
@@ -74,8 +74,8 @@ th, td {
 							<td>${obj.count }</td>
 						</c:when>
 						<c:otherwise>
-							<td>
-								<a href="/notice">${obj.title }</a>
+							<td style="text-align: left">
+								${obj.title }
 								<c:if test="${obj.end == 1 }">
 									<span class="label label-info">[거래중]</span>
 								</c:if>
@@ -115,7 +115,7 @@ $("#check").click(function() {
 		}
 	}).done(function(obj){
 		if(obj=="ok"){
-			window.alert("포인트및 레벨이 맞지않습니다!");
+			window.alert("공지사항에서 레벨과 포인트를 확인하세요.");
 		}else{
 			location.href = "/buy/add";
 		}

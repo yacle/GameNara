@@ -14,7 +14,7 @@ td{
 ☐: 읽기&emsp; /&emsp;
 △ : 게시판 리스트만 볼 수 있읍니다.&emsp;/&emsp;    
 X : 권한없음
-<table border="1" align="center">
+<table border="1" align="center" style="background-color: #EAEAEA;">
 	<thead>
 		<tr>
 			<td width="6%">구분</td>

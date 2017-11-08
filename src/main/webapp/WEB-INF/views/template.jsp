@@ -3,7 +3,8 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <style>
 .all{
-	background-color:Gainsboro ;
+	background-image: url("/profiles/back02.jpg");
+	background-repeat: no-repeat;
 }
 </style>
 <html>
@@ -37,7 +38,7 @@
 			</nav>
 		</c:otherwise>
 	</c:choose>
-	<section style="min-height: 70%;">
+	<section style="min-height: 60%; background-color:white;">
 		<tiles:insertAttribute name="section" />
 	</section>
 	<footer class="container-fluid text-center">
