@@ -9,7 +9,7 @@
 		<p>
 			<c:choose>
 				<c:when test="${empty map.profile}">
-					<img src="/profiles/default.png" id="pf" alt="기본이미지"
+					<img src=" background-image: url("paper.gif")" id="pf" alt="기본이미지"
 						style="height: 301px; width: 300px;" />
 				</c:when>
 				<c:otherwise>

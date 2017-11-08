@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,12 +44,15 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/index")
-	public ModelAndView indexHandle() {
+	@RequestMapping("/index/{notice}")
+	public ModelAndView indexHandle(@PathVariable String notice) {
 		ModelAndView mav = new ModelAndView("temp");
 		Map data = indexDao.indexHandel();
 		mav.addObject("section", "index");
 		mav.addObject("data", data);
+		if(notice.equals('2')) {
+			mav.addObject("notice", "접근이 금지된 경로입니다.");
+		}
 		return mav;
 	}
 	

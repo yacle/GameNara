@@ -37,7 +37,18 @@ th, td {
 			<c:forEach var="obj" items="${list }">
 				<tr>
 					<td>${obj.NO} </td>
-					<td>${obj.SENDER }</td>
+					<td>
+						<div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+									<span id="receiver" value="${obj.SENDER }">${obj.SENDER }</span>
+								<span class="caret"></span></button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:openchat('${obj.SENDER }')">쪽지보내기</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:chatting('${obj.SENDER }')">1:1채팅초대</a></li>
+								</ul>
+							</div>
+					
+					</td>
 					<td><span id="noteView" value="${obj}">${obj.CONTENT }</span></td>
 					<td><small>${obj.SENDTIME }</small></td>
 					<td><input type="checkbox" id="noteDel" name="noteDel" class="delCheck" value="${obj.NO}"/></td> 
@@ -67,6 +78,32 @@ var arr=[];
 		}).done(function(r){
 			window.location.reload();
 		})	
+		
+	}
+	
+	function openchat(obj){
+		var url="/chat/noteSend?id="+obj;
+		window.open(url, "noteSend", "width=400, height=550");
+	}
+
+	function chatting(obj){
+		$.ajax({
+			"type":"post",
+			"async":true,
+			"url":"/chatting/confirm",
+			"data":{
+				"chat":"chatting",
+				"receiver":obj,
+				"sender" : $("#my").val()
+			}
+		}).done(function (r){
+			if(r == "yes"){	
+				var url="/chatting/chatPage?id="+obj;
+				window.open(url, "", "width=400, height=550");
+			}else{
+				window.alert("현재 접속하지 않은 사용자입니다.")
+			}
+		})
 		
 	}
 </script>

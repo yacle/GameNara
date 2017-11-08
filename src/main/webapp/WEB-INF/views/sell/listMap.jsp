@@ -73,7 +73,7 @@ $("#write").click(function() {
 		}
 	}).done(function(obj){
 		if(obj=="ok"){
-			window.alert("포인트및 레벨이 맞지않습니다!");
+			window.alert("보유 포인트와 레벨을 확인하세요");
 		}else{
 			location.href = "/sell/sellForm";
 		}
