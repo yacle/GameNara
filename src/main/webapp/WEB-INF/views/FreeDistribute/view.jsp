@@ -130,8 +130,6 @@ $("#ok").click(function() {
 			"no" : $("#num").val()
 		}
 	})
-	location.reload();
-	
 });
 </script>
 

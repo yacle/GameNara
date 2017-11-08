@@ -38,12 +38,26 @@ th, td {
 					<c:choose>
 						<c:when test="${auth_id ne null}">
 							<c:if test="${obj.ATTACH ne null }">
-								<td style="text-align: left; padding-left: 30px;"><a href="/after/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+								<td style="text-align: left; padding-left: 30px;">
+								<c:if test="${auth_level >1 }">
+									<a href="/after/view/${obj.NO}">
+								</c:if>
+									${fn:substring(obj.TITLE, 0, 12)}
+								<c:if test="${auth_level >1 }">
+									</a>
+								</c:if>
 								<img id="pf" src="/profiles/board_def.JPG" style="height:10px; width:10px;"/>
 								<span class="badge">${obj.CNT }</span>
 							</c:if>
 							<c:if test="${obj.ATTACH eq null }">
-								<td style="text-align: left; padding-left: 30px;"><a href="/after/view/${obj.NO}">${fn:substring(obj.TITLE, 0, 12)}</a>
+								<td style="text-align: left; padding-left: 30px;">
+								<c:if test="${auth_level >1 }">
+									<a href="/after/view/${obj.NO}">
+								</c:if>
+									${fn:substring(obj.TITLE, 0, 12)}
+								<c:if test="${auth_level >1 }">
+									</a>
+								</c:if>
 								<span class="badge">${obj.CNT }</span>
 							</c:if>
 						</c:when>
@@ -78,17 +92,20 @@ th, td {
 	</table>
 	<p align="right" style="margin-right: 30px;">
 		<c:choose>
-			<c:when test="${auth_id ne null}">
+			<c:when test="${auth_level > 2}">
 				<a href="/after/add/0"><button type="button" style="padding: 5px;">글작성</button></a>
 			</c:when>
 			<c:otherwise>
-				<button type="button" style="padding: 5px;">글작성</button></a>
+				<button type="button" style="padding: 5px;" onclick="javascript:notice()">글작성</button>
 			</c:otherwise>
 		</c:choose>
 	</p>
 </div>
 
 <script>
+	function notice(){
+		window.alert("레벨 3부터 작성 가능합니다.");
+	}
 	function openchat(obj){
 		var url="/chat/noteSend?id="+obj;
 		window.open(url, "noteSend", "width=400, height=550");

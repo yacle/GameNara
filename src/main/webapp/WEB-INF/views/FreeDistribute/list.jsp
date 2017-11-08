@@ -75,7 +75,11 @@ th, td {
 		</tbody>
 	</table>
 	<p align="right" style="margin-right: 30px;">
-		<a href="/FreeDistribute/add"><button type="button" style="padding: 5px;">글작성</button></a>
+		<c:if test="${auth_level >1 }">
+			<a href="/FreeDistribute/add">
+		</c:if>
+			<button type="button" style="padding: 5px;">글작성</button>
+		<c:if test="${auth_level >1 }"></a></c:if>
 	</p>
 </div>
 
