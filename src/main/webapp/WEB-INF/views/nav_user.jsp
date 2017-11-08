@@ -64,7 +64,7 @@
 	</ul>
 </div>
 <script>
-	var nws = new WebSocket("ws://192.168.10.73/ws/note");
+	var nws = new WebSocket("ws://192.168.10.74/ws/note");
 	var cnt = function(){
 		$.ajax({
 			"type":"post",
@@ -83,13 +83,24 @@
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	}  
 	cnt();	
-	var cws = new WebSocket("ws://192.168.10.73/ws/chat");
+	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
 		if(obj.chat =="chatting"){
 			if(window.confirm(obj.sender+"님으로 부터 1대1 채팅 신청이 왔습니다.")){
 				var url="/chatting/chatPage?id="+obj.sender;
 				window.open(url, "", "width=400, height=550");
+			}else{
+				$.ajax({
+					"type":"post",
+					"async":false,
+					"url":"/chatting/deny",
+					"data":{
+						"sender":$("#tool").html(),
+						"receiver" :obj.sender,
+						"msg" : "채팅을 거절하셨습니다."
+					}
+				})
 			}
 		}
 	}

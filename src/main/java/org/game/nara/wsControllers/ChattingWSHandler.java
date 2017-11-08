@@ -43,4 +43,10 @@ public class ChattingWSHandler extends TextWebSocketHandler {
 			}
 		return rst;
 	}
+	
+	@Override
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		// TODO Auto-generated method stub
+		super.afterConnectionClosed(session, status);
+	}
 }

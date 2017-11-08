@@ -85,19 +85,6 @@ th, td {
 			</c:forEach>
 		</tbody>
 	</table>
-	<p align="right" style="margin-right: 30px;">
-	<c:choose>
-		<c:when test="${empty auth_id }">
-			<a href="/log/login">
-		</c:when>
-		<c:when test="${auth_level >= 3 }">
-			<a href="/sell/sellForm">
-		</c:when>
-		<c:otherwise>
-			<a href="/notice">
-		</c:otherwise>
-	</c:choose>
-	</p>
 </div>
 
 <script>
