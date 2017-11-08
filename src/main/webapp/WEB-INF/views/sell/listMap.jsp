@@ -62,20 +62,22 @@
 	</c:forEach>   
 </div> 
 <script>
-$("#write").click(function(){
+//포인트체크 & 레벨 
+$("#write").click(function() {
 	$.ajax({
-		"type":"post",
-		"async":false,
-		"url":"/member/pointcheck",
-		"data":{
-			"id":$("#id").val(),
+		"type" : "POST",
+		"async" : false,
+		"url" : "/sell/checkpoint",
+		"data" : {
+			"id" : $("#id").val()
 		}
 	}).done(function(obj){
 		if(obj=="ok"){
-			location.href="/sell/sellForm";
+			window.alert("포인트및 레벨이 맞지않습니다!");
 		}else{
-			window.alert("포인트가 부족합니다.")
+			location.href = "/sell/sellForm";
 		}
 	})
-})
+});
+
 </script>  
