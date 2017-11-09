@@ -37,7 +37,7 @@
 		this.value = "";
 	}
 	// 받은 메시지 내용 확인
-	var cws = new WebSocket("ws://192.168.0.5/ws/chat");
+	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	cws.onmessage = function(e) {
 		var obj =JSON.parse(e.data);
 		var m = "<p><b>"+ obj.sender+"</b> : " +obj.msg +"</p>";

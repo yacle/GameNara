@@ -31,7 +31,7 @@ public class BecomeController {
 	FreeBoardDao freeboardDao;
 
 	@RequestMapping("/list")
-	public ModelAndView becomeListHandle() throws SQLException {
+	public ModelAndView becomeListHandle() throws Exception {
 		List<Map> li = becomeDao.readAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "become_member/list");
@@ -48,7 +48,7 @@ public class BecomeController {
 	}
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String becomeAddPostHandle(@RequestParam Map param, ModelMap map,HttpSession session) throws SQLException {
+	public String becomeAddPostHandle(@RequestParam Map param, ModelMap map,HttpSession session) throws Exception {
 		int b = becomeDao.addOne(param);
 		String id = (String)session.getAttribute("auth_id");
 		if (b!=0) {
@@ -58,7 +58,7 @@ public class BecomeController {
 	}
 	
 	@RequestMapping(path = "/view/{num}")
-	public ModelAndView becomeviewHandle(@PathVariable String num) throws SQLException {
+	public ModelAndView becomeviewHandle(@PathVariable String num) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");	
 		Map one = becomeDao.readOne(num);
 		mav.addObject("one", one);
@@ -67,7 +67,7 @@ public class BecomeController {
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteReplyHandle(@RequestParam Map num) {
+	public String deleteReplyHandle(@RequestParam Map num) throws Exception {
 		int rst=0;
 		int ok = becomeDao.delete(num);
 		if(ok==1) {
@@ -78,7 +78,7 @@ public class BecomeController {
 	
 	@RequestMapping("/add_rst")
 	@ResponseBody
-	public int buyadjustHandle(@RequestParam Map param){
+	public int buyadjustHandle(@RequestParam Map param) throws Exception{
 		return becomeDao.adjust(param);
 	}
 	
@@ -91,19 +91,19 @@ public class BecomeController {
 	
 	@RequestMapping("/levelReqList")
 	@ResponseBody
-	public List<LevelReqVO> levelReqList() {
+	public List<LevelReqVO> levelReqList() throws Exception {
 		return becomeDao.levelReqList();
 	}
 	
 	@RequestMapping("/levelReqAdd")
 	@ResponseBody
-	public int levelReqAdd(@RequestBody LevelReqVO vo){
+	public int levelReqAdd(@RequestBody LevelReqVO vo) throws Exception{
 		return becomeDao.leverReqAdd(vo);
 	}
 	
 	@RequestMapping("/levelReqDel")
 	@ResponseBody
-	public int levelReqDel(@RequestParam Map map){
+	public int levelReqDel(@RequestParam Map map) throws Exception{
 		System.out.println(map.toString());
 		return becomeDao.leverReqDel(map.get("no"));
 	}

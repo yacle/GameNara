@@ -45,7 +45,7 @@ public class buycontroller {
 	MemberDao memberDao;
 
 	@RequestMapping(value="/list/{category}")
-	public ModelAndView buyListHandle(@PathVariable(value="category")int category) throws SQLException {
+	public ModelAndView buyListHandle(@PathVariable(value="category")int category) throws Exception {
 		List<BuyVO> li = new ArrayList<>();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section","buy/list");
@@ -89,7 +89,7 @@ public class buycontroller {
 
 	@RequestMapping("/end")
 	@ResponseBody
-	public void buyendHandle(BuyVO vo) {
+	public void buyendHandle(BuyVO vo) throws Exception {
 		int li = buyDao.endset(vo);
 	}
 	
@@ -102,7 +102,7 @@ public class buycontroller {
 
 
 	@PostMapping(path = "/add")
-	public String buyaddpostHandle(BuyVO vo) throws SQLException {
+	public String buyaddpostHandle(BuyVO vo) throws Exception {
 		int r = buyDao.addOne(vo);
 		String id = vo.getBuy_id();
 		if (r!=0) {
@@ -114,14 +114,14 @@ public class buycontroller {
 
 	@RequestMapping("/add_rst")
 	@ResponseBody
-	public int buyadjustHandle(BuyVO vo) throws SQLException {
+	public int buyadjustHandle(BuyVO vo) throws Exception {
 		int b = buyDao.adjust(vo);
 		return b;
 	}
 	
 	@RequestMapping("/checkpoint")
 	@ResponseBody
-	public String buycheckpoint(MemberVO vo) {
+	public String buycheckpoint(MemberVO vo) throws Exception {
 		MemberVO point=buyDao.checkpoint(vo);
 		if(point.getPoint()<500 || point.getLev()<=2) {
 			return "ok";
@@ -131,7 +131,7 @@ public class buycontroller {
 	}
 	
 	@RequestMapping("/view/{num}")
-	public ModelAndView buyViewHandle(@PathVariable String num) throws SQLException {
+	public ModelAndView buyViewHandle(@PathVariable String num) throws Exception {
 		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
 		Map one = buyDao.readOne(num);
 		mav.addObject("section", "buy/view");
@@ -141,7 +141,7 @@ public class buycontroller {
 	
 	@RequestMapping("/delete")
 	@ResponseBody
-	public int deleteReplyHandle(BuyVO vo) {
+	public int deleteReplyHandle(BuyVO vo) throws Exception {
 		int r = buyDao.delete(vo);
 		return r; 
 	}

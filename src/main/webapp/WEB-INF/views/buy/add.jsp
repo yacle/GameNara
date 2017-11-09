@@ -19,18 +19,14 @@
 						name="category" value="0" onclick="doOpenCheck(this);" />기타
 				</div>
 				<br/><div class="form-group">
-					<label for="comment">작성자</label> <input type="text"
-						style="width: 80%;" class="form-control" name="buy_id"
-						value="${auth_id }">
+					<label for="comment">작성자</label> <input type="text" style="width: 80%;" class="form-control" name="buy_id" value="${auth_id }" readonly>
 				</div>
 				<div class="form-group">
-					<label for="comment">글 제목</label> <input type="text"
-						class="form-control" style="width: 80%;" name="title">
+					<label for="comment">글 제목</label> <input type="text" class="form-control" style="width: 80%;" name="title">
 				</div>
 				<div class="form-group">
 					<label for="comment">Comment:</label>
-					<textarea class="form-control" rows="5" name="detail"
-						style="width: 80%;"></textarea>
+					<textarea class="form-control" rows="5" name="detail" style="width: 80%;"></textarea>
 				</div>
 			</form>
 			<br />

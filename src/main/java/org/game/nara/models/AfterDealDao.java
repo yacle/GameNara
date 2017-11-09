@@ -12,25 +12,28 @@ public class AfterDealDao {
 @Autowired
 SqlSessionTemplate temp;
 
-	public int addAfter(AfterVO vo) {
+	public int addAfter(AfterVO vo) throws Exception {
 		return temp.insert("after.add", vo);
 	}
 	
-	public AfterVO readAfter(String no) {
+	public AfterVO readAfter(String no) throws Exception {
 		int r = temp.update("after.cnt", no);
 		return temp.selectOne("after.detail", no);
 	}
 	
-	public List listAfter() {
+	public List listAfter() throws Exception {
 		return temp.selectList("after.list");
 	}
 	
-	public int addPoint(String id) {
+	public int addPoint(String id) throws Exception {
 		return temp.insert("after.addPoint", id);
 	}
 	
-	
-	public int modifyAfter(Map map) {
+	public int modifyAfter(Map map) throws Exception {
 		return temp.update("after.modifyAfter", map);
+	}
+	
+	public int deleteAfter(AfterVO vo) throws Exception {
+		return temp.delete("after.delete", vo);
 	}
 }

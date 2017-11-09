@@ -31,7 +31,7 @@
 			<ul class="dropdown-menu">
 				<li><a href="/become_member/levelup">등업신청</a></li>
 				<li><a href="/become_member/list">가입인사</a></li>
-				<li><a href="/freeBoard/list">자유게시판</a></li>
+				<li><a href="/freeBoard/list">게임게시판</a></li>
 				<li><a href="/after/list">거래후기</a></li>
 			</ul>
 		</li>
@@ -65,7 +65,7 @@
 	</ul>
 </div>
 <script>
-	var nws = new WebSocket("ws://192.168.0.5/ws/note");
+	var nws = new WebSocket("ws://192.168.10.74/ws/note");
 	var cnt = function(){
 		$.ajax({
 			"type":"post",
@@ -85,7 +85,7 @@
 		window.alert("새로운 쪽지가 도착하였습니다.");
 	}  
 	cnt();	
-	var cws = new WebSocket("ws://192.168.0.5/ws/chat");
+	var cws = new WebSocket("ws://192.168.10.74/ws/chat");
 	cws.onmessage =function(e){
 		var obj =JSON.parse(e.data);
 		if(obj.chat =="chatting"){

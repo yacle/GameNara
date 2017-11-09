@@ -81,7 +81,6 @@ background-color:Gainsboro ;
 		<br/><div align="right"> 
 			<c:if test="${auth_id eq one.WRITER }">
 				<button type="button" class="btn btn-default" id="modify">수정</button>
-				<button type="button" class="btn btn-default" id="delete">삭제</button>
 				<button type="button" class="btn btn-default" id="update" style="display: none">저장</button>
 				<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
 			</c:if>
@@ -92,7 +91,7 @@ background-color:Gainsboro ;
 
 <hr/>
 <%-- Reply input form --%>
-<div class="row"">
+<div class="row">
 	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
 	<div class="col-md-8"><textarea rows="1" id="content"></textarea></div>
 	<div class="col-md-1">비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자" required></div>
@@ -163,21 +162,6 @@ $("#end").click(function() {
 	})
 	location.reload();
 });
-	
-//게시글 삭제
-$("#delete").click(function(){
-	if (window.confirm("삭제하시겠습니까?")) {
-		$.ajax({
-			"type" : "post",
-			"async" : false,
-			"url" : "/buy/delete",
-			"data" : {
-				"no" : $("#num").val()
-				}
-		});
-		location.href = "/buy/list/1";
-	}
-})
 </script>
 
 <script>

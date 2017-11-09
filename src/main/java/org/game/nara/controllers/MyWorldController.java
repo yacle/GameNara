@@ -35,7 +35,7 @@ public ModelAndView myworldViewHandle(HttpSession session) throws Exception {
 	}
 
 @RequestMapping(path = "/buy/{num}")
-public String buyViewHandle(@PathVariable String num, Model model) throws SQLException {
+public String buyViewHandle(@PathVariable String num, Model model) throws Exception {
 	Map one = mydao.buyread(num);
 	model.addAttribute("one",one);
 	model.addAttribute("category", "»ð´Ï´Ù");
@@ -43,7 +43,7 @@ public String buyViewHandle(@PathVariable String num, Model model) throws SQLExc
 }
 
 @RequestMapping("/sell/{num}")
-public String sellViewHandle(@PathVariable String num, Model model) throws SQLException {
+public String sellViewHandle(@PathVariable String num, Model model) throws Exception {
 	Map one = mydao.sellread(num);
 	model.addAttribute("one", one);
 	model.addAttribute("img", "sellB_File");
@@ -52,7 +52,7 @@ public String sellViewHandle(@PathVariable String num, Model model) throws SQLEx
 }
 
 @RequestMapping("/after/{num}")
-public String afterViewHandle(@PathVariable String num, Model model) throws SQLException {
+public String afterViewHandle(@PathVariable String num, Model model) throws Exception {
 	Map one = mydao.afterread(num);
 	model.addAttribute("one", one);
 	model.addAttribute("img", "afterB_File");
@@ -61,7 +61,7 @@ public String afterViewHandle(@PathVariable String num, Model model) throws SQLE
 }
 
 @RequestMapping("/free/{num}")
-public String freeViewHandle(@PathVariable String num, Model model) throws SQLException {
+public String freeViewHandle(@PathVariable String num, Model model) throws Exception {
 	Map one = mydao.freeread(num);
 	model.addAttribute("one", one);
 	model.addAttribute("img", "freeB_File");
@@ -70,7 +70,7 @@ public String freeViewHandle(@PathVariable String num, Model model) throws SQLEx
 }
 
 @RequestMapping("/freedis/{num}")
-public String freedisViewHandle(@PathVariable String num, Model model) throws SQLException {
+public String freedisViewHandle(@PathVariable String num, Model model) throws Exception {
 	Map one = mydao.freedisread(num);
 	model.addAttribute("one", one);
 	model.addAttribute("img", "freeD_File");

@@ -12,16 +12,16 @@ public class ChattingDao {
 	@Autowired
 	SqlSessionTemplate temp;
 	
-	public int addChatting(ChatVO vo) {
+	public int addChatting(ChatVO vo) throws Exception {
 		return temp.insert("chatting.add", vo);
 	}
-	public List<ChatVO> selectChat(String id) {
+	public List<ChatVO> selectChat(String id) throws Exception {
 		return temp.selectList("chatting.chatList", id);
 	}
-	public ChatVO selectOne(String no) {
+	public ChatVO selectOne(String no) throws Exception {
 		return temp.selectOne("chatting.selectChat", no);
 	}
-	public int deleteChat(Map map) {
+	public int deleteChat(Map map) throws Exception {
 		List<String> list = (List) map.get("list");
 		int r=0;
 		for(String no : list) {

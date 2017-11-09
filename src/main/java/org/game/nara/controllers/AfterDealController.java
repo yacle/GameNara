@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.game.nara.AfterVO;
+import org.game.nara.BuyVO;
 import org.game.nara.models.AfterDealDao;
 import org.game.nara.models.ReplyDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ SimpleDateFormat sdf;
 ServletContext application;
 
 	@GetMapping("/list")
-	public ModelAndView afterDeal_List_Handle() {
+	public ModelAndView afterDeal_List_Handle() throws Exception {
 		List li = afterDao.listAfter();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "after/after_list");
@@ -55,7 +56,7 @@ ServletContext application;
 		return mav;
 	}
 	@PostMapping("/add")
-	public String freeBoardAddPostHandle(AfterVO vo) throws IllegalStateException, IOException{
+	public String freeBoardAddPostHandle(AfterVO vo) throws Exception{
 		System.out.println(vo.toString());
 		String id = vo.getWriter();
 		MultipartFile pic = vo.getPicdata();
@@ -78,7 +79,7 @@ ServletContext application;
 	}
 	
 	@RequestMapping("/view/{no}")
-	public ModelAndView freeBoardViewHandle(@PathVariable String no) throws SQLException {
+	public ModelAndView freeBoardViewHandle(@PathVariable String no) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");
 		AfterVO vo = afterDao.readAfter(no);
 		mav.addObject("section", "after/view");
@@ -86,11 +87,17 @@ ServletContext application;
 		return mav;
 	}
 	
-	
 	@RequestMapping("/modify")
 	@ResponseBody
-	public int modifyHandle(@RequestParam Map map) {
+	public int modifyHandle(@RequestParam Map map) throws Exception {
 		int r = afterDao.modifyAfter(map);
 		return r;
+	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public int deleteReplyHandle(AfterVO vo) throws Exception {
+		int r = afterDao.deleteAfter(vo);
+		return r; 
 	}
 }

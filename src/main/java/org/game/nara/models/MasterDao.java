@@ -11,15 +11,15 @@ public class MasterDao {
 @Autowired
 SqlSessionTemplate temp;
 
-	public List memberList() {
+	public List memberList() throws Exception {
 	return temp.selectList("master.memberList");
 	}
 	
-	public Map memberOne(String id) {
+	public Map memberOne(String id) throws Exception {
 		return temp.selectOne("master.memberOne", id);
 	}
 	
-	public Map reportCount(String id) {
+	public Map reportCount(String id) throws Exception {
 		Map map = new HashMap();
 		int r01cnt = temp.selectOne("master.aftercnt", id);
 		int r02cnt = temp.selectOne("master.freediscnt", id);
@@ -38,23 +38,23 @@ SqlSessionTemplate temp;
 		return map;
 	}
 	
-	public List sellData(String id) {
+	public List sellData(String id) throws Exception {
 		return temp.selectList("master.sell", id);
 	}
-	public List buyData(String id) {
+	public List buyData(String id) throws Exception {
 		return temp.selectList("master.buy", id);
 	}
-	public List freedistData(String id) {
+	public List freedistData(String id) throws Exception  {
 		return temp.selectList("master.freedis", id);
 	}
-	public List freeData(String id) {
+	public List freeData(String id) throws Exception {
 		return temp.selectList("master.free", id);
 	}
-	public List afterData(String id) {
+	public List afterData(String id) throws Exception {
 		return temp.selectList("master.after", id);
 	}
 	
-	public int levelChange(Map map) {
+	public int levelChange(Map map)throws Exception  {
 		return temp.update("master.level", map);
 	}
 }	

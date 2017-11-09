@@ -47,7 +47,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/join")
-	public ModelAndView joinPostHandle(MemberVO vo) {
+	public ModelAndView joinPostHandle(MemberVO vo) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");
 		int r = mDao.addMember(vo);
 		if(r!=0) {
@@ -61,21 +61,21 @@ public class MemberController {
 	
 	@RequestMapping("/idcheck")
 	@ResponseBody
-	public int idcheckHandle(@RequestParam Map map) {
+	public int idcheckHandle(@RequestParam Map map) throws Exception {
 		int r = mDao.idcheck((String)map.get("id"));
 		return r;
 	}
 	
 	@RequestMapping("/nickcheck")
 	@ResponseBody
-	public int nickcheckHandle(@RequestParam Map map) {
+	public int nickcheckHandle(@RequestParam Map map) throws Exception {
 		int r = mDao.nickcheck((String)map.get("nick"));
 		return r;
 	}
 	
 	@RequestMapping("/pointcheck")
 	@ResponseBody
-	public String pointcheckHandle(@RequestParam Map map) {
+	public String pointcheckHandle(@RequestParam Map map) throws Exception {
 		int r = mDao.pointcheck((String)map.get("id"));
 		if(r>=500) {
 			return "ok";
@@ -85,7 +85,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/info")
-	public ModelAndView profileGetHandle(HttpSession session, MemberVO vo) {
+	public ModelAndView profileGetHandle(HttpSession session, MemberVO vo) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");
 		String id = (String)session.getAttribute("auth_id");
 		vo = mDao.readInfo(vo);
@@ -97,7 +97,7 @@ public class MemberController {
 
 	@PostMapping("/info")
 	@ResponseBody
-	public String infoPostHandle(@RequestParam Map map, HttpSession session) {
+	public String infoPostHandle(@RequestParam Map map, HttpSession session) throws Exception {
 		int r = mDao.addInfo(map);
 		if(r!=0) {
 			return "save complate";
@@ -109,7 +109,7 @@ public class MemberController {
 	
 	@PostMapping("/profile")
 	@ResponseBody
-	public String profilePostHandle(@RequestParam Map map, @RequestParam(name="profile") MultipartFile f) throws IllegalStateException, IOException {
+	public String profilePostHandle(@RequestParam Map map, @RequestParam(name="profile") MultipartFile f) throws Exception {
 		String id = (String)map.get("id");
 		if(f.getSize()>0) {
 		String fmt = sdf.format(System.currentTimeMillis());
@@ -145,7 +145,7 @@ public class MemberController {
 	
 	@RequestMapping("/regCode")
 	@ResponseBody
-	public String regCodeHandle(@RequestParam Map map, HttpSession session) {
+	public String regCodeHandle(@RequestParam Map map, HttpSession session) throws Exception {
 		String regCode = (String)map.get("regCode");
 		String uuid = (String)session.getAttribute("uuid");
 		if(regCode.equals(uuid)) {

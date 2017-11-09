@@ -39,7 +39,7 @@ public class FreeBoardControllers {
 	SimpleDateFormat sdf;
 	
 	@RequestMapping("/list")
-	public ModelAndView freeBoardListHandle() throws SQLException {
+	public ModelAndView freeBoardListHandle() throws Exception {
 		List<FreeBoardVO> li = boardDao.listAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "freeBoard/list");
@@ -56,7 +56,7 @@ public class FreeBoardControllers {
 	}
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String freeBoardAddPostHandle(FreeBoardVO vo) throws SQLException, IOException {
+	public String freeBoardAddPostHandle(FreeBoardVO vo) throws Exception {
 		MultipartFile picdata = vo.getPicdata();
 		String id = vo.getWriter();
 		if(picdata.getSize() > 0) {
@@ -81,7 +81,7 @@ public class FreeBoardControllers {
 	}
 	
 	@RequestMapping(path = "/view/{num}")
-	   public ModelAndView freeBoardViewHandle(@PathVariable String num) throws SQLException {
+	   public ModelAndView freeBoardViewHandle(@PathVariable String num) throws Exception {
 	      ModelAndView mav = new ModelAndView("temp");   // 바로 뷰이름지정
 	      Map one = boardDao.readOne(num);
 	      mav.addObject("one", one);
@@ -91,13 +91,13 @@ public class FreeBoardControllers {
 		
 	@RequestMapping("/modify")
 	@ResponseBody
-	public int modifyHandle(FreeBoardVO vo) {
+	public int modifyHandle(FreeBoardVO vo) throws Exception {
 		int r = boardDao.modifyFreeB(vo);
 		return r;
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteHandle(FreeBoardVO vo) {
+	public String deleteHandle(FreeBoardVO vo) throws Exception {
 		int ok = boardDao.delete(vo);
 		return "redirect:/freeBoard/list"; 
 	}

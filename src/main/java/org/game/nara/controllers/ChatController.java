@@ -56,7 +56,7 @@ SellDao sellDao;
 
 	@PostMapping("/note_send")
 	@ResponseBody
-	public String noteSendHandle(@RequestParam Map map) {
+	public String noteSendHandle(@RequestParam Map map) throws Exception {
 		int r = chatDao.noteAddHandle(map);
 		nws.sendMessageToUser((String)map.get("receiver"), (String)map.get("content"));
 		if(r!=0) {
@@ -69,7 +69,7 @@ SellDao sellDao;
 	
 	@PostMapping("/deal")
 	@ResponseBody
-	public String dealSendHandle(@RequestParam Map map) {
+	public String dealSendHandle(@RequestParam Map map) throws Exception {
 		int r = chatDao.noteAddHandle(map);
 		nws.sendMessageToUser((String)map.get("receiver"), (String)map.get("content"));
 		sellDao.stateUpdate(map);
@@ -82,7 +82,7 @@ SellDao sellDao;
 	
 	@PostMapping("/note_cnt")
 	@ResponseBody
-	public String note_cntHandle(@RequestParam Map map) {
+	public String note_cntHandle(@RequestParam Map map) throws Exception {
 		int r = chatDao.receiv_cntHandle((String)map.get("id"));
 		int p = chatDao.readPoint((String)map.get("id"));
 		int l = mDao.levelcheck((String)map.get("id"));
@@ -91,7 +91,7 @@ SellDao sellDao;
 	}
 	
 	@RequestMapping("/note_list")
-	public ModelAndView noteListHandle(@RequestParam String id) {
+	public ModelAndView noteListHandle(@RequestParam String id) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");
 		List list = chatDao.receiveNoteListHandle(id);
 		mav.addObject("section", "chat/receiveNoteList");
@@ -101,7 +101,7 @@ SellDao sellDao;
 	}
 	
 	@RequestMapping("/sendNoteList")
-	public ModelAndView sendNoteListHandle(@RequestParam String id) {
+	public ModelAndView sendNoteListHandle(@RequestParam String id) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");
 		List list = chatDao.sendNoteListHandle(id);
 		mav.addObject("section", "chat/sendNoteList");
@@ -112,7 +112,7 @@ SellDao sellDao;
 	
 	@PostMapping("/receiveNoteDel")
 	@ResponseBody
-	public int noteDeleteHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
+	public int noteDeleteHandle(@RequestParam Map map) throws Exception {
 		Map m = new HashMap();
 		String id = (String)map.get("id");
 		List list =  mapper.readValue((String)map.get("arr"), List.class);
@@ -124,7 +124,7 @@ SellDao sellDao;
 	
 	@PostMapping("/sendNoteDel")
 	@ResponseBody
-	public int sendNoteDeleteHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
+	public int sendNoteDeleteHandle(@RequestParam Map map) throws Exception {
 		Map m = new HashMap();
 		String id = (String)map.get("id");
 		List list =  mapper.readValue((String)map.get("arr"), List.class);
@@ -143,7 +143,7 @@ SellDao sellDao;
 	
 	@PostMapping("/note_sendAll")
 	@ResponseBody
-	public int postAllSend(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
+	public int postAllSend(@RequestParam Map map) throws Exception {
 		List<Map> list =  chatDao.memberAll();
 		String content = (String)map.get("content");
 		int r=0;

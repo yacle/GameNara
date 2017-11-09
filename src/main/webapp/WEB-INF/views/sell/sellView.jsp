@@ -43,7 +43,7 @@ td{
 			</c:otherwise>	
 		</c:choose>
 			<form action="/sell/update" method="post" id="form" enctype="multipart/form-data">
-				<input id="pic" class="update-group" type="file" name="pic" style="display: none" disabled/>
+				<input id="pic" class="update-group" type="file" name="picdata" style="display: none" disabled/>
 				<input type="hidden" name="no" value="${map.no }"/>
 				<input type="hidden" name="writer" value="${map.writer }"/>			
 		</div>
@@ -114,7 +114,6 @@ td{
 	<div class="row" align="center">
 		<input type="hidden" id="id" value="${auth_id}">
 		<p><textarea class="update-group" rows="10" width="800px" placeholder="상세내용" name="detail"  disabled>${map.detail }</textarea></p>
-		</form>
 		<c:if test="${auth_id eq map.writer }">
 			<c:if test="${map.state ne 2 }">
 				<button type="button" class="btn btn-default" id="modify">수정</button>
@@ -123,13 +122,14 @@ td{
 				<button type="reset" class="btn btn-default" id="cancle" style="display: none">취소</button>
 			</c:if>
 		</c:if>
+		</form>
 		<a href="/sell/list?category=0&&type=map"><button type="button" class="btn btn-default">목록</button></a>
 	</div>
 <hr/>
 <script>
 // 게시글 삭제
 $("#delete").click(function(){
-	if(window.confirm("게시글을 삭제하시겠읍니까?")){
+	if(window.confirm("게시글을 삭제하시겠습니까?")){
 		$.ajax({
 			"type" : "post",
 			"async" : true,
@@ -138,6 +138,8 @@ $("#delete").click(function(){
 				"no" : $("#no").html(),
 				"pic" : '${map.pic}'
 			}
+		}).done(function(){
+			location.href="/sell/list?category=0&&type=map";
 		})
 	}
 })
@@ -226,13 +228,13 @@ $("#deal").click(function(){
 		"data":{
 			"receiver":$("#receiver").html(),
 			"sender":$("#id").val(),
-			"content": "<a href="+location+">"+$("#id").val()+"님으로부터 거래의뢰가 들어왔읍니다.</a>",
+			"content": "<a href="+location+">"+$("#id").val()+"님으로부터 거래의뢰가 들어왔습니다.</a>",
 			"time":$("#time").html(),
 			"no": $("#no").html(),
 			"state": 1
 		}
 	}).done(function(obj){
-		window.alert("[거래신청 쪽지를 보냈읍니다.]");
+		window.alert("[거래신청 쪽지를 보냈습니다.]");
 		document.getElementById("deal").disabled=true;
 	})
 })
@@ -272,7 +274,7 @@ function num(a){
 <div class="row" >
 	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
 	<div class="col-md-8"><textarea rows="1" id="content"></textarea></div>
-	<div class="col-md-1">비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자" required></div>
+	<div class="col-md-1">비밀번호:<input type="number" id="pwd" size="6" placeholder="4자리 숫자"  min="1" max="9999" required></div>
 	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
 </div>
 <hr/>
@@ -366,7 +368,9 @@ $("#replies").on("click", "#m button", function(){
 			$("#replytext").val(replytext);
 			$("#replyhead").html(rno);
 			$("#myModal").modal();
+			cfm.val("");
 		}else{
+			cfm.val("");
 			cfm.hide();
 			window.alert("비밀번호를 확인하세요");
 		}

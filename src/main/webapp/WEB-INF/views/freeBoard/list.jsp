@@ -15,7 +15,7 @@ th, td {
 }
 </style>
 <div align="center" style="line-height: 35px">
-	<h2>자유게시판</h2>
+	<h2>게임게시판</h2>
 	<p align="right" style="margin-right: 30px;">
 		총 <b>${cnt }</b> 개의 글이 등록되어있습니다.
 	</p>

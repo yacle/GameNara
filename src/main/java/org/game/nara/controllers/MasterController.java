@@ -19,7 +19,7 @@ public class MasterController {
 MasterDao masterDao;
 
 	@RequestMapping("/manage_member")
-	public ModelAndView manageHandel() {
+	public ModelAndView manageHandel() throws Exception {
 		List list = masterDao.memberList();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "master/manage_member");
@@ -28,7 +28,7 @@ MasterDao masterDao;
 	}
 	
 	@RequestMapping("/report")
-	public ModelAndView reportHandel(@RequestParam String id) {
+	public ModelAndView reportHandel(@RequestParam String id) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");
 		Map map = masterDao.memberOne(id);
 		mav.addObject("section", "master/report");
@@ -37,7 +37,7 @@ MasterDao masterDao;
 	}
 	
 	@RequestMapping("/report02")
-	public ModelAndView report02Handel(@RequestParam String id) {
+	public ModelAndView report02Handel(@RequestParam String id) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");
 		Map map = masterDao.reportCount(id);
 		map.put("ID", id);
@@ -48,7 +48,7 @@ MasterDao masterDao;
 	
 	@RequestMapping("/board")
 	@ResponseBody
-	public List report03Handel(@RequestParam Map map) {
+	public List report03Handel(@RequestParam Map map) throws Exception {
 		List list = new ArrayList();
 		String board = (String) map.get("board");
 		String id = (String) map.get("id");
@@ -74,7 +74,7 @@ MasterDao masterDao;
 
 	@RequestMapping("/chgLevel")
 	@ResponseBody
-	public String levelChange(@RequestParam Map map) {
+	public String levelChange(@RequestParam Map map) throws Exception {
 		int r = masterDao.levelChange(map);
 		if(r==0) {
 			return "update fail";

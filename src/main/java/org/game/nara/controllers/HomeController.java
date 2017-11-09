@@ -45,12 +45,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/index/{notice}")
-	public ModelAndView indexHandle(@PathVariable String notice) {
+	public ModelAndView indexHandle(@PathVariable String notice) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");
 		Map data = indexDao.indexHandel();
 		mav.addObject("section", "index");
 		mav.addObject("data", data);
-		if(notice.equals('2')) {
+		if(notice.equals("2")) {
 			mav.addObject("notice", "접근이 금지된 경로입니다.");
 		}
 		return mav;

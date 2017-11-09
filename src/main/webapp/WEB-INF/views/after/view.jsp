@@ -86,6 +86,24 @@ $("#m").click(function(){
 		window.location.reload();
 	})
 })
+$("#d").click(function(){
+	if (window.confirm("삭제하시겠습니까?")) {
+		$.ajax({
+			"type" : "post",
+			"async" : false,
+			"url" : "/after/delete",
+			"data" : {
+				"no" : $("#num").val()
+				}
+		}).done(function(obj){
+			if(obj==0){
+				window.alert("삭제 실패!")
+			}else{
+				location.href = "/after/list";
+			}
+		})
+	}
+})
 </script>
 
 <!-- Reply input form -->
@@ -97,7 +115,7 @@ $("#m").click(function(){
 		<textarea rows="1" id="replyContent"></textarea>
 	</div>
 	<div class="col-md-1">
-		비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자" required>
+		비밀번호:<input type="number" id="pwd" size="6" placeholder="4자리 숫자"  min="1" max="9999" required>
 	</div>
 	<div class="col-md-1" style="padding: 10px;">
 		<button type="button" id="replysendbtn">등록</button>
@@ -134,18 +152,18 @@ var list = function(){
 		$(data).each(
 			function(){
 				str += "<div class='row'>"
-					+"<div class='col-md-2' align='center'>"+this.replyer+"</div>"
-					+"<div class='col-md-9'>"
-						+"<div class='row'>"+this.regdate+"</div>"
-						+"<div class='row'>"+this.replytext+"</div>"
-					+"</div>"
-					+"<div class='col-md-1' id='m'>"
-						+"<button type='button' class='replyLi'"
-						+"date-rno='"+this.rno+"' pw='"+this.pwd+"' value='"+this.replytext+"'>수정</button><br/>"
-						+"<input type='text'  id='replypwd' size='5' placeholder='비밀번호' style='display:none;'>"
-					+"</div>"
-				+"</div><hr/>"
-			})
+						+"<div class='col-md-2' align='center'>"+this.replyer+"</div>"
+						+"<div class='col-md-9'>"
+							+"<div class='row'>"+this.regdate+"</div>"
+							+"<div class='row'>"+this.replytext+"</div>"
+						+"</div>"
+						+"<div class='col-md-1' id='m'>"
+							+"<button type='button' class='replyLi'"
+							+"date-rno='"+this.rno+"' pw='"+this.pwd+"' value='"+this.replytext+"'>수정</button><br/>"
+							+"<input type='text'  id='replypwd' size='5' placeholder='비밀번호' style='display:none;'>"
+						+"</div>"
+					+"</div><hr/>"
+				})
 		$("#replies").html(str);
 	})
 }
@@ -194,7 +212,9 @@ $("#replies").on("click", "#m button", function(){
 			$("#replytext").val(replytext);
 			$("#replyhead").html(rno);
 			$("#myModal").modal();
+			cfm.val("");
 		}else{
+			cfm.val("");
 			cfm.hide();
 			window.alert("비밀번호를 확인하세요");
 		}

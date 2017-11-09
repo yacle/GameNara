@@ -4,12 +4,6 @@ import java.util.Date;
 
 public class BuyVO {
 
-	@Override
-	public String toString() {
-		return "BuyVO [no=" + no + ", title=" + title + ", detail=" + detail + ", buy_id=" + buy_id + ", category="
-				+ category + ", add_date=" + add_date + ", count=" + count + ", end=" + end + ", c=" + c + "]";
-	}
-	
 	private int no;
 	private String title;
 	private String detail;
@@ -18,8 +12,14 @@ public class BuyVO {
 	private Date add_date;
 	private int count;
 	private int end;
-	private int c;
+	private int replyCount;
 	
+	public int getReplyCount() {
+		return replyCount;
+	}
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -68,10 +68,10 @@ public class BuyVO {
 	public void setEnd(int end) {
 		this.end = end;
 	}
-	public int getC() {
-		return c;
-	}
-	public void setC(int c) {
-		this.c = c;
+	@Override
+	public String toString() {
+		return "BuyVO [no=" + no + ", title=" + title + ", detail=" + detail + ", buy_id=" + buy_id + ", category="
+				+ category + ", add_date=" + add_date + ", count=" + count + ", end=" + end + ", replyCount="
+				+ replyCount + "]";
 	}
 }

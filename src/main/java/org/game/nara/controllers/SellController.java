@@ -51,7 +51,7 @@ buyDao buydao;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String fsellBoardAddPostHandle(SellVO vo)throws SQLException, IOException {
+	public String fsellBoardAddPostHandle(SellVO vo)throws Exception {
 		MultipartFile picdata = vo.getPicdata();
 		String id = vo.getWriter();
 		if(picdata.getSize() > 0) {
@@ -76,7 +76,7 @@ buyDao buydao;
 	
 
 	@RequestMapping(value="/list")
-	public ModelAndView buyListHandle(@RequestParam Map map) throws SQLException {
+	public ModelAndView buyListHandle(@RequestParam Map map) throws Exception {
 		ModelAndView mav = new ModelAndView("temp");
 		String type=(String)map.get("type");
 		String category = (String)map.get("category");
@@ -128,7 +128,7 @@ buyDao buydao;
 	}	
 	
 	@RequestMapping("/view/{num}")
-	public ModelAndView buyViewHandle(@PathVariable String num) throws SQLException {
+	public ModelAndView buyViewHandle(@PathVariable String num) throws Exception {
 		ModelAndView mav = new ModelAndView("temp"); // 바로 뷰이름지정
 		SellVO vo = sellDao.sellOne(num);
 		mav.addObject("section", "sell/sellView");
@@ -137,7 +137,7 @@ buyDao buydao;
 	}
 	
 	@RequestMapping("/update")
-	public String picupdateHandle(SellVO vo) throws SQLException, IllegalStateException, IOException {
+	public String picupdateHandle(SellVO vo) throws Exception {
 		MultipartFile picdata = vo.getPicdata();
 		if(picdata.getSize() > 0) {
 			String id = vo.getWriter();
@@ -160,7 +160,7 @@ buyDao buydao;
 	
 	@RequestMapping("/state")
 	@ResponseBody
-	public String stateUpdate(@RequestParam Map map) {
+	public String stateUpdate(@RequestParam Map map) throws Exception {
 		int r = sellDao.stateUpdate(map);
 		if(r==1) {
 			return "success";
@@ -170,18 +170,22 @@ buyDao buydao;
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteHandle(@RequestParam Map map) throws SQLException {
-		System.out.println(map.toString());
+	@ResponseBody
+	public boolean deleteHandle(@RequestParam Map map) throws Exception {
 		int r = sellDao.deleteOne((String)map.get("no"));
-		File picdata = new File(application.getRealPath("/sellB_file"),(String)map.get("pic"));
-		boolean check = picdata.delete();
-		System.out.println(check);
-		return "redirect:/sell/list?category=0&&type=map";
+		String path = application.getRealPath("/sellB_File");
+		File picdata = new File(path, (String)map.get("pic"));
+		boolean check = false; 
+		if(picdata.exists() == true) {
+			picdata.delete();
+			check = true;
+		}
+		return check;
 	}
 	
 	@RequestMapping("/checkpoint")
 	@ResponseBody
-	public String buycheckpoint(MemberVO vo) {
+	public String buycheckpoint(MemberVO vo) throws Exception {
 		MemberVO point=buydao.checkpoint(vo);
 		if(point.getPoint()<500 || point.getLev()<=2) {
 			return "ok";

@@ -33,34 +33,34 @@ public Map mysearch(String id) throws Exception{
 	return map;
 }
 
-public Map buyread(String num) {
+public Map buyread(String num) throws Exception {
 	template.update("buy.countup",num);
 	return template.selectOne("myworld.buyread", num);
 	}
 
-public Map sellread(String num) {
+public Map sellread(String num) throws Exception {
 	template.update("sell.countup", num);
 	return template.selectOne("myworld.sellread", num);
 }
-public Map afterread(String no) {
+public Map afterread(String no) throws Exception {
 	int r = template.update("after.cnt", no);
 	return template.selectOne("myworld.afterread", no);
 }
-public Map freeread(String num) {
+public Map freeread(String num) throws Exception {
 	int r = template.update("freeB.countOne", num);
 	return  template.selectOne("myworld.freeread", num);
 }
 
-public Map freedisread(String num) {
+public Map freedisread(String num) throws Exception {
 	template.update("freeD.countOne",num);
 	return template.selectOne("myworld.freedisread", num);
 }
 
-public List memberList() {
+public List memberList() throws Exception {
 return template.selectList("master.memberList");
 }
 
-public Map memberOne(String id) {
+public Map memberOne(String id) throws Exception {
 	return template.selectOne("master.memberOne", id);
 }
 

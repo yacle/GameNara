@@ -38,11 +38,12 @@ MemberDao mDao;
 	}
 	
 	@PostMapping("/login")
-	public String loginPostHandle(MemberVO vo, HttpSession session, HttpServletResponse response ) {
+	public String loginPostHandle(MemberVO vo, HttpSession session, HttpServletResponse response ) throws Exception {
 		String keep = vo.getKeep();
 		vo = mDao.check(vo);
 		if(vo!=null) {
 			session.setAttribute("auth_id", vo.getId());
+			session.setAttribute("auth_level", vo.getLev());
 			if(keep!=null){
 				Cookie c = new Cookie("keep", vo.getId());	// default 라는 이름의 쿠키(내용은 off) 생성
 				c.setMaxAge(60*60*24*7);

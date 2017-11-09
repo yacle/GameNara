@@ -79,12 +79,12 @@ public class ChattingControllers {
 	
 	@PostMapping("/save")
 	@ResponseBody
-	public int chattingSaveHandle(ChatVO vo) throws IOException {
+	public int chattingSaveHandle(ChatVO vo) throws Exception {
 		return chattingDao.addChatting(vo);
 	}
 	
 	@RequestMapping("/chatList")
-	public ModelAndView ChatListHandel(@RequestParam Map map){
+	public ModelAndView ChatListHandel(@RequestParam Map map) throws Exception{
 		List<ChatVO> list = chattingDao.selectChat((String)map.get("id"));
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "chatting/chatList");
@@ -94,7 +94,7 @@ public class ChattingControllers {
 	}
 	
 	@RequestMapping("/chatView")
-	public ModelAndView chatViewHandle(@RequestParam Map map) {
+	public ModelAndView chatViewHandle(@RequestParam Map map) throws Exception {
 		ChatVO vo = chattingDao.selectOne((String)map.get("no"));
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "chatting/chatView");
@@ -104,7 +104,7 @@ public class ChattingControllers {
 	
 	@PostMapping("/deleteChat")
 	@ResponseBody
-	public int deleteChatHandle(@RequestParam Map map) throws JsonParseException, JsonMappingException, IOException {
+	public int deleteChatHandle(@RequestParam Map map) throws Exception {
 		Map m = new HashMap();
 		String id = (String)map.get("id");
 		List<String> list =  mapper.readValue((String)map.get("arr"), List.class);

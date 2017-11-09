@@ -39,7 +39,7 @@ public class FreeDistributeControllers {
 	FreeDistributeDao FD_Dao;
 	
 	@RequestMapping("/list")
-	public ModelAndView FreeDistributeListHandle() throws SQLException {
+	public ModelAndView FreeDistributeListHandle() throws Exception {
 		List<FreeDistributeVO> li = FD_Dao.listAll();
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "FreeDistribute/list");
@@ -57,7 +57,7 @@ public class FreeDistributeControllers {
 	}
 	
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String FreeDistributeAddPostHandle(FreeDistributeVO vo) throws SQLException, IOException {
+	public String FreeDistributeAddPostHandle(FreeDistributeVO vo) throws Exception {
 		MultipartFile picdata = vo.getPicdata();
 		String id = vo.getWriter();
 		if(picdata.getSize() > 0) {
@@ -80,7 +80,7 @@ public class FreeDistributeControllers {
 	}
 	
 	@RequestMapping(path = "/view/{num}")
-	   public ModelAndView FreeDistributeViewHandle(@PathVariable String num) throws SQLException {
+	   public ModelAndView FreeDistributeViewHandle(@PathVariable String num) throws Exception {
 	      ModelAndView mav = new ModelAndView("temp");   // 바로 뷰이름지정
 	      Map one = FD_Dao.readOne(num);
 	      mav.addObject("one", one);
@@ -89,7 +89,7 @@ public class FreeDistributeControllers {
 	   }
 	
 	@RequestMapping("/end")
-	public ModelAndView buyendHandle(FreeDistributeVO vo) {
+	public ModelAndView buyendHandle(FreeDistributeVO vo) throws Exception {
 		int li = FD_Dao.endSet(vo);
 		ModelAndView mav = new ModelAndView("temp");
 		mav.addObject("section", "FreeDistribute/view");
@@ -98,13 +98,13 @@ public class FreeDistributeControllers {
 	
 	@RequestMapping("/modify")
 	@ResponseBody
-	public int modifyHandle(FreeDistributeVO vo) {
+	public int modifyHandle(FreeDistributeVO vo) throws Exception {
 		int r = FD_Dao.modifyFreeD(vo);
 		return r;
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteHandle(FreeDistributeVO vo) {
+	public String deleteHandle(FreeDistributeVO vo) throws Exception {
 		int ok = FD_Dao.delete(vo);
 		return "redirect:/freeBoard/list"; 
 	}

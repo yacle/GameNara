@@ -52,10 +52,8 @@ th, td {
 						<c:when test="${auth_level >= 2 }">
 							<td style="text-align: left">
 								<a href="/buy/view/${obj.no}">${fn:substring(obj.title, 0, 12) }</a>
-									<span class="badge">${obj.c }</span> 
-								<c:if test="${obj.end == 1 }">
-									<span class="label label-info">[거래중]</span>
-								</c:if> <c:if test="${obj.end == 2 }">
+									<span class="badge">${obj.replyCount }</span> 
+								<c:if test="${obj.end == 2 }">
 									<span class="label label-info">[거래완료]</span>
 								</c:if>
 							</td>
@@ -76,9 +74,6 @@ th, td {
 						<c:otherwise>
 							<td style="text-align: left">
 								${obj.title }
-								<c:if test="${obj.end == 1 }">
-									<span class="label label-info">[거래중]</span>
-								</c:if>
 								<c:if test="${obj.end == 2 }">
 									<span class="label label-info">[거래완료]</span>
 								</c:if>

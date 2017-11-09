@@ -9,12 +9,10 @@
 		<p>
 			<c:choose>
 				<c:when test="${empty map.profile}">
-					<img src=" background-image: url("paper.gif")" id="pf" alt="기본이미지"
-						style="height: 301px; width: 300px;" />
+					<img src="/profiles/default.png" id="pf" alt="기본이미지" style="height: 301px; width: 300px;" />
 				</c:when>
 				<c:otherwise>
-					<img id="pf" src="/profiles/${map.profile}" alt="사용자프로필"
-						style="height: 301px; width: 300px;" />
+					<img id="pf" src="/profiles/${map.profile}" alt="사용자프로필" style="height: 301px; width: 300px;" />
 				</c:otherwise>
 			</c:choose>
 		</p>

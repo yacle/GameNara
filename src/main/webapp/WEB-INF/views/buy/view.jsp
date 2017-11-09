@@ -119,7 +119,7 @@ $("#end").click(function() {
 			"no" : '${one.NO}'
 		}
 	})
-	$("#deal").html("거래완료");
+	location.reload();
 });
 	
 //게시글 삭제
@@ -146,7 +146,7 @@ $("#delete").click(function(){
 <div class="row" >
 	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
 	<div class="col-md-8"><textarea rows="1" id="content"></textarea></div>
-	<div class="col-md-1">비밀번호:<input type="text" id="pwd" size="6" placeholder="4자리 숫자" required></div>
+	<div class="col-md-1">비밀번호:<input type="number" id="pwd" size="6" placeholder="4자리 숫자"  min="1" max="9999" required></div>
 	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
 </div>
 <hr/>
@@ -240,7 +240,9 @@ $("#replies").on("click", "#m button", function(){
 			$("#replytext").val(replytext);
 			$("#replyhead").html(rno);
 			$("#myModal").modal();
+			cfm.val("");
 		}else{
+			cfm.val("");
 			cfm.hide();
 			window.alert("비밀번호를 확인하세요");
 		}

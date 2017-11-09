@@ -27,5 +27,9 @@
 	<update id="modifyAfter">
 		update after set content=#{content} where no=#{no}
 	</update>
+	
+	<delete id="delete">
+		delete from after where no=#{no}
+	</delete>
 
 </mapper>

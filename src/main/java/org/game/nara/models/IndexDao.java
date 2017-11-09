@@ -11,7 +11,7 @@ public class IndexDao {
 @Autowired
 SqlSessionTemplate temp;
 
-	public Map indexHandel() {
+	public Map indexHandel() throws Exception {
 		Map map = new HashMap();
 		List sell = temp.selectList("index.sell");
 		int sellCnt = sell.size();
