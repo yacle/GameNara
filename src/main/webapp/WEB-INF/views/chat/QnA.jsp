@@ -16,7 +16,7 @@ textarea {
 			<p><h4>문의사항이나 건의사항을 보내주시면 빠른시간내에 확인후 조취를 취하겠습니다.</h4></p>
 			<hr/>
 				<br/><div class="form-group">
-				<input type="hidden" id="receiver" name="receiver" value="admin" />
+				<input type="hidden" id="receiver" name="receiver" value="qnamanager" />
 					<label for="comment" for="writer">작성  자</label> <input type="text"
 						style="width: 80%;" class="form-control" name="sender" id="sender"
 						value="${auth_id }" disabled>
@@ -45,7 +45,7 @@ $("#send").click(function(){
 	}).done(function(obj){
 		window.alert("[성공적으로 보냈습니다. 감사합니다.]");
 	})
-	location.href = "/index";
+	location.href = "/index/1";
 })
 </script>
 

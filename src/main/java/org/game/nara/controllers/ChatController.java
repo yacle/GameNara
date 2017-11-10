@@ -49,14 +49,22 @@ SellDao sellDao;
 	@RequestMapping("/noteSend")
 	public ModelAndView noteSendHandle(@RequestParam String id) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("section", "chat/noteSend");
-		mav.addObject("id", id);
+			mav.addObject("section", "chat/noteSend");
+			mav.addObject("id", id);
+		return mav;
+	}
+	
+	@RequestMapping("/noteSend2")
+	public ModelAndView noteSendHandle() {
+		ModelAndView mav = new ModelAndView();
+			mav.addObject("section", "chat/noteSend2");
 		return mav;
 	}
 
 	@PostMapping("/note_send")
 	@ResponseBody
 	public String noteSendHandle(@RequestParam Map map) throws Exception {
+		System.out.println(map.toString());
 		int r = chatDao.noteAddHandle(map);
 		nws.sendMessageToUser((String)map.get("receiver"), (String)map.get("content"));
 		if(r!=0) {
@@ -65,7 +73,6 @@ SellDao sellDao;
 			return "send fail";
 		}
 	}
-
 	
 	@PostMapping("/deal")
 	@ResponseBody

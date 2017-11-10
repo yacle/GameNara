@@ -27,7 +27,6 @@
 		</p>
 	</div>
 
-
 	<form class="form-horizontal">
 		<div class="col-md-7">
 			<div class="form-group">
@@ -92,7 +91,7 @@
 			</div>
 		</div>
 		<div class="col-md-1"></div>
-</div>
+	</div>
 <div class="form-group">
 	<div class="col-sm-offset-0 col-sm-12" align="center">
 		<button type="button" class="btn btn-default" id="info">Submit</button>

@@ -67,7 +67,14 @@
 	<div id="info">
 		<h2>info</h2>
 		<c:forEach var="obj" items="${total.profile }">
-			<img id="pf" class="img-responsive" src="/profiles/${obj.PROFILE}" style="width: 120; height: 120;"/>
+			<c:choose>
+				<c:when test="${empty obj.PROFILE }">
+					<img id="pf" class="img-responsive" src="/profiles/default.png" style="width: 120; height: 120;"/>
+				</c:when>
+				<c:otherwise>
+					<img id="pf" class="img-responsive" src="/profiles/${obj.PROFILE}" style="width: 120; height: 120;"/>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
 		<c:forEach var="obj" items="${total.member }">
 			<p>¾ÆÀÌµð : ${auth_id}</p>

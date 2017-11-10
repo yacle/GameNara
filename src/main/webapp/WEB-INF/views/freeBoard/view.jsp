@@ -168,32 +168,36 @@ var list = function(){
 list();
 // 댓글 등록
 $("#replysendbtn").click(function(){
-	var replypw = $("#pwd").val();
-	if(replypw != null){
-		var replyer = $("#auth_id").html();
-		var replytext = $("#content").val();
-		$.ajax({
-			"type": "post",
-			"async":false,
-			"url":"/replies/add",
-			"headers": {
-				"Content-Type": "application/json",
-				"X-HTTP-Method-Override": "POST"
-			},
-			"dataType":"text",
-			"data":JSON.stringify({
-				"bno":bno,
-				"replyer":replyer,
-				"replytext":replytext,
-				"pwd":replypw
+	if($("#content").val()!=null){
+		var replypw = $("#pwd").val();
+		if(replypw != null){
+			var replyer = $("#auth_id").html();
+			var replytext = $("#content").val();
+			$.ajax({
+				"type": "post",
+				"async":false,
+				"url":"/replies/add",
+				"headers": {
+					"Content-Type": "application/json",
+					"X-HTTP-Method-Override": "POST"
+				},
+				"dataType":"text",
+				"data":JSON.stringify({
+					"bno":bno,
+					"replyer":replyer,
+					"replytext":replytext,
+					"pwd":replypw
+				})
+			}).done(function(){
+				$("#content").val("");
+				$("#pwd").val("");
+				list();
 			})
-		}).done(function(){
-			$("#content").val("");
-			$("#pwd").val("");
-			list();
-		})
+		}else{
+			window.alert("비밀번호를 입력하세요");
+		}
 	}else{
-		window.alert("비밀번호를 입력하세요");
+		window.alert("내용을 입력하세요");
 	}
 })
 // 댓글 수정버튼

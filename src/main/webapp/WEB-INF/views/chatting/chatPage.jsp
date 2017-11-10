@@ -14,7 +14,7 @@
 	<input type="hidden" id="receiver" name="receiver" value="${id}"/>
 	<input type="hidden" id="sender" name="sender" value="${auth_id}"/>
 	<small><span id="time" name="time"></span></small><br/>
-	<div style="width: 80%; height: 60%; background-color: #D5D5D5; font-size: 10pt;" align="left" id="content"></div><br/>
+	<div id="content" align="left" style="width: 80%; height: 60%; background-color: #D5D5D5; font-size: 10pt; overflow-y:scroll; word-break:break-all";></div><br/>
 	<input  type="text" id="msg" style="width: 80%;">
 </div>
 <div align="center">

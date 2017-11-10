@@ -57,7 +57,8 @@ th, td {
 			</c:forEach>
 		</tbody>
 	</table>
-			<button type="button" id="delbtn">삭제</button>
+		<button type="button" id="notecall" onclick="javascript:openchat2()">쪽지쓰기</button>
+		<button type="button" id="delbtn">삭제</button>
 		<input type="hidden" id="id" name="id" value="${auth_id }">
 <script>
 var arr=[];
@@ -84,6 +85,11 @@ var arr=[];
 	
 	function openchat(obj){
 		var url="/chat/noteSend?id="+obj;
+		window.open(url, "noteSend", "width=400, height=550");
+	}
+	
+	function openchat2(){
+		var url="/chat/noteSend2";
 		window.open(url, "noteSend", "width=400, height=550");
 	}
 

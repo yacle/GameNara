@@ -136,7 +136,7 @@ $("#ok").click(function() {
 <%-- Reply input form --%>
 <div class="row" >
 	<div class="col-md-2" style="padding: 10px;" align="center"><span id="auth_id" style="font-size: 16px; font-weight: bold;">${auth_id }</span></div>
-	<div class="col-md-8"><textarea rows="1" id="content"></textarea></div>
+	<div class="col-md-8"><textarea rows="1" id="content" required></textarea></div>
 	<div class="col-md-1">비밀번호:<input type="number" id="pwd" size="6" placeholder="4자리 숫자"  min="1" max="9999" required></div>
 	<div class="col-md-1" style="padding: 10px;"><button type="button" id="replysendbtn">등록</button></div>
 </div>
@@ -189,32 +189,36 @@ var list = function(){
 list();
 // 댓글 등록
 $("#replysendbtn").click(function(){
-	var replypw = $("#pwd").val();
-	if(replypw != null){
-		var replyer = $("#auth_id").html();
-		var replytext = $("#content").val();
-		$.ajax({
-			"type": "post",
-			"async":false,
-			"url":"/replies/add",
-			"headers": {
-				"Content-Type": "application/json",
-				"X-HTTP-Method-Override": "POST"
-			},
-			"dataType":"text",
-			"data":JSON.stringify({
-				"bno":bno,
-				"replyer":replyer,
-				"replytext":replytext,
-				"pwd":replypw
+	if($("#content").val()!=null){
+		var replypw = $("#pwd").val();
+		if(replypw != null){
+			var replyer = $("#auth_id").html();
+			var replytext = $("#content").val();
+			$.ajax({
+				"type": "post",
+				"async":false,
+				"url":"/replies/add",
+				"headers": {
+					"Content-Type": "application/json",
+					"X-HTTP-Method-Override": "POST"
+				},
+				"dataType":"text",
+				"data":JSON.stringify({
+					"bno":bno,
+					"replyer":replyer,
+					"replytext":replytext,
+					"pwd":replypw
+				})
+			}).done(function(){
+				$("#content").val("");
+				$("#pwd").val("");
+				list();
 			})
-		}).done(function(){
-			$("#content").val("");
-			$("#pwd").val("");
-			list();
-		})
+		}else{
+			window.alert("비밀번호를 입력하세요");
+		}
 	}else{
-		window.alert("비밀번호를 입력하세요");
+		window.alert("댓글 내용을 입력하세요");
 	}
 })
 // 댓글 수정버튼

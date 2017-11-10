@@ -4,9 +4,13 @@
 body {
 	background-image: url("/profiles/back.jpg");
 	background-repeat: no-repeat;
+	background-position:center;
 }
 </style>
 <html>
+<audio controls autoplay>
+  <source src="/profiles/final-fantasy-x-ost.mp3" type="audio/mpeg" >
+</audio>
 <head>
   <title>Home</title>
   <meta charset="utf-8">

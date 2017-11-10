@@ -4,7 +4,6 @@
 <style>
 .all{
 	background-image: url("/profiles/back02.jpg");
-	background-repeat: no-repeat;
 }
 </style>
 <html>
@@ -20,8 +19,8 @@
 		
 		<title><tiles:getAsString name="title" />-${auth_id }</title> 
 	</head>
-<div class="container">
-	<div class="all">
+<div class="all">
+	<div class="container">
 		<body>
 			<header >
 				<tiles:insertAttribute name="header" />
